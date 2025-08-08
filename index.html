@@ -550,7 +550,11 @@
   </div>
 </section>
 
-<!-- Footer -->
+</section> <!-- end Final CTA -->
+
+</main> <!-- ✅ Close the constrained main container so footer can be full-width -->
+
+<!-- Footer (full-bleed background, aligned content) -->
 <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
   <div class="w-full">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
@@ -602,8 +606,10 @@
 
 <!-- Script for FAQ toggle and footer year -->
 <script>
+  // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // FAQ accordion (+ / −, one open at a time)
   document.querySelectorAll('#faq-list .faq-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
@@ -622,4 +628,5 @@
   });
 </script>
 
+</body>
 </html>
