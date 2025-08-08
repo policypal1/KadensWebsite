@@ -21,55 +21,64 @@
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
   <!-- Header -->
-    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-3">
-            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-            <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
-            <span class="hidden sm:inline">
-            </span>
-          </div>
-
-          <nav class="hidden md:flex items-center gap-2 text-sm">
-            <a href="services.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
-            <a href="#reviews" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
-            <a href="#quote" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
-            <a href="#faqs" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
-          </nav>
-
-          <div class="hidden md:flex items-center gap-3">
-            <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold">(555) 123-4567</a>
-            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
-          </div>
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+          <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-2 text-sm">
+          <a href="index.html#services" class="px-3 py-2 rounded-lg hover:bg-red-50">Home</a>
+          <a href="#pricing" class="px-3 py-2 rounded-lg hover:bg-red-50">Pricing</a>
+          <a href="#quote" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-3">
+          <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold">(555) 123-4567</a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
   <!-- Constrained content wrapper to prevent full-width stretching -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
 
+    <!-- Sticky banner CTA -->
+    <div class="sticky top-16 z-40 mt-6">
+      <div class="glass bg-white/90 border border-neutral-200 rounded-2xl shadow-sm px-4 py-3 flex items-center justify-between">
+        <p class="text-sm md:text-base">
+          <span class="font-semibold">Need it today?</span> Morning call → same-day mobile service in most cases.
+        </p>
+        <div class="hidden sm:flex gap-2">
+          <a href="tel:+15551234567" class="rounded-xl px-4 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Call Now</a>
+          <a href="#quote" class="rounded-xl px-4 py-2 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Quick Quote</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Quick Services Grid (matches index data) -->
     <section id="pricing" class="mt-12">
       <div class="text-center">
-        <h2 class="text-3xl font-extrabold">Core Services & Starting Prices</h2>
-        <p class="mt-2 text-neutral-600 max-w-2xl mx-auto">Upfront “from” pricing. Final quote depends on vehicle year, glass features, and availability.</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold">Core Services & Starting Prices</h2>
+        <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">Upfront “from” pricing. Final quote depends on vehicle year, glass features, and availability.</p>
       </div>
 
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <!-- Front Windshield -->
-        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
           <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Front Windshield" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="p-6">
+          <div class="p-6 flex flex-col h-full">
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-bold">Front Windshield</h3>
               <span class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Most Popular</span>
             </div>
             <p class="mt-1 text-sm text-neutral-600">OEM-grade glass & urethane. Leak-free, quiet seal.</p>
-            <div class="mt-4 flex items-baseline gap-2">
-              <span class="text-2xl font-extrabold text-red-600">$199</span><span class="text-neutral-500 text-sm">+</span>
+            <div class="mt-4 h-8 flex items-end gap-2">
+              <span class="text-2xl font-extrabold text-red-600 tabular-nums">$199</span>
+              <span class="text-neutral-500 text-sm leading-none pb-1">+</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm">
+            <ul class="mt-4 space-y-2 text-sm flex-1">
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Mobile install at home or office</li>
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Lifetime workmanship warranty</li>
             </ul>
@@ -81,15 +90,16 @@
         </article>
 
         <!-- Rear Glass -->
-        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
           <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="p-6">
+          <div class="p-6 flex flex-col h-full">
             <h3 class="text-lg font-bold">Rear Glass</h3>
             <p class="mt-1 text-sm text-neutral-600">Defrost lines integrated and tested.</p>
-            <div class="mt-4 flex items-baseline gap-2">
-              <span class="text-2xl font-extrabold text-red-600">$189</span><span class="text-neutral-500 text-sm">+</span>
+            <div class="mt-4 h-8 flex items-end gap-2">
+              <span class="text-2xl font-extrabold text-red-600 tabular-nums">$189</span>
+              <span class="text-neutral-500 text-sm leading-none pb-1">+</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm">
+            <ul class="mt-4 space-y-2 text-sm flex-1">
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>OEM-spec adhesive & curing</li>
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Clean removal of broken glass</li>
             </ul>
@@ -101,15 +111,16 @@
         </article>
 
         <!-- Door Glass -->
-        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
           <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Car Door Glass" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="p-6">
+          <div class="p-6 flex flex-col h-full">
             <h3 class="text-lg font-bold">Car Door Glass</h3>
             <p class="mt-1 text-sm text-neutral-600">Precise fit, tracks & regulators checked.</p>
-            <div class="mt-4 flex items-baseline gap-2">
-              <span class="text-2xl font-extrabold text-red-600">$149</span><span class="text-neutral-500 text-sm">+</span>
+            <div class="mt-4 h-8 flex items-end gap-2">
+              <span class="text-2xl font-extrabold text-red-600 tabular-nums">$149</span>
+              <span class="text-neutral-500 text-sm leading-none pb-1">+</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm">
+            <ul class="mt-4 space-y-2 text-sm flex-1">
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Re-alignment & function test</li>
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Weather seal inspection</li>
             </ul>
@@ -121,15 +132,16 @@
         </article>
 
         <!-- Chip Repair -->
-        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
           <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repair" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="p-6">
+          <div class="p-6 flex flex-col h-full">
             <h3 class="text-lg font-bold">Chip Repair</h3>
             <p class="mt-1 text-sm text-neutral-600">Stop cracks before they spread.</p>
-            <div class="mt-4 flex items-baseline gap-2">
-              <span class="text-2xl font-extrabold text-red-600">$49</span><span class="text-neutral-500 text-sm">+</span>
+            <div class="mt-4 h-8 flex items-end gap-2">
+              <span class="text-2xl font-extrabold text-red-600 tabular-nums">$49</span>
+              <span class="text-neutral-500 text-sm leading-none pb-1">+</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm">
+            <ul class="mt-4 space-y-2 text-sm flex-1">
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Resin injection & UV cure</li>
               <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Most chips in ~20 minutes</li>
             </ul>
