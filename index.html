@@ -1,1 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clear Choice Auto Glass — Auto Glass</title>
+    <meta name="description" content="Mobile auto glass repair & replacement. Same-day service. Family-owned." />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Tailwind CDN so utility classes work -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Small helpers (so we don't depend on a separate styles.css) */
+      @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
+      .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-white flex flex-col text-neutral-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
+            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+            <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
+            <span class="hidden sm:inline">
+              <span class="ml-2 inline-block rounded-full bg-red-50 text-red-700 px-2 py-0.5 text-xs border border-red-200">Family-Owned</span>
+            </span>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-2 text-sm">
+            <a href="#services" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
+            <a href="#reviews" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
+            <a href="#quote" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
+            <a href="#faqs" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
+          </nav>
+
+          <div class="hidden md:flex items-center gap-3">
+            <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold">(555) 123-4567</a>
+            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+      <!-- HERO (now always visible with dark fallback) -->
+      <section class="relative overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-900 opacity-0 translate-y-2 animate-fadeIn">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/30" aria-hidden="true"></div>
+
+        <div class="relative px-6 py-20 md:py-28 min-h-[70vh] flex items-start justify-start text-white">
+          <div class="max-w-3xl text-left">
+            <span class="inline-flex items-center rounded-full bg-red-600 text-white px-3 py-1 text-xs tracking-wide uppercase shadow">Family-Owned &amp; Operated</span>
+            <h1 class="mt-4 text-4xl md:text-6xl font-black leading-tight">Fast, Reliable Auto Glass Repair</h1>
+            <p class="mt-4 text-lg md:text-2xl text-white/90">Same-Day Service — We Come to You — Serving [Your City / Area]</p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Call Now</a>
+              <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Request a Quote</a>
+            </div>
+
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
+              <!-- 5 stars -->
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <span class="font-semibold">5.0</span>
+              <span class="text-sm text-neutral-600">(200+ Google reviews)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="mt-24 rounded-3xl bg-neutral-50 border border-neutral-200 p-6 md:p-10">
+        <div class="flex items-end justify-between">
+          <h2 class="text-3xl font-extrabold text-neutral-900">Our Services</h2>
+        </div>
+
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition">
+            <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Windshield Replacement" class="h-80 w-full object-cover" loading="lazy" decoding="async" />
+            <div class="p-6">
+              <h3 class="font-bold text-lg text-neutral-900">Windshield Replacement</h3>
+              <p class="text-neutral-600 mt-3 text-sm leading-relaxed">OEM-quality glass, precision fit, leak-free seals.</p>
+            </div>
+          </div>
+
+          <div class="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition">
+            <img src="https://www.luckydogglass.com/wp-content/uploads/2021/01/can-cold-weather-make-a-crack-in-your-windshield-worse-1.jpg" alt="Chip Repair" class="h-80 w-full object-cover" loading="lazy" decoding="async" />
+            <div class="p-6">
+              <h3 class="font-bold text-lg text-neutral-900">Chip Repair</h3>
+              <p class="text-neutral-600 mt-3 text-sm leading-relaxed">Stop cracks from spreading—repairs in ~30 minutes.</p>
+            </div>
+          </div>
+
+          <div class="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition">
+            <img src="https://friscoautoglasspros.com/wp-content/uploads/2020/06/back-glass-replacement.jpg" alt="Back Glass Replacement" class="h-80 w-full object-cover" loading="lazy" decoding="async" />
+            <div class="p-6">
+              <h3 class="font-bold text-lg text-neutral-900">Back Glass Replacement</h3>
+              <p class="text-neutral-600 mt-3 text-sm leading-relaxed">Clean removal, new seals, defroster checked.</p>
+            </div>
+          </div>
+
+          <div class="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition">
+            <img src="https://www.glassfixitauto.com/wp-content/uploads/2024/02/car-side-window-repair.jpg" alt="Side Window Repair" class="h-80 w-full object-cover" loading="lazy" decoding="async" />
+            <div class="p-6">
+              <h3 class="font-bold text-lg text-neutral-900">Side Window Repair</h3>
+              <p class="text-neutral-600 mt-3 text-sm leading-relaxed">Fast replacements with proper tint and safety.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY LOCALS TRUST -->
+      <section id="why" class="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+        <div class="flex flex-col gap-6">
+          <div>
+            <h2 class="text-3xl font-extrabold text-neutral-900">Why Locals Trust Clear Choice Auto Glass</h2>
+            <p class="mt-3 text-neutral-700 max-w-2xl">We keep it simple: fast scheduling, clean installs, and pricing that won’t surprise you.</p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4">
+              <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900">Local &amp; Family-Owned</h3>
+                <p class="text-neutral-600 text-sm">We treat your car like ours—no rush jobs, no shortcuts.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900">Same-Day Mobile Service</h3>
+                <p class="text-neutral-600 text-sm">Call in the morning, get it done at home or work.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900">OEM-Grade Materials</h3>
+                <p class="text-neutral-600 text-sm">Factory-spec glass &amp; urethane for a quiet, leak-free seal.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900">No-Surprise Pricing</h3>
+                <p class="text-neutral-600 text-sm">If something changes, you hear it from us first.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews" class="mt-24 relative rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 overflow-hidden">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.05] bg-no-repeat bg-cover" style="background-image:url('https://external-preview.redd.it/jOyFvuXmNhzhP2mB3538eIT73G1bIqC3AxA9A_V_Ljk.jpg?auto=webp&s=1398087d8c49b70fdb1c6b930002e81cbe9ea6eb'); background-position:center;"></div>
+        <div class="relative">
+          <h2 class="text-3xl font-extrabold text-neutral-900">Customer Reviews</h2>
+
+          <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-sm">
+            <span class="inline-flex items-center gap-1">
+              <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <span class="font-semibold">5.0</span>
+            </span>
+            <span class="text-neutral-600">200+ Reviews</span>
+          </div>
+
+          <div class="mt-8 grid lg:grid-cols-3 gap-6">
+            <article class="relative rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-red-600 text-white h-9 w-9 grid place-items-center font-bold shadow">S</div>
+              <h3 class="mt-4 text-center text-2xl font-black text-neutral-900">“Determination and Detective Work Provided a Simple Fix”</h3>
+              <p class="mt-3 text-center text-neutral-500 text-sm">Aug 6, 2025</p>
+              <div class="mt-3 flex justify-center gap-1 text-yellow-500" aria-label="5 stars">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              </div>
+              <p class="mt-4 text-neutral-700 text-center">Clear Choice did an outstanding job identifying a hard-to-find leak. Their determination ended up providing a simple fix.</p>
+              <div class="mt-6 flex items-center justify-center gap-2 text-sm">
+                <span class="inline-flex items-center justify-center h-5 w-5 rounded-full border border-red-500 text-red-600 font-bold">G</span>
+                <span class="font-semibold text-neutral-900">Steve M.</span>
+              </div>
+            </article>
+
+            <article class="relative rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-red-600 text-white h-9 w-9 grid place-items-center font-bold shadow">T</div>
+              <h3 class="mt-4 text-center text-2xl font-black text-neutral-900">“He did an excellent job for us.”</h3>
+              <p class="mt-3 text-center text-neutral-500 text-sm">Aug 6, 2025</p>
+              <div class="mt-3 flex justify-center gap-1 text-yellow-500" aria-label="5 stars">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              </div>
+              <p class="mt-4 text-neutral-700 text-center">Excellent job. Thank you Clear Choice Auto Glass — fast, friendly, and professional.</p>
+              <div class="mt-6 flex items-center justify-center gap-2 text-sm">
+                <span class="inline-flex items-center justify-center h-5 w-5 rounded-full border border-red-500 text-red-600 font-bold">G</span>
+                <span class="font-semibold text-neutral-900">Tracy K.</span>
+              </div>
+            </article>
+
+            <article class="relative rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-red-600 text-white h-9 w-9 grid place-items-center font-bold shadow">J</div>
+              <h3 class="mt-4 text-center text-2xl font-black text-neutral-900">“Booked online, tech came to my driveway.”</h3>
+              <p class="mt-3 text-center text-neutral-500 text-sm">Aug 4, 2025</p>
+              <div class="mt-3 flex justify-center gap-1 text-yellow-500" aria-label="5 stars">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              </div>
+              <p class="mt-4 text-neutral-700 text-center">So easy and fast. Looks brand new and the price was fair. Highly recommend.</p>
+              <div class="mt-6 flex items-center justify-center gap-2 text-sm">
+                <span class="inline-flex items-center justify-center h-5 w-5 rounded-full border border-red-500 text-red-600 font-bold">G</span>
+                <span class="font-semibold text-neutral-900">Jordan P.</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GUARANTEES -->
+      <section id="guarantees" class="mt-24 relative overflow-hidden rounded-3xl">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://www.nuvisionautoglass.com/wp-content/uploads/2023/08/188.webp'); filter:saturate(0.9);"></div>
+        <div class="absolute inset-0 bg-neutral-900/55" aria-hidden="true"></div>
+
+        <div class="relative px-6 md:px-10 py-12 md:py-16 text-white">
+          <div class="max-w-6xl mx-auto">
+            <div class="max-w-3xl">
+              <span class="inline-flex items-center rounded-full bg-red-600 text-white px-3 py-1 text-xs tracking-wide uppercase shadow">Clear Choice Promise</span>
+              <h2 class="mt-3 text-3xl md:text-5xl font-black leading-tight">Why Oregon Drivers Trust Clear Choice Auto Glass</h2>
+              <p class="mt-3 text-white/90 text-lg">If we wouldn’t put it on our own car, we won’t put it on yours. We specialize in quality auto glass repairs and replacements — no camera recalibration services.</p>
+            </div>
+
+            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="bg-white text-neutral-900 rounded-2xl shadow-md border border-neutral-200 p-6 relative overflow-hidden">
+                <div class="flex items-start gap-3">
+                  <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <div>
+                    <h3 class="font-bold leading-snug">Lifetime Workmanship Warranty</h3>
+                    <p class="mt-2 text-sm text-neutral-600">If a seal we installed ever fails, we fix it.</p>
+                  </div>
+                </div>
+                <span class="absolute left-0 right-0 bottom-0 h-1 bg-red-600"></span>
+              </div>
+
+              <div class="bg-white text-neutral-900 rounded-2xl shadow-md border border-neutral-200 p-6 relative overflow-hidden">
+                <div class="flex items-start gap-3">
+                  <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <div>
+                    <h3 class="font-bold leading-snug">Crystal-Clean Install</h3>
+                    <p class="mt-2 text-sm text-neutral-600">Broken glass out, dash &amp; vents cleaned. No mess.</p>
+                  </div>
+                </div>
+                <span class="absolute left-0 right-0 bottom-0 h-1 bg-red-600"></span>
+              </div>
+
+              <div class="bg-white text-neutral-900 rounded-2xl shadow-md border border-neutral-200 p-6 relative overflow-hidden">
+                <div class="flex items-start gap-3">
+                  <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <div>
+                    <h3 class="font-bold leading-snug">Top-Tier Materials</h3>
+                    <p class="mt-2 text-sm text-neutral-600">OEM-grade glass &amp; urethane for a quiet, leak-free seal.</p>
+                  </div>
+                </div>
+                <span class="absolute left-0 right-0 bottom-0 h-1 bg-red-600"></span>
+              </div>
+
+              <div class="bg-white text-neutral-900 rounded-2xl shadow-md border border-neutral-200 p-6 relative overflow-hidden">
+                <div class="flex items-start gap-3">
+                  <span class="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><circle cx="12" cy="12" r="12" class="fill-red-600"></circle><path d="M7 12.5l3 3L17 9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <div>
+                    <h3 class="font-bold leading-snug">Fast &amp; On-Time Mobile</h3>
+                    <p class="mt-2 text-sm text-neutral-600">We show up when we say we will — home or office.</p>
+                  </div>
+                </div>
+                <span class="absolute left-0 right-0 bottom-0 h-1 bg-red-600"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUOTE -->
+      <section id="quote" class="mt-24 relative overflow-hidden rounded-3xl">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://static01.nyt.com/images/2022/06/12/business/00Roadtrip-lede-alt/merlin_208250010_8945c370-bf80-4322-92e8-ae6c9609ca20-mobileMasterAt3x.jpg');"></div>
+        <div class="absolute inset-0 bg-black/35" aria-hidden="true"></div>
+
+        <div class="relative p-6 md:p-10">
+          <div class="grid lg:grid-cols-2 gap-8 items-start">
+            <div class="bg-black/55 backdrop-blur-sm rounded-2xl p-6 md:p-8 ring-1 ring-white/15 shadow-xl text-white">
+              <h3 class="text-3xl font-black">Get a Same-Day Quote</h3>
+              <p class="mt-2 text-white/90 text-lg">We’ll text or call you back quickly. Most replacements done the same day.</p>
+              <ul class="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
+                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-red-400"></span> Mobile service anywhere in [Your City / Area]</li>
+                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-red-400"></span> Insurance accepted</li>
+                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-red-400"></span> Lifetime workmanship warranty</li>
+                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-red-400"></span> OEM-quality materials</li>
+              </ul>
+            </div>
+
+            <div class="bg-white/95 backdrop-blur rounded-2xl p-5 shadow-xl border border-white/20">
+              <!-- Quote Form (mailto by default; swap to Formspree if needed) -->
+              <form method="POST" action="mailto:hello@example.com" class="rounded-2xl border p-5 shadow-sm bg-white text-neutral-900 border-neutral-200">
+                <div class="grid grid-cols-1 gap-4">
+                  <label class="text-sm">
+                    <span class="block mb-1">Full Name<span class="text-red-500"> *</span></span>
+                    <input class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400" type="text" name="name" required aria-label="Full Name"/>
+                  </label>
+                  <label class="text-sm">
+                    <span class="block mb-1">Phone<span class="text-red-500"> *</span></span>
+                    <input class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400" type="tel" name="phone" required aria-label="Phone"/>
+                  </label>
+                  <label class="text-sm">
+                    <span class="block mb-1">Email<span class="text-red-500"> *</span></span>
+                    <input class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400" type="email" name="email" required aria-label="Email"/>
+                  </label>
+                  <label class="text-sm">
+                    <span class="block mb-1">Vehicle (Year/Make/Model)<span class="text-red-500"> *</span></span>
+                    <input class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400" type="text" name="vehicle" required aria-label="Vehicle (Year/Make/Model)"/>
+                  </label>
+                  <label class="text-sm">
+                    <span class="block mb-1">Service Needed</span>
+                    <select name="service" class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900" aria-label="Service Needed">
+                      <option>Windshield Replacement</option>
+                      <option>Chip Repair</option>
+                      <option>Back Glass Replacement</option>
+                      <option>Side Window Repair</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label class="text-sm">
+                    <span class="block mb-1">Details</span>
+                    <textarea class="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400 min-h-[120px]" name="details" placeholder="VIN, ADAS sensors, location for mobile service, etc." aria-label="Details"></textarea>
+                  </label>
+                </div>
+
+                <div class="mt-4 flex gap-3">
+                  <button type="submit" class="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Request a Quote</button>
+                  <a href="tel:+15551234567" class="w-full text-center inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Call Now</a>
+                </div>
+                <p class="mt-2 text-xs text-neutral-600">Submitting this form sends your request to hello@example.com. For real-time help, call us directly.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section id="faqs" class="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+        <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
+        <div id="faq-list" class="divide-y divide-neutral-200 mt-4">
+          <div class="py-4">
+            <button class="w-full text-left flex items-center justify-between faq-toggle"><span class="font-semibold text-neutral-900">Do you offer same-day service?</span><span class="text-neutral-500">+</span></button>
+            <p class="mt-2 text-neutral-700 hidden">Yes—call in the morning and we can usually get to you the same day in most of [Your City / Area].</p>
+          </div>
+          <div class="py-4">
+            <button class="w-full text-left flex items-center justify-between faq-toggle"><span class="font-semibold text-neutral-900">Do you work with my insurance?</span><span class="text-neutral-500">+</span></button>
+            <p class="mt-2 text-neutral-700 hidden">We accept most major insurers and can help file the claim to minimize your out-of-pocket cost.</p>
+          </div>
+          <div class="py-4">
+            <button class="w-full text-left flex items-center justify-between faq-toggle"><span class="font-semibold text-neutral-900">Where do you do the work?</span><span class="text-neutral-500">+</span></button>
+            <p class="mt-2 text-neutral-700 hidden">We come to your home or office with fully equipped mobile units. All we need is a safe driveway or parking spot.</p>
+          </div>
+          <div class="py-4">
+            <button class="w-full text-left flex items-center justify-between faq-toggle"><span class="font-semibold text-neutral-900">Do you calibrate ADAS cameras?</span><span class="text-neutral-500">+</span></button>
+            <p class="mt-2 text-neutral-700 hidden">We focus on the glass work and do not offer camera recalibration services.</p>
+          </div>
+          <div class="py-4">
+            <button class="w-full text-left flex items-center justify-between faq-toggle"><span class="font-semibold text-neutral-900">How long does a replacement take?</span><span class="text-neutral-500">+</span></button>
+            <p class="mt-2 text-neutral-700 hidden">Most windshield replacements take 60–90 minutes, plus safe drive-away time while the urethane cures.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="mt-24 text-center rounded-3xl border border-neutral-200 bg-white p-10">
+        <p class="text-sm uppercase tracking-wide text-neutral-500">Don’t wait</p>
+        <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">Crack spreading? Get help in hours, not days.</h3>
+        <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">Call now to speak with a tech or submit the quick form—whichever you prefer. We’ll come to your home or office.</p>
+        <div class="mt-6 flex justify-center gap-3">
+          <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Call (555) 123-4567</a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Request a Quote</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-neutral-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2">
+            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+            <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+          </div>
+          <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in [Your City / Area]</p>
+          <div class="mt-4 flex gap-3">
+            <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Call Now</a>
+            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Get a Quote</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+          <ul class="mt-3 space-y-2 text-neutral-700">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-neutral-900">Contact</h4>
+          <ul class="mt-3 space-y-2 text-neutral-700">
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+            <li>Serving [Your City / Area]</li>
+            <li>Mon–Sat: 7am–6pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex items-center justify-between">
+          <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+          <a href="#quote" class="hover:text-neutral-900">Privacy &amp; Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+      // FAQ toggles
+      document.querySelectorAll('#faq-list .faq-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const answer = btn.parentElement.querySelector('p');
+          const isOpen = !answer.classList.contains('hidden');
+          document.querySelectorAll('#faq-list p').forEach((p) => p.classList.add('hidden'));
+          if (!isOpen) answer.classList.remove('hidden');
+        });
+      });
+    </script>
+  </body>
+</html>
 
