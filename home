@@ -1,0 +1,616 @@
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+
+// =============================
+// Editable Business Settings
+// =============================
+const SETTINGS = {
+  BUSINESS_NAME: "Redline Auto Glass",
+  CITY_AREA: "[Your City / Area]",
+  BUSINESS_PHONE_DISPLAY: "(555) 123-4567",
+  BUSINESS_PHONE_TEL: "+15551234567",
+  CONTACT_EMAIL: "hello@example.com",
+
+  HERO_BG_URL:
+    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop",
+
+  // Before/after images
+  BEFORE_IMG_URL:
+    "https://images.unsplash.com/photo-1542367597-8849eb8c5f86?q=80&w=1600&auto=format&fit=crop",
+  AFTER_IMG_URL:
+    "https://images.unsplash.com/photo-1549921296-3ecf9f5c9f2b?q=80&w=1600&auto=format&fit=crop",
+  BEFORE2_IMG_URL:
+    "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+  AFTER2_IMG_URL:
+    "https://images.unsplash.com/photo-1563720223185-11003d516ec9?q=80&w=1600&auto=format&fit=crop",
+
+  // Service card images (your new links)
+  WINDSHIELD_IMG_URL: "https://www.aaa.com/AAA/common/AAR/images/ws.jpg",
+  CHIP_IMG_URL:
+    "https://www.luckydogglass.com/wp-content/uploads/2021/01/can-cold-weather-make-a-crack-in-your-windshield-worse-1.jpg",
+  BACKGLASS_IMG_URL:
+    "https://friscoautoglasspros.com/wp-content/uploads/2020/06/back-glass-replacement.jpg",
+  SIDEWINDOW_IMG_URL:
+    "https://www.glassfixitauto.com/wp-content/uploads/2024/02/car-side-window-repair.jpg",
+
+  // Quote section background (your NYT image)
+  QUOTE_BG_URL:
+    "https://static01.nyt.com/images/2022/06/12/business/00Roadtrip-lede-alt/merlin_208250010_8945c370-bf80-4322-92e8-ae6c9609ca20-mobileMasterAt3x.jpg",
+
+  // Tall team photo for “Why Choose” section
+  TEAM_PHOTO_URL:
+    "https://external-preview.redd.it/jOyFvuXmNhzhP2mB3538eIT73G1bIqC3AxA9A_V_Ljk.jpg?auto=webp&s=1398087d8c49b70fdb1c6b930002e81cbe9ea6eb",
+
+  FORMSPREE_ENDPOINT: "",
+};
+
+// ------------------------------
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center rounded-full bg-red-600 text-white px-3 py-1 text-xs tracking-wide uppercase shadow">
+    {children}
+  </span>
+);
+
+const PrimaryButton = ({ href, onClick, children, className = "" }) => {
+  const base =
+    "inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition";
+  if (href) return <a href={href} className={`${base} ${className}`}>{children}</a>;
+  return (
+    <button onClick={onClick} className={`${base} ${className}`}>
+      {children}
+    </button>
+  );
+};
+
+const OutlineButton = ({ href, children, className = "" }) => (
+  <a
+    href={href}
+    className={`inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition ${className}`}
+  >
+    {children}
+  </a>
+);
+
+// ------------------------------
+const Header = () => {
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">
+              AG
+            </div>
+            <span className="text-neutral-900 font-extrabold text-lg tracking-wide">
+              {SETTINGS.BUSINESS_NAME}
+            </span>
+            <span className="hidden sm:inline">
+              <span className="ml-2 inline-block rounded-full bg-red-50 text-red-700 px-2 py-0.5 text-xs border border-red-200">
+                Family-Owned
+              </span>
+            </span>
+          </div>
+
+          {/* anchors for scrolling */}
+          <nav className="hidden md:flex items-center gap-2 text-sm">
+            <a href="#services" className="px-3 py-2 rounded-lg hover:bg-red-50">
+              Services
+            </a>
+            <a href="#reviews" className="px-3 py-2 rounded-lg hover:bg-red-50">
+              Reviews
+            </a>
+            <a href="#quote" className="px-3 py-2 rounded-lg hover:bg-red-50">
+              Quote
+            </a>
+            <a href="#faqs" className="px-3 py-2 rounded-lg hover:bg-red-50">
+              FAQs
+            </a>
+          </nav>
+
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}
+              className="text-neutral-900 hover:text-red-700 font-semibold"
+            >
+              {SETTINGS.BUSINESS_PHONE_DISPLAY}
+            </a>
+            <PrimaryButton href="#quote">Get a Quote</PrimaryButton>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+// ------------------------------
+const HomeQuoteForm = ({ invert = false }) => (
+  <form
+    method="POST"
+    action={
+      SETTINGS.FORMSPREE_ENDPOINT || `mailto:${SETTINGS.CONTACT_EMAIL}`
+    }
+    className={`rounded-2xl border p-5 shadow-sm ${
+      invert
+        ? "bg-white text-neutral-900 border-white/20"
+        : "bg-white text-neutral-900 border-neutral-200"
+    }`}
+  >
+    <div className="grid grid-cols-1 gap-4">
+      <Field label="Full Name" name="name" type="text" required />
+      <Field label="Phone" name="phone" type="tel" required />
+      <Field label="Email" name="email" type="email" required />
+      <Field label="Vehicle (Year/Make/Model)" name="vehicle" type="text" required />
+      <SelectField
+        label="Service Needed"
+        name="service"
+        options={[
+          "Windshield Replacement",
+          "Chip Repair",
+          "Back Glass Replacement",
+          "Side Window Repair",
+          "Other",
+        ]}
+      />
+      <TextareaField
+        label="Details"
+        name="details"
+        placeholder="VIN, ADAS sensors, location for mobile service, etc."
+      />
+    </div>
+    <div className="mt-4 flex gap-3">
+      <PrimaryButton className="w-full">Request a Quote</PrimaryButton>
+      <OutlineButton
+        href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}
+        className="w-full text-center"
+      >
+        Call Now
+      </OutlineButton>
+    </div>
+    <p className="mt-2 text-xs text-neutral-600">
+      Submitting this form sends your request to {SETTINGS.CONTACT_EMAIL}. For
+      real-time help, call us directly.
+    </p>
+  </form>
+);
+
+const Field = ({ label, name, type = "text", required, placeholder }) => (
+  <label className="text-sm">
+    <span className="block mb-1">
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </span>
+    <input
+      className="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400"
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      aria-label={label}
+    />
+  </label>
+);
+
+const TextareaField = ({ label, name, required, placeholder }) => (
+  <label className="text-sm">
+    <span className="block mb-1">
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </span>
+    <textarea
+      className="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900 placeholder-neutral-400 min-h-[120px]"
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      aria-label={label}
+    />
+  </label>
+);
+
+const SelectField = ({ label, name, options }) => (
+  <label className="text-sm">
+    <span className="block mb-1">{label}</span>
+    <select
+      name={name}
+      className="w-full rounded-xl bg-white border border-neutral-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 px-4 py-3 text-neutral-900"
+      aria-label={label}
+    >
+      {options.map((o) => (
+        <option key={o} value={o}>
+          {o}
+        </option>
+      ))}
+    </select>
+  </label>
+);
+
+const Star = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z" />
+  </svg>
+);
+
+// ------------------------------
+function App() {
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+      <Helmet>
+        <title>{SETTINGS.BUSINESS_NAME} — Auto Glass</title>
+        <meta
+          name="description"
+          content="Mobile auto glass repair & replacement. Same-day service. Family-owned."
+        />
+        <meta name="theme-color" content="#ffffff" />
+      </Helmet>
+
+      <Header />
+
+      <motion.main
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-neutral-900 flex-1"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+      >
+        {/* HERO — rounded rectangle, top-left text */}
+        <section
+          className="relative overflow-hidden rounded-3xl border border-neutral-200"
+          style={{
+            backgroundImage: `url(${SETTINGS.HERO_BG_URL})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/30"
+            aria-hidden="true"
+          />
+          <div className="relative px-6 py-20 md:py-28 min-h-[70vh] flex items-start justify-start text-white">
+            <div className="max-w-3xl text-left">
+              <Badge>Family-Owned & Operated</Badge>
+              <h1 className="mt-4 text-4xl md:text-6xl font-black leading-tight">
+                Fast, Reliable Auto Glass Repair
+              </h1>
+              <p className="mt-4 text-lg md:text-2xl text-white/90">
+                Same-Day Service — We Come to You — Serving {SETTINGS.CITY_AREA}
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>
+                  Call Now
+                </PrimaryButton>
+                <OutlineButton href="#quote">Request a Quote</OutlineButton>
+              </div>
+
+              {/* social proof pill */}
+              <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                ))}
+                <span className="font-semibold">4.9/5</span>
+                <span className="text-sm text-neutral-600">
+                  (200+ Google reviews)
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* OUR SERVICES */}
+        <section id="services" className="mt-24 rounded-3xl bg-neutral-50 border border-neutral-200 p-6 md:p-10">
+          <div className="flex items-end justify-between">
+            <h2 className="text-3xl font-extrabold text-neutral-900">
+              Our Services
+            </h2>
+          </div>
+
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Windshield Replacement",
+                img: SETTINGS.WINDSHIELD_IMG_URL,
+                desc: "OEM-quality glass, precision fit, leak-free seals.",
+              },
+              {
+                title: "Chip Repair",
+                img: SETTINGS.CHIP_IMG_URL,
+                desc: "Stop cracks from spreading—repairs in ~30 minutes.",
+              },
+              {
+                title: "Back Glass Replacement",
+                img: SETTINGS.BACKGLASS_IMG_URL,
+                desc: "Clean removal, new seals, defroster checked.",
+              },
+              {
+                title: "Side Window Repair",
+                img: SETTINGS.SIDEWINDOW_IMG_URL,
+                desc: "Fast replacements with proper tint and safety.",
+              },
+            ].map(({ title, desc, img }) => (
+              <div
+                key={title}
+                className="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition"
+              >
+                <img src={img} alt={title} className="h-80 w-full object-cover" />
+                <div className="p-6">
+                  <h3 className="font-bold text-lg text-neutral-900">{title}</h3>
+                  <p className="text-neutral-600 mt-3 text-sm leading-relaxed">
+                    {desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* REVIEWS */}
+        <section id="reviews" className="mt-24">
+          <h2 className="text-3xl font-extrabold text-neutral-900">5-Star Reviews</h2>
+          <div className="mt-6 overflow-x-auto snap-x snap-mandatory [-webkit-overflow-scrolling:touch]">
+            <div className="flex gap-4 min-w-max">
+              {[
+                {
+                  name: "Alex P.",
+                  text: "Called in the morning, new windshield by afternoon. Friendly family team and super professional!",
+                },
+                {
+                  name: "Maria R.",
+                  text: "They came to my office and fixed a nasty chip in 20 minutes. Looks brand new—highly recommend.",
+                },
+                {
+                  name: "Daniel S.",
+                  text: "Great price and fast service. Love supporting a family-owned local business.",
+                },
+                {
+                  name: "Priya K.",
+                  text: "Booked online, tech came to my driveway. So easy and fast!",
+                },
+              ].map((r, i) => (
+                <div
+                  key={i}
+                  className="snap-start shrink-0 w-80 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-red-100 grid place-items-center text-red-700 font-bold">
+                        {r.name.charAt(0)}
+                      </div>
+                      <p className="font-semibold text-neutral-900">{r.name}</p>
+                    </div>
+                    <div className="flex items-center gap-1 text-yellow-500" aria-label="5 stars">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-5 w-5" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="mt-4 text-neutral-700">“{r.text}”</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* BEFORE & AFTER (x2) */}
+        <section className="mt-24 rounded-3xl border border-neutral-200 p-6 md:p-10 bg-white">
+          <h2 className="text-3xl font-extrabold text-neutral-900">Before & After</h2>
+          <p className="text-sm text-neutral-600 mt-2">Real customer results — no slider needed.</p>
+          <div className="mt-6 grid sm:grid-cols-2 gap-6">
+            <BAImage label="Before" src={SETTINGS.BEFORE_IMG_URL} />
+            <BAImage label="After" src={SETTINGS.AFTER_IMG_URL} />
+          </div>
+        </section>
+
+        <section className="mt-12 rounded-3xl border border-neutral-200 p-6 md:p-10 bg-white">
+          <h2 className="text-2xl font-extrabold text-neutral-900">More Results</h2>
+          <p className="text-sm text-neutral-600 mt-2">Another real repair we completed recently.</p>
+          <div className="mt-6 grid sm:grid-cols-2 gap-6">
+            <BAImage label="Before" src={SETTINGS.BEFORE2_IMG_URL} />
+            <BAImage label="After" src={SETTINGS.AFTER2_IMG_URL} />
+          </div>
+        </section>
+
+        {/* QUOTE (more readable) */}
+        <section id="quote" className="mt-24 relative overflow-hidden rounded-3xl">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${SETTINGS.QUOTE_BG_URL})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          {/* Subtle dark overlay */}
+          <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
+          <div className="relative p-6 md:p-10">
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* dark glass text card */}
+              <div className="bg-black/55 backdrop-blur-sm rounded-2xl p-6 md:p-8 ring-1 ring-white/15 shadow-xl text-white">
+                <h3 className="text-3xl font-black">Get a Same-Day Quote</h3>
+                <p className="mt-2 text-white/90 text-lg">
+                  We’ll text or call you back quickly. Most replacements done the same day.
+                </p>
+                <ul className="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-red-400" />
+                    Mobile service anywhere in {SETTINGS.CITY_AREA}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-red-400" />
+                    Insurance accepted
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-red-400" />
+                    Lifetime workmanship warranty
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-red-400" />
+                    OEM-quality materials
+                  </li>
+                </ul>
+              </div>
+              {/* form on light card */}
+              <div className="bg-white/95 backdrop-blur rounded-2xl p-5 shadow-xl border border-white/20">
+                <HomeQuoteForm invert />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY CHOOSE REDLINE (auto-glass only) */}
+        <section id="why" className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <h2 className="text-3xl font-extrabold text-neutral-900">
+                Why Choose {SETTINGS.BUSINESS_NAME}
+              </h2>
+              <p className="mt-3 text-neutral-700 max-w-2xl">
+                We’re a small, family team focused 100% on auto glass—fast responses,
+                careful installs, and honest pricing. No big-company runaround.
+              </p>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-8">
+                <WhyItem title="Auto Glass Only" text="Windshield, back glass, and side windows—nothing else, so we’re fast and precise." />
+                <WhyItem title="Skilled Technicians" text="Clean removals, perfect seals, and ADAS calibration guidance when needed." />
+                <WhyItem title="Mobile & Same-Day" text="We come to your home or office. Morning calls often serviced the same day." />
+                <WhyItem title="Insurance Friendly" text="We work with most insurers and help minimize out-of-pocket." />
+              </div>
+            </div>
+
+            <div className="lg:pl-6">
+              <div className="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm w-full max-w-sm lg:ml-auto">
+                <img
+                  src={SETTINGS.TEAM_PHOTO_URL}
+                  alt="Our small, family auto glass team"
+                  className="w-full h-[520px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section id="faqs" className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+          <h2 className="text-3xl font-extrabold text-neutral-900">FAQs</h2>
+          <FAQ />
+        </section>
+
+        {/* Final CTA */}
+        <section className="mt-24 text-center rounded-3xl border border-neutral-200 bg-white p-10">
+          <p className="text-sm uppercase tracking-wide text-neutral-500">Don’t wait</p>
+          <h3 className="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
+            Crack spreading? Get help in hours, not days.
+          </h3>
+          <p className="mt-3 text-neutral-600 max-w-2xl mx-auto">
+            Call now to speak with a tech or submit the quick form—whichever you prefer. We’ll come to your home or office.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>
+              Call {SETTINGS.BUSINESS_PHONE_DISPLAY}
+            </PrimaryButton>
+            <OutlineButton href="#quote">Request a Quote</OutlineButton>
+          </div>
+        </section>
+      </motion.main>
+
+      {/* Fuller Footer */}
+      <footer className="mt-20 border-t border-neutral-200 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+          <div className="col-span-2">
+            <div className="flex items-center gap-2">
+              <div className="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">AG</div>
+              <p className="font-semibold text-neutral-900">{SETTINGS.BUSINESS_NAME}</p>
+            </div>
+            <p className="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in {SETTINGS.CITY_AREA}</p>
+            <div className="mt-4 flex gap-3">
+              <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>Call Now</PrimaryButton>
+              <OutlineButton href="#quote">Get a Quote</OutlineButton>
+            </div>
+          </div>
+          <div>
+            <h4 className="font-semibold text-neutral-900">Quick Links</h4>
+            <ul className="mt-3 space-y-2 text-neutral-700">
+              <li><a href="#services">Services</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#why">Why Us</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold text-neutral-900">Contact</h4>
+            <ul className="mt-3 space-y-2 text-neutral-700">
+              <li><a href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>{SETTINGS.BUSINESS_PHONE_DISPLAY}</a></li>
+              <li><a href={`mailto:${SETTINGS.CONTACT_EMAIL}`}>{SETTINGS.CONTACT_EMAIL}</a></li>
+              <li>Serving {SETTINGS.CITY_AREA}</li>
+              <li>Mon–Sat: 7am–6pm</li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-neutral-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex items-center justify-between">
+            <span>© {new Date().getFullYear()} {SETTINGS.BUSINESS_NAME}. All rights reserved.</span>
+            <a href="#quote" className="hover:text-neutral-900">Privacy & Terms</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+const WhyItem = ({ title, text }) => (
+  <div className="flex items-start gap-4">
+    <div className="h-11 w-11 rounded-xl bg-red-600 text-white grid place-items-center font-bold">✓</div>
+    <div>
+      <h3 className="font-bold text-neutral-900">{title}</h3>
+      <p className="text-neutral-600 text-sm">{text}</p>
+    </div>
+  </div>
+);
+
+const BAImage = ({ label, src }) => (
+  <div className="rounded-2xl overflow-hidden border border-neutral-200">
+    <img src={src} alt={label} className="w-full h-72 object-cover" />
+    <div className="p-3 text-center text-sm bg-neutral-50">{label}</div>
+  </div>
+);
+
+const FAQ = () => {
+  const items = [
+    {
+      q: "Do you offer same-day service?",
+      a: `Yes—call in the morning and we can usually get to you the same day in most of ${SETTINGS.CITY_AREA}.`,
+    },
+    {
+      q: "Do you work with my insurance?",
+      a: "We accept most major insurers and can help file the claim to minimize your out-of-pocket cost.",
+    },
+    {
+      q: "Where do you do the work?",
+      a: "We come to your home or office with fully equipped mobile units. All we need is a safe driveway or parking spot.",
+    },
+    {
+      q: "Do you calibrate ADAS cameras?",
+      a: "We provide guidance and partner options for ADAS recalibration when required by your vehicle.",
+    },
+    {
+      q: "How long does a replacement take?",
+      a: "Most windshield replacements take 60–90 minutes, plus safe drive-away time while the urethane cures.",
+    },
+  ];
+  const [open, setOpen] = useState(null);
+  return (
+    <div className="divide-y divide-neutral-200">
+      {items.map((it, i) => (
+        <div key={i} className="py-4">
+          <button
+            className="w-full text-left flex items-center justify-between"
+            onClick={() => setOpen(open === i ? null : i)}
+          >
+            <span className="font-semibold text-neutral-900">{it.q}</span>
+            <span className="text-neutral-500">{open === i ? "−" : "+"}</span>
+          </button>
+          {open === i && <p className="mt-2 text-neutral-700">{it.a}</p>}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default App;
