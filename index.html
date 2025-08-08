@@ -44,37 +44,35 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
-      <!-- Hero Section -->
-<section class="relative w-full bg-gray-900 text-white">
-  <div class="relative w-full h-[80vh]"> <!-- Increased height to 80% of viewport -->
-    <img src="your-image.jpg" 
-         alt="Hero Image" 
-         class="absolute inset-0 w-full h-full object-cover">
-    
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+      <!-- HERO (now always visible with dark fallback) -->
+      <section class="relative overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-900 opacity-0 translate-y-2 animate-fadeIn">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/30" aria-hidden="true"></div>
 
-    <!-- Content -->
-    <div class="relative z-10 flex flex-col justify-center items-start h-full px-8 lg:px-16">
-      <span class="bg-red-600 px-3 py-1 text-sm font-semibold rounded">FAMILY-OWNED & OPERATED</span>
-      <h1 class="mt-4 text-4xl sm:text-5xl font-bold max-w-3xl">
-        Fast, Reliable Auto Glass Repair
-      </h1>
-      <p class="mt-3 text-lg">
-        Same-Day Service — We Come to You — Serving Salem Oregon
-      </p>
-      <div class="mt-6 flex gap-4">
-        <a href="tel:+15551234567" class="px-6 py-3 bg-red-600 rounded-xl text-white font-semibold hover:bg-red-700">
-          Call Now
-        </a>
-        <a href="#quote" class="px-6 py-3 border-2 border-red-600 rounded-xl text-red-600 font-semibold hover:bg-red-50">
-          Request a Quote
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="relative px-6 py-20 md:py-28 min-h-[70vh] flex items-start justify-start text-white">
+          <div class="max-w-3xl text-left">
+            <span class="inline-flex items-center rounded-full bg-red-600 text-white px-3 py-1 text-xs tracking-wide uppercase shadow">Family-Owned &amp; Operated</span>
+            <h1 class="mt-4 text-4xl md:text-6xl font-black leading-tight">Fast, Reliable Auto Glass Repair</h1>
+            <p class="mt-4 text-lg md:text-2xl text-white/90">Same-Day Service — We Come to You — Serving Salem Oregon</p>
 
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Call Now</a>
+              <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Request a Quote</a>
+            </div>
+
+            <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
+              <!-- 5 stars -->
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <svg class="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+              <span class="font-semibold">5.0</span>
+              <span class="text-sm text-neutral-600">(200+ Google reviews)</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- 3 EASY STEPS (Refined Colors) -->
 <section class="mt-16">
@@ -138,9 +136,9 @@
     <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-sm">
       <span class="inline-flex items-center gap-1">
         <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-        <span class="font-semibold">4.8</span>
+        <span class="font-semibold">5.0</span>
       </span>
-      <span class="text-neutral-600">100+ Reviews</span>
+      <span class="text-neutral-600">200+ Reviews</span>
     </div>
 
     <div class="mt-8 grid lg:grid-cols-3 gap-6 items-stretch">
@@ -347,7 +345,7 @@
           <div class="max-w-6xl mx-auto">
             <div class="max-w-3xl">
               <span class="inline-flex items-center rounded-full bg-red-600 text-white px-3 py-1 text-xs tracking-wide uppercase shadow">Clear Choice Promise</span>
-              <h2 class="mt-3 text-3xl md:text-5xl font-black leading-tight">The Clear Choice Promise</h2>
+              <h2 class="mt-3 text-3xl md:text-5xl font-black leading-tight">Why Oregon Drivers Trust Clear Choice Auto Glass</h2>
               <p class="mt-3 text-white/90 text-lg">If we wouldn’t put it on our own car, we won’t put it on yours. We specialize in quality auto glass repairs and replacements — no camera recalibration services.</p>
             </div>
 
