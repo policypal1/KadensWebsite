@@ -593,59 +593,154 @@
 </section>
 
 
-    <!-- Footer -->
-    <footer class="mt-20 border-t border-neutral-200 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-        <div class="col-span-2">
-          <div class="flex items-center gap-2">
-            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-            <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
-          </div>
-          <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem Oregon</p>
-          <div class="mt-4 flex gap-3">
-            <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Call Now</a>
-            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Get a Quote</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-neutral-900">Quick Links</h4>
-          <ul class="mt-3 space-y-2 text-neutral-700">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#why">Why Us</a></li>
-            <li><a href="#faqs">FAQs</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-neutral-900">Contact</h4>
-          <ul class="mt-3 space-y-2 text-neutral-700">
-            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
-            <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-            <li>Serving [Your City / Area]</li>
-            <li>Mon–Sat: 7am–6pm</li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-neutral-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex items-center justify-between">
-          <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-          <a href="#quote" class="hover:text-neutral-900">Privacy &amp; Terms</a>
-        </div>
-      </div>
-    </footer>
+    <!-- FAQs -->
+<section id="faqs" class="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+  <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
 
-    <script>
-      // Footer year
-      document.getElementById('year').textContent = new Date().getFullYear();
-      // FAQ toggles
-      document.querySelectorAll('#faq-list .faq-toggle').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const answer = btn.parentElement.querySelector('p');
-          const isOpen = !answer.classList.contains('hidden');
-          document.querySelectorAll('#faq-list p').forEach((p) => p.classList.add('hidden'));
-          if (!isOpen) answer.classList.remove('hidden');
-        });
-      });
-    </script>
-  </body>
+  <div id="faq-list" class="divide-y divide-neutral-200 mt-4">
+    <div class="faq-item py-4">
+      <button class="faq-toggle w-full text-left flex items-center justify-between">
+        <span class="font-semibold text-neutral-900">Do you offer same-day service?</span>
+        <span class="faq-icon text-neutral-500">+</span>
+      </button>
+      <p class="faq-answer mt-2 text-neutral-700 hidden">
+        Yes—call in the morning and we can usually get to you the same day in most of [Your City / Area].
+      </p>
+    </div>
+
+    <div class="faq-item py-4">
+      <button class="faq-toggle w-full text-left flex items-center justify-between">
+        <span class="font-semibold text-neutral-900">Do you work with my insurance?</span>
+        <span class="faq-icon text-neutral-500">+</span>
+      </button>
+      <p class="faq-answer mt-2 text-neutral-700 hidden">
+        We accept most major insurers and can help file the claim to minimize your out-of-pocket cost.
+      </p>
+    </div>
+
+    <div class="faq-item py-4">
+      <button class="faq-toggle w-full text-left flex items-center justify-between">
+        <span class="font-semibold text-neutral-900">Where do you do the work?</span>
+        <span class="faq-icon text-neutral-500">+</span>
+      </button>
+      <p class="faq-answer mt-2 text-neutral-700 hidden">
+        We come to your home or office with fully equipped mobile units. All we need is a safe driveway or parking spot.
+      </p>
+    </div>
+
+    <div class="faq-item py-4">
+      <button class="faq-toggle w-full text-left flex items-center justify-between">
+        <span class="font-semibold text-neutral-900">Do you calibrate ADAS cameras?</span>
+        <span class="faq-icon text-neutral-500">+</span>
+      </button>
+      <p class="faq-answer mt-2 text-neutral-700 hidden">
+        We focus on the glass work and do not offer camera recalibration services.
+      </p>
+    </div>
+
+    <div class="faq-item py-4">
+      <button class="faq-toggle w-full text-left flex items-center justify-between">
+        <span class="font-semibold text-neutral-900">How long does a replacement take?</span>
+        <span class="faq-icon text-neutral-500">+</span>
+      </button>
+      <p class="faq-answer mt-2 text-neutral-700 hidden">
+        Most windshield replacements take 60–90 minutes, plus safe drive-away time while the urethane cures.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA (Simplified) -->
+<section class="mt-24 text-center rounded-3xl border border-neutral-200 bg-white p-10 shadow-sm">
+  <p class="text-xs uppercase tracking-wide text-neutral-500">Don’t wait</p>
+  <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
+    Crack spreading? Get help in hours, not days.
+  </h3>
+  <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+    Talk to a tech now or request a quick quote. We come to your home or office—often the same day.
+  </p>
+  <div class="mt-6 flex justify-center gap-3">
+    <a href="tel:+15551234567"
+       class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow">
+      Call (555) 123-4567
+    </a>
+    <a href="#quote"
+       class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200">
+      Request a Quote
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="mt-20 border-t border-neutral-200 bg-white w-full">
+  <div class="w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2">
+          <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+          <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+        </div>
+        <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem Oregon</p>
+        <div class="mt-4 flex gap-3">
+          <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow">
+            Call Now
+          </a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-neutral-900">Contact</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>Serving [Your City / Area]</li>
+          <li>Mon–Sat: 7am–6pm</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-neutral-200 w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex items-center justify-between">
+      <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+      <a href="#quote" class="hover:text-neutral-900">Privacy &amp; Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Script for FAQ toggle and footer year -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('#faq-list .faq-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      const isOpen = !answer.classList.contains('hidden');
+      document.querySelectorAll('#faq-list .faq-answer').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('#faq-list .faq-icon').forEach(i => i.textContent = '+');
+
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.textContent = '−';
+      }
+    });
+  });
+</script>
+
 </html>
