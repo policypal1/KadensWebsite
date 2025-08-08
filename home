@@ -15,17 +15,11 @@ const SETTINGS = {
   HERO_BG_URL:
     "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop",
 
-  // Before/after images
-  BEFORE_IMG_URL:
-    "https://images.unsplash.com/photo-1542367597-8849eb8c5f86?q=80&w=1600&auto=format&fit=crop",
-  AFTER_IMG_URL:
-    "https://images.unsplash.com/photo-1549921296-3ecf9f5c9f2b?q=80&w=1600&auto=format&fit=crop",
-  BEFORE2_IMG_URL:
-    "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
-  AFTER2_IMG_URL:
-    "https://images.unsplash.com/photo-1563720223185-11003d516ec9?q=80&w=1600&auto=format&fit=crop",
+  // Used elsewhere
+  TEAM_PHOTO_URL:
+    "https://external-preview.redd.it/jOyFvuXmNhzhP2mB3538eIT73G1bIqC3AxA9A_V_Ljk.jpg?auto=webp&s=1398087d8c49b70fdb1c6b930002e81cbe9ea6eb",
 
-  // Service card images (your new links)
+  // Service card images
   WINDSHIELD_IMG_URL: "https://www.aaa.com/AAA/common/AAR/images/ws.jpg",
   CHIP_IMG_URL:
     "https://www.luckydogglass.com/wp-content/uploads/2021/01/can-cold-weather-make-a-crack-in-your-windshield-worse-1.jpg",
@@ -34,13 +28,9 @@ const SETTINGS = {
   SIDEWINDOW_IMG_URL:
     "https://www.glassfixitauto.com/wp-content/uploads/2024/02/car-side-window-repair.jpg",
 
-  // Quote section background (your NYT image)
+  // Quote section background
   QUOTE_BG_URL:
     "https://static01.nyt.com/images/2022/06/12/business/00Roadtrip-lede-alt/merlin_208250010_8945c370-bf80-4322-92e8-ae6c9609ca20-mobileMasterAt3x.jpg",
-
-  // Tall team photo for “Why Choose” section
-  TEAM_PHOTO_URL:
-    "https://external-preview.redd.it/jOyFvuXmNhzhP2mB3538eIT73G1bIqC3AxA9A_V_Ljk.jpg?auto=webp&s=1398087d8c49b70fdb1c6b930002e81cbe9ea6eb",
 
   FORMSPREE_ENDPOINT: "",
 };
@@ -55,7 +45,12 @@ const Badge = ({ children }) => (
 const PrimaryButton = ({ href, onClick, children, className = "" }) => {
   const base =
     "inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition";
-  if (href) return <a href={href} className={`${base} ${className}`}>{children}</a>;
+  if (href)
+    return (
+      <a href={href} className={`${base} ${className}`}>
+        {children}
+      </a>
+    );
   return (
     <button onClick={onClick} className={`${base} ${className}`}>
       {children}
@@ -70,6 +65,21 @@ const OutlineButton = ({ href, children, className = "" }) => (
   >
     {children}
   </a>
+);
+
+// Clean red check icon (no weird black fills)
+const RedCheckIcon = ({ className = "w-5 h-5" }) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <circle cx="12" cy="12" r="12" className="fill-red-600" />
+    <path
+      d="M7 12.5l3 3L17 9"
+      fill="none"
+      stroke="white"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
 );
 
 // ------------------------------
@@ -92,7 +102,6 @@ const Header = () => {
             </span>
           </div>
 
-          {/* anchors for scrolling */}
           <nav className="hidden md:flex items-center gap-2 text-sm">
             <a href="#services" className="px-3 py-2 rounded-lg hover:bg-red-50">
               Services
@@ -127,9 +136,7 @@ const Header = () => {
 const HomeQuoteForm = ({ invert = false }) => (
   <form
     method="POST"
-    action={
-      SETTINGS.FORMSPREE_ENDPOINT || `mailto:${SETTINGS.CONTACT_EMAIL}`
-    }
+    action={SETTINGS.FORMSPREE_ENDPOINT || `mailto:${SETTINGS.CONTACT_EMAIL}`}
     className={`rounded-2xl border p-5 shadow-sm ${
       invert
         ? "bg-white text-neutral-900 border-white/20"
@@ -140,7 +147,12 @@ const HomeQuoteForm = ({ invert = false }) => (
       <Field label="Full Name" name="name" type="text" required />
       <Field label="Phone" name="phone" type="tel" required />
       <Field label="Email" name="email" type="email" required />
-      <Field label="Vehicle (Year/Make/Model)" name="vehicle" type="text" required />
+      <Field
+        label="Vehicle (Year/Make/Model)"
+        name="vehicle"
+        type="text"
+        required
+      />
       <SelectField
         label="Service Needed"
         name="service"
@@ -251,7 +263,7 @@ function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
       >
-        {/* HERO — rounded rectangle, top-left text */}
+        {/* HERO */}
         <section
           className="relative overflow-hidden rounded-3xl border border-neutral-200"
           style={{
@@ -280,12 +292,14 @@ function App() {
                 <OutlineButton href="#quote">Request a Quote</OutlineButton>
               </div>
 
-              {/* social proof pill */}
               <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <Star
+                    key={i}
+                    className="w-4 h-4 text-yellow-500 fill-yellow-500"
+                  />
                 ))}
-                <span className="font-semibold">4.9/5</span>
+                <span className="font-semibold">5.0</span>
                 <span className="text-sm text-neutral-600">
                   (200+ Google reviews)
                 </span>
@@ -295,7 +309,10 @@ function App() {
         </section>
 
         {/* OUR SERVICES */}
-        <section id="services" className="mt-24 rounded-3xl bg-neutral-50 border border-neutral-200 p-6 md:p-10">
+        <section
+          id="services"
+          className="mt-24 rounded-3xl bg-neutral-50 border border-neutral-200 p-6 md:p-10"
+        >
           <div className="flex items-end justify-between">
             <h2 className="text-3xl font-extrabold text-neutral-900">
               Our Services
@@ -329,7 +346,13 @@ function App() {
                 key={title}
                 className="rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-md transition"
               >
-                <img src={img} alt={title} className="h-80 w-full object-cover" />
+                <img
+                  src={img}
+                  alt={title}
+                  className="h-80 w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="p-6">
                   <h3 className="font-bold text-lg text-neutral-900">{title}</h3>
                   <p className="text-neutral-600 mt-3 text-sm leading-relaxed">
@@ -341,74 +364,164 @@ function App() {
           </div>
         </section>
 
-        {/* REVIEWS */}
-        <section id="reviews" className="mt-24">
-          <h2 className="text-3xl font-extrabold text-neutral-900">5-Star Reviews</h2>
-          <div className="mt-6 overflow-x-auto snap-x snap-mandatory [-webkit-overflow-scrolling:touch]">
-            <div className="flex gap-4 min-w-max">
+        {/* WHY CHOOSE REDLINE — compact (no big photo) + 5-star box */}
+        <section
+          id="why"
+          className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10"
+        >
+          <div className="flex flex-col gap-6">
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <h2 className="text-3xl font-extrabold text-neutral-900">
+                  Why Oregon Drivers Choose Redline
+                </h2>
+                <p className="mt-3 text-neutral-700 max-w-2xl">
+                  We keep it simple: fast scheduling, clean installs, and pricing that
+                  won’t surprise you.
+                </p>
+              </div>
+
+              <div className="shrink-0 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-800 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <RedCheckIcon className="w-4 h-4" />
+                  <span className="font-semibold">
+                    We Guarantee a 5‑Star Experience
+                  </span>
+                </div>
+                <p className="text-sm mt-1 text-red-700/80">
+                  If anything feels off, we make it right.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-8">
               {[
                 {
-                  name: "Alex P.",
-                  text: "Called in the morning, new windshield by afternoon. Friendly family team and super professional!",
+                  t: "Local & Family‑Owned",
+                  p: "We treat your car like ours—no rush jobs, no shortcuts.",
                 },
                 {
-                  name: "Maria R.",
-                  text: "They came to my office and fixed a nasty chip in 20 minutes. Looks brand new—highly recommend.",
+                  t: "Same‑Day Mobile Service",
+                  p: "Call in the morning, get it done at home or work.",
                 },
                 {
-                  name: "Daniel S.",
-                  text: "Great price and fast service. Love supporting a family-owned local business.",
+                  t: "OEM‑Grade Materials",
+                  p: "Factory‑spec glass & urethane for a quiet, leak‑free seal.",
                 },
                 {
-                  name: "Priya K.",
-                  text: "Booked online, tech came to my driveway. So easy and fast!",
+                  t: "No‑Surprise Pricing",
+                  p: "If something changes, you hear it from us first.",
                 },
-              ].map((r, i) => (
-                <div
-                  key={i}
-                  className="snap-start shrink-0 w-80 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-red-100 grid place-items-center text-red-700 font-bold">
-                        {r.name.charAt(0)}
-                      </div>
-                      <p className="font-semibold text-neutral-900">{r.name}</p>
-                    </div>
-                    <div className="flex items-center gap-1 text-yellow-500" aria-label="5 stars">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-5 w-5" />
-                      ))}
-                    </div>
+              ].map((item) => (
+                <div key={item.t} className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                    <RedCheckIcon />
                   </div>
-                  <p className="mt-4 text-neutral-700">“{r.text}”</p>
+                  <div>
+                    <h3 className="font-bold text-neutral-900">{item.t}</h3>
+                    <p className="text-neutral-600 text-sm">{item.p}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* BEFORE & AFTER (x2) */}
-        <section className="mt-24 rounded-3xl border border-neutral-200 p-6 md:p-10 bg-white">
-          <h2 className="text-3xl font-extrabold text-neutral-900">Before & After</h2>
-          <p className="text-sm text-neutral-600 mt-2">Real customer results — no slider needed.</p>
-          <div className="mt-6 grid sm:grid-cols-2 gap-6">
-            <BAImage label="Before" src={SETTINGS.BEFORE_IMG_URL} />
-            <BAImage label="After" src={SETTINGS.AFTER_IMG_URL} />
+        {/* REVIEWS — red avatars, no "Read More", names inline, with bg image */}
+        <section
+          id="reviews"
+          className="mt-24 relative rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 overflow-hidden"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.05] bg-no-repeat bg-cover"
+            style={{
+              backgroundImage: `url(${SETTINGS.TEAM_PHOTO_URL})`,
+              backgroundPosition: "center",
+            }}
+          />
+          <div className="relative">
+            <h2 className="text-3xl font-extrabold text-neutral-900">
+              Customer Reviews
+            </h2>
+
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-sm">
+              <span className="inline-flex items-center gap-1">
+                <Star className="w-4 h-4 text-yellow-500" />
+                <span className="font-semibold">5.0</span>
+              </span>
+              <span className="text-neutral-600">200+ Reviews</span>
+            </div>
+
+            <div className="mt-8 grid lg:grid-cols-3 gap-6">
+              {[
+                {
+                  initial: "S",
+                  quote:
+                    "“Determination and Detective Work Provided a Simple Fix”",
+                  date: "Aug 6, 2025",
+                  text:
+                    "Redline did an outstanding job identifying a hard-to-find leak. Their determination ended up providing a simple fix.",
+                  name: "Steve M.",
+                },
+                {
+                  initial: "T",
+                  quote: "“He did an excellent job for us.”",
+                  date: "Aug 6, 2025",
+                  text:
+                    "Excellent job. Thank you Redline Auto Glass — fast, friendly, and professional.",
+                  name: "Tracy K.",
+                },
+                {
+                  initial: "J",
+                  quote: "“Booked online, tech came to my driveway.”",
+                  date: "Aug 4, 2025",
+                  text:
+                    "So easy and fast. Looks brand new and the price was fair. Highly recommend.",
+                  name: "Jordan P.",
+                },
+              ].map((r, i) => (
+                <article
+                  key={i}
+                  className="relative rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
+                >
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-red-600 text-white h-9 w-9 grid place-items-center font-bold shadow">
+                    {r.initial}
+                  </div>
+                  <h3 className="mt-4 text-center text-2xl font-black text-neutral-900">
+                    {r.quote}
+                  </h3>
+                  <p className="mt-3 text-center text-neutral-500 text-sm">
+                    {r.date}
+                  </p>
+                  <div
+                    className="mt-3 flex justify-center gap-1 text-yellow-500"
+                    aria-label="5 stars"
+                  >
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <Star key={j} className="w-5 h-5" />
+                    ))}
+                  </div>
+                  <p className="mt-4 text-neutral-700 text-center">{r.text}</p>
+                  <div className="mt-6 flex items-center justify-center gap-2 text-sm">
+                    <span className="inline-flex items-center justify-center h-5 w-5 rounded-full border border-red-500 text-red-600 font-bold">
+                      G
+                    </span>
+                    <span className="font-semibold text-neutral-900">
+                      {r.name}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="mt-12 rounded-3xl border border-neutral-200 p-6 md:p-10 bg-white">
-          <h2 className="text-2xl font-extrabold text-neutral-900">More Results</h2>
-          <p className="text-sm text-neutral-600 mt-2">Another real repair we completed recently.</p>
-          <div className="mt-6 grid sm:grid-cols-2 gap-6">
-            <BAImage label="Before" src={SETTINGS.BEFORE2_IMG_URL} />
-            <BAImage label="After" src={SETTINGS.AFTER2_IMG_URL} />
-          </div>
-        </section>
-
-        {/* QUOTE (more readable) */}
-        <section id="quote" className="mt-24 relative overflow-hidden rounded-3xl">
+        {/* QUOTE */}
+        <section
+          id="quote"
+          className="mt-24 relative overflow-hidden rounded-3xl"
+        >
           <div
             className="absolute inset-0"
             style={{
@@ -417,15 +530,14 @@ function App() {
               backgroundPosition: "center",
             }}
           />
-          {/* Subtle dark overlay */}
           <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
           <div className="relative p-6 md:p-10">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
-              {/* dark glass text card */}
               <div className="bg-black/55 backdrop-blur-sm rounded-2xl p-6 md:p-8 ring-1 ring-white/15 shadow-xl text-white">
                 <h3 className="text-3xl font-black">Get a Same-Day Quote</h3>
                 <p className="mt-2 text-white/90 text-lg">
-                  We’ll text or call you back quickly. Most replacements done the same day.
+                  We’ll text or call you back quickly. Most replacements done the
+                  same day.
                 </p>
                 <ul className="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
                   <li className="flex items-start gap-2">
@@ -446,7 +558,6 @@ function App() {
                   </li>
                 </ul>
               </div>
-              {/* form on light card */}
               <div className="bg-white/95 backdrop-blur rounded-2xl p-5 shadow-xl border border-white/20">
                 <HomeQuoteForm invert />
               </div>
@@ -454,32 +565,62 @@ function App() {
           </div>
         </section>
 
-        {/* WHY CHOOSE REDLINE (auto-glass only) */}
-        <section id="why" className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+        {/* OUR GUARANTEES — no recalibration, photo, clean checks, no extra bottom space */}
+        <section
+          id="guarantees"
+          className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10"
+        >
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div>
               <h2 className="text-3xl font-extrabold text-neutral-900">
-                Why Choose {SETTINGS.BUSINESS_NAME}
+                Our Guarantees
               </h2>
               <p className="mt-3 text-neutral-700 max-w-2xl">
-                We’re a small, family team focused 100% on auto glass—fast responses,
-                careful installs, and honest pricing. No big-company runaround.
+                If we wouldn’t put it on our own car, we won’t put it on yours.
+                We specialize in quality auto glass repairs and replacements —
+                no camera recalibration services.
               </p>
 
               <div className="mt-8 grid sm:grid-cols-2 gap-8">
-                <WhyItem title="Auto Glass Only" text="Windshield, back glass, and side windows—nothing else, so we’re fast and precise." />
-                <WhyItem title="Skilled Technicians" text="Clean removals, perfect seals, and ADAS calibration guidance when needed." />
-                <WhyItem title="Mobile & Same-Day" text="We come to your home or office. Morning calls often serviced the same day." />
-                <WhyItem title="Insurance Friendly" text="We work with most insurers and help minimize out-of-pocket." />
+                {[
+                  {
+                    t: "Lifetime Workmanship Warranty",
+                    p: "If a seal we installed ever fails, we fix it.",
+                  },
+                  {
+                    t: "Crystal‑Clean Install",
+                    p: "Broken glass out, dash & vents cleaned. No mess.",
+                  },
+                  {
+                    t: "Mobile, On‑Time",
+                    p: "We show up when we say we will, at home or work.",
+                  },
+                  {
+                    t: "Insurance Friendly",
+                    p: "We help keep out‑of‑pocket costs low.",
+                  },
+                ].map((item) => (
+                  <div key={item.t} className="flex items-start gap-4">
+                    <div className="h-10 w-10 rounded-xl bg-red-100 grid place-items-center">
+                      <RedCheckIcon />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-neutral-900">{item.t}</h3>
+                      <p className="text-neutral-600 text-sm">{item.p}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="lg:pl-6">
-              <div className="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm w-full max-w-sm lg:ml-auto">
+              <div className="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm w-full max-w-xl lg:ml-auto">
                 <img
-                  src={SETTINGS.TEAM_PHOTO_URL}
-                  alt="Our small, family auto glass team"
+                  src="https://www.nuvisionautoglass.com/wp-content/uploads/2023/08/188.webp"
+                  alt="Our team carefully installing auto glass"
                   className="w-full h-[520px] object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -487,19 +628,25 @@ function App() {
         </section>
 
         {/* FAQs */}
-        <section id="faqs" className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+        <section
+          id="faqs"
+          className="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10"
+        >
           <h2 className="text-3xl font-extrabold text-neutral-900">FAQs</h2>
           <FAQ />
         </section>
 
         {/* Final CTA */}
         <section className="mt-24 text-center rounded-3xl border border-neutral-200 bg-white p-10">
-          <p className="text-sm uppercase tracking-wide text-neutral-500">Don’t wait</p>
+          <p className="text-sm uppercase tracking-wide text-neutral-500">
+            Don’t wait
+          </p>
           <h3 className="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
             Crack spreading? Get help in hours, not days.
           </h3>
           <p className="mt-3 text-neutral-600 max-w-2xl mx-auto">
-            Call now to speak with a tech or submit the quick form—whichever you prefer. We’ll come to your home or office.
+            Call now to speak with a tech or submit the quick form—whichever you
+            prefer. We’ll come to your home or office.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>
@@ -510,34 +657,58 @@ function App() {
         </section>
       </motion.main>
 
-      {/* Fuller Footer */}
+      {/* Footer */}
       <footer className="mt-20 border-t border-neutral-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
           <div className="col-span-2">
             <div className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">AG</div>
-              <p className="font-semibold text-neutral-900">{SETTINGS.BUSINESS_NAME}</p>
+              <div className="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">
+                AG
+              </div>
+              <p className="font-semibold text-neutral-900">
+                {SETTINGS.BUSINESS_NAME}
+              </p>
             </div>
-            <p className="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in {SETTINGS.CITY_AREA}</p>
+            <p className="mt-3 text-neutral-700">
+              Family-Owned • Mobile Auto Glass in {SETTINGS.CITY_AREA}
+            </p>
             <div className="mt-4 flex gap-3">
-              <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>Call Now</PrimaryButton>
+              <PrimaryButton href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>
+                Call Now
+              </PrimaryButton>
               <OutlineButton href="#quote">Get a Quote</OutlineButton>
             </div>
           </div>
           <div>
             <h4 className="font-semibold text-neutral-900">Quick Links</h4>
             <ul className="mt-3 space-y-2 text-neutral-700">
-              <li><a href="#services">Services</a></li>
-              <li><a href="#reviews">Reviews</a></li>
-              <li><a href="#why">Why Us</a></li>
-              <li><a href="#faqs">FAQs</a></li>
+              <li>
+                <a href="#services">Services</a>
+              </li>
+              <li>
+                <a href="#reviews">Reviews</a>
+              </li>
+              <li>
+                <a href="#why">Why Us</a>
+              </li>
+              <li>
+                <a href="#faqs">FAQs</a>
+              </li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold text-neutral-900">Contact</h4>
             <ul className="mt-3 space-y-2 text-neutral-700">
-              <li><a href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>{SETTINGS.BUSINESS_PHONE_DISPLAY}</a></li>
-              <li><a href={`mailto:${SETTINGS.CONTACT_EMAIL}`}>{SETTINGS.CONTACT_EMAIL}</a></li>
+              <li>
+                <a href={`tel:${SETTINGS.BUSINESS_PHONE_TEL}`}>
+                  {SETTINGS.BUSINESS_PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${SETTINGS.CONTACT_EMAIL}`}>
+                  {SETTINGS.CONTACT_EMAIL}
+                </a>
+              </li>
               <li>Serving {SETTINGS.CITY_AREA}</li>
               <li>Mon–Sat: 7am–6pm</li>
             </ul>
@@ -545,31 +716,19 @@ function App() {
         </div>
         <div className="border-t border-neutral-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex items-center justify-between">
-            <span>© {new Date().getFullYear()} {SETTINGS.BUSINESS_NAME}. All rights reserved.</span>
-            <a href="#quote" className="hover:text-neutral-900">Privacy & Terms</a>
+            <span>
+              © {new Date().getFullYear()} {SETTINGS.BUSINESS_NAME}. All rights
+              reserved.
+            </span>
+            <a href="#quote" className="hover:text-neutral-900">
+              Privacy & Terms
+            </a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
-const WhyItem = ({ title, text }) => (
-  <div className="flex items-start gap-4">
-    <div className="h-11 w-11 rounded-xl bg-red-600 text-white grid place-items-center font-bold">✓</div>
-    <div>
-      <h3 className="font-bold text-neutral-900">{title}</h3>
-      <p className="text-neutral-600 text-sm">{text}</p>
-    </div>
-  </div>
-);
-
-const BAImage = ({ label, src }) => (
-  <div className="rounded-2xl overflow-hidden border border-neutral-200">
-    <img src={src} alt={label} className="w-full h-72 object-cover" />
-    <div className="p-3 text-center text-sm bg-neutral-50">{label}</div>
-  </div>
-);
 
 const FAQ = () => {
   const items = [
@@ -587,7 +746,7 @@ const FAQ = () => {
     },
     {
       q: "Do you calibrate ADAS cameras?",
-      a: "We provide guidance and partner options for ADAS recalibration when required by your vehicle.",
+      a: "We focus on the glass work and do not offer camera recalibration services.",
     },
     {
       q: "How long does a replacement take?",
