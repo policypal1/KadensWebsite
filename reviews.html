@@ -42,7 +42,7 @@
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://t4.ftcdn.net/jpg/00/01/74/53/360_F_1745394_rI2l81MEtGnfX3wJKqi6TzMNOPQaKL.jpg');"
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://t3.ftcdn.net/jpg/05/20/02/22/360_F_520022231_jLGInJuMu44SJ3CIK2l4Z2XdKKbhV3Nl.jpg'); background-size:cover; background-position:center;"
     <div class="absolute inset-0 bg-white/80"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="grid lg:grid-cols-2 gap-10 items-center">
@@ -81,6 +81,28 @@
             <span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">Windshield</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold">Filter:</label>
+          <select id="ratingFilter" class="rounded-xl border border-neutral-300 px-4 py-2 text-sm">
+            <option value="all">All ratings</option>
+            <option value="5">★★★★★ (5)</option>
+            <option value="4">★★★★☆ (4+)</option>
+            <option value="3">★★★☆☆ (3+)</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2 w-full md:w-80">
+          <input id="searchInput" class="w-full rounded-xl border border-neutral-300 px-4 py-2 text-sm" placeholder="Search by keyword (e.g. mobile, chip, price)" />
+          <button id="clearSearch" class="text-sm text-neutral-600 hover:text-neutral-900">Clear</button>
+        </div>
+        <a href="mailto:hello@example.com?subject=Review%20for%20Clear%20Choice%20Auto%20Glass" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
       </div>
     </div>
   </section>
