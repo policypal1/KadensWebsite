@@ -47,52 +47,98 @@
       </div>
     </header>
 
-  <!-- HERO: Services -->
+  <!-- HERO: Services (fresh look) -->
 <section class="relative overflow-hidden">
-  <!-- Background Image -->
-  <div class="absolute inset-0 bg-cover bg-center" 
-       style="background-image:url('https://plus.unsplash.com/premium_photo-1661962267741-971ec3ac2e2a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0');">
-  </div>
-  <!-- Overlay -->
-  <div class="absolute inset-0 bg-white/80"></div>
+  <!-- Background image -->
+  <div class="absolute inset-0 bg-cover bg-center"
+       style="background-image:url('https://images2.alphacoders.com/108/1086162.jpg');"></div>
+  <!-- Light gradient to keep text readable -->
+  <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white/30"></div>
 
-  <!-- Content -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
     <div class="grid lg:grid-cols-2 gap-8 items-center">
-      <!-- Left Side -->
-      <div class="glass bg-white/90 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
-        <h1 class="text-3xl md:text-4xl font-black leading-tight">
-          Core Services <span class="text-red-600">&amp; Pricing</span>
+
+      <!-- Left: headline & CTAs -->
+      <div class="rounded-2xl bg-white/85 backdrop-blur-sm shadow-xl ring-1 ring-black/5 p-6 md:p-8">
+        <p class="text-xs font-semibold uppercase tracking-wider text-red-600">Salem • Keizer</p>
+        <h1 class="mt-1 text-3xl md:text-4xl font-black leading-tight">
+          Auto Glass, <span class="text-red-600">Straight-Up Pricing</span>.
         </h1>
         <p class="mt-3 text-neutral-700">
-          Upfront “from” pricing. Final quote depends on your vehicle year, glass features, and availability.  
-          OEM-grade materials and lifetime workmanship warranty included.
+          Upfront “from” prices for windshield, rear, and door glass—plus chip repair. Final quote depends on year, features,
+          and glass availability. We install OEM-grade materials and back it with a lifetime workmanship warranty.
         </p>
 
-        <!-- Call to Action Buttons -->
+        <!-- Price chips -->
+        <div class="mt-5 flex flex-wrap gap-2 text-sm">
+          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 bg-white text-neutral-800">Windshield <strong class="ml-1 text-red-600">$199+</strong></span>
+          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 bg-white text-neutral-800">Rear Glass <strong class="ml-1 text-red-600">$189+</strong></span>
+          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 bg-white text-neutral-800">Door Glass <strong class="ml-1 text-red-600">$149+</strong></span>
+          <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 bg-white text-neutral-800">Chip Repair <strong class="ml-1 text-red-600">$49+</strong></span>
+        </div>
+
+        <!-- CTAs -->
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="quote.html" 
-             class="px-5 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow">
-            Get a Quote
+          <a href="quote.html"
+             class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 shadow">
+            Get an Instant Quote
           </a>
-          <a href="tel:(555)123-4567" 
-             class="px-5 py-3 bg-white border border-red-600 text-red-600 hover:bg-red-50 font-semibold rounded-lg shadow">
+          <a href="#pricing"
+             class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">
+            View Prices
+          </a>
+          <a href="tel:+15551234567"
+             class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-neutral-800 bg-white/70 hover:bg-white border">
             Call (555) 123-4567
           </a>
         </div>
+
+        <!-- tiny trust row -->
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
+          <div class="flex items-center gap-1">
+            <span>⭐️⭐️⭐️⭐️⭐️</span>
+            <span class="ml-1">4.9/5 local reviews</span>
+          </div>
+          <span class="hidden sm:inline">•</span>
+          <span>Insurance accepted</span>
+          <span class="hidden sm:inline">•</span>
+          <span>Same-day mobile installs (when available)</span>
+        </div>
       </div>
 
-      <!-- Right Side (Highlight Box) -->
-      <div class="glass bg-white/90 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
-        <h3 class="text-xl font-bold">“Professional, Fast, and Fair.”</h3>
-        <p class="mt-2 text-neutral-700">
-          “They replaced my windshield at my office while I worked. The tech was on time, cleaned everything up, and the price was exactly as quoted.”
-        </p>
-        <p class="mt-2 text-sm text-neutral-500">— Jessica M., Keizer</p>
+      <!-- Right: trust card -->
+      <div class="rounded-2xl bg-white/85 backdrop-blur-sm shadow-xl ring-1 ring-black/5 p-6 md:p-8">
+        <h3 class="text-xl font-bold">Why drivers pick Clear Choice</h3>
+        <ul class="mt-4 space-y-3 text-neutral-700">
+          <li class="flex gap-3">
+            <span class="mt-1 h-2 w-2 rounded-full bg-red-600"></span>
+            OEM-grade glass & premium urethane for quiet, leak-free installs
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 h-2 w-2 rounded-full bg-red-600"></span>
+            Mobile service to home or work—most jobs finished same day
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 h-2 w-2 rounded-full bg-red-600"></span>
+            Lifetime workmanship warranty
+          </li>
+        </ul>
+
+        <!-- featured testimonial -->
+        <div class="mt-6 rounded-xl border bg-white p-4">
+          <div class="flex items-center gap-2 text-amber-500 text-sm">⭐️⭐️⭐️⭐️⭐️
+            <span class="text-neutral-500">“Verified review”</span>
+          </div>
+          <p class="mt-2 text-neutral-800">
+            “Called in the morning, glass was installed by afternoon. Tech was on time, tidy, and the price matched the quote.”
+          </p>
+          <p class="mt-2 text-xs text-neutral-500">— Jessica M., Keizer</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 
   <!-- Constrained content wrapper to prevent full-width stretching -->
