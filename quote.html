@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services & Pricing — Clear Choice Auto Glass</title>
+  <meta name="description" content="Transparent pricing for windshield replacement, rear glass, door glass, and chip repair. Same-day mobile service in Salem, OR." />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
+    .floaty{ animation: floaty 5s ease-in-out infinite; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(6px);} to {opacity:1; transform: translateY(0);} }
+    .animate-fadeIn { animation: fadeIn .25s ease-out both; }
+    .glass { backdrop-filter: blur(8px); }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
+
+   <!-- Header -->
+    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
+            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+            <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
+            <span class="hidden sm:inline">
+            </span>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-2 text-sm">
+            <a href="services.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
+            <a href="#reviews" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
+            <a href="#quote" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
+            <a href="#faqs" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
+          </nav>
+
+          <div class="hidden md:flex items-center gap-3">
+            <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold">(555) 123-4567</a>
+            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1800&auto=format&fit=crop" alt="Scenic road through trees" class="h-full w-full object-cover opacity-20">
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid lg:grid-cols-2 gap-10 items-center">
+      <div class="glass bg-white/70 rounded-3xl p-7 md:p-9 border border-white/60 shadow-xl">
+        <h1 class="text-3xl md:text-5xl font-black leading-tight">Lock in <span class="text-red-600">today’s price</span>. Mobile service, fast responses.</h1>
+        <p class="mt-3 md:mt-4 text-neutral-700 text-lg">Text or submit the form — we’ll confirm exact pricing after checking your VIN & glass features.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="tel:+15551234567" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 shadow">Call (555) 123‑4567</a>
+          <a href="sms:+15551234567" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Us</a>
+        </div>
+        <dl class="mt-6 grid grid-cols-3 gap-4 text-sm">
+          <div><dt class="text-neutral-500">Coverage</dt><dd class="font-semibold">Salem / Keizer</dd></div>
+          <div><dt class="text-neutral-500">Hours</dt><dd class="font-semibold">Mon–Sat 7a–6p</dd></div>
+          <div><dt class="text-neutral-500">Warranty</dt><dd class="font-semibold">Lifetime workmanship</dd></div>
+        </dl>
+      </div>
+      <div class="hidden lg:block">
+        <div class="glass bg-white/70 rounded-3xl p-6 border border-white/60 shadow-xl">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-amber-400 grid place-items-center text-neutral-900 font-black">★</div>
+            <div>
+              <p class="font-semibold">4.9 out of 5</p>
+              <p class="text-sm text-neutral-600">Local reviews • Insurance accepted</p>
+            </div>
+          </div>
+          <blockquote class="mt-4 text-neutral-700 leading-relaxed">
+            “They replaced my windshield in my driveway before lunch. No mess, perfect seal, and cheaper than the chain. Would recommend to anyone.”
+          </blockquote>
+          <p class="mt-2 text-sm text-neutral-500">— Hannah K., Salem</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote form -->
+  <section id="quote" class="pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8">
+      <!-- Form card -->
+      <div class="lg:col-span-2 glass bg-white/80 rounded-3xl border border-white/60 shadow-xl">
+        <form id="quoteForm" class="p-6 md:p-8" method="POST" action="mailto:hello@example.com" enctype="multipart/form-data">
+          <h2 class="text-2xl md:text-3xl font-black">Request an exact quote</h2>
+          <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-sm">Full Name<span class="text-red-500"> *</span>
+              <input name="name" required class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
+            </label>
+            <label class="text-sm">Phone<span class="text-red-500"> *</span>
+              <input name="phone" type="tel" required placeholder="(555) 123‑4567" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
+            </label>
+            <label class="text-sm sm:col-span-2">Vehicle (Year / Make / Model)<span class="text-red-500"> *</span>
+              <input name="vehicle" required placeholder="2018 Subaru Outback" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
+            </label>
+
+            <label class="text-sm">Service Needed
+              <select name="service" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3">
+                <option>Windshield Replacement</option>
+                <option>Rear Glass Replacement</option>
+                <option>Door Glass / Side Window</option>
+                <option>Chip Repair</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="text-sm">Preferred Contact
+              <select name="contact" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3">
+                <option>Text me</option>
+                <option>Call me</option>
+                <option>Email me</option>
+              </select>
+            </label>
+
+            <label class="text-sm">ZIP (for mobile service)
+              <input name="zip" inputmode="numeric" pattern="[0-9]{5}" placeholder="97301" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
+            </label>
+            <label class="text-sm">Address (optional)
+              <input name="address" placeholder="1234 Main St" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
+            </label>
+
+            <label class="text-sm sm:col-span-2">Details (VIN, sensors, tint band, where to meet, etc.)
+              <textarea name="details" rows="5" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3"></textarea>
+            </label>
+
+            <div class="sm:col-span-2">
+              <p class="text-sm">Add a photo (optional)</p>
+              <div class="mt-2 flex items-center gap-3">
+                <input id="photo" name="photo" type="file" accept="image/*" class="block w-full text-sm text-neutral-700 file:mr-4 file:rounded-xl file:border-0 file:bg-red-600 file:px-4 file:py-2 file:text-white hover:file:bg-red-700" />
+                <img id="preview" alt="Preview" class="hidden h-14 w-14 rounded-xl object-cover border" />
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button type="submit" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Instant Quote</button>
+            <a href="sms:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Me the Price</a>
+          </div>
+          <p class="mt-3 text-xs text-neutral-500">By submitting, you agree we may contact you about your quote. We don’t sell your info.</p>
+        </form>
+      </div>
+
+      <!-- Sidebar / perks -->
+      <aside class="space-y-6">
+        <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
+          <h3 class="font-bold text-lg">Why people pick Clear Choice</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Same‑day mobile installs (when available)</li>
+            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>OEM‑grade glass & urethane</li>
+            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Insurance accepted</li>
+            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Lifetime workmanship warranty</li>
+          </ul>
+        </div>
+        <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
+          <h3 class="font-bold text-lg">Need help now?</h3>
+          <p class="mt-2 text-sm text-neutral-700">Call for urgent same‑day jobs. Morning call → often installed by afternoon.</p>
+          <a href="tel:+15551234567" class="mt-4 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (555) 123‑4567</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200/70 py-10 bg-white/60 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <span id="year"></span> Clear Choice Auto Glass</p>
+      <div class="flex gap-4">
+        <a href="index.html#reviews" class="hover:text-neutral-900">Reviews</a>
+        <a href="services.html" class="hover:text-neutral-900">Pricing</a>
+        <a href="#" class="hover:text-neutral-900">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Photo preview
+    const input = document.getElementById('photo');
+    const preview = document.getElementById('preview');
+    input?.addEventListener('change', () => {
+      const file = input.files?.[0];
+      if (!file) { preview.classList.add('hidden'); return; }
+      const url = URL.createObjectURL(file);
+      preview.src = url; preview.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
