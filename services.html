@@ -59,8 +59,8 @@
   </div>
 
   <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
-    <!-- Card template (copy/paste this block for more) -->
-    <!-- Front Windshield -->
+
+    <!-- CARD: Front Windshield -->
     <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
       <!-- Aspect-ratio wrapper keeps all images identical height -->
       <div class="relative w-full aspect-[16/9]">
@@ -73,11 +73,16 @@
           <h3 class="text-lg font-bold">Front Windshield</h3>
           <span class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Most Popular</span>
         </div>
-        <p class="mt-1 text-sm text-neutral-600">OEM-grade glass &amp; urethane. Leak-free, quiet seal.</p>
 
-        <div class="mt-4 h-8 flex items-end gap-1">
-          <span class="text-2xl font-extrabold text-red-600 tabular-nums">$199</span>
-          <span class="text-black text-sm leading-none translate-y-[1px]">+</span>
+        <!-- FIXED height so prices align across cards -->
+        <p class="mt-1 text-sm text-neutral-600 min-h-[44px]">
+          OEM-grade glass &amp; urethane. Leak-free, quiet seal.
+        </p>
+
+        <!-- Price row: perfectly aligned + sign -->
+        <div class="mt-4 flex items-center gap-1 min-h-[32px]">
+          <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$199</span>
+          <span class="text-black text-sm font-bold leading-none">+</span>
         </div>
 
         <ul class="mt-4 space-y-2 text-sm flex-1">
@@ -92,7 +97,7 @@
       </div>
     </article>
 
-    <!-- Rear Glass -->
+    <!-- CARD: Rear Glass -->
     <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
       <div class="relative w-full aspect-[16/9]">
         <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass"
@@ -101,11 +106,15 @@
 
       <div class="p-6 flex flex-col h-full">
         <h3 class="text-lg font-bold">Rear Glass</h3>
-        <p class="mt-1 text-sm text-neutral-600">Defrost lines integrated and tested.</p>
 
-        <div class="mt-4 h-8 flex items-end gap-1">
-          <span class="text-2xl font-extrabold text-red-600 tabular-nums">$189</span>
-          <span class="text-black text-sm leading-none translate-y-[1px]">+</span>
+        <!-- same fixed height -->
+        <p class="mt-1 text-sm text-neutral-600 min-h-[44px]">
+          Defrost lines integrated and tested.
+        </p>
+
+        <div class="mt-4 flex items-center gap-1 min-h-[32px]">
+          <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$189</span>
+          <span class="text-black text-sm font-bold leading-none">+</span>
         </div>
 
         <ul class="mt-4 space-y-2 text-sm flex-1">
@@ -120,7 +129,7 @@
       </div>
     </article>
 
-    <!-- Car Door Glass -->
+    <!-- CARD: Car Door Glass -->
     <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
       <div class="relative w-full aspect-[16/9]">
         <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Car Door Glass"
@@ -129,11 +138,15 @@
 
       <div class="p-6 flex flex-col h-full">
         <h3 class="text-lg font-bold">Car Door Glass</h3>
-        <p class="mt-1 text-sm text-neutral-600">Precise fit, tracks &amp; regulators checked.</p>
 
-        <div class="mt-4 h-8 flex items-end gap-1">
-          <span class="text-2xl font-extrabold text-red-600 tabular-nums">$149</span>
-          <span class="text-black text-sm leading-none translate-y-[1px]">+</span>
+        <!-- same fixed height -->
+        <p class="mt-1 text-sm text-neutral-600 min-h-[44px]">
+          Precise fit, tracks &amp; regulators checked.
+        </p>
+
+        <div class="mt-4 flex items-center gap-1 min-h-[32px]">
+          <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$149</span>
+          <span class="text-black text-sm font-bold leading-none">+</span>
         </div>
 
         <ul class="mt-4 space-y-2 text-sm flex-1">
@@ -148,7 +161,7 @@
       </div>
     </article>
 
-    <!-- Chip Repair -->
+    <!-- CARD: Chip Repair -->
     <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
       <div class="relative w-full aspect-[16/9]">
         <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repair"
@@ -157,11 +170,15 @@
 
       <div class="p-6 flex flex-col h-full">
         <h3 class="text-lg font-bold">Chip Repair</h3>
-        <p class="mt-1 text-sm text-neutral-600">Stop cracks before they spread.</p>
 
-        <div class="mt-4 h-8 flex items-end gap-1">
-          <span class="text-2xl font-extrabold text-red-600 tabular-nums">$49</span>
-          <span class="text-black text-sm leading-none translate-y-[1px]">+</span>
+        <!-- same fixed height -->
+        <p class="mt-1 text-sm text-neutral-600 min-h-[44px]">
+          Stop cracks before they spread.
+        </p>
+
+        <div class="mt-4 flex items-center gap-1 min-h-[32px]">
+          <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$49</span>
+          <span class="text-black text-sm font-bold leading-none">+</span>
         </div>
 
         <ul class="mt-4 space-y-2 text-sm flex-1">
@@ -175,14 +192,13 @@
         </div>
       </div>
     </article>
-    <!-- /Card template -->
+
   </div>
 
   <p class="mt-4 text-xs text-neutral-500 text-center">
     * Final price varies by year/make/model, tint band, rain/light sensors, heaters, and glass availability. We do not offer ADAS camera recalibration.
   </p>
 </section>
-
 
     <!-- Interactive Estimator -->
     <section id="estimator" class="mt-16 rounded-3xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm">
