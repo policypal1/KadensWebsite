@@ -11,6 +11,21 @@
     @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
     .floaty{ animation: floaty 6s ease-in-out infinite; }
     .glass { backdrop-filter: blur(8px); }
+    /* accordion animation */
+    .faq-content {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .28s ease, opacity .2s ease, transform .2s ease;
+      opacity: .0;
+      transform: translateY(-2px);
+    }
+    .faq-item.open .faq-content{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .faq-item.open .chev {
+      transform: rotate(180deg);
+    }
   </style>
 
   <!-- FAQ Schema (rich results) -->
@@ -31,32 +46,30 @@
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
-   <!-- Header -->
-    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-3">
-            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-            <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
-            <span class="hidden sm:inline">
-            </span>
-          </div>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+          <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
+        </div>
 
-          <nav class="hidden md:flex items-center gap-2 text-sm">
-             <a href="/index.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Home</a>
-             <a href="/services.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
-             <a href="/reviews.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
-             <a href="/quote.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
-             <a href="/faqs.html" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
-          </nav>
+        <nav class="hidden md:flex items-center gap-2 text-sm">
+          <a href="/index.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Home</a>
+          <a href="/services.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
+          <a href="/reviews.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
+          <a href="/quote.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
+          <a href="/faqs.html" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
+        </nav>
 
-          <div class="hidden md:flex items-center gap-3">
-            <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold">(503) 949-2257</a>
-            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
-          </div>
+        <div class="hidden md:flex items-center gap-3">
+          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold">(503) 949-2257</a>
+          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
@@ -67,7 +80,7 @@
         <p class="mt-3 text-neutral-700 text-lg">Everything you need to know about mobile installs, pricing, sensors, insurance, and our warranty.</p>
         <div class="mt-5 flex gap-3">
           <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow">Get an exact quote</a>
-          <a href="tel:+15029492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
         </div>
       </div>
     </div>
@@ -93,84 +106,97 @@
   <!-- FAQ Accordion -->
   <section class="pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8 items-start">
+
       <!-- Left: FAQs -->
       <div class="lg:col-span-2 space-y-4" id="faqList">
         <!-- Item -->
-        <article class="faq-item" data-tags="service">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">Do you offer same-day mobile service?</h3>
               <p class="mt-1 text-sm text-neutral-500">Availability varies by glass in stock and timing of your call.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Mobile Service</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
+            </div>
           </div>
         </article>
 
-        <article class="faq-item" data-tags="tech">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="tech">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">Do you recalibrate ADAS cameras?</h3>
               <p class="mt-1 text-sm text-neutral-500">About camera systems and when a recalibration is needed.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Sensors & ADAS</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            We currently do not offer ADAS camera recalibration. Many vehicles don’t require it when the camera is not disturbed. If your vehicle does require recalibration, we’ll let you know and can refer a local shop.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              We currently do not offer ADAS camera recalibration. Many vehicles don’t require it when the camera is not disturbed. If your vehicle does require recalibration, we’ll let you know and can refer a local shop.
+            </div>
           </div>
         </article>
 
-        <article class="faq-item" data-tags="pricing">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="pricing">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">Will my insurance cover chip repair?</h3>
               <p class="mt-1 text-sm text-neutral-500">How coverage typically works for small damage.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Pricing & Insurance</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            Many policies cover chip repair with little or no deductible. We can help you check coverage during your quote, and we’ll walk you through next steps if you choose to file a claim.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Many policies cover chip repair with little or no deductible. We can help you check coverage during your quote, and we’ll walk you through next steps if you choose to file a claim.
+            </div>
           </div>
         </article>
 
-        <article class="faq-item" data-tags="service">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">What windshield brands do you use?</h3>
               <p class="mt-1 text-sm text-neutral-500">Quality and safety standards for glass & urethane.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Mobile Service</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            We install OEM-grade glass and high-performance urethane from trusted manufacturers that meet or exceed DOT and FMVSS standards. You get a quiet, leak-free seal.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              We install OEM-grade glass and high-performance urethane from trusted manufacturers that meet or exceed DOT and FMVSS standards. You get a quiet, leak-free seal.
+            </div>
           </div>
         </article>
 
-        <article class="faq-item" data-tags="aftercare">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="aftercare">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">How long should I wait before driving?</h3>
               <p class="mt-1 text-sm text-neutral-500">Safe drive-away time after your install.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Aftercare & Warranty</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            Safe drive-away time is usually 60–90 minutes after the install so the urethane can begin curing. We’ll give you quick aftercare tips at handoff.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Safe drive-away time is usually 60–90 minutes after the install so the urethane can begin curing. We’ll give you quick aftercare tips at handoff.
+            </div>
           </div>
         </article>
 
-        <article class="faq-item" data-tags="aftercare">
-          <button class="faq-toggle w-full text-left rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition flex items-start justify-between gap-4">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="aftercare">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
             <div>
               <h3 class="text-lg font-semibold">Do you warranty your work?</h3>
               <p class="mt-1 text-sm text-neutral-500">What our lifetime workmanship warranty covers.</p>
             </div>
-            <span class="shrink-0 rounded-lg border px-2 py-1 text-xs">Aftercare & Warranty</span>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></span>
           </button>
-          <div class="faq-content hidden px-5 pb-5 text-neutral-700">
-            Yes—your install includes a lifetime workmanship warranty for as long as you own the vehicle. If something isn’t right, call us and we’ll make it right.
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Yes—your install includes a lifetime workmanship warranty for as long as you own the vehicle. If something isn’t right, call us and we’ll make it right.
+            </div>
           </div>
         </article>
       </div>
@@ -181,8 +207,8 @@
           <h3 class="font-bold text-lg">Still stuck?</h3>
           <p class="mt-2 text-sm text-neutral-700">Call or text and a tech will help you figure out sensors, parts, and the fastest path to install.</p>
           <div class="mt-4 flex gap-2">
-            <a href="tel:+15551234567" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (555) 123-4567</a>
-            <a href="sms:+15551234567" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Us</a>
+            <a href="tel:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (503) 949-2257</a>
+            <a href="sms:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Us</a>
           </div>
         </div>
 
@@ -205,69 +231,89 @@
     </div>
   </section>
 
-   <<!-- Footer -->
-<footer class="mt-20 border-t border-neutral-200 bg-white w-full">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-    
-    <!-- Brand & Call-to-Action -->
-    <div class="md:col-span-2">
-      <div class="flex items-center gap-2">
-        <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-        <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <!-- Brand & Call-to-Action -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2">
+          <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+          <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+        </div>
+        <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">
+            Call Now
+          </a>
+          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">
+            Get a Quote
+          </a>
+        </div>
       </div>
-      <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
-      <div class="mt-4 flex flex-wrap gap-3">
-        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">
-          Call Now
-        </a>
-        <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">
-          Get a Quote
-        </a>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="index.html" class="hover:underline">Home</a></li>
+          <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
+          <li><a href="services.html" class="hover:underline">Services</a></li>
+          <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
+          <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h4 class="font-semibold text-neutral-900">Contact</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
+          <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li>
+          <li>Serving Salem/Keizer, Oregon</li>
+          <li>Mon–Sat: 7am–6pm</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Quick Links -->
-    <div>
-      <h4 class="font-semibold text-neutral-900">Quick Links</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="index.html" class="hover:underline">Home</a></li>
-        <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
-        <li><a href="services.html" class="hover:underline">Services</a></li>
-        <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
-        <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
-      </ul>
+    <!-- Bottom Bar -->
+    <div class="border-t border-neutral-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <a href="#" class="hover:text-neutral-900">Privacy &amp; Terms</a>
+      </div>
     </div>
+  </footer>
 
-    <!-- Contact Info -->
-    <div>
-      <h4 class="font-semibold text-neutral-900">Contact</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
-        <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li>
-        <li>Serving Salem/Keizer, Oregon</li>
-        <li>Mon–Sat: 7am–6pm</li>
-      </ul>
-    </div>
-  </div>
+  <!-- Scripts -->
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  <!-- Bottom Bar -->
-  <div class="border-t border-neutral-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-      <a href="#" class="hover:text-neutral-900">Privacy &amp; Terms</a>
-    </div>
-  </div>
-</footer>
+    // Accordion logic with smooth open/close
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
 
-<!-- Auto-update year -->
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Accordion logic
-    document.querySelectorAll('.faq-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
-        const content = btn.parentElement.querySelector('.faq-content');
-        content.classList.toggle('hidden');
+        const isOpen = item.classList.contains('open');
+
+        // close any other open items if you want single-open behavior:
+        // document.querySelectorAll('.faq-item.open').forEach(openIt => {
+        //   if (openIt !== item) {
+        //     openIt.classList.remove('open');
+        //     const c = openIt.querySelector('.faq-content');
+        //     c.style.maxHeight = 0;
+        //     openIt.querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
+        //   }
+        // });
+
+        item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+          content.style.maxHeight = 0;
+        }
       });
     });
 
@@ -289,7 +335,7 @@
     search.addEventListener('input', applyFilters);
     filter.addEventListener('change', applyFilters);
 
-    // Quick topic jumps set the filter & scroll to list
+    // Quick topic jumps
     document.querySelectorAll('.topic-link').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
