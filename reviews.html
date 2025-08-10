@@ -15,30 +15,64 @@
 
    <!-- Header -->
     <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-3">
-            <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-            <span class="text-neutral-900 font-extrabold text-lg tracking-wide">Clear Choice Auto Glass</span>
-            <span class="hidden sm:inline">
-            </span>
-          </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Increased height -->
+    <div class="flex items-center justify-between h-20">
+      <a href="/index.html" class="flex items-center gap-4">
+        <!-- Larger logo -->
+        <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
+        <!-- Larger brand text -->
+        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+      </a>
 
-          <nav class="hidden md:flex items-center gap-2 text-sm">
-             <a href="/index.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Home</a>
-             <a href="/services.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Services</a>
-             <a href="/reviews.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Reviews</a>
-             <a href="/quote.html" class="px-3 py-2 rounded-lg hover:bg-red-50">Quote</a>
-             <a href="/faqs.html" class="px-3 py-2 rounded-lg hover:bg-red-50">FAQs</a>
-          </nav>
+      <!-- Navigation with underline hover -->
+      <nav class="hidden md:flex items-center gap-6 text-lg">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/services.html" class="nav-link">Services</a>
+        <a href="/reviews.html" class="nav-link">Reviews</a>
+        <a href="/quote.html" class="nav-link">Quote</a>
+        <a href="/faqs.html" class="nav-link">FAQs</a>
+      </nav>
 
-          <div class="hidden md:flex items-center gap-3">
-            <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold">(503) 949-2257</a>
-            <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get a Quote</a>
-          </div>
-        </div>
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
+        <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
+          Get a Quote
+        </a>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Underline effect for nav links */
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #dc2626; /* Tailwind red-600 */
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    color: #dc2626;
+  }
+</style>
+
 
   <!-- Hero -->
 <section class="relative overflow-hidden">
