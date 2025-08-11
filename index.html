@@ -406,22 +406,22 @@
           alt="Service area map: Salem"
           class="w-full h-[480px] min-h-[480px] object-cover transition-opacity duration-300 ease-out opacity-100"
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 720%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23f3f4f6%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%229ca3af%22 font-size=%2232%22%3EMap image unavailable%3C/text%3E%3C/svg%3E';"
-          referrerpolicy="no-referrer"
           loading="lazy"
+          decoding="async"
         />
 
         <!-- toggle buttons -->
         <div class="absolute bottom-3 left-3 flex gap-2 bg-white/90 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
           <button
             type="button"
-            class="svc-tab active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            class="svc-tab active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow"
             data-img="https://raw.githubusercontent.com/policypal1/KadensWebsite/main/salem.png"
             data-alt="Service area map: Salem"
           >Salem</button>
 
           <button
             type="button"
-            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50"
             data-img="https://raw.githubusercontent.com/policypal1/KadensWebsite/main/keizer.png"
             data-alt="Service area map: Keizer"
           >Keizer</button>
@@ -478,9 +478,8 @@
     const tabs = document.querySelectorAll('.svc-tab');
     const mirrors = document.querySelectorAll('.chip-mirror');
 
-    // Preload both images
-    const urls = Array.from(tabs).map(b => b.getAttribute('data-img')).filter(Boolean);
-    urls.forEach(u => { const i = new Image(); i.referrerPolicy = 'no-referrer'; i.src = u; });
+    // Preload both images so swaps are instant
+    tabs.forEach(b => { const i = new Image(); i.src = b.dataset.img; });
 
     function setActive(el, on) {
       el.classList.toggle('active', on);
@@ -495,16 +494,13 @@
 
     function activate(btn) {
       tabs.forEach(b => setActive(b, b === btn));
-      const nextSrc = btn.getAttribute('data-img');
-      const nextAlt = btn.getAttribute('data-alt') || '';
+      const nextSrc = btn.dataset.img;
+      const nextAlt = btn.dataset.alt || '';
 
       img.style.opacity = '0';
-      setTimeout(() => {
-        img.src = nextSrc;
-        img.alt = nextAlt;
-        img.onload = () => (img.style.opacity = '1');
-        setTimeout(() => (img.style.opacity = '1'), 100);
-      }, 140);
+      const swap = () => { img.src = nextSrc; img.alt = nextAlt; };
+      if (img.complete) swap(); else setTimeout(swap, 80);
+      img.onload = () => (img.style.opacity = '1');
 
       const wantSalem = /salem/i.test(nextAlt);
       mirrors.forEach(ch => setActive(ch, (wantSalem && ch.dataset.target==='Salem') || (!wantSalem && ch.dataset.target==='Keizer')));
@@ -513,7 +509,7 @@
     tabs.forEach(b => b.addEventListener('click', () => activate(b)));
     mirrors.forEach(ch => ch.addEventListener('click', () => {
       const wantSalem = ch.dataset.target === 'Salem';
-      const target = Array.from(tabs).find(b => (b.getAttribute('data-alt')||'').toLowerCase().includes(wantSalem?'salem':'keizer'));
+      const target = Array.from(tabs).find(b => (b.dataset.alt || '').toLowerCase().includes(wantSalem ? 'salem' : 'keizer'));
       if (target) activate(target);
     }));
   })();
