@@ -401,11 +401,16 @@
   })();
 </script>
 
-<!-- COVERAGE MAP (clean, distinct from hero) -->
+<!-- COVERAGE MAP (map LEFT, content RIGHT) -->
 <section id="coverage-map" class="mt-24 bg-neutral-50/70 border-y border-neutral-200/70">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <!-- Left: copy/stats/controls -->
+      <!-- MAP on the LEFT -->
+      <div class="rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
+        <div id="serviceMap" class="h-[480px] w-full" style="min-height:480px;"></div>
+      </div>
+
+      <!-- COPY on the RIGHT -->
       <div>
         <span class="inline-flex items-center rounded-full bg-red-100 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
           Service Area
@@ -418,7 +423,6 @@
           Coverage radius is about <b>~25 miles</b> from Salem/Keizer.
         </p>
 
-        <!-- Quick stats (visually different from hero) -->
         <div class="mt-6 grid grid-cols-3 gap-3">
           <div class="rounded-xl bg-white p-4 ring-1 ring-neutral-200 text-center">
             <div class="text-xs text-neutral-500">Avg. response</div>
@@ -434,7 +438,6 @@
           </div>
         </div>
 
-        <!-- Controls -->
         <div class="mt-6 flex flex-wrap gap-2">
           <button data-city="both"
             class="svc-chip active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow">
@@ -465,84 +468,92 @@
           We don’t perform ADAS/camera recalibration. Insurance accepted.
         </p>
       </div>
-
-      <!-- Right: Map -->
-      <div class="rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
-        <div id="serviceMap" class="h-[480px] w-full"></div>
-      </div>
     </div>
   </div>
 </section>
 
 <script>
-  // === Interactive map (Leaflet) ===
-  // Coords
-  const COORDS = {
-    salem:  [44.9429, -123.0351],
-    keizer: [45.0002, -123.0262]
-  };
-  const RADIUS_METERS = 40233; // ~25 miles
+  // Make sure Leaflet CSS/JS are in <head>. Then:
+  (function initServiceMapWhenReady () {
+    const start = () => {
+      const mapEl = document.getElementById('serviceMap');
+      if (!mapEl) return;
 
-  // Map init (defer until DOM is ready)
-  (function initServiceMap() {
-    const mapEl = document.getElementById('serviceMap');
-    if (!mapEl) return;
+      // Coordinates + radius (~25 miles)
+      const COORDS = {
+        salem:  [44.9429, -123.0351],
+        keizer: [45.0002, -123.0262]
+      };
+      const RADIUS_METERS = 40233;
 
-    const map = L.map(mapEl, { scrollWheelZoom: false, tap: true });
+      const map = L.map(mapEl, { scrollWheelZoom: false, tap: true });
 
-    // Tiles (OSM)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+      // Primary tile layer (OSM)
+      const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
 
-    // Styles
-    const red = '#dc2626';
+      // Fallback tile layer (Carto)
+      const carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap & Carto'
+      });
 
-    // Layers
-    const salemMarker  = L.marker(COORDS.salem).bindPopup('<b>Salem</b>');
-    const keizerMarker = L.marker(COORDS.keizer).bindPopup('<b>Keizer</b>');
-    const salemCircle  = L.circle(COORDS.salem,  { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
-    const keizerCircle = L.circle(COORDS.keizer, { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
-
-    const both = L.featureGroup([salemMarker, keizerMarker, salemCircle, keizerCircle]).addTo(map);
-    map.fitBounds(both.getBounds(), { padding: [20, 20] });
-
-    // Toggle chips
-    const chips = document.querySelectorAll('.svc-chip');
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => c.classList.remove('active','bg-red-600','text-white','shadow'));
-        chips.forEach(c => c.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300'));
-        chip.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-        chip.classList.add('active','bg-red-600','text-white','shadow');
-
-        const city = chip.getAttribute('data-city');
-        map.eachLayer(layer => {
-          if (layer instanceof L.Marker || layer instanceof L.Circle) map.removeLayer(layer);
-        });
-
-        if (city === 'salem') {
-          salemMarker.addTo(map);
-          salemCircle.addTo(map);
-          map.fitBounds(L.featureGroup([salemMarker, salemCircle]).getBounds(), { padding: [20,20] });
-        } else if (city === 'keizer') {
-          keizerMarker.addTo(map);
-          keizerCircle.addTo(map);
-          map.fitBounds(L.featureGroup([keizerMarker, keizerCircle]).getBounds(), { padding: [20,20] });
-        } else {
-          salemMarker.addTo(map);
-          keizerMarker.addTo(map);
-          salemCircle.addTo(map);
-          keizerCircle.addTo(map);
-          map.fitBounds(both.getBounds(), { padding: [20,20] });
+      // Try OSM first; on error, switch to Carto
+      osm.on('tileerror', () => {
+        if (!map.hasLayer(carto)) {
+          carto.addTo(map);
         }
       });
-    });
+
+      // Add OSM and also keep Carto ready (only shows if OSM errors)
+      osm.addTo(map);
+
+      const red = '#dc2626';
+      const salemMarker  = L.marker(COORDS.salem).bindPopup('<b>Salem</b>');
+      const keizerMarker = L.marker(COORDS.keizer).bindPopup('<b>Keizer</b>');
+      const salemCircle  = L.circle(COORDS.salem,  { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
+      const keizerCircle = L.circle(COORDS.keizer, { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
+
+      const both = L.featureGroup([salemMarker, keizerMarker, salemCircle, keizerCircle]).addTo(map);
+      map.fitBounds(both.getBounds(), { padding: [20,20] });
+
+      // Ensure proper sizing after layout/ fonts load
+      setTimeout(() => map.invalidateSize(), 300);
+
+      // Toggle chips
+      const chips = document.querySelectorAll('.svc-chip');
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          chips.forEach(c => c.classList.remove('active','bg-red-600','text-white','shadow'));
+          chips.forEach(c => c.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300'));
+          chip.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+          chip.classList.add('active','bg-red-600','text-white','shadow');
+
+          const city = chip.getAttribute('data-city');
+          [salemMarker, keizerMarker, salemCircle, keizerCircle].forEach(l => { try { map.removeLayer(l); } catch(e){} });
+
+          if (city === 'salem') {
+            salemMarker.addTo(map); salemCircle.addTo(map);
+            map.fitBounds(L.featureGroup([salemMarker, salemCircle]).getBounds(), { padding: [20,20] });
+          } else if (city === 'keizer') {
+            keizerMarker.addTo(map); keizerCircle.addTo(map);
+            map.fitBounds(L.featureGroup([keizerMarker, keizerCircle]).getBounds(), { padding: [20,20] });
+          } else {
+            salemMarker.addTo(map); keizerMarker.addTo(map);
+            salemCircle.addTo(map); keizerCircle.addTo(map);
+            map.fitBounds(both.getBounds(), { padding: [20,20] });
+          }
+        });
+      });
+    };
+
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start); // wait for layout/fonts then render & invalidate
   })();
 </script>
-
 
 
 
