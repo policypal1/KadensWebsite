@@ -81,108 +81,98 @@
 <body class="min-h-screen bg-white flex flex-col text-neutral-900 overflow-x-hidden">
   <!-- Header ... stays as-is above -->
 
-  <!-- HERO (full-bleed background; only this is wide) -->
-  <section class="relative w-screen">
-    <div class="relative h-[85vh]">
-      <img
-        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
-        alt="Hero Image"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/30"></div>
+  <!-- HERO — full-bleed, conversion-focused -->
+<section class="relative w-screen">
+  <div class="relative h-[92vh] min-h-[620px]">
+    <!-- Background -->
+    <img
+      src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+      alt="Mobile auto glass service on-site"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/30"></div>
 
-      <!-- Content stays aligned to the site grid -->
-      <div class="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <div class="max-w-3xl text-white">
-          <span class="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs tracking-wide uppercase shadow">
-            Family-Owned &amp; Operated
+    <!-- Content container (aligned to site grid) -->
+    <div class="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+      <div class="max-w-3xl text-white">
+
+        <!-- Top credibility band -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">
+            Family-Owned & Operated
           </span>
-
-          <h1 class="mt-4 text-4xl md:text-6xl font-black leading-tight">
-            Fast, Reliable Auto Glass Repair
-          </h1>
-
-          <p class="mt-4 text-lg md:text-2xl text-white/90">
-            Same-Day Service — We Come to You — Serving Salem Oregon
-          </p>
-
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="tel:+15551234567"
-               class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">
-              Call Now
-            </a>
-            <a href="#quote"
-               class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-              Request a Quote
-            </a>
-          </div>
-
-          <div class="mt-6 inline-flex items-center gap-2 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
-            <!-- stars -->
-            <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-            <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-            <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-            <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-            <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
-            <span class="font-semibold">4.8</span>
-            <span class="text-sm text-neutral-600">(100+ Google reviews)</span>
-          </div>
+          <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">
+            Same-Day Mobile Service
+          </span>
+          <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">
+            Serving Salem, Oregon
+          </span>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Now open main for the rest of the page (constrained width) -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-1">
+        <!-- Headline -->
+        <h1 class="mt-5 text-4xl md:text-6xl font-black leading-tight text-balance">
+          Fast, Reliable <span class="text-red-400">Auto Glass</span> Repair & Replacement
+        </h1>
 
-      <!-- 3 EASY STEPS (Refined Colors) -->
-<section class="mt-16">
-  <div class="mx-auto max-w-6xl px-4 text-center">
-    <h2 class="text-3xl font-extrabold text-neutral-900">3 Easy Steps to Get Back on the Road</h2>
-    <p class="mt-2 text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-      Fast, simple, and stress-free auto glass service — from quote to completion.
-    </p>
-
-    <div class="mt-10 grid gap-8 md:grid-cols-3">
-      <!-- Step 1 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 text-2xl font-bold shadow-sm">
-          1
-        </div>
-        <h3 class="mt-4 text-xl font-semibold text-neutral-900">Get Your Quote</h3>
-        <p class="mt-2 text-neutral-600 leading-relaxed">
-          Call us or book online in under a minute — no hidden fees, no hassle.
+        <!-- Subhead (clear value prop) -->
+        <p class="mt-4 text-lg md:text-2xl text-white/90 text-balance">
+          We come to you. OEM-grade glass. Lifetime workmanship warranty. Get a firm quote in under a minute.
         </p>
-      </div>
 
-      <!-- Step 2 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 text-2xl font-bold shadow-sm">
-          2
+        <!-- Proof row -->
+        <div class="mt-5 inline-flex items-center gap-3 rounded-full bg-white/90 text-neutral-900 px-4 py-2 shadow">
+          <!-- stars -->
+          <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+          <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+          <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+          <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+          <svg class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.854L19.335 24 12 19.897 4.665 24 6 15.602 0 9.748l8.332-1.73z"/></svg>
+          <span class="font-semibold">4.8</span>
+          <span class="text-sm text-neutral-700">(100+ Google reviews)</span>
         </div>
-        <h3 class="mt-4 text-xl font-semibold text-neutral-900">We Come to You</h3>
-        <p class="mt-2 text-neutral-600 leading-relaxed">
-          Same-day mobile service to your home, work, or anywhere in the Salem area.
-        </p>
-      </div>
 
-      <!-- Step 3 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 text-2xl font-bold shadow-sm">
-          3
+        <!-- Benefit bullets -->
+        <ul class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-white/90">
+          <li class="flex items-center gap-2">
+            <span class="inline-block h-5 w-5 rounded-full bg-red-600 grid place-content-center text-[12px] font-bold">✓</span>
+            Lifetime Warranty
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="inline-block h-5 w-5 rounded-full bg-red-600 grid place-content-center text-[12px] font-bold">✓</span>
+            OEM-Grade Glass
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="inline-block h-5 w-5 rounded-full bg-red-600 grid place-content-center text-[12px] font-bold">✓</span>
+            We Come to You
+          </li>
+        </ul>
+
+        <!-- Primary actions -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="tel:+15551234567"
+             class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-soft transition">
+            Call Now
+          </a>
+
+          <!-- If using Jobber Core: swap href with your booking link -->
+          <a href="#quote"
+             class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+            Get Instant Quote
+          </a>
         </div>
-        <h3 class="mt-4 text-xl font-semibold text-neutral-900">Drive Away Safe</h3>
-        <p class="mt-2 text-neutral-600 leading-relaxed">
-          OEM-grade glass and expert installation — done in under an hour.
+
+        <!-- Support line (reduces friction) -->
+        <p class="mt-4 text-sm text-white/80">
+          Questions? Text or call — friendly humans, no call centers. Open 7am–7pm.
         </p>
       </div>
     </div>
 
-    <a href="#quote" class="mt-10 inline-block rounded-xl bg-red-600 px-8 py-4 text-white font-semibold text-lg shadow hover:bg-red-700 transition">
-      Get Started Today
-    </a>
+    <!-- Bottom edge fade for a clean handoff to next section -->
+    <div class="absolute -bottom-px left-0 right-0 h-10 bg-gradient-to-b from-transparent to-white"></div>
   </div>
 </section>
+
 
 
       
