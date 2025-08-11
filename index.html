@@ -651,57 +651,114 @@
 
 
 
+<!-- FAQS (2x2 accordion) -->
+<section id="faqs" class="mt-24 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+    <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
 
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
 
+      <!-- Item 1 -->
+      <div class="rounded-xl border border-neutral-200">
+        <button
+          class="faq-btn w-full flex items-start justify-between gap-4 p-5 text-left"
+          aria-expanded="false"
+          aria-controls="faq-a1"
+          id="faq-q1"
+        >
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Do you offer same-day mobile service?
+            </h3>
+            <p class="text-sm text-neutral-500 mt-1">
+              Availability varies by glass in stock and timing of your call.
+            </p>
+          </div>
+          <span class="chev inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-neutral-300 text-neutral-600 transition">
+            ▾
+          </span>
+        </button>
+        <div
+          id="faq-a1"
+          role="region"
+          aria-labelledby="faq-q1"
+          class="faq-panel grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out [grid-template-rows:0fr]"
+        >
+          <div class="min-h-0 px-5 pb-5 pt-0 text-neutral-700 border-t border-neutral-200">
+            Most weekdays, yes. Morning calls often get installed the same afternoon
+            depending on glass availability and location. We cover Salem / Keizer and nearby areas.
+          </div>
+        </div>
+      </div>
 
- 
- <!-- FAQS (2x2 grid layout) -->
-<section id="faqs" class="mt-24 rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-  <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
-  <div class="mt-6 grid md:grid-cols-2 gap-6">
-    
-    <!-- FAQ Item -->
-    <div class="rounded-xl border border-neutral-200 p-5 hover:shadow-sm transition">
-      <h3 class="text-lg font-semibold text-neutral-900">Do you offer same-day mobile service?</h3>
-      <p class="text-sm text-neutral-500 mt-1">Availability varies by glass in stock and timing of your call.</p>
-      <hr class="my-3 border-neutral-200">
-      <p class="text-neutral-700 text-sm">
-        Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
-      </p>
+      <!-- Item 2 -->
+      <div class="rounded-xl border border-neutral-200">
+        <button class="faq-btn w-full flex items-start justify-between gap-4 p-5 text-left"
+                aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Do you recalibrate ADAS cameras?
+            </h3>
+            <p class="text-sm text-neutral-500 mt-1">
+              About camera systems and when a recalibration is needed.
+            </p>
+          </div>
+          <span class="chev inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-neutral-300 text-neutral-600 transition">▾</span>
+        </button>
+        <div id="faq-a2" role="region" aria-labelledby="faq-q2"
+             class="faq-panel grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out [grid-template-rows:0fr]">
+          <div class="min-h-0 px-5 pb-5 pt-0 text-neutral-700 border-t border-neutral-200">
+            We focus on the glass work and do not offer camera recalibration. If your vehicle
+            requires it, visit a certified calibration shop after your install.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="rounded-xl border border-neutral-200">
+        <button class="faq-btn w-full flex items-start justify-between gap-4 p-5 text-left"
+                aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">
+              What kind of glass do you use?
+            </h3>
+            <p class="text-sm text-neutral-500 mt-1">Quality and fitment guarantee.</p>
+          </div>
+          <span class="chev inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-neutral-300 text-neutral-600 transition">▾</span>
+        </button>
+        <div id="faq-a3" role="region" aria-labelledby="faq-q3"
+             class="faq-panel grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out [grid-template-rows:0fr]">
+          <div class="min-h-0 px-5 pb-5 pt-0 text-neutral-700 border-t border-neutral-200">
+            OEM-grade glass and urethane only—so you get a quiet cabin, crystal clarity,
+            and a leak-free, factory-fit seal.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="rounded-xl border border-neutral-200">
+        <button class="faq-btn w-full flex items-start justify-between gap-4 p-5 text-left"
+                aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">
+              Do you work with insurance?
+            </h3>
+            <p class="text-sm text-neutral-500 mt-1">Coverage options and process.</p>
+          </div>
+          <span class="chev inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-neutral-300 text-neutral-600 transition">▾</span>
+        </button>
+        <div id="faq-a4" role="region" aria-labelledby="faq-q4"
+             class="faq-panel grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out [grid-template-rows:0fr]">
+          <div class="min-h-0 px-5 pb-5 pt-0 text-neutral-700 border-t border-neutral-200">
+            Yes—most major insurers. We’ll help with the claim and keep your out-of-pocket costs clear up front.
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- FAQ Item -->
-    <div class="rounded-xl border border-neutral-200 p-5 hover:shadow-sm transition">
-      <h3 class="text-lg font-semibold text-neutral-900">Do you recalibrate ADAS cameras?</h3>
-      <p class="text-sm text-neutral-500 mt-1">About camera systems and when a recalibration is needed.</p>
-      <hr class="my-3 border-neutral-200">
-      <p class="text-neutral-700 text-sm">
-        No, we focus strictly on glass replacement. If your vehicle requires ADAS recalibration, we recommend visiting a certified shop after your glass install.
-      </p>
-    </div>
-
-    <!-- FAQ Item -->
-    <div class="rounded-xl border border-neutral-200 p-5 hover:shadow-sm transition">
-      <h3 class="text-lg font-semibold text-neutral-900">What kind of glass do you use?</h3>
-      <p class="text-sm text-neutral-500 mt-1">Quality and fitment guarantee.</p>
-      <hr class="my-3 border-neutral-200">
-      <p class="text-neutral-700 text-sm">
-        We only use OEM-grade glass and urethane to ensure a perfect fit, clear visibility, and long-lasting durability.
-      </p>
-    </div>
-
-    <!-- FAQ Item -->
-    <div class="rounded-xl border border-neutral-200 p-5 hover:shadow-sm transition">
-      <h3 class="text-lg font-semibold text-neutral-900">Do you work with insurance?</h3>
-      <p class="text-sm text-neutral-500 mt-1">Coverage options and process.</p>
-      <hr class="my-3 border-neutral-200">
-      <p class="text-neutral-700 text-sm">
-        Yes, we can work with most insurance companies. We’ll guide you through the claim process and handle paperwork to make it hassle-free.
-      </p>
-    </div>
-
   </div>
 </section>
+
 
     <!-- FINAL CTA (full-bleed light band) -->
     <section class="mt-24 relative overflow-hidden">
@@ -838,22 +895,41 @@
     })();
 
     // FAQ accordion (+ / −, one open at a time)
-    document.querySelectorAll('#faq-list .faq-toggle').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const answer = item.querySelector('.faq-answer');
-        const icon = item.querySelector('.faq-icon');
-
-        const isOpen = !answer.classList.contains('hidden');
-        document.querySelectorAll('#faq-list .faq-answer').forEach(p => p.classList.add('hidden'));
-        document.querySelectorAll('#faq-list .faq-icon').forEach(i => i.textContent = '+');
-
-        if (!isOpen) {
-          answer.classList.remove('hidden');
-          icon.textContent = '−';
-        }
+  <script>
+  // 2x2 accordion: tap/click to toggle, supports keyboard + ARIA
+  (function () {
+    const items = document.querySelectorAll('#faqs .faq-btn');
+    items.forEach(btn => {
+      btn.addEventListener('click', () => toggle(btn));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(btn); }
       });
     });
-  </script>
+
+    function toggle(btn) {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+
+      // close all (optional: comment next 3 lines if you want multiple open)
+      document.querySelectorAll('#faqs .faq-btn[aria-expanded="true"]').forEach(b => {
+        if (b !== btn) collapse(b, document.getElementById(b.getAttribute('aria-controls')));
+      });
+
+      expanded ? collapse(btn, panel) : expand(btn, panel);
+    }
+
+    function expand(btn, panel) {
+      btn.setAttribute('aria-expanded', 'true');
+      panel.style.setProperty('grid-template-rows', '1fr');
+      btn.querySelector('.chev').style.transform = 'rotate(180deg)';
+    }
+
+    function collapse(btn, panel) {
+      btn.setAttribute('aria-expanded', 'false');
+      panel.style.setProperty('grid-template-rows', '0fr');
+      btn.querySelector('.chev').style.transform = '';
+    }
+  })();
+</script>
 </body>
 </html>
