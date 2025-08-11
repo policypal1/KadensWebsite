@@ -77,106 +77,180 @@
 
 
 
-   <!-- add overflow-x-hidden so the hero doesn't cause sideways scroll -->
-<body class="min-h-screen bg-white flex flex-col text-neutral-900 overflow-x-hidden">
-  <!-- Header ... stays as-is above -->
-
-   <!-- HERO — minimal, high-impact with Price Estimator -->
-<section class="relative overflow-hidden">
-  <!-- Background (swap the URL if you want a different vibe) -->
-  <div class="absolute inset-0">
-    <img
-      src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
-      alt="Mobile auto glass service on-site"
-      class="w-full h-full object-cover"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center">
-    <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
-
-      <!-- LEFT: Clear value + strong CTAs -->
-      <div class="text-white max-w-2xl">
-        <div class="flex flex-wrap gap-2">
-          <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
-          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
-          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
+ <body class="min-h-screen bg-white flex flex-col text-neutral-900 overflow-x-hidden">
+  <!-- HEADER (moved inside <body>) -->
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/index.html" class="flex items-center gap-4">
+          <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
+          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-lg">
+          <a href="/index.html" class="nav-link">Home</a>
+          <a href="/services.html" class="nav-link">Services</a>
+          <a href="/reviews.html" class="nav-link">Reviews</a>
+          <a href="/quote.html" class="nav-link">Quote</a>
+          <a href="/faqs.html" class="nav-link">FAQs</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-4">
+          <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
         </div>
-
-        <h1 class="mt-4 text-5xl md:text-7xl font-black leading-tight">
-          Mobile Windshield Repair & Replacement
-          <span class="text-red-400 block md:inline">Done Right Today</span>
-        </h1>
-
-        <p class="mt-4 text-lg md:text-2xl text-white/90">
-          OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
-        </p>
-
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <!-- If you prefer to send everyone to Jobber instead of the estimator, point this href to your Jobber link -->
-          <a href="#price-estimator" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">
-            Get Instant Price
-          </a>
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-            Call (503) 949-2257
-          </a>
-        </div>
-
-        <p class="mt-3 text-xs md:text-sm text-white/80">
-          Highly rated by local drivers — OEM materials • On-time arrival • Mon–Sat
-        </p>
       </div>
-
-      <!-- RIGHT: Price Estimator (lightweight lead-in to Jobber) -->
-      <aside id="price-estimator" class="w-full max-w-md justify-self-end">
-        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-          <h3 class="text-lg font-bold text-neutral-900">Instant Price Estimator</h3>
-          <p class="mt-1 text-sm text-neutral-600">Give us the basics—we’ll confirm the exact price by text.</p>
-
-          <!-- 
-            Set data-jobber to your Jobber booking URL to send users there.
-            If left empty, it will send to quote.html#quote with fields in the URL.
-          -->
-          <form id="estimatorForm" data-jobber="" class="mt-4 grid gap-3">
-            <input type="text" name="vehicle" placeholder="Year / Make / Model" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Vehicle" />
-            <input type="text" name="zip" placeholder="Your ZIP (e.g., 97301)" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="ZIP code" />
-            <input type="tel" name="phone" placeholder="Your Phone (for confirmation)" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Phone" />
-            <select name="service" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Service type">
-              <option value="windshield-replacement">Windshield Replacement</option>
-              <option value="chip-repair">Chip Repair</option>
-              <option value="door-glass">Door/Side Glass</option>
-              <option value="back-glass">Back Glass</option>
-            </select>
-
-            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-              Get My Price
-            </button>
-          </form>
-
-          <dl class="mt-4 grid grid-cols-3 gap-2 text-sm">
-            <div class="flex items-center gap-2 col-span-1">
-              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> OEM Glass
-            </div>
-            <div class="flex items-center gap-2 col-span-1">
-              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> Clean Install
-            </div>
-            <div class="flex items-center gap-2 col-span-1">
-              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> On-Time
-            </div>
-          </dl>
-          <p class="mt-3 text-xs text-neutral-600">Service area: Salem • Keizer • Dallas • Silverton</p>
-        </div>
-      </aside>
-
     </div>
-  </div>
+  </header>
+
+  <!-- HERO — minimal, high-impact with Price Estimator -->
+  <section class="relative overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+           alt="Mobile auto glass service on-site"
+           class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
+
+        <!-- LEFT -->
+        <div class="text-white max-w-2xl">
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
+            <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
+            <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
+          </div>
+
+          <h1 class="mt-4 text-5xl md:text-7xl font-black leading-tight">
+            Mobile Windshield Repair & Replacement
+            <span class="text-red-400 block md:inline">Done Right Today</span>
+          </h1>
+
+          <p class="mt-4 text-lg md:text-2xl text-white/90">
+            OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#price-estimator" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">Get Instant Price</a>
+            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Call (503) 949-2257</a>
+          </div>
+
+          <p class="mt-3 text-xs md:text-sm text-white/80">Highly rated by local drivers — OEM materials • On-time arrival • Mon–Sat</p>
+        </div>
+
+        <!-- RIGHT: Smart Price Estimator (NOTE: no stray extra "<") -->
+        <aside id="price-estimator" class="w-full max-w-md justify-self-end">
+          <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+            <h3 class="text-lg font-bold text-neutral-900">Instant Price Estimator</h3>
+            <p class="mt-1 text-sm text-neutral-600">Estimate updates as you type. We’ll confirm by text before scheduling.</p>
+
+            <form id="estimatorForm" class="mt-4 grid gap-3" data-jobber="">
+              <div class="grid grid-cols-2 gap-3">
+                <input type="number" name="year" placeholder="Year (e.g., 2018)" min="1995" max="2026" required class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Year">
+                <select name="vehicleType" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Vehicle type">
+                  <option value="sedan">Sedan/Coupe</option>
+                  <option value="suv">SUV/Crossover</option>
+                  <option value="truck">Truck/Van</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <input type="text" name="make" placeholder="Make (e.g., Ford)" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Make">
+                <input type="text" name="model" placeholder="Model (e.g., Escape)" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Model">
+              </div>
+
+              <select name="service" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Service type">
+                <option value="windshield-replacement">Windshield Replacement</option>
+                <option value="chip-repair">Chip Repair</option>
+                <option value="door-glass">Door/Side Glass</option>
+                <option value="back-glass">Back Glass</option>
+              </select>
+
+              <div class="grid grid-cols-2 gap-3 text-sm">
+                <label class="inline-flex items-center gap-2"><input type="checkbox" name="heated"> Heated glass</label>
+                <label class="inline-flex items-center gap-2"><input type="checkbox" name="sensor"> Rain/Light sensor</label>
+                <label class="inline-flex items-center gap-2"><input type="checkbox" name="oem"> Prefer OEM glass</label>
+                <label class="inline-flex items-center gap-2"><input type="checkbox" name="adas"> ADAS/Camera on windshield</label>
+              </div>
+
+              <div id="estimateBox" class="mt-2 rounded-xl border border-neutral-200 bg-white p-4">
+                <div class="text-sm text-neutral-500">Estimated price</div>
+                <div id="estimateValue" class="text-2xl font-bold text-neutral-900">$—</div>
+                <div id="estimateNote" class="mt-1 text-xs text-neutral-600">Final price depends on exact glass part (by VIN) and availability.</div>
+              </div>
+
+              <button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">Book Now</button>
+              <a href="tel:+15039492257" class="text-center text-sm text-red-600 hover:underline">Prefer to call? (503) 949-2257</a>
+            </form>
+
+            <p class="mt-3 text-xs text-neutral-600">We don’t perform ADAS/camera recalibration. If your vehicle requires it, a separate shop fee may apply after glass replacement.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
+  </section>
+
+  <!-- Estimator logic -->
+  <script>
+  (function () {
+    const form = document.getElementById('estimatorForm');
+    const out = document.getElementById('estimateValue');
+    const note = document.getElementById('estimateNote');
+
+    const BASE = { 'windshield-replacement': 450, 'chip-repair': 120, 'door-glass': 250, 'back-glass': 350 };
+    const TYPE_MUL = { sedan: 1.00, suv: 1.10, truck: 1.15 };
+    const LUX_BRANDS = ['audi','bmw','mercedes','tesla','lexus','porsche','land rover','jaguar','volvo','acura','infiniti','genesis','cadillac'];
+    const MID_BRANDS  = ['toyota','honda','subaru','nissan','mazda','kia','hyundai','vw','volkswagen','chevrolet','chevy','ford','dodge','jeep','gmc','buick','chrysler'];
+    const OPT = { heated: 1.08, sensor: 1.07, oem: 1.12 };
+
+    function estimate() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      let base = BASE[data.service || 'windshield-replacement'];
+      base *= TYPE_MUL[(data.vehicleType || 'sedan')];
+
+      const year = parseInt(data.year || '2015', 10);
+      if (!isNaN(year)) {
+        if (year >= 2021) base *= 1.12;
+        else if (year >= 2016) base *= 1.06;
+        else if (year <= 2005) base *= 1.08;
+      }
+
+      const make = (data.make || '').trim().toLowerCase();
+      if (LUX_BRANDS.includes(make)) base *= 1.30;
+      else if (make && !MID_BRANDS.includes(make)) base *= 1.10;
+
+      if (form.heated.checked) base *= OPT.heated;
+      if (form.sensor.checked) base *= OPT.sensor;
+      if (form.oem.checked)    base *= OPT.oem;
+
+      const low  = Math.round(base * 0.92);
+      const high = Math.round(base * 1.08);
+      const hasADAS = form.adas.checked;
+
+      out.textContent = `$${low.toLocaleString()} – $${high.toLocaleString()}`;
+      note.textContent = hasADAS
+        ? 'Estimate excludes ADAS/camera recalibration (we do not provide recalibration). Final price depends on VIN-specific glass part and availability.'
+        : 'Final price depends on exact glass part (by VIN) and availability.';
+    }
+
+    form.addEventListener('input', estimate);
+    estimate();
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const params = new URLSearchParams(new FormData(form)).toString();
+      const jobber = form.getAttribute('data-jobber') || '';
+      const url = jobber ? `${jobber}?${params}` : `quote.html?${params}#quote`;
+      window.location.href = url;
+    });
+  })();
+  </script>
+
 
   <!-- Gentle fade into next section -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
