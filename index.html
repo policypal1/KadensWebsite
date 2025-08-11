@@ -10,12 +10,6 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
- />
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
@@ -487,36 +481,57 @@
     const mapEl = document.getElementById('serviceMap');
     const fallbackImg = document.getElementById('mapFallback');
 
-    // If Leaflet isn’t available or page opened as file://, show fallback
-    const unsafeProtocol = location.protocol !== 'http:' && location.protocol !== 'https:';
-    if (!mapEl || typeof L === 'undefined' || unsafeProtocol) {
+    // If Leaflet isn't present or page opened as file:// → show static image
+    const unsafe = location.protocol !== 'http:' && location.protocol !== 'https:';
+    if (!mapEl || typeof L === 'undefined' || unsafe) {
       if (fallbackImg) fallbackImg.classList.remove('hidden');
       if (mapEl) mapEl.style.opacity = '0';
       return;
     }
 
-    // Coordinates + radius (~25 miles)
     const COORDS = {
       salem:  [44.9429, -123.0351],
       keizer: [45.0002, -123.0262]
     };
     const RADIUS_METERS = 40233; // ~25 miles
+    const red = '#dc2626';
 
     const map = L.map(mapEl, { scrollWheelZoom: true });
 
-    // Primary free tile layer (OpenStreetMap)
-    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // Primary OSM tiles (single host)
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // If tiles fail (CSP/network), reveal fallback image
-    osm.on('tileerror', () => {
-      if (fallbackImg) fallbackImg.classList.remove('hidden');
-      mapEl.style.opacity = '0';
     });
 
-    const red = '#dc2626';
+    // Fallback tiles (Carto light)
+    const carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      subdomains: 'abcd',
+      attribution: '&copy; OpenStreetMap & Carto'
+    });
+
+    let tilesLoaded = false;
+    // If any tile loads, we mark loaded
+    osm.on('load', () => { tilesLoaded = true; });
+    carto.on('load', () => { tilesLoaded = true; });
+
+    // If primary errors, try fallback
+    osm.on('tileerror', () => {
+      if (!map.hasLayer(carto)) carto.addTo(map);
+    });
+
+    osm.addTo(map);
+
+    // Hard timeout: if nothing loads quickly, show static image
+    setTimeout(() => {
+      if (!tilesLoaded) {
+        if (fallbackImg) fallbackImg.classList.remove('hidden');
+        mapEl.style.opacity = '0';
+      }
+    }, 1200);
+
+    // Markers + circles
     const salemMarker  = L.marker(COORDS.salem).bindPopup('<b>Salem</b>');
     const keizerMarker = L.marker(COORDS.keizer).bindPopup('<b>Keizer</b>');
     const salemCircle  = L.circle(COORDS.salem,  { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
@@ -525,15 +540,13 @@
     const both = L.featureGroup([salemMarker, keizerMarker, salemCircle, keizerCircle]).addTo(map);
     map.fitBounds(both.getBounds(), { padding: [22, 22] });
 
-    // Ensure proper sizing after layout/fonts
     setTimeout(() => map.invalidateSize(), 300);
     window.addEventListener('resize', () => setTimeout(() => map.invalidateSize(), 150));
 
-    // Chip toggles
+    // Chips
     const chips = document.querySelectorAll('.svc-chip');
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
-        // visual state
         chips.forEach(c => {
           c.classList.remove('active','bg-red-600','text-white','shadow');
           c.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
@@ -541,7 +554,6 @@
         chip.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
         chip.classList.add('active','bg-red-600','text-white','shadow');
 
-        // layer toggling
         const city = chip.getAttribute('data-city');
         [salemMarker, keizerMarker, salemCircle, keizerCircle].forEach(l => {
           try { map.removeLayer(l); } catch(e){}
