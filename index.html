@@ -10,10 +10,6 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-
   <style>
     /* small helper */
     @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
@@ -398,23 +394,54 @@
   })();
 </script>
 
-<!-- COVERAGE MAP (map LEFT, content RIGHT) -->
+<!-- COVERAGE (static maps, LEFT) -->
 <section id="coverage-map" class="mt-24 bg-neutral-50/70 border-y border-neutral-200/70">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <!-- MAP on the LEFT -->
+      <!-- MAP IMAGES (LEFT) -->
       <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
-        <!-- interactive map container -->
-        <div id="serviceMap" class="h-[480px] w-full" style="min-height:480px;"></div>
+        <!-- main image (starts with Salem) -->
+        <img
+          id="svcMapImg"
+          src="/img/map-salem.jpg"          <!-- TODO: replace with your Salem image path -->
+          alt="Service area map: Salem"
+          class="w-full h-[480px] min-h-[480px] object-cover transition-opacity duration-300 ease-out opacity-100"
+          loading="lazy"
+        />
 
-        <!-- static fallback image (shown automatically if tiles can’t load) -->
-        <img id="mapFallback"
-             alt="Service area: Salem and Keizer"
-             class="hidden absolute inset-0 h-full w-full object-cover"
-             src="https://staticmap.openstreetmap.de/staticmap.php?center=44.966,-123.03&zoom=10&size=800x480&maptype=mapnik&markers=44.9429,-123.0351,lightred1|45.0002,-123.0262,lightred2" />
+        <!-- toggle buttons -->
+        <div class="absolute bottom-3 left-3 flex gap-2 bg-white/85 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
+          <button
+            type="button"
+            class="svc-tab active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            data-img="/img/map-salem.jpg"   <!-- TODO: same as above -->
+            data-alt="Service area map: Salem"
+          >
+            Salem
+          </button>
+          <button
+            type="button"
+            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            data-img="/img/map-keizer.jpg"  <!-- TODO: replace with your Keizer image path -->
+            data-alt="Service area map: Keizer"
+          >
+            Keizer
+          </button>
+
+          <!-- Optional: add a combined image later
+          <button
+            type="button"
+            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50"
+            data-img="/img/map-both.jpg"
+            data-alt="Service area map: Salem & Keizer"
+          >
+            Both
+          </button>
+          -->
+        </div>
       </div>
 
-      <!-- COPY on the RIGHT -->
+      <!-- COPY (RIGHT) -->
       <div>
         <span class="inline-flex items-center rounded-full bg-red-100 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
           Service Area
@@ -442,18 +469,21 @@
           </div>
         </div>
 
+        <!-- chips just mirror the map tabs; keep for visual rhythm -->
         <div class="mt-6 flex flex-wrap gap-2">
-          <button data-city="both"
-            class="svc-chip active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow">
-            Salem + Keizer
+          <button
+            type="button"
+            class="chip-mirror active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow"
+            data-target="Salem"
+          >
+            Salem
           </button>
-          <button data-city="salem"
-            class="svc-chip inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50">
-            Salem only
-          </button>
-          <button data-city="keizer"
-            class="svc-chip inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50">
-            Keizer only
+          <button
+            type="button"
+            class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50"
+            data-target="Keizer"
+          >
+            Keizer
           </button>
         </div>
 
@@ -477,103 +507,67 @@
 </section>
 
 <script>
-  (function initServiceMap() {
-    const mapEl = document.getElementById('serviceMap');
-    const fallbackImg = document.getElementById('mapFallback');
+  // Simple static image toggler (cross-fade). No external libs.
+  (function () {
+    const img = document.getElementById('svcMapImg');
+    const tabs = document.querySelectorAll('.svc-tab');
+    const mirrors = document.querySelectorAll('.chip-mirror');
 
-    // If Leaflet isn't present or page opened as file:// → show static image
-    const unsafe = location.protocol !== 'http:' && location.protocol !== 'https:';
-    if (!mapEl || typeof L === 'undefined' || unsafe) {
-      if (fallbackImg) fallbackImg.classList.remove('hidden');
-      if (mapEl) mapEl.style.opacity = '0';
-      return;
-    }
+    // Preload to avoid flicker
+    const urls = Array.from(tabs).map(b => b.getAttribute('data-img')).filter(Boolean);
+    urls.forEach(u => { const i = new Image(); i.src = u; });
 
-    const COORDS = {
-      salem:  [44.9429, -123.0351],
-      keizer: [45.0002, -123.0262]
-    };
-    const RADIUS_METERS = 40233; // ~25 miles
-    const red = '#dc2626';
+    function activate(button) {
+      // visual state for tabs
+      tabs.forEach(b => {
+        b.classList.remove('active','bg-red-600','text-white','shadow');
+        b.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+      });
+      button.classList.add('active','bg-red-600','text-white','shadow');
+      button.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
 
-    const map = L.map(mapEl, { scrollWheelZoom: true });
+      // cross-fade swap
+      const nextSrc = button.getAttribute('data-img');
+      const nextAlt = button.getAttribute('data-alt') || '';
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = nextSrc;
+        img.alt = nextAlt;
+        // ensure fade-in even if cached
+        img.onload = () => (img.style.opacity = '1');
+        setTimeout(() => (img.style.opacity = '1'), 60);
+      }, 150);
 
-    // Primary OSM tiles (single host)
-    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    });
-
-    // Fallback tiles (Carto light)
-    const carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      subdomains: 'abcd',
-      attribution: '&copy; OpenStreetMap & Carto'
-    });
-
-    let tilesLoaded = false;
-    // If any tile loads, we mark loaded
-    osm.on('load', () => { tilesLoaded = true; });
-    carto.on('load', () => { tilesLoaded = true; });
-
-    // If primary errors, try fallback
-    osm.on('tileerror', () => {
-      if (!map.hasLayer(carto)) carto.addTo(map);
-    });
-
-    osm.addTo(map);
-
-    // Hard timeout: if nothing loads quickly, show static image
-    setTimeout(() => {
-      if (!tilesLoaded) {
-        if (fallbackImg) fallbackImg.classList.remove('hidden');
-        mapEl.style.opacity = '0';
-      }
-    }, 1200);
-
-    // Markers + circles
-    const salemMarker  = L.marker(COORDS.salem).bindPopup('<b>Salem</b>');
-    const keizerMarker = L.marker(COORDS.keizer).bindPopup('<b>Keizer</b>');
-    const salemCircle  = L.circle(COORDS.salem,  { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
-    const keizerCircle = L.circle(COORDS.keizer, { radius: RADIUS_METERS, color: red, weight: 2, fillColor: red, fillOpacity: 0.08 });
-
-    const both = L.featureGroup([salemMarker, keizerMarker, salemCircle, keizerCircle]).addTo(map);
-    map.fitBounds(both.getBounds(), { padding: [22, 22] });
-
-    setTimeout(() => map.invalidateSize(), 300);
-    window.addEventListener('resize', () => setTimeout(() => map.invalidateSize(), 150));
-
-    // Chips
-    const chips = document.querySelectorAll('.svc-chip');
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => {
-          c.classList.remove('active','bg-red-600','text-white','shadow');
-          c.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-        });
-        chip.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-        chip.classList.add('active','bg-red-600','text-white','shadow');
-
-        const city = chip.getAttribute('data-city');
-        [salemMarker, keizerMarker, salemCircle, keizerCircle].forEach(l => {
-          try { map.removeLayer(l); } catch(e){}
-        });
-
-        if (city === 'salem') {
-          salemMarker.addTo(map); salemCircle.addTo(map);
-          map.fitBounds(L.featureGroup([salemMarker, salemCircle]).getBounds(), { padding: [22,22] });
-        } else if (city === 'keizer') {
-          keizerMarker.addTo(map); keizerCircle.addTo(map);
-          map.fitBounds(L.featureGroup([keizerMarker, keizerCircle]).getBounds(), { padding: [22,22] });
+      // keep right-side chips in sync
+      const isSalem = /salem/i.test(nextAlt);
+      mirrors.forEach(m => {
+        const target = m.getAttribute('data-target');
+        const shouldActive = (isSalem && target === 'Salem') || (!isSalem && target === 'Keizer');
+        m.classList.toggle('active', shouldActive);
+        if (shouldActive) {
+          m.classList.add('bg-red-600','text-white','shadow');
+          m.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
         } else {
-          salemMarker.addTo(map); keizerMarker.addTo(map);
-          salemCircle.addTo(map); keizerCircle.addTo(map);
-          map.fitBounds(both.getBounds(), { padding: [22,22] });
+          m.classList.remove('bg-red-600','text-white','shadow');
+          m.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
         }
       });
-    });
+    }
+
+    tabs.forEach(btn => btn.addEventListener('click', () => activate(btn)));
+
+    // Right-side chip mirrors trigger left tabs
+    mirrors.forEach(ch => ch.addEventListener('click', () => {
+      const wantSalem = ch.getAttribute('data-target') === 'Salem';
+      const targetBtn = Array.from(tabs).find(b => {
+        const alt = (b.getAttribute('data-alt') || '').toLowerCase();
+        return wantSalem ? alt.includes('salem') : alt.includes('keizer');
+      });
+      if (targetBtn) activate(targetBtn);
+    }));
   })();
 </script>
+
 
 
 
