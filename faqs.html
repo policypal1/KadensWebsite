@@ -311,13 +311,21 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-neutral-200">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-        <a href="#" class="hover:text-neutral-900">Privacy &amp; Terms</a>
-      </div>
+<div class="border-t border-neutral-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+    <div class="flex items-center gap-4">
+      <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
+      <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
+      <a href="terms.html" class="hover:text-neutral-900">Terms</a>
     </div>
-  </footer>
+  </div>
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 
   <!-- Scripts -->
   <script>
