@@ -12,34 +12,37 @@
     .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
     .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
     .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
-    .nav-link:hover::after,.nav-link.active::after{width:100%}.nav-link:hover{color:#dc2626}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .nav-link:hover{color:#dc2626}
   </style>
 </head>
 
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <a href="/index.html" class="flex items-center gap-4">
-        <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
-        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-lg">
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/reviews.html" class="nav-link">Reviews</a>
-        <a href="/quote.html" class="nav-link">Quote</a>
-        <a href="/faqs.html" class="nav-link">FAQs</a>
-      </nav>
-      <div class="hidden md:flex items-center gap-4">
-        <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
-        <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
+<body class="min-h-screen flex flex-col bg-white text-neutral-900">
+  <!-- Header (unchanged markup; now correctly inside body) -->
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/index.html" class="flex items-center gap-4">
+          <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
+          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-lg">
+          <a href="/index.html" class="nav-link">Home</a>
+          <a href="/services.html" class="nav-link">Services</a>
+          <a href="/reviews.html" class="nav-link">Reviews</a>
+          <a href="/quote.html" class="nav-link">Quote</a>
+          <a href="/faqs.html" class="nav-link">FAQs</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-4">
+          <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<body class="bg-white text-neutral-900">
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- Main -->
+  <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-3xl font-extrabold tracking-tight">Warranty Policy</h1>
     <p class="mt-2 text-sm text-neutral-600">Effective date: August 11, 2025</p>
 
@@ -65,9 +68,8 @@
     <p class="mt-8 text-sm text-neutral-600">This warranty gives you specific legal rights; you may have other rights which vary by state.</p>
   </main>
 
-   <!-- Footer -->
-  <!-- (same footer block as privacy.html) -->
-  <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200 bg-white w-full">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
       <div class="md:col-span-2">
         <div class="flex items-center gap-2">
@@ -100,7 +102,8 @@
         </ul>
       </div>
     </div>
-        <!-- Bottom Bar -->
+
+    <!-- Bottom Bar -->
     <div class="border-t border-neutral-200">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
         <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
@@ -117,4 +120,4 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
-        
+</html>
