@@ -29,36 +29,19 @@
     .review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.8125rem; white-space:nowrap; }
     .review-star { color:#f59e0b; }
     .reviews-rail:hover .reviews-track { animation-play-state: paused; }
-    @media (prefers-reduced-motion: reduce){
-      .reviews-track{ animation: none; transform:none; }
-    }
+    @media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
 
     /* HOW IT WORKS – premium timeline */
-    @keyframes hiwFlow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    .hiw-line{
-      background: linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb);
-      background-size: 200% 100%;
-      animation: hiwFlow 4.5s linear infinite;
-      border-radius: 9999px;
-    }
+    @keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
+    .hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
     @media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
-    .hiw-badge{
-      background:
-        radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-        linear-gradient(180deg,#ef4444,#b91c1c);
-      box-shadow: 0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25);
-    }
-    .hiw-card{
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .hiw-card:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(0,0,0,.08);
-      border-color: rgb(229 231 235 / 1);
-    }
+    .hiw-badge{ background: radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%), linear-gradient(180deg,#ef4444,#b91c1c); box-shadow:0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25); }
+    .hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
+
+    /* Premium promise band optional helpers */
+    .premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
+    .frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
   </style>
 </head>
 
@@ -207,87 +190,111 @@
   <!-- MAIN (contained sections + full-bleed bands) -->
   <main class="flex-1">
 
-    <!-- WHY CHOOSE US -->
-<section class="bg-neutral-50 py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">
-      Why Oregon Drivers Trust Clear Choice
-    </h2>
-    <p class="mt-2 text-neutral-600 max-w-2xl mx-auto">
-      We treat every install like it’s our own vehicle — so you get the safest, cleanest, longest-lasting results.
-    </p>
+    <!-- PROMISE (full-bleed, premium — no emojis) -->
+<section id="guarantees" class="mt-24 relative overflow-hidden premium-bleed">
+  <!-- Richer duotone background -->
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1574406280735-351fc1c1a6f4?q=80&w=2400&auto=format&fit=crop"
+      alt="" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-br from-neutral-900/75 via-neutral-900/60 to-red-900/55"></div>
+  </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-        <div class="text-red-600 text-4xl mb-4">🛡️</div>
-        <h3 class="text-lg font-semibold">Lifetime Warranty</h3>
-        <p class="mt-2 text-sm text-neutral-600">If a seal we installed ever fails, we fix it — free.</p>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-white">
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] tracking-wide uppercase ring-1 ring-white/15 frost">
+        Clear Choice Promise
+      </span>
+      <h2 class="mt-3 text-3xl md:text-5xl font-black leading-tight">
+        Why Oregon Drivers Trust Clear Choice Auto Glass
+      </h2>
+      <p class="mt-3 text-white/85 text-lg">
+        If we wouldn’t put it on our own car, we won’t put it on yours. We specialize in quality auto glass—no camera recalibration services.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- 1 -->
+      <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/30 via-white/10 to-white/0">
+        <div class="h-full rounded-2xl bg-white text-neutral-900 p-6 shadow-lg ring-1 ring-black/5">
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow">
+              <!-- shield icon -->
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path>
+                <path d="M8 12l2.5 2.5L16 9"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold">Lifetime Workmanship</h3>
+              <p class="mt-2 text-sm text-neutral-600">If a seal we installed ever fails, we fix it—free.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-        <div class="text-red-600 text-4xl mb-4">🪟</div>
-        <h3 class="text-lg font-semibold">OEM-Grade Glass</h3>
-        <p class="mt-2 text-sm text-neutral-600">Quiet, leak-free seal with manufacturer-grade materials.</p>
+
+      <!-- 2 -->
+      <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/30 via-white/10 to-white/0">
+        <div class="h-full rounded-2xl bg-white text-neutral-900 p-6 shadow-lg ring-1 ring-black/5">
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow">
+              <!-- glass icon -->
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+                <path d="M3 9h18M8 17l1-4m6 4-1-4"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold">OEM-Grade Glass</h3>
+              <p class="mt-2 text-sm text-neutral-600">Quiet, leak-free seal with manufacturer-grade materials.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-        <div class="text-red-600 text-4xl mb-4">🚐</div>
-        <h3 class="text-lg font-semibold">Fast Mobile Service</h3>
-        <p class="mt-2 text-sm text-neutral-600">Same-day installs at your home or office, most weekdays.</p>
+
+      <!-- 3 -->
+      <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/30 via-white/10 to-white/0">
+        <div class="h-full rounded-2xl bg-white text-neutral-900 p-6 shadow-lg ring-1 ring-black/5">
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow">
+              <!-- truck icon -->
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
+                <circle cx="7.5" cy="17.5" r="1.5"></circle>
+                <circle cx="17.5" cy="17.5" r="1.5"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold">Fast Mobile Service</h3>
+              <p class="mt-2 text-sm text-neutral-600">Same-day installs at home or work, most weekdays.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-        <div class="text-red-600 text-4xl mb-4">✨</div>
-        <h3 class="text-lg font-semibold">Crystal-Clean Finish</h3>
-        <p class="mt-2 text-sm text-neutral-600">We leave your dash & vents spotless — no glass left behind.</p>
+
+      <!-- 4 -->
+      <div class="relative rounded-2xl p-[1px] bg-gradient-to-br from-white/30 via-white/10 to-white/0">
+        <div class="h-full rounded-2xl bg-white text-neutral-900 p-6 shadow-lg ring-1 ring-black/5">
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow">
+              <!-- sparkle/clean icon -->
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path>
+                <path d="M19 4l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold">Crystal-Clean Finish</h3>
+              <p class="mt-2 text-sm text-neutral-600">No mess left behind—dash & vents spotless.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
-    <!-- SERVICES (contained) -->
-    <section class="mt-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-extrabold text-neutral-900">Our Services</h2>
-        <p class="mt-2 text-neutral-600 max-w-2xl mx-auto">Quality auto glass replacement and repairs — fast and reliable.</p>
-
-        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <a href="#front-glass" class="group rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
-            <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Front Windshield" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="p-5 text-left">
-              <h3 class="text-base font-bold">Front Windshield</h3>
-              <p class="mt-1 text-sm text-neutral-600">Full replacement with OEM-grade glass & urethane.</p>
-              <span class="mt-3 inline-block font-semibold text-red-600">$199+</span>
-            </div>
-          </a>
-
-          <a href="#back-glass" class="group rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
-            <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="p-5 text-left">
-              <h3 class="text-base font-bold">Rear Glass</h3>
-              <p class="mt-1 text-sm text-neutral-600">Defrost integration and factory-clean seal.</p>
-              <span class="mt-3 inline-block font-semibold text-red-600">$189+</span>
-            </div>
-          </a>
-
-          <a href="#side-glass" class="group rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
-            <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Door/Side Glass" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="p-5 text-left">
-              <h3 class="text-base font-bold">Door/Side Glass</h3>
-              <p class="mt-1 text-sm text-neutral-600">Quick, precise replacement for all vehicles.</p>
-              <span class="mt-3 inline-block font-semibold text-red-600">$149+</span>
-            </div>
-          </a>
-
-          <a href="#chip-repair" class="group rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white">
-            <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repairs" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-            <div class="p-5 text-left">
-              <h3 class="text-base font-bold">Chip Repairs</h3>
-              <p class="mt-1 text-sm text-neutral-600">Stop cracks before they spread.</p>
-              <span class="mt-3 inline-block font-semibold text-red-600">$49+</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
 
     <!-- PROMISE (full-bleed band) -->
     <section id="guarantees" class="mt-24 relative overflow-hidden">
