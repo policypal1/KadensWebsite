@@ -81,9 +81,9 @@
 <body class="min-h-screen bg-white flex flex-col text-neutral-900 overflow-x-hidden">
   <!-- Header ... stays as-is above -->
 
-   <<!-- HERO — minimal, high-impact -->
+   <!-- HERO — minimal, high-impact with Price Estimator -->
 <section class="relative overflow-hidden">
-  <!-- Background image + soft gradient -->
+  <!-- Background (swap the URL if you want a different vibe) -->
   <div class="absolute inset-0">
     <img
       src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
@@ -92,51 +92,115 @@
       loading="eager"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
   </div>
 
   <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center">
-    <div class="max-w-2xl text-white">
-      <!-- Light chips (kept to one line) -->
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
-        <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
-        <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
+    <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
+
+      <!-- LEFT: Clear value + strong CTAs -->
+      <div class="text-white max-w-2xl">
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
+          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
+          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
+        </div>
+
+        <h1 class="mt-4 text-5xl md:text-7xl font-black leading-tight">
+          Mobile Windshield Repair & Replacement
+          <span class="text-red-400 block md:inline">Done Right Today</span>
+        </h1>
+
+        <p class="mt-4 text-lg md:text-2xl text-white/90">
+          OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <!-- If you prefer to send everyone to Jobber instead of the estimator, point this href to your Jobber link -->
+          <a href="#price-estimator" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">
+            Get Instant Price
+          </a>
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+            Call (503) 949-2257
+          </a>
+        </div>
+
+        <p class="mt-3 text-xs md:text-sm text-white/80">
+          Highly rated by local drivers — OEM materials • On-time arrival • Mon–Sat
+        </p>
       </div>
 
-      <!-- Big, simple headline -->
-      <h1 class="mt-4 text-5xl md:text-7xl font-black leading-tight">
-        Mobile Windshield Repair & Replacement
-        <span class="text-red-400 block md:inline">Done Right Today</span>
-      </h1>
+      <!-- RIGHT: Price Estimator (lightweight lead-in to Jobber) -->
+      <aside id="price-estimator" class="w-full max-w-md justify-self-end">
+        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+          <h3 class="text-lg font-bold text-neutral-900">Instant Price Estimator</h3>
+          <p class="mt-1 text-sm text-neutral-600">Give us the basics—we’ll confirm the exact price by text.</p>
 
-      <!-- Short subhead -->
-      <p class="mt-4 text-lg md:text-2xl text-white/90">
-        OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
-      </p>
+          <!-- 
+            Set data-jobber to your Jobber booking URL to send users there.
+            If left empty, it will send to quote.html#quote with fields in the URL.
+          -->
+          <form id="estimatorForm" data-jobber="" class="mt-4 grid gap-3">
+            <input type="text" name="vehicle" placeholder="Year / Make / Model" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Vehicle" />
+            <input type="text" name="zip" placeholder="Your ZIP (e.g., 97301)" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="ZIP code" />
+            <input type="tel" name="phone" placeholder="Your Phone (for confirmation)" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Phone" />
+            <select name="service" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Service type">
+              <option value="windshield-replacement">Windshield Replacement</option>
+              <option value="chip-repair">Chip Repair</option>
+              <option value="door-glass">Door/Side Glass</option>
+              <option value="back-glass">Back Glass</option>
+            </select>
 
-      <!-- CTAs -->
-      <div class="mt-8 flex flex-col sm:flex-row gap-3">
-        <!-- Link this to your Jobber booking URL -->
-        <a href="https://your-jobber-booking-link.example" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-md transition">
-          Get a Quote
-        </a>
-        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-          Call (503) 949-2257
-        </a>
-      </div>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+              Get My Price
+            </button>
+          </form>
 
-      <!-- Subtle proof line -->
-      <p class="mt-3 text-xs md:text-sm text-white/80">
-        Highly rated by local drivers — OEM materials • On-time arrival • Mon–Sat
-      </p>
+          <dl class="mt-4 grid grid-cols-3 gap-2 text-sm">
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> OEM Glass
+            </div>
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> Clean Install
+            </div>
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> On-Time
+            </div>
+          </dl>
+          <p class="mt-3 text-xs text-neutral-600">Service area: Salem • Keizer • Dallas • Silverton</p>
+        </div>
+      </aside>
+
     </div>
   </div>
 
   <!-- Gentle fade into next section -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
+
+<!-- Lightweight router for estimator -> Jobber or quote.html -->
+<script>
+  (function () {
+    const form = document.getElementById('estimatorForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const params = new URLSearchParams(new FormData(form)).toString();
+
+      // If you have a Jobber booking link, put it in data-jobber (on the form tag).
+      const jobber = form.getAttribute('data-jobber') || '';
+      const target = jobber || 'quote.html#quote';
+
+      // If using Jobber and you want to pass info, append as querystring.
+      const url = jobber ? `${jobber}?${params}` : `quote.html?${params}#quote`;
+      window.location.href = url;
+    });
+  })();
+</script>
 
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 flex-1">
