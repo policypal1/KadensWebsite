@@ -402,10 +402,9 @@
       <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
         <img
           id="svcMapImg"
-          src="https://raw.githubusercontent.com/policypal1/KadensWebsite/refs/heads/main/salem.png?v=1"
+          src="salem.png?v=2"
           alt="Service area map: Salem"
           class="w-full h-[480px] min-h-[480px] object-cover transition-opacity duration-300 ease-out opacity-100"
-          referrerpolicy="no-referrer"
           loading="lazy"
           decoding="async"
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 720%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23f3f4f6%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%229ca3af%22 font-size=%2232%22%3EMap image unavailable%3C/text%3E%3C/svg%3E';"
@@ -416,14 +415,14 @@
           <button
             type="button"
             class="svc-tab active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow"
-            data-img="https://raw.githubusercontent.com/policypal1/KadensWebsite/refs/heads/main/salem.png?v=1"
+            data-img="salem.png?v=2"
             data-alt="Service area map: Salem"
           >Salem</button>
 
           <button
             type="button"
             class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50"
-            data-img="https://raw.githubusercontent.com/policypal1/KadensWebsite/refs/heads/main/keizer.png?v=1"
+            data-img="keizer.png?v=2"
             data-alt="Service area map: Keizer"
           >Keizer</button>
         </div>
@@ -457,66 +456,7 @@
           </div>
         </div>
 
-        <div class="mt-6 flex flex-wrap gap-2">
-          <button type="button" class="chip-mirror active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow" data-target="Salem">Salem</button>
-          <button type="button" class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50" data-target="Keizer">Keizer</button>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Call (503) 949-2257</a>
-          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">Request a Quote</a>
-        </div>
-
-        <p class="mt-3 text-xs text-neutral-500">We don’t perform ADAS/camera recalibration. Insurance accepted.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  (function () {
-    const img = document.getElementById('svcMapImg');
-    const tabs = document.querySelectorAll('.svc-tab');
-    const mirrors = document.querySelectorAll('.chip-mirror');
-
-    // Preload both images so swaps are instant
-    tabs.forEach(b => { const i = new Image(); i.referrerPolicy = 'no-referrer'; i.src = b.dataset.img; });
-
-    function setActive(el, on) {
-      el.classList.toggle('active', on);
-      if (on) {
-        el.classList.add('bg-red-600','text-white','shadow');
-        el.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-      } else {
-        el.classList.remove('bg-red-600','text-white','shadow');
-        el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-      }
-    }
-
-    function activate(btn) {
-      tabs.forEach(b => setActive(b, b === btn));
-      const nextSrc = btn.dataset.img;
-      const nextAlt = btn.dataset.alt || '';
-
-      img.style.opacity = '0';
-      const swap = () => { img.src = nextSrc; img.alt = nextAlt; };
-      if (img.complete) swap(); else setTimeout(swap, 60);
-      img.onload = () => (img.style.opacity = '1');
-
-      const wantSalem = /salem/i.test(nextAlt);
-      mirrors.forEach(ch => setActive(ch, (wantSalem && ch.dataset.target==='Salem') || (!wantSalem && ch.dataset.target==='Keizer')));
-    }
-
-    tabs.forEach(b => b.addEventListener('click', () => activate(b)));
-    mirrors.forEach(ch => ch.addEventListener('click', () => {
-      const wantSalem = ch.dataset.target === 'Salem';
-      const target = Array.from(tabs).find(b => (b.dataset.alt || '').toLowerCase().includes(wantSalem ? 'salem' : 'keizer'));
-      if (target) activate(target);
-    }));
-  })();
-</script>
-
-
+        <div class="mt-6 flex flex-wrap gap-2
 
 
     <!-- PROMISE (full-bleed band) -->
