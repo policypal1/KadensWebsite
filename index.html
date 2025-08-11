@@ -131,155 +131,56 @@
         </p>
       </div>
 
-      <<!-- RIGHT: Smart Price Estimator -->
-<aside id="price-estimator" class="w-full max-w-md justify-self-end">
-  <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-    <h3 class="text-lg font-bold text-neutral-900">Instant Price Estimator</h3>
-    <p class="mt-1 text-sm text-neutral-600">Estimate updates as you type. We’ll confirm by text before scheduling.</p>
+      <!-- RIGHT: Price Estimator (lightweight lead-in to Jobber) -->
+      <aside id="price-estimator" class="w-full max-w-md justify-self-end">
+        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+          <h3 class="text-lg font-bold text-neutral-900">Instant Price Estimator</h3>
+          <p class="mt-1 text-sm text-neutral-600">Give us the basics—we’ll confirm the exact price by text.</p>
 
-    <form id="estimatorForm" class="mt-4 grid gap-3" data-jobber="">
-      <!-- Basic inputs -->
-      <div class="grid grid-cols-2 gap-3">
-        <input type="number" name="year" placeholder="Year (e.g., 2018)" min="1995" max="2026" required class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Year">
-        <select name="vehicleType" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Vehicle type">
-          <option value="sedan">Sedan/Coupe</option>
-          <option value="suv">SUV/Crossover</option>
-          <option value="truck">Truck/Van</option>
-        </select>
-      </div>
+          <!-- 
+            Set data-jobber to your Jobber booking URL to send users there.
+            If left empty, it will send to quote.html#quote with fields in the URL.
+          -->
+          <form id="estimatorForm" data-jobber="" class="mt-4 grid gap-3">
+            <input type="text" name="vehicle" placeholder="Year / Make / Model" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Vehicle" />
+            <input type="text" name="zip" placeholder="Your ZIP (e.g., 97301)" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="ZIP code" />
+            <input type="tel" name="phone" placeholder="Your Phone (for confirmation)" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Phone" />
+            <select name="service" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Service type">
+              <option value="windshield-replacement">Windshield Replacement</option>
+              <option value="chip-repair">Chip Repair</option>
+              <option value="door-glass">Door/Side Glass</option>
+              <option value="back-glass">Back Glass</option>
+            </select>
 
-      <div class="grid grid-cols-2 gap-3">
-        <input type="text" name="make" placeholder="Make (e.g., Ford)" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Make">
-        <input type="text" name="model" placeholder="Model (e.g., Escape)" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Model">
-      </div>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+              Get My Price
+            </button>
+          </form>
 
-      <select name="service" class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" aria-label="Service type">
-        <option value="windshield-replacement">Windshield Replacement</option>
-        <option value="chip-repair">Chip Repair</option>
-        <option value="door-glass">Door/Side Glass</option>
-        <option value="back-glass">Back Glass</option>
-      </select>
-
-      <!-- Options -->
-      <div class="grid grid-cols-2 gap-3 text-sm">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" name="heated"> Heated glass
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" name="sensor"> Rain/Light sensor
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" name="oem"> Prefer OEM glass
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" name="adas"> ADAS/Camera on windshield
-        </label>
-      </div>
-
-      <!-- Output -->
-      <div id="estimateBox" class="mt-2 rounded-xl border border-neutral-200 bg-white p-4">
-        <div class="text-sm text-neutral-500">Estimated price</div>
-        <div id="estimateValue" class="text-2xl font-bold text-neutral-900">$—</div>
-        <div id="estimateNote" class="mt-1 text-xs text-neutral-600">
-          Final price depends on exact glass part (by VIN) and availability.
+          <dl class="mt-4 grid grid-cols-3 gap-2 text-sm">
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> OEM Glass
+            </div>
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> Clean Install
+            </div>
+            <div class="flex items-center gap-2 col-span-1">
+              <span class="grid place-content-center h-5 w-5 rounded-full bg-red-600 text-white text-[12px] font-bold">✓</span> On-Time
+            </div>
+          </dl>
+          <p class="mt-3 text-xs text-neutral-600">Service area: Salem • Keizer • Dallas • Silverton</p>
         </div>
-      </div>
+      </aside>
 
-      <!-- Actions -->
-      <button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-        Book Now
-      </button>
-      <a href="tel:+15039492257" class="text-center text-sm text-red-600 hover:underline">Prefer to call? (503) 949-2257</a>
-    </form>
-
-    <p class="mt-3 text-xs text-neutral-600">
-      We don’t perform ADAS/camera recalibration. If your vehicle requires it, a separate shop fee may apply after glass replacement.
-    </p>
+    </div>
   </div>
-</aside>
 
-<script>
-(function () {
-  const form = document.getElementById('estimatorForm');
-  const out = document.getElementById('estimateValue');
-  const note = document.getElementById('estimateNote');
-
-  // Base prices (editable)
-  const BASE = {
-    'windshield-replacement': 450,   // avg windshield
-    'chip-repair': 120,
-    'door-glass': 250,
-    'back-glass': 350
-  };
-
-  // Vehicle type multipliers
-  const TYPE_MUL = { sedan: 1.00, suv: 1.10, truck: 1.15 };
-
-  // Brand tiers (rough guidance)
-  const LUX_BRANDS = ['audi','bmw','mercedes','tesla','lexus','porsche','land rover','jaguar','volvo','acura','infiniti','genesis','cadillac'];
-  const MID_BRANDS  = ['toyota','honda','subaru','nissan','mazda','kia','hyundai','vw','volkswagen','chevrolet','chevy','ford','dodge','jeep','gmc','buick','chrysler'];
-
-  // Option multipliers
-  const OPT = {
-    heated: 1.08,     // heated/solar band
-    sensor: 1.07,     // rain/light sensor mount
-    oem:    1.12      // OEM preference
-  };
-
-  function estimate() {
-    const data = Object.fromEntries(new FormData(form).entries());
-
-    // pick base
-    let base = BASE[data.service || 'windshield-replacement'];
-
-    // vehicle type
-    base *= TYPE_MUL[(data.vehicleType || 'sedan')];
-
-    // year multiplier (newer vehicles trend higher)
-    const year = parseInt(data.year || '2015', 10);
-    if (!isNaN(year)) {
-      if (year >= 2021) base *= 1.12;
-      else if (year >= 2016) base *= 1.06;
-      else if (year <= 2005) base *= 1.08; // older can be harder to source
-    }
-
-    // brand tier
-    const make = (data.make || '').trim().toLowerCase();
-    if (LUX_BRANDS.includes(make)) base *= 1.30;
-    else if (!MID_BRANDS.includes(make) && make) base *= 1.10; // uncommon brands
-
-    // options
-    if (form.heated.checked) base *= OPT.heated;
-    if (form.sensor.checked) base *= OPT.sensor;
-    if (form.oem.checked)    base *= OPT.oem;
-
-    // produce a range (+/- 8%)
-    const low  = Math.round(base * 0.92);
-    const high = Math.round(base * 1.08);
-
-    // special note for ADAS
-    const hasADAS = form.adas.checked;
-    out.textContent = `$${low.toLocaleString()} – $${high.toLocaleString()}`;
-    note.textContent = hasADAS
-      ? 'Estimate excludes ADAS/camera recalibration (we do not provide recalibration). Final price depends on VIN-specific glass part and availability.'
-      : 'Final price depends on exact glass part (by VIN) and availability.';
-  }
-
-  // Recalculate on input
-  form.addEventListener('input', estimate);
-  estimate();
-
-  // Submit → send to Jobber or quote.html with details
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const params = new URLSearchParams(new FormData(form)).toString();
-    const jobber = form.getAttribute('data-jobber') || '';
-    const url = jobber ? `${jobber}?${params}` : `quote.html?${params}#quote`;
-    window.location.href = url;
-  });
-})();
-</script>
-
+  <!-- Gentle fade into next section -->
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
+</section>
 
 <!-- Lightweight router for estimator -> Jobber or quote.html -->
 <script>
