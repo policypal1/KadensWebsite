@@ -651,114 +651,175 @@
 
 
 
-<!-- FAQ Section -->
-<section class="pb-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8 items-start">
-    
-    <!-- Left: FAQs -->
-    <div class="lg:col-span-2 grid gap-4" id="faqList">
-      
-      <!-- FAQ Item -->
-      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
-        <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
-          <div>
-            <h3 class="text-lg font-semibold">Do you offer same-day mobile service?</h3>
-            <p class="mt-1 text-sm text-neutral-500">Availability varies by glass in stock and timing of your call.</p>
-          </div>
-          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-content px-5 pb-5" style="overflow:hidden;max-height:0;transition:max-height .28s ease;">
-          <div class="border-t pt-4 text-neutral-700">
-            Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
-          </div>
-        </div>
-      </article>
+<!-- ================== FAQs (2x2 accordion, full-width on open) ================== -->
+<section id="faqs-accordion" class="mt-24 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+    <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
 
-      <!-- Repeat for other items -->
-      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="tech">
-        <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
-          <div>
-            <h3 class="text-lg font-semibold">Do you recalibrate ADAS cameras?</h3>
-            <p class="mt-1 text-sm text-neutral-500">About camera systems and when a recalibration is needed.</p>
+    <!-- LEFT = questions | RIGHT = help box -->
+    <div class="mt-6 grid lg:grid-cols-3 gap-8 items-start">
+      <!-- QUESTIONS -->
+      <div id="faqList" class="lg:col-span-2 grid md:grid-cols-2 gap-4">
+        <!-- Item -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you offer same-day mobile service?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Availability varies by glass in stock and timing of your call.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
+            </div>
           </div>
-          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-content px-5 pb-5" style="overflow:hidden;max-height:0;transition:max-height .28s ease;">
-          <div class="border-t pt-4 text-neutral-700">
-            We currently do not offer ADAS camera recalibration. If your vehicle requires it, we can refer you to a local certified shop.
+        </article>
+
+        <!-- Item -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="tech">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you recalibrate ADAS cameras?</h3>
+              <p class="mt-1 text-sm text-neutral-500">About camera systems and when a recalibration is needed.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              We focus on the glass work and do not offer camera recalibration. If your vehicle requires it, we’ll refer a certified local shop after your install.
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Add other FAQs here following same structure... -->
+        <!-- Item -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">What kind of glass do you use?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Quality and fitment guarantee.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              OEM‑grade glass and urethane only—so you get a quiet cabin, crystal clarity, and a leak‑free, factory‑fit seal.
+            </div>
+          </div>
+        </article>
 
-    </div>
-
-    <!-- Right: Sidebar -->
-    <aside class="space-y-6">
-      <div class="glass bg-white/90 rounded-2xl border border-white/60 p-6 shadow">
-        <h3 class="font-bold text-lg">Still stuck?</h3>
-        <p class="mt-2 text-sm text-neutral-700">Call or text and a tech will help you figure out sensors, parts, and the fastest path to install.</p>
-        <div class="mt-4 flex gap-2">
-          <a href="tel:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (503) 949-2257</a>
-          <a href="sms:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Us</a>
-        </div>
+        <!-- Item -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="pricing">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you work with insurance?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Coverage options and process.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Yes—most major insurers. We’ll help with the claim and keep your out‑of‑pocket costs clear up front.
+            </div>
+          </div>
+        </article>
       </div>
-    </aside>
+
+      <!-- HELP BOX -->
+      <aside class="space-y-6">
+        <div class="backdrop-blur bg-white/90 rounded-2xl border border-neutral-200 p-6 shadow-sm">
+          <h3 class="font-bold text-lg">Still stuck?</h3>
+          <p class="mt-2 text-sm text-neutral-700">Call or text and a tech will help you figure out sensors, parts, and the fastest path to install.</p>
+          <div class="mt-4 flex gap-2">
+            <a href="tel:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (503) 949-2257</a>
+            <a href="sms:+15039492257" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Us</a>
+          </div>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
+<!-- Local styles scoped to this block -->
 <style>
-  /* Make opened FAQ span full width */
-  #faqList .faq-item.open { grid-column: 1 / -1; }
+  /* Keep animations & layout isolated to this section */
+  #faqs-accordion #faqList .faq-content{
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .28s ease;
+  }
+  /* Opened card spans both columns (full width) */
+  @media (min-width: 768px){
+    #faqs-accordion #faqList .faq-item.open{ grid-column: 1 / -1; }
+  }
 </style>
 
+<!-- Accordion script -->
 <script>
-  // FAQ accordion with full-width open state
   (function () {
-    const items = document.querySelectorAll('#faqList .faq-item');
+    const root = document.getElementById('faqs-accordion');
+    if (!root) return;
+    const items = root.querySelectorAll('#faqList .faq-item');
 
-    function expand(item, content, btn) {
+    function expand(item) {
+      const btn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
       item.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
+
+      // Set then force reflow before measuring (prevents 0px reads)
+      content.style.maxHeight = '0px';
+      content.offsetHeight; // reflow
       content.style.maxHeight = content.scrollHeight + 'px';
-      btn.querySelector('svg').style.transform = 'rotate(180deg)';
+
+      const icon = btn.querySelector('svg');
+      if (icon) icon.style.transform = 'rotate(180deg)';
     }
 
-    function collapse(item, content, btn) {
+    function collapse(item) {
+      const btn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
       item.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
       content.style.maxHeight = '0px';
-      btn.querySelector('svg').style.transform = 'rotate(0deg)';
+
+      const icon = btn.querySelector('svg');
+      if (icon) icon.style.transform = 'rotate(0deg)';
     }
 
     items.forEach(item => {
       const btn = item.querySelector('.faq-toggle');
-      const content = item.querySelector('.faq-content');
-
       btn.addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
 
-        // Close others
-        document.querySelectorAll('#faqList .faq-item.open').forEach(openIt => {
-          if (openIt !== item) collapse(openIt, openIt.querySelector('.faq-content'), openIt.querySelector('.faq-toggle'));
+        // Close others (one open at a time)
+        root.querySelectorAll('#faqList .faq-item.open').forEach(openIt => {
+          if (openIt !== item) collapse(openIt);
         });
 
-        isOpen ? collapse(item, content, btn) : expand(item, content, btn);
+        isOpen ? collapse(item) : expand(item);
       });
     });
 
-    // Adjust height on resize
+    // Keep heights correct on viewport changes
     window.addEventListener('resize', () => {
-      document.querySelectorAll('#faqList .faq-item.open .faq-content').forEach(c => {
+      root.querySelectorAll('#faqList .faq-item.open .faq-content').forEach(c => {
         c.style.maxHeight = c.scrollHeight + 'px';
       });
     });
