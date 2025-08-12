@@ -651,18 +651,23 @@
 
 
 
-<!-- ================== FAQs (2x2 accordion, full-width on open) ================== -->
-<section id="faqs-accordion" class="mt-24 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<!-- ===================== FAQs — Clear Choice (drop-in) ===================== -->
+<section id="faqs-ccag" class="mt-24 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
   <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
     <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
 
-    <!-- LEFT = questions | RIGHT = help box -->
     <div class="mt-6 grid lg:grid-cols-3 gap-8 items-start">
-      <!-- QUESTIONS -->
+      <!-- LEFT: Questions -->
       <div id="faqList" class="lg:col-span-2 grid md:grid-cols-2 gap-4">
-        <!-- Item -->
-        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
-          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+
+        <!-- ITEM 1 -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+          <button
+            id="faq-q1"
+            class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
+            aria-expanded="false"
+            aria-controls="faq-a1"
+          >
             <div>
               <h3 class="text-lg font-semibold">Do you offer same-day mobile service?</h3>
               <p class="mt-1 text-sm text-neutral-500">Availability varies by glass in stock and timing of your call.</p>
@@ -673,16 +678,26 @@
               </svg>
             </span>
           </button>
-          <div class="faq-content px-5 pb-5">
+          <div
+            id="faq-a1"
+            role="region"
+            aria-labelledby="faq-q1"
+            class="faq-content px-5 pb-5"
+          >
             <div class="border-t pt-4 text-neutral-700">
               Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location. We cover Salem / Keizer and nearby areas.
             </div>
           </div>
         </article>
 
-        <!-- Item -->
-        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="tech">
-          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+        <!-- ITEM 2 -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+          <button
+            id="faq-q2"
+            class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
+            aria-expanded="false"
+            aria-controls="faq-a2"
+          >
             <div>
               <h3 class="text-lg font-semibold">Do you recalibrate ADAS cameras?</h3>
               <p class="mt-1 text-sm text-neutral-500">About camera systems and when a recalibration is needed.</p>
@@ -693,16 +708,21 @@
               </svg>
             </span>
           </button>
-          <div class="faq-content px-5 pb-5">
+          <div id="faq-a2" role="region" aria-labelledby="faq-q2" class="faq-content px-5 pb-5">
             <div class="border-t pt-4 text-neutral-700">
               We focus on the glass work and do not offer camera recalibration. If your vehicle requires it, we’ll refer a certified local shop after your install.
             </div>
           </div>
         </article>
 
-        <!-- Item -->
-        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
-          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+        <!-- ITEM 3 -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+          <button
+            id="faq-q3"
+            class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
+            aria-expanded="false"
+            aria-controls="faq-a3"
+          >
             <div>
               <h3 class="text-lg font-semibold">What kind of glass do you use?</h3>
               <p class="mt-1 text-sm text-neutral-500">Quality and fitment guarantee.</p>
@@ -713,16 +733,21 @@
               </svg>
             </span>
           </button>
-          <div class="faq-content px-5 pb-5">
+          <div id="faq-a3" role="region" aria-labelledby="faq-q3" class="faq-content px-5 pb-5">
             <div class="border-t pt-4 text-neutral-700">
-              OEM‑grade glass and urethane only—so you get a quiet cabin, crystal clarity, and a leak‑free, factory‑fit seal.
+              OEM-grade glass and urethane only—so you get a quiet cabin, crystal clarity, and a leak-free, factory-fit seal.
             </div>
           </div>
         </article>
 
-        <!-- Item -->
-        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="pricing">
-          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+        <!-- ITEM 4 -->
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+          <button
+            id="faq-q4"
+            class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
+            aria-expanded="false"
+            aria-controls="faq-a4"
+          >
             <div>
               <h3 class="text-lg font-semibold">Do you work with insurance?</h3>
               <p class="mt-1 text-sm text-neutral-500">Coverage options and process.</p>
@@ -733,15 +758,16 @@
               </svg>
             </span>
           </button>
-          <div class="faq-content px-5 pb-5">
+          <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-content px-5 pb-5">
             <div class="border-t pt-4 text-neutral-700">
-              Yes—most major insurers. We’ll help with the claim and keep your out‑of‑pocket costs clear up front.
+              Yes—most major insurers. We’ll help with the claim and keep your out-of-pocket costs clear up front.
             </div>
           </div>
         </article>
+
       </div>
 
-      <!-- HELP BOX -->
+      <!-- RIGHT: Help box -->
       <aside class="space-y-6">
         <div class="backdrop-blur bg-white/90 rounded-2xl border border-neutral-200 p-6 shadow-sm">
           <h3 class="font-bold text-lg">Still stuck?</h3>
@@ -756,75 +782,108 @@
   </div>
 </section>
 
-<!-- Local styles scoped to this block -->
+<!-- Scoped styles for this block -->
 <style>
-  /* Keep animations & layout isolated to this section */
-  #faqs-accordion #faqList .faq-content{
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height .28s ease;
+  /* Height animation */
+  #faqs-ccag #faqList .faq-content{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .28s ease;
+    will-change:max-height;
   }
-  /* Opened card spans both columns (full width) */
-  @media (min-width: 768px){
-    #faqs-accordion #faqList .faq-item.open{ grid-column: 1 / -1; }
+  /* When animating/open, let the card span full row (MD+) */
+  @media (min-width:768px){
+    #faqs-ccag #faqList .faq-item.spanning{ grid-column:1 / -1; }
   }
+  /* Chevron rotation (JS adds/removes .open) */
+  #faqs-ccag #faqList .faq-toggle svg{ transition:transform .28s ease; }
+  #faqs-ccag #faqList .faq-item.open .faq-toggle svg{ transform:rotate(180deg); }
 </style>
 
-<!-- Accordion script -->
+<!-- Accordion logic -->
 <script>
-  (function () {
-    const root = document.getElementById('faqs-accordion');
-    if (!root) return;
-    const items = root.querySelectorAll('#faqList .faq-item');
+(function () {
+  const root = document.getElementById('faqs-ccag');
+  if (!root) return;
+  const items = root.querySelectorAll('#faqList .faq-item');
 
-    function expand(item) {
-      const btn = item.querySelector('.faq-toggle');
-      const content = item.querySelector('.faq-content');
+  function openItem(item){
+    const btn = item.querySelector('.faq-toggle');
+    const content = item.querySelector('.faq-content');
+
+    // Span first to prevent width/height fighting
+    item.classList.add('spanning');
+
+    // Next frame: animate height
+    requestAnimationFrame(() => {
       item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-expanded','true');
 
-      // Set then force reflow before measuring (prevents 0px reads)
       content.style.maxHeight = '0px';
       content.offsetHeight; // reflow
       content.style.maxHeight = content.scrollHeight + 'px';
+    });
+  }
 
-      const icon = btn.querySelector('svg');
-      if (icon) icon.style.transform = 'rotate(180deg)';
-    }
+  function closeItem(item){
+    const btn = item.querySelector('.faq-toggle');
+    const content = item.querySelector('.faq-content');
 
-    function collapse(item) {
-      const btn = item.querySelector('.faq-toggle');
-      const content = item.querySelector('.faq-content');
+    // Animate height to 0
+    content.style.maxHeight = content.scrollHeight + 'px';
+    content.offsetHeight;
+    content.style.maxHeight = '0px';
+
+    // After transition, drop span & open state
+    content.addEventListener('transitionend', function onEnd(e){
+      if (e.propertyName !== 'max-height') return;
+      content.removeEventListener('transitionend', onEnd);
       item.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      content.style.maxHeight = '0px';
+      item.classList.remove('spanning');
+      btn.setAttribute('aria-expanded','false');
+    }, { once:true });
+  }
 
-      const icon = btn.querySelector('svg');
-      if (icon) icon.style.transform = 'rotate(0deg)';
-    }
+  function closeOthers(except){
+    root.querySelectorAll('#faqList .faq-item.open').forEach(it => {
+      if (it !== except) closeItem(it);
+    });
+  }
 
-    items.forEach(item => {
-      const btn = item.querySelector('.faq-toggle');
-      btn.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
+  // Click + keyboard
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-toggle');
+    const content = item.querySelector('.faq-content');
 
-        // Close others (one open at a time)
-        root.querySelectorAll('#faqList .faq-item.open').forEach(openIt => {
-          if (openIt !== item) collapse(openIt);
-        });
-
-        isOpen ? collapse(item) : expand(item);
-      });
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      if (!isOpen){ closeOthers(item); openItem(item); }
+      else { closeItem(item); }
     });
 
-    // Keep heights correct on viewport changes
-    window.addEventListener('resize', () => {
-      root.querySelectorAll('#faqList .faq-item.open .faq-content').forEach(c => {
-        c.style.maxHeight = c.scrollHeight + 'px';
-      });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
     });
-  })();
+
+    // Make region focusable when open (a11y nicety)
+    const region = content;
+    new MutationObserver(() => {
+      region.tabIndex = item.classList.contains('open') ? -1 : -1; // keep not tabbable
+    }).observe(item, { attributes:true, attributeFilter:['class'] });
+  });
+
+  // Keep heights correct on resize
+  window.addEventListener('resize', () => {
+    root.querySelectorAll('#faqList .faq-item.open .faq-content').forEach(c => {
+      c.style.maxHeight = c.scrollHeight + 'px';
+    });
+  });
+
+  // OPTIONAL: open first on load
+  // openItem(items[0]);
+})();
 </script>
+
 
     <!-- FINAL CTA (full-bleed light band) -->
     <section class="mt-24 relative overflow-hidden">
