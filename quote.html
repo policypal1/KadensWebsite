@@ -11,80 +11,67 @@
     @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
     .floaty{ animation: floaty 5s ease-in-out infinite; }
     .glass { backdrop-filter: blur(8px); }
+    /* Underline effect for nav links */
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: #dc2626;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+    .nav-link:hover { color: #dc2626; }
   </style>
+
+  <!-- Jobber embed assets (added for the embedded request form) -->
+  <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
   <!-- Header -->
   <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Increased height -->
-    <div class="flex items-center justify-between h-20">
-      <a href="/index.html" class="flex items-center gap-4">
-        <!-- Larger logo -->
-        <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
-        <!-- Larger brand text -->
-        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
-      </a>
-
-      <!-- Navigation with underline hover -->
-      <nav class="hidden md:flex items-center gap-6 text-lg">
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/reviews.html" class="nav-link">Reviews</a>
-        <a href="/quote.html" class="nav-link">Quote</a>
-        <a href="/faqs.html" class="nav-link">FAQs</a>
-      </nav>
-
-      <div class="hidden md:flex items-center gap-4">
-        <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
-        <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
-          Get a Quote
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/index.html" class="flex items-center gap-4">
+          <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
+          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
         </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-lg">
+          <a href="/index.html" class="nav-link">Home</a>
+          <a href="/services.html" class="nav-link">Services</a>
+          <a href="/reviews.html" class="nav-link">Reviews</a>
+          <a href="/quote.html" class="nav-link active">Quote</a>
+          <a href="/faqs.html" class="nav-link">FAQs</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="tel:+15551234567" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
+          <a href="#quote" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
+            Get a Quote
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</header>
-
-<style>
-  /* Underline effect for nav links */
-  .nav-link {
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.2s ease;
-  }
-
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: #dc2626; /* Tailwind red-600 */
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 100%;
-  }
-
-  .nav-link:hover {
-    color: #dc2626;
-  }
-</style>
+  </header>
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <!-- Background image -->
     <div class="absolute inset-0 bg-cover bg-center"
          style="background-image:url('https://cms.westcoasttriallawyers.com/wp-content/uploads/2024/07/Cracked-Windshield-Blog.jpg');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-transparent"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="py-14 md:py-20">
-        <!-- Grid keeps everything aligned -->
         <div class="grid md:grid-cols-2 gap-8 items-start">
           <!-- Left: value prop -->
           <div class="max-w-xl rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/5 p-6 md:p-8">
@@ -125,7 +112,6 @@
 
           <!-- Right: stacked reviews -->
           <div class="space-y-5 md:pt-2">
-            <!-- review component -->
             <div class="max-w-md md:ml-auto rounded-2xl bg-white/95 shadow-lg ring-1 ring-black/5 p-5">
               <div class="flex items-center gap-3 text-sm text-neutral-700">
                 <div class="flex">
@@ -166,69 +152,20 @@
     </div>
   </section>
 
-  <!-- Quote form -->
+  <!-- Quote form (Jobber embed) -->
   <section id="quote" class="mt-16 md:mt-24 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8">
       <!-- Form card -->
       <div class="lg:col-span-2 glass bg-white/80 rounded-3xl border border-white/60 shadow-xl">
-        <form id="quoteForm" class="p-6 md:p-8" method="POST" action="mailto:hello@example.com" enctype="multipart/form-data">
+        <div class="p-6 md:p-8">
           <h2 class="text-2xl md:text-3xl font-black">Request an exact quote</h2>
           <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
 
-          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <label class="text-sm">Full Name<span class="text-red-500"> *</span>
-              <input name="name" required class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
-            </label>
-            <label class="text-sm">Phone<span class="text-red-500"> *</span>
-              <input name="phone" type="tel" required placeholder="(555) 123-4567" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
-            </label>
-            <label class="text-sm sm:col-span-2">Vehicle (Year / Make / Model)<span class="text-red-500"> *</span>
-              <input name="vehicle" required placeholder="2018 Subaru Outback" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
-            </label>
-
-            <label class="text-sm">Service Needed
-              <select name="service" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3">
-                <option>Windshield Replacement</option>
-                <option>Rear Glass Replacement</option>
-                <option>Door Glass / Side Window</option>
-                <option>Chip Repair</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label class="text-sm">Preferred Contact
-              <select name="contact" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3">
-                <option>Text me</option>
-                <option>Call me</option>
-                <option>Email me</option>
-              </select>
-            </label>
-
-            <label class="text-sm">ZIP (for mobile service)
-              <input name="zip" inputmode="numeric" pattern="[0-9]{5}" placeholder="97301" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
-            </label>
-            <label class="text-sm">Address (optional)
-              <input name="address" placeholder="1234 Main St" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3" />
-            </label>
-
-            <label class="text-sm sm:col-span-2">Details (VIN, sensors, tint band, where to meet, etc.)
-              <textarea name="details" rows="5" class="mt-1 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3"></textarea>
-            </label>
-
-            <div class="sm:col-span-2">
-              <p class="text-sm">Add a photo (optional)</p>
-              <div class="mt-2 flex items-center gap-3">
-                <input id="photo" name="photo" type="file" accept="image/*" class="block w-full text-sm text-neutral-700 file:mr-4 file:rounded-xl file:border-0 file:bg-red-600 file:px-4 file:py-2 file:text-white hover:file:bg-red-700" />
-                <img id="preview" alt="Preview" class="hidden h-14 w-14 rounded-xl object-cover border" />
-              </div>
-            </div>
+          <!-- Jobber Embedded Work Request Form -->
+          <div class="mt-6">
+            <div id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"></div>
           </div>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <button type="submit" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Instant Quote</button>
-            <a href="sms:+15551234567" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Text Me the Price</a>
-          </div>
-          <p class="mt-3 text-xs text-neutral-500">By submitting, you agree we may contact you about your quote. We don’t sell your info.</p>
-        </form>
+        </div>
       </div>
 
       <!-- Sidebar / perks -->
@@ -251,110 +188,68 @@
     </div>
   </section>
 
-  <!-- NEW: How it works / trust section -->
-  <section class="pb-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 shadow-sm">
-        <h3 class="text-2xl md:text-3xl font-black text-center">How it works</h3>
-        <p class="mt-2 text-neutral-600 text-center">Simple, fast, and mobile — we come to you.</p>
-
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-neutral-200 p-6">
-            <div class="text-xs font-semibold text-red-600">STEP 1</div>
-            <h4 class="mt-1 font-bold">Send your details</h4>
-            <p class="mt-2 text-sm text-neutral-700">Tell us your year/make/model and any sensors/tint band. Add a photo for the fastest match.</p>
-          </div>
-          <div class="rounded-2xl border border-neutral-200 p-6">
-            <div class="text-xs font-semibold text-red-600">STEP 2</div>
-            <h4 class="mt-1 font-bold">Get your exact price</h4>
-            <p class="mt-2 text-sm text-neutral-700">We confirm the glass, quote the total, and schedule your mobile appointment.</p>
-          </div>
-          <div class="rounded-2xl border border-neutral-200 p-6">
-            <div class="text-xs font-semibold text-red-600">STEP 3</div>
-            <h4 class="mt-1 font-bold">We come to you</h4>
-            <p class="mt-2 text-sm text-neutral-700">Clean install at your home or office. Lifetime workmanship warranty included.</p>
-          </div>
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2">
+          <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
+          <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
         </div>
+        <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">
+            Call Now
+          </a>
+          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">
+            Get a Quote
+          </a>
+        </div>
+      </div>
 
-        
+      <div>
+        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="index.html" class="hover:underline">Home</a></li>
+          <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
+          <li><a href="services.html" class="hover:underline">Services</a></li>
+          <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
+          <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-neutral-900">Contact</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
+          <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li>
+          <li>Serving Salem/Keizer, Oregon</li>
+          <li>Mon–Sat: 7am–6pm</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-   <<!-- Footer -->
-<footer class="mt-20 border-t border-neutral-200 bg-white w-full">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-    
-    <!-- Brand & Call-to-Action -->
-    <div class="md:col-span-2">
-      <div class="flex items-center gap-2">
-        <div class="h-9 w-9 rounded-xl bg-red-600 grid place-items-center text-white font-black">CC</div>
-        <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
-      </div>
-      <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
-      <div class="mt-4 flex flex-wrap gap-3">
-        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">
-          Call Now
-        </a>
-        <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">
-          Get a Quote
-        </a>
+    <div class="border-t border-neutral-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
+          <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
+          <a href="terms.html" class="hover:text-neutral-900">Terms</a>
+        </div>
       </div>
     </div>
+  </footer>
 
-    <!-- Quick Links -->
-    <div>
-      <h4 class="font-semibold text-neutral-900">Quick Links</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="index.html" class="hover:underline">Home</a></li>
-        <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
-        <li><a href="services.html" class="hover:underline">Services</a></li>
-        <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
-        <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
-      </ul>
-    </div>
+  <!-- Year -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
-    <!-- Contact Info -->
-    <div>
-      <h4 class="font-semibold text-neutral-900">Contact</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
-        <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li>
-        <li>Serving Salem/Keizer, Oregon</li>
-        <li>Mon–Sat: 7am–6pm</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Bottom Bar -->
-<div class="border-t border-neutral-200">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-    <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-    <div class="flex items-center gap-4">
-      <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
-      <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
-      <a href="terms.html" class="hover:text-neutral-900">Terms</a>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-
-<!-- Auto-update year -->
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-    // Photo preview
-    const input = document.getElementById('photo');
-    const preview = document.getElementById('preview');
-    input?.addEventListener('change', () => {
-      const file = input.files?.[0];
-      if (!file) { preview.classList.add('hidden'); return; }
-      const url = URL.createObjectURL(file);
-      preview.src = url; preview.classList.remove('hidden');
-    });
+  <!-- Jobber embed script (placed at end for faster paint) -->
+  <script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js"
+    clienthub_id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"
+    form_url="https://clienthub.getjobber.com/client_hubs/a4ca14c2-2889-41b1-bfa3-0c3c042e7d21/public/work_request/embedded_work_request_form">
   </script>
 </body>
 </html>
