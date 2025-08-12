@@ -1021,40 +1021,5 @@
 
     // FAQ accordion (+ / −, one open at a time)
   <script>
-  // 2x2 accordion: tap/click to toggle, supports keyboard + ARIA
-  (function () {
-    const items = document.querySelectorAll('#faqs .faq-btn');
-    items.forEach(btn => {
-      btn.addEventListener('click', () => toggle(btn));
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(btn); }
-      });
-    });
-
-    function toggle(btn) {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      const panel = document.getElementById(btn.getAttribute('aria-controls'));
-
-      // close all (optional: comment next 3 lines if you want multiple open)
-      document.querySelectorAll('#faqs .faq-btn[aria-expanded="true"]').forEach(b => {
-        if (b !== btn) collapse(b, document.getElementById(b.getAttribute('aria-controls')));
-      });
-
-      expanded ? collapse(btn, panel) : expand(btn, panel);
-    }
-
-    function expand(btn, panel) {
-      btn.setAttribute('aria-expanded', 'true');
-      panel.style.setProperty('grid-template-rows', '1fr');
-      btn.querySelector('.chev').style.transform = 'rotate(180deg)';
-    }
-
-    function collapse(btn, panel) {
-      btn.setAttribute('aria-expanded', 'false');
-      panel.style.setProperty('grid-template-rows', '0fr');
-      btn.querySelector('.chev').style.transform = '';
-    }
-  })();
-</script>
 </body>
 </html>
