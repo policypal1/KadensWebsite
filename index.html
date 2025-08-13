@@ -720,81 +720,83 @@
 
 
 
-<div id="faqList" class="mt-6 grid grid-cols-1 gap-4">
+<!-- ===================== FAQs (1×4, expand down) ===================== -->
+<section id="faqs-ccag" class="mt-24 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10">
+    <h2 class="text-3xl font-extrabold text-neutral-900">FAQs</h2>
 
-  <!-- 1) Price / quote accuracy -->
-  <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
-    <button
-      id="faq-q1"
-      class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
-      aria-expanded="false"
-      aria-controls="faq-a1"
-    >
-      <h3 class="text-lg font-semibold">Will my price change after you arrive?</h3>
-      <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-        </svg>
-      </span>
-    </button>
-    <div id="faq-a1" role="region" aria-labelledby="faq-q1" class="faq-content">
-      <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
-        We VIN-match the exact glass and options (sensors, shade band, camera, etc.) before scheduling. 
-        Once the part is confirmed, your quote is firm. If anything unexpected pops up on arrival, we pause and text you—no surprise work or charges.
-      </div>
+    <!-- 1 column stack -->
+    <div id="faqList" class="mt-6 grid grid-cols-1 gap-4">
+
+      <!-- ITEM -->
+      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+        <button
+          id="faq-q1"
+          class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4"
+          aria-expanded="false"
+          aria-controls="faq-a1"
+        >
+          <h3 class="text-lg font-semibold">I’m using insurance—do I have to use the shop they recommend? What about my deductible?</h3>
+          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </button>
+        <div id="faq-a1" role="region" aria-labelledby="faq-q1" class="faq-content">
+          <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
+            You can choose your shop. We work with most major carriers, help file the claim, and bill them directly. If your policy has a deductible, you’ll only pay that amount—nothing else. If you have “full glass” coverage, it’s often $0 out-of-pocket.
+          </div>
+        </div>
+      </article>
+
+      <!-- ITEM -->
+      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+        <button id="faq-q2" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a2">
+          <h3 class="text-lg font-semibold">What should I do before and after the appointment?</h3>
+          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </span>
+        </button>
+        <div id="faq-a2" role="region" aria-labelledby="faq-q2" class="faq-content">
+          <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
+           Before: Clear the dash and front seats, remove any dash cams from the glass, and park nose-out if you can.
+After: Leave the blue tape on until tomorrow, avoid slamming doors, skip car washes for 24 hours, and keep your calibration appointment if one’s scheduled. If you notice any wind noise or moisture, text us—lifetime workmanship means we’ll make it righ
+          </div>
+        </div>
+      </article>
+
+      <!-- ITEM -->
+      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+        <button id="faq-q3" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a3">
+          <h3 class="text-lg font-semibold"> Will all my sensors and features still work afterward?</h3>
+          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </span>
+        </button>
+        <div id="faq-a3" role="region" aria-labelledby="faq-q3" class="faq-content">
+          <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
+            Yes. We transfer the mirror and mounts, replace the rain/light sensor pad, and reconnect defrosters, antennas, and heated wiper park. If your car requires ADAS calibration after glass replacement, we’ll coordinate it with a trusted local partner and give you simple instructions. Until calibration is done, some driver-assist features may be limited.
+          </div>
+        </div>
+      </article>
+
+      <!-- ITEM -->
+      <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
+        <button id="faq-q4" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a4">
+          <h3 class="text-lg font-semibold">Can you replace my glass at work or while I’m not there?</h3>
+          <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </span>
+        </button>
+        <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-content">
+          <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
+            Yes. We do contactless installs. Just park on a reasonably flat spot with the car unlocked (or leave the key where we agree). A garage or driveway is ideal, but a parking lot works too. We bring our own power and lighting. If weather or wind would risk the bond, we’ll set up cover or reschedule quickly—no extra fees.
+          </div>
+        </div>
+      </article>
+
     </div>
-  </article>
-
-  <!-- 2) Time / drive-away -->
-  <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
-    <button id="faq-q2" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a2">
-      <h3 class="text-lg font-semibold">How long does it take, and when can I drive?</h3>
-      <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-      </span>
-    </button>
-    <div id="faq-a2" role="region" aria-labelledby="faq-q2" class="faq-content">
-      <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
-        Most windshields install in about <b>60–90 minutes</b>. Add another <b>60–90 minutes</b> for safe drive-away while the urethane cures. 
-        Keep the retention tape on until tomorrow and skip car washes for 24 hours.
-      </div>
-    </div>
-  </article>
-
-  <!-- 3) Leaks / wind noise warranty -->
-  <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
-    <button id="faq-q3" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a3">
-      <h3 class="text-lg font-semibold">Will it leak or whistle? What’s your warranty?</h3>
-      <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-      </span>
-    </button>
-    <div id="faq-a3" role="region" aria-labelledby="faq-q3" class="faq-content">
-      <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
-        Our <b>lifetime workmanship warranty</b> covers air/water leaks and wind noise around the glass we installed. 
-        If something isn’t perfect, we fix it—no charge.
-      </div>
-    </div>
-  </article>
-
-  <!-- 4) Insurance / deductible -->
-  <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm">
-    <button id="faq-q4" class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false" aria-controls="faq-a4">
-      <h3 class="text-lg font-semibold">Do you work with insurance? What about my deductible?</h3>
-      <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-      </span>
-    </button>
-    <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-content">
-      <div class="answer border-t pt-4 px-5 pb-5 text-neutral-700">
-        Yes—most major insurers. We’ll help with the claim and can bill the carrier directly. 
-        If your policy has a deductible, you only pay that amount to us; the insurer covers the rest.
-      </div>
-    </div>
-  </article>
-
-</div>
-
 
     <!-- simple contact strip (replaces “Still stuck?”) -->
     <div class="mt-8 rounded-xl border border-neutral-200 bg-white/90 p-4 text-center text-sm text-neutral-700">
