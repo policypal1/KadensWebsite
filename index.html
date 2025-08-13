@@ -432,7 +432,6 @@
 <section id="coverage-map" class="mt-24 bg-neutral-50/70 border-y border-neutral-200/70">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="grid lg:grid-cols-2 gap-10 items-start">
-
       <!-- MAP IMAGE (LEFT) -->
       <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
         <img
@@ -440,27 +439,30 @@
           src="salem.png?v=2"
           alt="Service area map: Salem"
           class="w-full h-[480px] min-h-[480px] object-cover transition-opacity duration-300 ease-out opacity-100"
-          loading="lazy" decoding="async"
+          loading="lazy"
+          decoding="async"
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 720%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23f3f4f6%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%229ca3af%22 font-size=%2232%22%3EMap image unavailable%3C/text%3E%3C/svg%3E';"
         />
 
-        <!-- Toggle buttons on the map (unchanged look) -->
+        <!-- bottom-left chips ON THE MAP -->
         <div class="absolute bottom-3 left-3 flex gap-2 bg-white/90 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
           <button
             type="button"
-            class="svc-tab active inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow"
+            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
             data-img="salem.png?v=2"
-            data-alt="Service area map: Salem">Salem</button>
+            data-alt="Service area map: Salem"
+          >Salem</button>
 
           <button
             type="button"
-            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50"
+            class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 hover:text-neutral-800 transition"
             data-img="keizer.png?v=2"
-            data-alt="Service area map: Keizer">Keizer</button>
+            data-alt="Service area map: Keizer"
+          >Keizer</button>
         </div>
       </div>
 
-      <!-- COPY (RIGHT) -->
+      <!-- RIGHT COLUMN -->
       <div>
         <span class="inline-flex items-center rounded-full bg-red-100 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
           Service Area
@@ -474,11 +476,11 @@
           Text a photo or your VIN and we’ll ID the exact glass and send a firm quote.
           Morning texts often land on <b>today’s route</b>; late-day requests usually roll to the next morning.
         </p>
-        <div class="mt-1 text-xs text-neutral-500">
+        <p class="mt-1 text-xs text-neutral-500">
           Examples: West Salem, South Salem, Four Corners, Hayesville, Keizer Station.
-        </div>
+        </p>
 
-        <!-- Three helpful tiles -->
+        <!-- three tiles -->
         <div class="mt-6 grid grid-cols-3 gap-3">
           <div class="rounded-xl bg-white p-4 ring-1 ring-neutral-200 text-center">
             <div class="text-xs text-neutral-500">Fastest booking</div>
@@ -486,7 +488,7 @@
           </div>
           <div class="rounded-xl bg-white p-4 ring-1 ring-neutral-200 text-center">
             <div class="text-xs text-neutral-500">Service window</div>
-            <div class="text-lg font-bold">8–11a • 12–3p</div>
+            <div class="text-lg font-bold">8–11a · 12–3p</div>
           </div>
           <div class="rounded-xl bg-white p-4 ring-1 ring-neutral-200 text-center">
             <div class="text-xs text-neutral-500">Space needed</div>
@@ -495,17 +497,15 @@
           </div>
         </div>
 
-        <!-- Area chips (consistent hover/active) -->
+        <!-- mirror chips (stay in sync with map chips) -->
         <div class="mt-6 flex flex-wrap gap-2">
-          <!-- Active chip -->
           <button type="button"
-            class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold border-2 bg-red-600 text-white border-red-600 shadow"
-            data-target="Salem">Salem</button>
+                  class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
+                  data-target="Salem">Salem</button>
 
-          <!-- Inactive chip with red hover so it never "disappears" -->
           <button type="button"
-            class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold border-2 bg-white text-neutral-800 border-neutral-300 hover:text-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
-            data-target="Keizer">Keizer</button>
+                  class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 hover:text-neutral-800 transition"
+                  data-target="Keizer">Keizer</button>
         </div>
 
         <!-- CTAs -->
@@ -520,7 +520,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -528,56 +527,55 @@
 <script>
   (function () {
     const img = document.getElementById('svcMapImg');
-    const tabs = document.querySelectorAll('.svc-tab');          // buttons on the map
-    const mirrors = document.querySelectorAll('.chip-mirror');   // Salem/Keizer chips on the right
+    const tabs = document.querySelectorAll('.svc-tab');       // chips on the MAP
+    const mirrors = document.querySelectorAll('.chip-mirror'); // chips on the RIGHT
 
-    // Preload both images
+    // preload both images
     tabs.forEach(b => { const i = new Image(); i.src = b.dataset.img; });
 
-    // Unified active/inactive styling for the right-side chips
-    function setChipActive(el, on) {
-      const active = ['bg-red-600','text-white','border-red-600','shadow'];
-      const inactive = ['bg-white','text-neutral-800','border-neutral-300'];
-      el.classList.remove(...(on ? inactive : active));
-      el.classList.add(...(on ? active : inactive));
+    // helper to apply styles
+    function setActive(el, on) {
+      el.classList.toggle('active', on);
+      if (on) {
+        el.classList.add('bg-red-600','text-white','shadow');
+        el.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+      } else {
+        el.classList.remove('bg-red-600','text-white','shadow');
+        el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+      }
     }
 
+    // activate a MAP chip (and sync mirrors)
     function activate(btn) {
-      // switch map tabs (visual)
-      tabs.forEach(b => {
-        const isActive = (b === btn);
-        b.classList.toggle('active', isActive);
-        if (isActive) {
-          b.classList.add('bg-red-600','text-white','shadow');
-          b.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-        } else {
-          b.classList.remove('bg-red-600','text-white','shadow');
-          b.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
-        }
-      });
-
-      // swap map image
+      tabs.forEach(b => setActive(b, b === btn));
       const nextSrc = btn.dataset.img;
       const nextAlt = btn.dataset.alt || '';
+
+      // fade swap
       img.style.opacity = '0';
       const swap = () => { img.src = nextSrc; img.alt = nextAlt; };
       if (img.complete) swap(); else setTimeout(swap, 60);
       img.onload = () => (img.style.opacity = '1');
 
-      // mirror chips
-      const wantSalem = /salem/i.test(nextAlt);
-      mirrors.forEach(ch => setChipActive(ch, (wantSalem && ch.dataset.target === 'Salem') || (!wantSalem && ch.dataset.target === 'Keizer')));
+      const isSalem = /salem/i.test(nextAlt);
+      mirrors.forEach(ch => setActive(ch, (isSalem && ch.dataset.target === 'Salem') || (!isSalem && ch.dataset.target === 'Keizer')));
     }
 
-    // events
+    // click handlers: MAP chips
     tabs.forEach(b => b.addEventListener('click', () => activate(b)));
+
+    // click handlers: RIGHT chips -> trigger corresponding MAP chip
     mirrors.forEach(ch => ch.addEventListener('click', () => {
       const wantSalem = ch.dataset.target === 'Salem';
       const target = Array.from(tabs).find(b => (b.dataset.alt || '').toLowerCase().includes(wantSalem ? 'salem' : 'keizer'));
       if (target) activate(target);
     }));
+
+    // ensure Keizer never “disappears” on hover due to inherited styles
+    // (we forced explicit hover text color in its classes above).
   })();
 </script>
+
 
 <!-- HOW IT WORKS (simplified, soft background) -->
 <section id="how-it-works" class="mt-24 bg-gradient-to-b from-neutral-50 to-white border-y border-neutral-200/70">
