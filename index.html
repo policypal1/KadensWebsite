@@ -444,21 +444,19 @@
           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 720%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23f3f4f6%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%229ca3af%22 font-size=%2232%22%3EMap image unavailable%3C/text%3E%3C/svg%3E';"
         />
 
-        <!-- bottom-left chips ON THE MAP -->
+        <!-- chips ON THE MAP -->
         <div class="absolute bottom-3 left-3 flex gap-2 bg-white/90 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
           <button
             type="button"
             class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
             data-img="salem.png?v=2"
-            data-alt="Service area map: Salem"
-          >Salem</button>
+            data-alt="Service area map: Salem">Salem</button>
 
           <button
             type="button"
             class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 hover:text-neutral-800 transition"
             data-img="keizer.png?v=2"
-            data-alt="Service area map: Keizer"
-          >Keizer</button>
+            data-alt="Service area map: Keizer">Keizer</button>
         </div>
       </div>
 
@@ -497,7 +495,7 @@
           </div>
         </div>
 
-        <!-- mirror chips (stay in sync with map chips) -->
+        <!-- mirror chips (sync with map) -->
         <div class="mt-6 flex flex-wrap gap-2">
           <button type="button"
                   class="chip-mirror inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
@@ -530,22 +528,30 @@
     const tabs = document.querySelectorAll('.svc-tab');       // chips on the MAP
     const mirrors = document.querySelectorAll('.chip-mirror'); // chips on the RIGHT
 
-    // preload both images
+    // Preload both map images
     tabs.forEach(b => { const i = new Image(); i.src = b.dataset.img; });
 
-    // helper to apply styles
+    // Reset + apply classes so hover never overrides active
     function setActive(el, on) {
       el.classList.toggle('active', on);
+
+      // remove all states before applying
+      el.classList.remove(
+        'bg-red-600','text-white','shadow',
+        'bg-white','text-neutral-800','ring-1','ring-neutral-300',
+        'hover:bg-neutral-50','hover:text-neutral-800',
+        'hover:bg-red-600','hover:text-white'
+      );
+
       if (on) {
-        el.classList.add('bg-red-600','text-white','shadow');
-        el.classList.remove('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+        // ACTIVE: stays red even on hover
+        el.classList.add('bg-red-600','text-white','shadow','hover:bg-red-600','hover:text-white');
       } else {
-        el.classList.remove('bg-red-600','text-white','shadow');
-        el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+        // INACTIVE: white with neutral hover
+        el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300','hover:bg-neutral-50','hover:text-neutral-800');
       }
     }
 
-    // activate a MAP chip (and sync mirrors)
     function activate(btn) {
       tabs.forEach(b => setActive(b, b === btn));
       const nextSrc = btn.dataset.img;
@@ -558,7 +564,9 @@
       img.onload = () => (img.style.opacity = '1');
 
       const isSalem = /salem/i.test(nextAlt);
-      mirrors.forEach(ch => setActive(ch, (isSalem && ch.dataset.target === 'Salem') || (!isSalem && ch.dataset.target === 'Keizer')));
+      mirrors.forEach(ch =>
+        setActive(ch, (isSalem && ch.dataset.target === 'Salem') || (!isSalem && ch.dataset.target === 'Keizer'))
+      );
     }
 
     // click handlers: MAP chips
@@ -570,11 +578,9 @@
       const target = Array.from(tabs).find(b => (b.dataset.alt || '').toLowerCase().includes(wantSalem ? 'salem' : 'keizer'));
       if (target) activate(target);
     }));
-
-    // ensure Keizer never “disappears” on hover due to inherited styles
-    // (we forced explicit hover text color in its classes above).
   })();
 </script>
+
 
 
 <!-- HOW IT WORKS (simplified, soft background) -->
