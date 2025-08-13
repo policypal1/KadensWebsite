@@ -115,30 +115,34 @@
         <p class="mt-3 text-xs md:text-sm text-white/80">Highly rated by local drivers — OEM materials • On-time arrival • Mon–Sat</p>
       </div>
 
-      <!-- Right: Mini Quick Quote -->
-      <aside class="w-full max-w-md justify-self-end">
-        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-          <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
-          <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
+      <!-- Right: Mini Quick Quote (works, redirects to /quote.html) -->
+<aside class="w-full max-w-md justify-self-end">
+  <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+    <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
+    <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
-          <form id="miniQuote" class="mt-4 grid gap-3" onsubmit="handleMiniQuote(event)">
-            <input name="name" placeholder="Name" autocomplete="name" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"/>
-            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"/>
-            <select name="service" required
-                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
-              <option value="" disabled selected>Select service</option>
-              <option>Windshield Replacement</option>
-              <option>Chip Repair</option>
-              <option>Door/Side Glass</option>
-              <option>Back Glass</option>
-            </select>
-            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">Get My Quote</button>
-            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
-          </form>
-        </div>
-      </aside>
+    <!-- Pure HTML submit to /quote.html -->
+    <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
+      <input name="name" placeholder="Name" autocomplete="name" required
+             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+      <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+      <select name="service" required
+              class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+        <option value="" disabled selected>Select service</option>
+        <option>Windshield Replacement</option>
+        <option>Chip Repair</option>
+        <option>Door/Side Glass</option>
+        <option>Back Glass</option>
+      </select>
+      <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+        Get My Quote
+      </button>
+      <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
+    </form>
+  </div>
+</aside>
+
     </div>
   </div>
 
