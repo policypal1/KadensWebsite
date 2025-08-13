@@ -161,14 +161,18 @@
           <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
 
           <!-- Jobber Embedded Work Request Form -->
-          <div class="mt-6">
-            <div id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"></div>
+          <!-- Jobber Embedded Work Request Form -->
+<div class="mt-6 jobber-embed">
+  <div id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"></div>
+</div>
+
           </div>
         </div>
       </div>
 
       <script>
-  // 1) Get data from localStorage or URL
+ <script>
+  // Read carried-over details from localStorage and URL
   const saved = JSON.parse(localStorage.getItem('cq_prequote') || '{}');
   const url = new URL(location.href);
   ['name','phone','service'].forEach(k => {
@@ -176,51 +180,56 @@
     if (v && !saved[k]) saved[k] = v;
   });
 
-  // 2) Show a styled brand-matching banner
-  if (saved.name || saved.phone || saved.service) {
-    const banner = document.createElement('div');
-    banner.className = 'mt-4 mb-5 rounded-xl bg-red-600 text-white shadow-md ring-1 ring-red-700/50 p-4 text-sm flex flex-wrap items-center gap-x-4 gap-y-2';
-    banner.innerHTML = `
-      <span class="font-semibold">We carried over your details:</span>
-      ${saved.name ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Name: ${saved.name}</span>` : ''}
-      ${saved.phone ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Phone: ${saved.phone}</span>` : ''}
-      ${saved.service ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Service: ${saved.service}</span>` : ''}
-    `;
-    const mount = document.querySelector('.jobber-embed')?.parentElement || document.body;
-    mount.prepend(banner);
-  }
+  (function mountBanner(){
+    const embedWrap = document.querySelector('.jobber-embed');
+    if (!embedWrap) return;
 
-  // 3) Try to prefill Jobber form if it's accessible
-  function tryPrefill(){
-    try {
-      const scope = document.getElementById('a4ca14c2-2889-41b1-bfa3-0c3c042e7d21') || document;
-      if (saved.name) {
-        const nameEl = scope.querySelector('input[name="name"], input[placeholder*="name" i]');
-        if (nameEl && !nameEl.value) { nameEl.value = saved.name; nameEl.dispatchEvent(new Event('input', {bubbles:true})); }
-      }
-      if (saved.phone) {
-        const phoneEl = scope.querySelector('input[type="tel"], input[placeholder*="phone" i]');
-        if (phoneEl && !phoneEl.value) { phoneEl.value = saved.phone; phoneEl.dispatchEvent(new Event('input', {bubbles:true})); }
-      }
-      if (saved.service) {
-        const sel = Array.from(scope.querySelectorAll('select')).find(s => /service/i.test(s.name || s.outerHTML));
-        if (sel && !sel.value) {
-          const opt = Array.from(sel.options).find(o => (o.textContent||'').toLowerCase().includes(saved.service.toLowerCase()));
-          if (opt) { sel.value = opt.value; sel.dispatchEvent(new Event('change', {bubbles:true})); }
+    if (saved.name || saved.phone || saved.service) {
+      const banner = document.createElement('div');
+      banner.className =
+        'mb-5 rounded-xl bg-red-600 text-white shadow-md ring-1 ring-red-700/50 p-4 ' +
+        'text-sm flex flex-wrap items-center justify-between gap-3';
+
+      const nameTag   = saved.name   ? `<span class="bg-white/15 px-2 py-0.5 rounded-md">Name: ${saved.name}</span>` : '';
+      const phoneTag  = saved.phone  ? `<span class="bg-white/15 px-2 py-0.5 rounded-md">Phone: ${saved.phone}</span>` : '';
+      const serviceTag= saved.service? `<span class="bg-white/15 px-2 py-0.5 rounded-md">Service: ${saved.service}</span>` : '';
+
+      banner.innerHTML = `
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-semibold">We carried over your details:</span>
+          ${nameTag}${phoneTag}${serviceTag}
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="cc-copy" type="button"
+                  class="rounded-lg bg-white/15 hover:bg-white/20 px-3 py-1.5 font-semibold">
+            Copy to clipboard
+          </button>
+          <a href="https://clienthub.getjobber.com/client_hubs/a4ca14c2-2889-41b1-bfa3-0c3c042e7d21/public/work_request/embedded_work_request_form"
+             target="_blank" rel="noopener"
+             class="rounded-lg bg-white text-red-600 hover:bg-red-50 px-3 py-1.5 font-semibold">
+            Open full form
+          </a>
+        </div>
+      `;
+
+      // Insert banner directly above the embed, inside your form card
+      embedWrap.parentElement.insertBefore(banner, embedWrap);
+
+      // Copy helper
+      const toCopy = [saved.name, saved.phone, saved.service].filter(Boolean).join('\n');
+      const showNote = () => alert('Copied! Click the first field and press Ctrl+V (or ⌘V).');
+
+      document.getElementById('cc-copy')?.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(toCopy); showNote(); }
+        catch {
+          const ta = document.createElement('textarea');
+          ta.value = toCopy; document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta); showNote();
         }
-      }
-      return true;
-    } catch (e) { return false; }
-  }
-
-  // Retry a few times to allow Jobber embed to load
-  let attempts = 0;
-  const timer = setInterval(() => {
-    attempts++;
-    if (tryPrefill() || attempts > 40) clearInterval(timer);
-  }, 250);
+      });
+    }
+  })();
 </script>
-
 
       <!-- Sidebar / perks -->
       <aside class="space-y-6">
