@@ -167,6 +167,61 @@
         </div>
       </div>
 
+      <script>
+  // 1) Get data from localStorage or URL
+  const saved = JSON.parse(localStorage.getItem('cq_prequote') || '{}');
+  const url = new URL(location.href);
+  ['name','phone','service'].forEach(k => {
+    const v = url.searchParams.get(k);
+    if (v && !saved[k]) saved[k] = v;
+  });
+
+  // 2) Show a styled brand-matching banner
+  if (saved.name || saved.phone || saved.service) {
+    const banner = document.createElement('div');
+    banner.className = 'mt-4 mb-5 rounded-xl bg-red-600 text-white shadow-md ring-1 ring-red-700/50 p-4 text-sm flex flex-wrap items-center gap-x-4 gap-y-2';
+    banner.innerHTML = `
+      <span class="font-semibold">We carried over your details:</span>
+      ${saved.name ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Name: ${saved.name}</span>` : ''}
+      ${saved.phone ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Phone: ${saved.phone}</span>` : ''}
+      ${saved.service ? `<span class="bg-white/15 px-2 py-0.5 rounded-md text-white">Service: ${saved.service}</span>` : ''}
+    `;
+    const mount = document.querySelector('.jobber-embed')?.parentElement || document.body;
+    mount.prepend(banner);
+  }
+
+  // 3) Try to prefill Jobber form if it's accessible
+  function tryPrefill(){
+    try {
+      const scope = document.getElementById('a4ca14c2-2889-41b1-bfa3-0c3c042e7d21') || document;
+      if (saved.name) {
+        const nameEl = scope.querySelector('input[name="name"], input[placeholder*="name" i]');
+        if (nameEl && !nameEl.value) { nameEl.value = saved.name; nameEl.dispatchEvent(new Event('input', {bubbles:true})); }
+      }
+      if (saved.phone) {
+        const phoneEl = scope.querySelector('input[type="tel"], input[placeholder*="phone" i]');
+        if (phoneEl && !phoneEl.value) { phoneEl.value = saved.phone; phoneEl.dispatchEvent(new Event('input', {bubbles:true})); }
+      }
+      if (saved.service) {
+        const sel = Array.from(scope.querySelectorAll('select')).find(s => /service/i.test(s.name || s.outerHTML));
+        if (sel && !sel.value) {
+          const opt = Array.from(sel.options).find(o => (o.textContent||'').toLowerCase().includes(saved.service.toLowerCase()));
+          if (opt) { sel.value = opt.value; sel.dispatchEvent(new Event('change', {bubbles:true})); }
+        }
+      }
+      return true;
+    } catch (e) { return false; }
+  }
+
+  // Retry a few times to allow Jobber embed to load
+  let attempts = 0;
+  const timer = setInterval(() => {
+    attempts++;
+    if (tryPrefill() || attempts > 40) clearInterval(timer);
+  }, 250);
+</script>
+
+
       <!-- Sidebar / perks -->
       <aside class="space-y-6">
         <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
