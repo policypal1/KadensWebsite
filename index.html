@@ -93,46 +93,6 @@
   img[width][height] { height: auto; }
 }
 
-    /* Start content higher: push hero text up, not vertically centered */
-.hero-shell { align-items: flex-start !important; }
-.hero-left { padding-top: 10vh !important; } /* ~top quarter */
-
-/* Big red top button + stacked CTAs (you already had these) */
-.hero-top-cta { margin-top: 6px; width: 100% !important; }
-.hero-ctas { display: grid !important; gap: 10px !important; }
-
-/* Pin the CTA group ~15% from bottom on mobile */
-.hero-ctas {
-  position: absolute !important;
-  left: 1rem; right: 1rem;
-  bottom: 15% !important;
-}
-
-/* Mini reviews inside hero (mobile only) */
-@keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.hero-reviews { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-                mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.hero-reviews-track { width: max-content; animation: heroMarquee 28s linear infinite; }
-.hero-reviews .review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .7rem;
-                             border-radius:9999px; background:#ffffff; border:1px solid #e5e7eb;
-                             box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.78rem; white-space:nowrap; }
-.hero-reviews .review-star { color:#f59e0b; }
-
-/* Keep the background “cropped” and overlay strong for readability (you already had this) */
-section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover {
-  object-position: center 35% !important;
-  filter: saturate(0.95) contrast(1.05);
-}
-section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0 {
-  background: linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.20) 100%) !important;
-}
-
-/* Show the hero at a good height */
-.h-\[90vh\] { height: 64vh !important; min-height: 520px !important; }
-
-/* Hide the big reviews strip under the hero on mobile (keep desktop) */
-.reviews-strip { display: none !important; }
-
 
     /* ================= DESKTOP / NORMAL STYLES ================= */
     @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
@@ -252,29 +212,18 @@ section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.ins
 </script>
 
 
-<<!-- HERO (full-bleed with mobile-tuned layout) -->
+<!-- HERO (full-bleed with mini quick quote) -->
 <section class="relative overflow-hidden">
-  <!-- background -->
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
-         alt="Mobile auto glass service on-site"
-         class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop" alt="Mobile auto glass service on-site" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
   </div>
 
-  <!-- content shell -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center">
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
       <!-- Left -->
-      <div class="text-white max-w-2xl hero-left">
-        <!-- NEW: top red CTA (mobile shows full-width) -->
-        <a href="/quote.html"
-           class="hero-top-cta inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition w-full sm:w-auto">
-          Get a Quote
-        </a>
-
-        <!-- Badges (hidden on mobile by CSS, kept for desktop) -->
-        <div class="flex flex-wrap gap-2 mt-2">
+      <div class="text-white max-w-2xl">
+        <div class="flex flex-wrap gap-2">
           <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
           <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
           <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
@@ -289,65 +238,43 @@ section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.ins
           OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
         </p>
 
-        <!-- NEW: mini reviews inside the hero (mobile-only via CSS below) -->
-        <div class="hero-reviews mt-4 overflow-hidden">
-          <div class="hero-reviews-track flex gap-2">
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Spotless install.” — <b>J. Rivera</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Done by lunch.” — <b>M. Chen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Price was fair.” — <b>J. Patel</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Came to my driveway.” — <b>K. Johnson</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “No wind noise.” — <b>S. Nguyen</b></span>
-            <!-- duplicate once for seamless loop -->
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Spotless install.” — <b>J. Rivera</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Done by lunch.” — <b>M. Chen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Price was fair.” — <b>J. Patel</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “Came to my driveway.” — <b>K. Johnson</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> “No wind noise.” — <b>S. Nguyen</b></span>
-          </div>
-        </div>
-
-        <!-- NEW: bottom-pinned CTAs (mobile positions ~15% from bottom) -->
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 hero-ctas">
-          <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
-            Get a Quote
-          </a>
-          <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+           <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
             Call (503) 949-2257
           </a>
         </div>
 
-        <!-- small line (hidden on mobile by CSS) -->
         <p class="mt-3 text-xs md:text-sm text-white/80">Highly rated by local drivers — On-time arrival • Mon–Sat</p>
       </div>
 
-      <!-- Right: Quick Quote (hidden on mobile by your CSS) -->
-      <aside class="w-full max-w-md justify-self-end">
-        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-          <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
-          <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
-          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
-            <input name="name"  placeholder="Name"  autocomplete="name" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <select name="service" required
-                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
-              <option value="" disabled selected>Select service</option>
-              <option>Windshield Replacement</option>
-              <option>Chip Repair</option>
-              <option>Door/Side Glass</option>
-              <option>Back Glass</option>
-            </select>
-            <button type="submit"
-                    class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-              Get My Quote
-            </button>
-            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
-          </form>
-        </div>
-      </aside>
+      <!-- Right: Mini Quick Quote (works, redirects to /quote.html) -->
+<aside class="w-full max-w-md justify-self-end">
+  <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+    <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
+    <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
+
+    <!-- Pure HTML submit to /quote.html -->
+    <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
+      <input name="name" placeholder="Name" autocomplete="name" required
+             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+      <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+      <select name="service" required
+              class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+        <option value="" disabled selected>Select service</option>
+        <option>Windshield Replacement</option>
+        <option>Chip Repair</option>
+        <option>Door/Side Glass</option>
+        <option>Back Glass</option>
+      </select>
+      <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+        Get My Quote
+      </button>
+      <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
+    </form>
+  </div>
+</aside>
+
     </div>
   </div>
 
