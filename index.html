@@ -141,20 +141,25 @@
       </button>
     </div>
 
-    <!-- Mobile drop-down (hidden by default) -->
-    <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white">
-      <div class="px-4 py-3 grid gap-2">
-        <a href="/index.html"     class="py-2 text-neutral-800 hover:text-red-700">Home</a>
-        <a href="/services.html"  class="py-2 text-neutral-800 hover:text-red-700">Services</a>
-        <a href="/reviews.html"   class="py-2 text-neutral-800 hover:text-red-700">Reviews</a>
-        <a href="/faqs.html"      class="py-2 text-neutral-800 hover:text-red-700">FAQs</a>
-        <a href="/quote.html"
-           class="mt-1 inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
-          Get a Quote
-        </a>
-      </div>
-    </nav>
-  </div>
+    <!-- Mobile nav toggle -->
+<div class="sm:hidden flex items-center">
+  <button id="mobileMenuButton" class="p-2 text-gray-700 hover:text-red-600 focus:outline-none">
+    <!-- Hamburger icon -->
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Mobile dropdown menu (hidden by default) -->
+<div id="mobileMenu" class="hidden bg-white sm:hidden">
+  <a href="index.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Home</a>
+  <a href="services.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Services</a>
+  <a href="about.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">About</a>
+  <a href="contact.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Contact</a>
+  <a href="quote.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-red-600 font-semibold">Get a Quote</a>
+</div>
 </header>
 
 <script>
