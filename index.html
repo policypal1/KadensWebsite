@@ -1,8 +1,6 @@
-<!doctype html>
-<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Clear Choice Auto Glass — Auto Glass</title>
   <meta name="description" content="Mobile auto glass repair & replacement. Same-day service. Family-owned." />
   <meta name="theme-color" content="#ffffff" />
@@ -11,7 +9,54 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* small helper */
+    /* ================= MOBILE-ONLY OVERRIDES ================= */
+    @media (max-width: 640px){
+      body { font-size: 16px; line-height: 1.5; }
+      h1 { font-size: 32px !important; line-height: 1.15 !important; }
+      h2 { font-size: 26px !important; line-height: 1.2 !important; }
+      p  { font-size: 15px !important; }
+
+      /* Kill the moving review marquee under the hero */
+      .reviews-strip { display: none !important; }
+
+      /* HERO: shorten height, keep only one CTA, hide the right Quick Quote card */
+      .h-\[90vh\] { height: 64vh !important; min-height: 480px !important; }
+      section.relative.overflow-hidden:first-of-type aside { display: none !important; }
+      section.relative.overflow-hidden:first-of-type .mt-8.flex.flex-col.sm\:flex-row.gap-3 > :nth-child(n+2) {
+        display: none !important;
+      }
+
+      /* “Clear Choice Promise” feature cards: show only top 2 on phones */
+      #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
+
+      /* Same-Day Mobile (2nd full-bleed band): hide the right-side “About” card */
+      section.relative.overflow-hidden.py-16 aside { display: none !important; }
+
+      /* Coverage section: single column, smaller map, trim one info tile */
+      #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+      #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\] {
+        height: 260px !important; min-height: 260px !important;
+      }
+      #coverage-map .mt-4.grid.grid-cols-3 { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+      #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3) { display: none !important; }
+
+      /* How It Works: force single column; keep copy tight */
+      #how-it-works .md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+      #how-it-works .mt-6.grid.sm\:grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
+      #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
+
+      /* Reviews grid: show only 2 cards */
+      #reviews .grid > article:nth-child(n+3){ display: none !important; }
+
+      /* Footer: collapse to single column */
+      footer .grid.md\:grid-cols-4 { grid-template-columns: 1fr !important; }
+
+      /* Images: prevent overflow/layout shifts */
+      img { max-width: 100%; height: auto; }
+      img[width][height] { height: auto; }
+    }
+
+    /* ================= DESKTOP / NORMAL STYLES ================= */
     @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
     .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
 
@@ -44,7 +89,6 @@
     .frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
   </style>
 </head>
-
 
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
 
