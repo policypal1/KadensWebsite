@@ -9,56 +9,89 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* ================= MOBILE-ONLY OVERRIDES ================= */
-    @media (max-width: 640px){
-      body { font-size: 16px; line-height: 1.5; }
-      h1 { font-size: 32px !important; line-height: 1.15 !important; }
-      h2 { font-size: 26px !important; line-height: 1.2 !important; }
-      p  { font-size: 15px !important; }
+   /* ================= MOBILE-ONLY OVERRIDES ================= */
+@media (max-width: 640px){
+  /* Type & spacing */
+  body { font-size: 16px; line-height: 1.5; }
+  h1 { font-size: 32px !important; line-height: 1.15 !important; }
+  h2 { font-size: 26px !important; line-height: 1.2 !important; }
+  p  { font-size: 15px !important; }
 
-      /* Kill the moving review marquee under the hero */
-      .reviews-strip { display: none !important; }
-
-      /* HERO: shorten height, keep only one CTA, hide the right Quick Quote card */
-      .h-\[90vh\] { height: 64vh !important; min-height: 480px !important; }
-      section.relative.overflow-hidden:first-of-type aside { display: none !important; }
-      section.relative.overflow-hidden:first-of-type .mt-8.flex.flex-col.sm\:flex-row.gap-3 > :nth-child(n+2) {
-        display: none !important;
-      }
-
-      /* “Clear Choice Promise” feature cards: show only top 2 on phones */
-      #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
-
-      /* Same-Day Mobile (2nd full-bleed band): hide the right-side “About” card */
-      section.relative.overflow-hidden.py-16 aside { display: none !important; }
-
-      /* Coverage section: single column, smaller map, trim one info tile */
-      #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
-      #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\] {
-        height: 260px !important; min-height: 260px !important;
-      }
-      #coverage-map .mt-4.grid.grid-cols-3 { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-      #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3) { display: none !important; }
-
-      /* How It Works: force single column; keep copy tight */
-      #how-it-works .md\:grid-cols-3 { grid-template-columns: 1fr !important; }
-      #how-it-works .mt-6.grid.sm\:grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
-      #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
-
-      /* Reviews grid: show only 2 cards */
-      #reviews .grid > article:nth-child(n+3){ display: none !important; }
-
-      /* Footer: collapse to single column */
-      footer .grid.md\:grid-cols-4 { grid-template-columns: 1fr !important; }
-
-      /* Images: prevent overflow/layout shifts */
-      img { max-width: 100%; height: auto; }
-      img[width][height] { height: auto; }
-    }
-
-      /* Keep mobile nav visible and styled */
+  /* Mobile header / menu */
   header { position: sticky; top: 0; z-index: 50; }
   #mobileMenu { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+
+  /* Kill the moving review marquee under the hero */
+  .reviews-strip { display: none !important; }
+
+  /* HERO height */
+  .h-\[90vh\] { height: 64vh !important; min-height: 520px !important; }
+
+  /* Hide the right Quick Quote card in hero */
+  section.relative.overflow-hidden:first-of-type aside { display: none !important; }
+
+  /* New: “Get a Quote” button above headline (full width), stacked CTAs */
+  .hero-top-cta { margin-top: 10px; width: 100% !important; }
+  .hero-ctas { display: grid !important; grid-auto-flow: row !important; gap: 10px !important; }
+  .hero-ctas a { width: 100% !important; }
+
+  /* De-clutter hero: hide pill badges row + tiny “Highly rated…” line */
+  section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2 {
+    display: none !important;
+  }
+  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
+  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs * {
+    display: none !important;
+  }
+
+  /* “Crop” hero image focus and darken overlay for readability */
+  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover {
+    object-position: center 35% !important; /* shift focus upward */
+    filter: saturate(0.95) contrast(1.05);
+  }
+  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0 {
+    background: linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.20) 100%) !important;
+  }
+/* Smooth slide for the mobile dropdown */
+.slide-menu{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+.slide-menu[data-state="open"]{
+  max-height: 320px; /* enough to show all the links */
+}
+
+  /* “Clear Choice Promise” feature cards: show only top 2 on phones */
+  #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
+
+  /* Same-Day Mobile (2nd full-bleed band): hide the right-side “About” card */
+  section.relative.overflow-hidden.py-16 aside { display: none !important; }
+
+  /* Coverage section: single column, smaller map, trim one info tile */
+  #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\] {
+    height: 260px !important; min-height: 260px !important;
+  }
+  #coverage-map .mt-4.grid.grid-cols-3 { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3) { display: none !important; }
+
+  /* How It Works: force single column; keep copy tight */
+  #how-it-works .md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
+
+  /* Reviews grid: show only 2 cards */
+  #reviews .grid > article:nth-child(n+3){ display: none !important; }
+
+  /* Footer: collapse to single column */
+  footer .grid.md\:grid-cols-4 { grid-template-columns: 1fr !important; }
+
+  /* Images: prevent overflow/layout shifts */
+  img { max-width: 100%; height: auto; }
+  img[width][height] { height: auto; }
+}
 
 
     /* ================= DESKTOP / NORMAL STYLES ================= */
@@ -109,18 +142,18 @@
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-6 text-lg">
-        <a href="/index.html" class="nav-link">Home</a>
+      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
+        <a href="/index.html"   class="nav-link">Home</a>
         <a href="/services.html" class="nav-link">Services</a>
-        <a href="/reviews.html" class="nav-link">Reviews</a>
-        <a href="/quote.html" class="nav-link">Quote</a>
-        <a href="/faqs.html" class="nav-link">FAQs</a>
+        <a href="/reviews.html"  class="nav-link">Reviews</a>
+        <a href="/quote.html"    class="nav-link">Quote</a>
+        <a href="/faqs.html"     class="nav-link">FAQs</a>
       </nav>
 
       <!-- Desktop actions -->
       <div class="hidden md:flex items-center gap-4">
         <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
-        <a href="/quote.html" 
+        <a href="/quote.html"
            class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
           Get a Quote
         </a>
@@ -129,8 +162,7 @@
       <!-- Mobile hamburger (only < md) -->
       <button id="mobileMenuBtn"
               class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
-              aria-controls="mobileMenu" aria-expanded="false">
-        <span class="sr-only">Toggle menu</span>
+              aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6"  x2="21" y2="6"></line>
@@ -142,13 +174,15 @@
     </div>
 
     <!-- Mobile dropdown (hidden by default) -->
-    <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white">
-      <div class="px-4 py-3 grid gap-2">
-        <a href="/index.html"     class="py-2 text-neutral-800 hover:text-red-700">Home</a>
-        <a href="/services.html"  class="py-2 text-neutral-800 hover:text-red-700">Services</a>
-        <a href="/reviews.html"   class="py-2 text-neutral-800 hover:text-red-700">Reviews</a>
-        <a href="/faqs.html"      class="py-2 text-neutral-800 hover:text-red-700">FAQs</a>
-        <a href="/quote.html"     class="py-2 text-neutral-800 hover:text-red-700 font-semibold">Get a Quote</a>
+    <nav id="mobileMenu"
+         class="md:hidden hidden border-t border-neutral-200 bg-white"
+         aria-label="Mobile">
+      <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
+        <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700">Home</a>
+        <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700">Services</a>
+        <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700">Reviews</a>
+        <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700">FAQs</a>
+        <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold">Get a Quote</a>
       </div>
     </nav>
   </div>
@@ -156,14 +190,24 @@
 
 <script>
 (function(){
-  const btn  = document.getElementById('mobileMenuBtn');
-  const menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', () => {
-    const isOpen = !menu.classList.contains('hidden');
-    menu.classList.toggle('hidden');             // show/hide the panel
-    btn.setAttribute('aria-expanded', String(!isOpen));
+  const btn   = document.getElementById('mobileMenuBtn');
+  const menu  = document.getElementById('mobileMenu');
+  const panel = menu ? menu.querySelector('.slide-menu') : null;
+  if (!btn || !menu || !panel) return;
+
+  function toggle(open){
+    const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
+    menu.classList.toggle('hidden', !willOpen);
+    panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+    btn.setAttribute('aria-expanded', String(willOpen));
+  }
+
+  btn.addEventListener('click', () => toggle());
+  menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
+  document.addEventListener('click', e => {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
   });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
 })();
 </script>
 
