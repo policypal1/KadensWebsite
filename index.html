@@ -43,6 +43,11 @@
     position: relative !important; 
   }
 
+  /* Quick facts row (!!! this fixes huge SVGs) */
+  .hero-facts { display:grid !important; grid-template-columns: 1fr 1fr 1fr; gap:8px; margin-top:10px; }
+  .hero-fact  { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
+  .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
+
   /* Hide right quick-quote column on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
@@ -94,16 +99,16 @@
     display: inline-flex; align-items: center; gap: .5rem;
     padding: .45rem .7rem; border-radius: 9999px; background: #fff;
     border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgb(0 0 0 / .04);
-    font-size: .82rem; white-space: nowrap; color:#111;   /* ensure text is visible */
+    font-size: .82rem; white-space: nowrap; color:#111;
   }
   .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
 
-  /* Trim repeat badges */
+  /* Trim repeat badges under hero headline */
   section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
 
-  /* Image crop + stronger overlay */
+  /* Image crop + stronger overlay for readability */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
     object-position: center 35% !important; filter: saturate(0.95) contrast(1.05);
   }
@@ -121,6 +126,7 @@
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
+
   #reviews .grid > article:nth-child(n+3){ display: none !important; }
   footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
 
