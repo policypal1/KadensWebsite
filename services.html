@@ -1,4 +1,4 @@
-<!doctype html>
+\<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -17,15 +17,17 @@
     .animate-fadeIn { animation: fadeIn .25s ease-out both; }
     .glass { backdrop-filter: blur(8px); }
 
-    /* Underline effect for nav links */
+    /* Underline effect for nav links (desktop only) */
     .nav-link { position: relative; padding-bottom: 4px; transition: color .2s ease; }
     .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background-color: #dc2626; transition: width .3s ease; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     .nav-link:hover { color: #dc2626; }
+    /* Remove underline line inside the MOBILE menu */
+    nav[aria-label="Mobile"] .nav-link::after { display: none; }
 
     /* Slide-down animation for the mobile menu */
-    .slide-menu{transition: max-height .25s ease, opacity .2s ease, transform .2s ease; max-height:0; opacity:0; transform: translateY(-4px);}
-    .slide-menu[data-state="open"]{max-height: 320px; opacity:1; transform: translateY(0);}
+    .slide-menu{transition: max-height .25s ease, opacity .2s ease, transform .2s ease; max-height:0; opacity:0; transform: translateY(-4px);} 
+    .slide-menu[data-state="open"]{max-height: 320px; opacity:1; transform: translateY(0);} 
   </style>
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
@@ -78,8 +80,9 @@
           <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
           <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
           <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
-          <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
-          <a role="menuitem" href="tel:+15039492257" class="py-2 text-neutral-800 hover:text-red-700">Call (503) 949‑2257</a>
+          <!-- Get a Quote highlighted in #26dcdc on mobile -->
+          <a role="menuitem" href="/quote.html"    class="py-2 font-semibold nav-link" style="color:#26dcdc">Get a Quote</a>
+          <!-- removed phone number per request -->
         </div>
       </nav>
     </div>
@@ -102,24 +105,24 @@
   </section>
 
   <!-- Main -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24" id="services">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 md:pb-24" id="services">
 
-    <!-- Service cards -->
-    <div class="mt-8 md:mt-10 grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+    <!-- Service cards : tuned for less bulk on mobile -->
+    <div class="mt-6 md:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
 
       <!-- CARD: Front Windshield -->
       <article class="group rounded-2xl md:rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
-        <div class="relative w-full aspect-[16/9]">
+        <div class="relative w-full aspect-[4/3] md:aspect-[16/9]">
           <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Front Windshield" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
         </div>
-        <div class="p-5 md:p-6 flex flex-col h-full">
+        <div class="p-4 md:p-6 flex flex-col h-full">
           <div class="flex items-center justify-between gap-3">
             <h3 class="text-base md:text-lg font-bold">Front Windshield</h3>
             <span class="text-[10px] md:text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Most Popular</span>
           </div>
           <p class="mt-1 text-sm text-neutral-600">OEM-grade glass &amp; urethane. Leak-free, quiet seal.</p>
-          <div class="mt-3 md:mt-4 flex items-center gap-1">
-            <span class="text-2xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$199</span>
+          <div class="mt-2 md:mt-4 flex items-center gap-1">
+            <span class="text-xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$199</span>
             <span class="text-black text-sm font-bold leading-none">+</span>
           </div>
           <ul class="mt-3 md:mt-4 space-y-2 text-sm flex-1">
@@ -127,22 +130,22 @@
             <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Lifetime workmanship warranty</li>
           </ul>
           <div class="mt-4 md:mt-5 grid grid-cols-2 gap-2">
-            <a href="#estimator" class="text-center rounded-xl px-4 py-2.5 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
-            <a href="quote.html" class="text-center rounded-xl px-4 py-2.5 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
+            <a href="#estimator" class="text-center rounded-xl px-3 py-2 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
+            <a href="quote.html" class="text-center rounded-xl px-3 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
           </div>
         </div>
       </article>
 
       <!-- CARD: Rear Glass -->
       <article class="group rounded-2xl md:rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
-        <div class="relative w-full aspect-[16/9]">
+        <div class="relative w-full aspect-[4/3] md:aspect-[16/9]">
           <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
         </div>
-        <div class="p-5 md:p-6 flex flex-col h-full">
+        <div class="p-4 md:p-6 flex flex-col h-full">
           <h3 class="text-base md:text-lg font-bold">Rear Glass</h3>
           <p class="mt-1 text-sm text-neutral-600">Defrost lines integrated and tested.</p>
-          <div class="mt-3 md:mt-4 flex items-center gap-1">
-            <span class="text-2xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$189</span>
+          <div class="mt-2 md:mt-4 flex items-center gap-1">
+            <span class="text-xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$189</span>
             <span class="text-black text-sm font-bold leading-none">+</span>
           </div>
           <ul class="mt-3 md:mt-4 space-y-2 text-sm flex-1">
@@ -150,22 +153,22 @@
             <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Clean removal of broken glass</li>
           </ul>
           <div class="mt-4 md:mt-5 grid grid-cols-2 gap-2">
-            <a href="#estimator" class="text-center rounded-xl px-4 py-2.5 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
-            <a href="quote.html" class="text-center rounded-xl px-4 py-2.5 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
+            <a href="#estimator" class="text-center rounded-xl px-3 py-2 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
+            <a href="quote.html" class="text-center rounded-xl px-3 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
           </div>
         </div>
       </article>
 
       <!-- CARD: Car Door Glass -->
       <article class="group rounded-2xl md:rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
-        <div class="relative w-full aspect-[16/9]">
+        <div class="relative w-full aspect-[4/3] md:aspect-[16/9]">
           <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Car Door Glass" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
         </div>
-        <div class="p-5 md:p-6 flex flex-col h-full">
+        <div class="p-4 md:p-6 flex flex-col h-full">
           <h3 class="text-base md:text-lg font-bold">Car Door Glass</h3>
           <p class="mt-1 text-sm text-neutral-600">Precise fit, tracks &amp; regulators checked.</p>
-          <div class="mt-3 md:mt-4 flex items-center gap-1">
-            <span class="text-2xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$149</span>
+          <div class="mt-2 md:mt-4 flex items-center gap-1">
+            <span class="text-xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$149</span>
             <span class="text-black text-sm font-bold leading-none">+</span>
           </div>
           <ul class="mt-3 md:mt-4 space-y-2 text-sm flex-1">
@@ -173,22 +176,22 @@
             <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Weather seal inspection</li>
           </ul>
           <div class="mt-4 md:mt-5 grid grid-cols-2 gap-2">
-            <a href="#estimator" class="text-center rounded-xl px-4 py-2.5 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
-            <a href="quote.html" class="text-center rounded-xl px-4 py-2.5 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
+            <a href="#estimator" class="text-center rounded-xl px-3 py-2 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
+            <a href="quote.html" class="text-center rounded-xl px-3 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
           </div>
         </div>
       </article>
 
       <!-- CARD: Chip Repair -->
       <article class="group rounded-2xl md:rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
-        <div class="relative w-full aspect-[16/9]">
+        <div class="relative w-full aspect-[4/3] md:aspect-[16/9]">
           <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repair" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
         </div>
-        <div class="p-5 md:p-6 flex flex-col h-full">
+        <div class="p-4 md:p-6 flex flex-col h-full">
           <h3 class="text-base md:text-lg font-bold">Chip Repair</h3>
           <p class="mt-1 text-sm text-neutral-600">Stop cracks before they spread.</p>
-          <div class="mt-3 md:mt-4 flex items-center gap-1">
-            <span class="text-2xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$49</span>
+          <div class="mt-2 md:mt-4 flex items-center gap-1">
+            <span class="text-xl md:text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$49</span>
             <span class="text-black text-sm font-bold leading-none">+</span>
           </div>
           <ul class="mt-3 md:mt-4 space-y-2 text-sm flex-1">
@@ -196,8 +199,8 @@
             <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Most chips in ~20 minutes</li>
           </ul>
           <div class="mt-4 md:mt-5 grid grid-cols-2 gap-2">
-            <a href="#estimator" class="text-center rounded-xl px-4 py-2.5 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
-            <a href="quote.html" class="text-center rounded-xl px-4 py-2.5 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
+            <a href="#estimator" class="text-center rounded-xl px-3 py-2 font-semibold text-red-600 border-2 border-red-600 hover:bg-red-50">Estimate</a>
+            <a href="quote.html" class="text-center rounded-xl px-3 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Book</a>
           </div>
         </div>
       </article>
@@ -273,26 +276,17 @@
       </div>
     </section>
 
-    <!-- Comparison -->
+    <!-- Assurance strip / closes bottom gap neatly on mobile -->
     <section class="mt-12 md:mt-16">
-      <h3 class="text-xl md:text-3xl font-black text-center">Why Choose Clear Choice</h3>
-      <div class="mt-6 md:mt-8 overflow-x-auto rounded-2xl border border-neutral-200">
-        <table class="min-w-full text-sm">
-          <thead class="bg-neutral-50">
-            <tr>
-              <th class="p-3 md:p-4 text-left font-semibold">Feature</th>
-              <th class="p-3 md:p-4 text-left font-semibold">Clear Choice</th>
-              <th class="p-3 md:p-4 text-left font-semibold">Typical Big Chain</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y">
-            <tr><td class="p-3 md:p-4">Same-day mobile service</td><td class="p-3 md:p-4 font-semibold">Yes (Salem/Keizer)</td><td class="p-3 md:p-4">Often 2–5 days</td></tr>
-            <tr><td class="p-3 md:p-4">OEM-grade glass & urethane</td><td class="p-3 md:p-4 font-semibold">Standard</td><td class="p-3 md:p-4">Varies</td></tr>
-            <tr><td class="p-3 md:p-4">Lifetime workmanship warranty</td><td class="p-3 md:p-4 font-semibold">Included</td><td class="p-3 md:p-4">Limited</td></tr>
-            <tr><td class="p-3 md:p-4">Clean install (dash & vents)</td><td class="p-3 md:p-4 font-semibold">Included</td><td class="p-3 md:p-4">Sometimes extra</td></tr>
-            <tr><td class="p-3 md:p-4">Transparent “from” pricing</td><td class="p-3 md:p-4 font-semibold">$49+ / $149+ / $189+ / $199+</td><td class="p-3 md:p-4">“Call for price”</td></tr>
-          </tbody>
-        </table>
+      <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-5 md:p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+          <div class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>No hidden fees — price confirmed by VIN</div>
+          <div class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Same‑day mobile installs in Salem/Keizer</div>
+          <div class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-500"></span>Lifetime workmanship warranty</div>
+        </div>
+        <div class="mt-4 flex justify-center">
+          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote</a>
+        </div>
       </div>
     </section>
 
