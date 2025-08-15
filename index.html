@@ -10,7 +10,7 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
+ <style>
 /* ================= MOBILE-ONLY OVERRIDES ================= */
 @media (max-width: 640px){
   /* Baseline type/spacing */
@@ -25,70 +25,65 @@
   header { position: sticky; top: 0; z-index: 50; }
   #mobileMenu { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
 
-  /* Smooth slide for the mobile dropdown */
-  .slide-menu{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .25s ease;
-    box-shadow: 0 6px 18px rgba(0,0,0,.06);
-  }
+  /* Mobile dropdown slide */
+  .slide-menu{ max-height: 0; overflow: hidden; transition: max-height .25s ease; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
   .slide-menu[data-state="open"]{ max-height: 320px; }
 
-  /* Hide full-width marquee under hero on phones */
+  /* Hide desktop review band on phones */
   .reviews-strip { display: none !important; }
 
   /* HERO sizing/layout */
   .h-\[90vh\] { height: 70vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
 
-  /* Reserve space so absolute CTAs/reviews don't overlap content */
+  /* Reserve space so absolute CTAs / proofs / reviews never overlap the text */
   .hero-left  { 
     padding-top: 10vh !important; 
-    padding-bottom: 220px !important; /* <-- key fix */
+    padding-bottom: 280px !important;  /* space for CTAs + proofs + reviews */
     position: relative !important; 
   }
 
-  /* Hide right-side quick quote card in hero on phones */
+  /* Hide right quick-quote column on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
-  /* Stacked CTAs pinned near bottom (thumb reach) */
+  /* Stacked CTAs pinned ~15% from bottom (thumb reach) */
   .hero-ctas{
     position: absolute !important;
     left: 1rem; right: 1rem;
-    bottom: calc(14% + env(safe-area-inset-bottom)) !important;
+    bottom: calc(15% + env(safe-area-inset-bottom)) !important;
     display: grid !important;
     grid-auto-flow: row !important;
     gap: 10px !important;
-    z-index: 2; /* above reviews */
+    z-index: 3; /* above proofs & reviews */
   }
   .hero-ctas a { width: 100% !important; }
 
-  /* Hide desktop CTA row on mobile */
-  .hero-desktop-ctas { display: none !important; }
-
-  /* De-clutter hero badges that repeat later */
-  section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
-
-  /* “Crop” hero image & stronger overlay for readability */
-  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position: center 35% !important;
-    filter: saturate(0.95) contrast(1.05);
+  /* Small proof cards between CTAs and reviews */
+  .hero-proofs{
+    position: absolute; left: 1rem; right: 1rem;
+    bottom: calc(9% + env(safe-area-inset-bottom));
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    z-index: 2;
   }
-  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
-    background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
+  .hero-proof{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 12px; border-radius:14px;
+    background: rgba(255,255,255,.92);
+    border:1px solid rgba(0,0,0,.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    font-size:.85rem; color:#111;
   }
+  .hero-proof .icon{ width:16px; height:16px; color:#ef4444; opacity:.9; }
 
-  /* Mini scrolling reviews INSIDE the hero, below CTAs */
+  /* Reviews at the very bottom */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
     position:absolute; left:1rem; right:1rem;
-    bottom: calc(5% + env(safe-area-inset-bottom));
+    bottom: calc(2% + env(safe-area-inset-bottom));
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     overflow: hidden;
-    z-index: 1; /* under buttons */
+    z-index: 1;
   }
   .hero-reviews-track{
     width: max-content; display: flex; gap: .5rem;
@@ -99,35 +94,40 @@
     display: inline-flex; align-items: center; gap: .5rem;
     padding: .45rem .7rem; border-radius: 9999px; background: #fff;
     border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgb(0 0 0 / .04);
-    font-size: .82rem; white-space: nowrap;
+    font-size: .82rem; white-space: nowrap; color:#111;   /* ensure text is visible */
   }
   .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
 
-  /* “Quick facts” row */
-  .hero-facts { display: grid !important; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
-  .hero-fact { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); font-size:12px; }
-  .hero-fact svg{ width:16px; height:16px; opacity:.95; }
+  /* Trim repeat badges */
+  section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
+  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
+  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
 
-  /* Sections below hero – minor reductions */
+  /* Image crop + stronger overlay */
+  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
+    object-position: center 35% !important; filter: saturate(0.95) contrast(1.05);
+  }
+  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
+    background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
+  }
+
+  /* Sections below hero */
   #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
   section.relative.overflow-hidden.py-16 aside { display: none !important; }
   #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
   #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
   #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
   #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
-
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
-
   #reviews .grid > article:nth-child(n+3){ display: none !important; }
-
   footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
 
   img { max-width: 100%; height: auto; }
   img[width][height]{ height: auto; }
 
-  /* Premium sticky mobile action bar (safe-area aware) */
+  /* Premium sticky mobile action bar */
   .sticky-actions{
     background: rgba(255,255,255,.9);
     backdrop-filter: blur(8px);
@@ -303,26 +303,32 @@
 
 
 
-<!-- HERO (full-bleed with mobile-optimized CTAs + reviews) -->
+<!-- HERO (full-bleed with mobile-optimized CTAs, proof cards, and bottom reviews) -->
 <section class="relative overflow-hidden">
+  <!-- Background image + overlay -->
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
-         alt="Mobile auto glass service on-site"
-         class="w-full h-full object-cover"
-         loading="eager" fetchpriority="high" />
+    <img
+      src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+      alt="Mobile auto glass service on-site"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
   </div>
 
+  <!-- Shell -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
-      <!-- Left -->
+
+      <!-- LEFT: Headline + CTAs (mobile optimized via CSS) -->
       <div class="text-white max-w-2xl hero-left">
         <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
-          Mobile Windshield Repair & Replacement
+          Mobile Windshield Repair &amp; Replacement
           <span class="text-red-400 block md:inline">Service You Trust</span>
         </h1>
 
-        <!-- Mobile “quick facts” row -->
+        <!-- Quick facts (mobile shows compact tiles) -->
         <div class="hero-facts sm:hidden">
           <div class="hero-fact">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
@@ -354,41 +360,49 @@
           </a>
         </div>
 
-        <!-- Mobile CTAs pinned near bottom (order = high-convert first) -->
-        <div class="hero-ctas sm:hidden">
-          <!-- Primary: Get a Quote (top) -->
+        <!-- Mobile CTAs pinned ~15% from bottom (order = high-convert first) -->
+        <div class="hero-ctas sm:hidden" aria-label="Primary actions">
           <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition"
-             aria-label="Get a Quote">
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
             Get a Quote
           </a>
-          <!-- Secondary: Call -->
           <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition"
-             aria-label="Call (503) 949-2257">
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
             Call (503) 949-2257
           </a>
         </div>
 
-        <!-- Mobile mini-reviews BELOW CTAs -->
+        <!-- Compact proof cards between CTAs and reviews (mobile only) -->
+        <div class="hero-proofs sm:hidden" aria-hidden="false">
+          <div class="hero-proof">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Up-front, firm price
+          </div>
+          <div class="hero-proof">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/></svg>
+            We come to you
+          </div>
+        </div>
+
+        <!-- Scrolling reviews at the very bottom (mobile only) -->
         <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
           <div class="hero-reviews-track">
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly & fast”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Great communication”</span>
-            <!-- duplicate for seamless loop -->
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
+            <!-- duplicate set for seamless loop -->
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly & fast”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Great communication”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
           </div>
         </div>
       </div>
 
-      <!-- Right: Mini Quick Quote (hidden on phones by CSS) -->
+      <!-- RIGHT: Mini Quick Quote (hidden on phones via CSS) -->
       <aside class="w-full max-w-md justify-self-end">
         <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
           <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
@@ -414,11 +428,14 @@
           </form>
         </div>
       </aside>
+
     </div>
   </div>
 
+  <!-- soft fade into next section -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
+
 
 
 
