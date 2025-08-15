@@ -40,7 +40,13 @@
   /* HERO sizing/layout */
   .h-\[90vh\] { height: 70vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
-  .hero-left  { padding-top: 10vh !important; position: relative !important; }
+
+  /* Reserve space so absolute CTAs/reviews don't overlap content */
+  .hero-left  { 
+    padding-top: 10vh !important; 
+    padding-bottom: 220px !important; /* <-- key fix */
+    position: relative !important; 
+  }
 
   /* Hide right-side quick quote card in hero on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
@@ -53,6 +59,7 @@
     display: grid !important;
     grid-auto-flow: row !important;
     gap: 10px !important;
+    z-index: 2; /* above reviews */
   }
   .hero-ctas a { width: 100% !important; }
 
@@ -81,6 +88,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     overflow: hidden;
+    z-index: 1; /* under buttons */
   }
   .hero-reviews-track{
     width: max-content; display: flex; gap: .5rem;
@@ -107,11 +115,13 @@
   #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
   #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
   #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
+
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
 
   #reviews .grid > article:nth-child(n+3){ display: none !important; }
+
   footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
 
   img { max-width: 100%; height: auto; }
@@ -129,6 +139,39 @@
   }
   .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius: .75rem; }
 }
+
+/* ================= DESKTOP / NORMAL STYLES (unchanged layout) ================= */
+@keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
+.animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
+
+/* nav link underline */
+.nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
+.nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.nav-link:hover{color:#dc2626}
+
+/* scrolling review strip (desktop band) */
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.reviews-strip { --speed: 38s; }
+.reviews-track { display:flex; width:max-content; gap:.75rem; animation: marqueeScroll var(--speed) linear infinite; }
+.reviews-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.8125rem; white-space:nowrap; }
+.review-star { color:#f59e0b; }
+.reviews-rail:hover .reviews-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
+
+/* HOW IT WORKS – premium timeline */
+@keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
+.hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
+@media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
+.hiw-badge{ background: radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%), linear-gradient(180deg,#ef4444,#b91c1c); box-shadow:0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25); }
+.hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
+
+/* Premium promise band helpers */
+.premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
+.frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+
 ==== DESKTOP / NORMAL STYLES (unchanged layout) ================= */
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
 .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
