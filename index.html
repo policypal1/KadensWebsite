@@ -20,7 +20,9 @@
   a, button { -webkit-tap-highlight-color: transparent; }
   .reviews-strip { display: none !important; }
 
-  /* ===== HERO ===== */
+  $1
+  .h-\[90vh\] { height: 66vh !important; min-height: 520px !important; }
+
   /* Big headline */
   section.relative.overflow-hidden:first-of-type .hero-left h1{
     font-size: 46px !important;
@@ -42,7 +44,7 @@
   /* Push content down & reserve space for bottom CTA/reviews */
   section.relative.overflow-hidden:first-of-type .hero-left{
     padding-top: 11vh !important;
-    padding-bottom: 320px !important;
+    padding-bottom: 230px !important;
     position: relative !important;
   }
 
@@ -54,7 +56,7 @@
   /* CTAs lower */
   section.relative.overflow-hidden:first-of-type .hero-ctas{
     position:absolute !important; left:1rem; right:1rem;
-    bottom: calc(8% + env(safe-area-inset-bottom)) !important;
+    bottom: calc(5% + env(safe-area-inset-bottom)) !important;
     display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
   }
   section.relative.overflow-hidden:first-of-type .hero-ctas a{ width:100% !important; }
@@ -868,8 +870,7 @@
     </div>
   </div>
 
-
-    <!-- FOOTER (contained) -->
+   <!-- FOOTER (contained) -->
   <footer class="mt-8 md:mt-12 border-t border-neutral-200 bg-white w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
 
@@ -922,7 +923,12 @@
       </div>
     </div>
   </footer>
-  
+
+<!-- SCRIPTS -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </main>
 </body>
 </html>
