@@ -38,22 +38,21 @@
   .reviews-strip { display: none !important; }
 
   /* HERO sizing/layout */
-  .h-\[90vh\] { height: 64vh !important; min-height: 520px !important; }
+  .h-\[90vh\] { height: 70vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
-  .hero-left  { padding-top: 12vh !important; position: relative !important; }  /* ~25% from top for better composition */
+  .hero-left  { padding-top: 10vh !important; position: relative !important; }
 
   /* Hide right-side quick quote card in hero on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
-  /* Top red CTA + stacked CTAs (thumb reach) */
-  .hero-top-cta { margin-top: 10px; width: 100% !important; display: inline-flex !important; }
-  .hero-ctas {
+  /* Stacked CTAs pinned near bottom (thumb reach) */
+  .hero-ctas{
+    position: absolute !important;
+    left: 1rem; right: 1rem;
+    bottom: calc(14% + env(safe-area-inset-bottom)) !important;
     display: grid !important;
     grid-auto-flow: row !important;
     gap: 10px !important;
-    position: absolute !important;
-    left: 1rem; right: 1rem;
-    bottom: 12% !important;
   }
   .hero-ctas a { width: 100% !important; }
 
@@ -71,50 +70,48 @@
     filter: saturate(0.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
-    background: linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.50) 40%, rgba(0,0,0,.18) 100%) !important;
+    background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
   }
 
-  /* Mini scrolling reviews inside the hero */
+  /* Mini scrolling reviews INSIDE the hero, below CTAs */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
-    position:absolute; left:1rem; right:1rem; bottom: calc(4% + env(safe-area-inset-bottom));
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    position:absolute; left:1rem; right:1rem;
+    bottom: calc(5% + env(safe-area-inset-bottom));
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     overflow: hidden;
   }
-  .hero-reviews-track{ width: max-content; display: flex; gap: .5rem; animation: heroMarquee 28s linear infinite; }
+  .hero-reviews-track{
+    width: max-content; display: flex; gap: .5rem;
+    animation: heroMarquee 30s linear infinite;
+  }
   @media (prefers-reduced-motion: reduce){ .hero-reviews-track{ animation: none; transform: none; } }
   .hero-reviews .review-pill{
     display: inline-flex; align-items: center; gap: .5rem;
     padding: .45rem .7rem; border-radius: 9999px; background: #fff;
     border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgb(0 0 0 / .04);
-    font-size: .78rem; white-space: nowrap;
+    font-size: .82rem; white-space: nowrap;
   }
-  .hero-reviews .review-star{ color: #f59e0b; }
+  .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
 
   /* “Quick facts” row */
   .hero-facts { display: grid !important; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
   .hero-fact { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); font-size:12px; }
   .hero-fact svg{ width:16px; height:16px; opacity:.95; }
 
-  /* Guarantees: show only top 2 on phones */
+  /* Sections below hero – minor reductions */
   #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
-
-  /* Same-Day Mobile band: hide right-side About card */
   section.relative.overflow-hidden.py-16 aside { display: none !important; }
-
-  /* Coverage, How It Works, Reviews, Footer */
   #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
   #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
   #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
   #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
-
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
 
   #reviews .grid > article:nth-child(n+3){ display: none !important; }
-
   footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
 
   img { max-width: 100%; height: auto; }
@@ -132,8 +129,7 @@
   }
   .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius: .75rem; }
 }
-
-/* ================= DESKTOP / NORMAL STYLES (unchanged layout) ================= */
+==== DESKTOP / NORMAL STYLES (unchanged layout) ================= */
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
 .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
 
@@ -264,10 +260,13 @@
 
 
 
-<!-- HERO (full-bleed with mini quick quote) -->
+<!-- HERO (full-bleed with mobile-optimized CTAs + reviews) -->
 <section class="relative overflow-hidden">
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop" alt="Mobile auto glass service on-site" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+         alt="Mobile auto glass service on-site"
+         class="w-full h-full object-cover"
+         loading="eager" fetchpriority="high" />
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
   </div>
 
@@ -275,7 +274,6 @@
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
       <!-- Left -->
       <div class="text-white max-w-2xl hero-left">
-
         <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
           Mobile Windshield Repair & Replacement
           <span class="text-red-400 block md:inline">Service You Trust</span>
@@ -301,7 +299,7 @@
           OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
         </p>
 
-        <!-- Desktop CTAs -->
+        <!-- Desktop CTAs (hidden on phones by CSS) -->
         <div class="mt-8 flex flex-col sm:flex-row gap-3 hero-desktop-ctas">
           <a href="/quote.html"
              class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
@@ -312,32 +310,37 @@
             Call (503) 949-2257
           </a>
         </div>
-        <!-- Mobile bottom CTAs (visible on phones) -->
+
+        <!-- Mobile CTAs pinned near bottom (order = high-convert first) -->
         <div class="hero-ctas sm:hidden">
+          <!-- Primary: Get a Quote (top) -->
           <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition"
+             aria-label="Get a Quote">
             Get a Quote
           </a>
+          <!-- Secondary: Call -->
           <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition"
+             aria-label="Call (503) 949-2257">
             Call (503) 949-2257
           </a>
         </div>
 
-        <!-- Mobile mini-reviews (moved below CTAs) -->
-        <div class="hero-reviews sm:hidden">
+        <!-- Mobile mini-reviews BELOW CTAs -->
+        <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
           <div class="hero-reviews-track">
-            <span class="review-pill">$1★★★★★$2 “On time & super clean”</span>
-            <span class="review-pill">$1★★★★★$2 “Price matched the quote”</span>
-            <span class="review-pill">$1★★★★★$2 “Mobile install at work”</span>
-            <span class="review-pill">$1★★★★★$2 “Friendly & fast”</span>
-            <span class="review-pill">$1★★★★★$2 “Great communication”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly & fast”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Great communication”</span>
             <!-- duplicate for seamless loop -->
-            <span class="review-pill">$1★★★★★$2 “On time & super clean”</span>
-            <span class="review-pill">$1★★★★★$2 “Price matched the quote”</span>
-            <span class="review-pill">$1★★★★★$2 “Mobile install at work”</span>
-            <span class="review-pill">$1★★★★★$2 “Friendly & fast”</span>
-            <span class="review-pill">$1★★★★★$2 “Great communication”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly & fast”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Great communication”</span>
           </div>
         </div>
       </div>
@@ -368,12 +371,12 @@
           </form>
         </div>
       </aside>
-
     </div>
   </div>
 
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
+
 
 
 <script>
