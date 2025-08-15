@@ -11,141 +11,123 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-/* ================= MOBILE-ONLY OVERRIDES (drop-in replace) ================= */
+/* ================= MOBILE-ONLY OVERRIDES (STRONG SELECTORS) ================= */
 @media (max-width: 640px){
-  /* Baseline */
+
+  /* Base */
   html, body { -webkit-text-size-adjust: 100%; }
   body { font-size: 16px; line-height: 1.5; }
-  h1 { font-size: 32px !important; line-height: 1.15 !important; letter-spacing:-0.01em !important; }
-  h2 { font-size: 26px !important; line-height: 1.2 !important; }
-  p  { font-size: 15px !important; }
   a, button { -webkit-tap-highlight-color: transparent; }
-
-  /* Header / menu */
-  header { position: sticky; top: 0; z-index: 50; }
-  #mobileMenu { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-  .slide-menu{ max-height: 0; overflow: hidden; transition: max-height .25s ease; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-  .slide-menu[data-state="open"]{ max-height: 320px; }
-
-  /* Hide desktop review band */
   .reviews-strip { display: none !important; }
 
-  /* ===== HERO (high converting) ===== */
-  .h-\[90vh\] { height: 72vh !important; min-height: 560px !important; }
-  .hero-shell { align-items: flex-start !important; }
+  /* ===== HERO ===== */
+  /* Make the h1 huge on phones regardless of Tailwind utilities */
+  section.relative.overflow-hidden:first-of-type .hero-left h1{
+    font-size: 46px !important;
+    line-height: 1.08 !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 8px !important;
+  }
+  section.relative.overflow-hidden:first-of-type .hero-left h1 > span{
+    display: block !important;
+    font-size: 40px !important;
+    line-height: 1.04 !important;
+    font-weight: 900 !important;
+  }
 
-  /* Kick the whole block down and reserve bottom for CTAs/reviews */
-  .hero-left{
-    padding-top: 9vh !important;
-    padding-bottom: 300px !important;
+  /* Hide the OEM/scheduling paragraph under the headline */
+  section.relative.overflow-hidden:first-of-type .hero-left > p{ display: none !important; }
+
+  /* Drop the whole block a bit and reserve room for bottom items */
+  section.relative.overflow-hidden:first-of-type .hero-left{
+    padding-top: 11vh !important;
+    padding-bottom: 320px !important;
     position: relative !important;
   }
 
-  /* Bigger/bolder headline & kicker */
-  .hero-left h1{
-    font-size: 40px !important;
-    line-height: 1.1 !important;
-    font-weight: 900 !important;
-    letter-spacing: -0.015em !important;
-    margin-bottom: 10px !important;
-  }
-  .hero-left h1 span{
-    display:block !important;
-    font-size: 34px !important;
-    font-weight: 900 !important;
-    line-height: 1.05 !important;
-    letter-spacing: -0.01em !important;
-  }
-
-  /* Hide the sub-copy (scheduling/next openings/OEM paragraph) on mobile */
-  .hero-left > p { display: none !important; }
-  .hero-schedule { display: none !important; }
-
-  /* Keep the 3 fast-fact badges */
-  .hero-facts { display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
-  .hero-fact  { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
+  /* Keep the three fact badges */
+  .hero-facts{ display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:12px; }
+  .hero-fact{ display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
   .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
 
-  /* Hide right quick-quote column on phones */
-  section.relative.overflow-hidden:first-of-type aside { display: none !important; }
-
-  /* CTAs lower on the page for thumb reach */
-  .hero-ctas{
-    position: absolute !important;
-    left: 1rem; right: 1rem;
-    bottom: calc(12% + env(safe-area-inset-bottom)) !important;
-    display: grid !important;
-    grid-auto-flow: row !important;
-    gap: 14px !important;
-    z-index: 3;
+  /* Push CTAs lower (closer to bottom) */
+  section.relative.overflow-hidden:first-of-type .hero-ctas{
+    position:absolute !important;
+    left:1rem; right:1rem;
+    bottom: calc(8% + env(safe-area-inset-bottom)) !important;
+    display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
   }
-  .hero-ctas a { width: 100% !important; }
+  section.relative.overflow-hidden:first-of-type .hero-ctas a{ width:100% !important; }
 
-  /* Remove proof chips under Call button on mobile */
-  .hero-proofs{ display: none !important; }
+  /* Remove the proof chips under the call button */
+  section.relative.overflow-hidden:first-of-type .hero-proofs{ display:none !important; }
 
-  /* Reviews pinned to very bottom; rating pill sizing fix */
+  /* Reviews pinned to very bottom */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .hero-reviews{
+  section.relative.overflow-hidden:first-of-type .hero-reviews{
     position:absolute; left:1rem; right:1rem;
-    bottom: calc(2% + env(safe-area-inset-bottom));
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    overflow: hidden; z-index: 1;
+    bottom: calc(2% + env(safe-area-inset-bottom)); overflow:hidden; z-index:1;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
   }
-  .hero-reviews-track{ width: max-content; display:flex; gap:.5rem; animation: heroMarquee 28s linear infinite; }
-  @media (prefers-reduced-motion: reduce){ .hero-reviews-track{ animation: none; transform: none; } }
-  .review-pill, .rating-pill, .score-pill{ display:inline-flex; align-items:center; width:auto; max-width:100%; }
-
-  .hero-reviews .review-pill{
-    gap:.5rem; padding:.45rem .7rem; border-radius:9999px; background:#fff;
-    border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04);
+  section.relative.overflow-hidden:first-of-type .hero-reviews-track{ width:max-content; display:flex; gap:.5rem; animation:heroMarquee 28s linear infinite; }
+  @media (prefers-reduced-motion: reduce){
+    section.relative.overflow-hidden:first-of-type .hero-reviews-track{ animation:none; transform:none; }
+  }
+  section.relative.overflow-hidden:first-of-type .hero-reviews .review-pill{
+    display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .7rem;
+    border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04);
     font-size:.82rem; white-space:nowrap; color:#111;
   }
-  .hero-reviews .stars{ letter-spacing:.5px; color:#f59e0b; }
+  section.relative.overflow-hidden:first-of-type .hero-reviews .stars{ letter-spacing:.5px; color:#f59e0b; }
 
-  /* Stronger overlay for readability */
+  /* Stronger overlay & crop for readability */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position: center 35% !important; filter: saturate(0.95) contrast(1.05);
+    object-position: center 35% !important; filter:saturate(.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
-    background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
+    background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.52) 40%,rgba(0,0,0,.18) 100%) !important;
   }
 
-  /* ===== COVERAGE section ===== */
-  /* Put the tag + title above the map; hide duplicate chip row */
-  #coverage-map .chip-group:nth-of-type(2){ display:none !important; } /* hides extra Salem/Keizer row */
-  #coverage-map .section-badge{ order:-2; margin-bottom:.5rem; }
-  #coverage-map h2{ order:-1; margin-top:.25rem; }
-  #coverage-map .map-card{ order:0; }
-  #coverage-map .cta-group{ order:1; }
-  #coverage-map .grid{ display:grid; gap:14px !important; }
+  /* ===== COVERAGE (title + badge ABOVE map on mobile) ===== */
+  /* Collapse grid to a column and reorder: right column first, map second */
+  #coverage-map .grid{ display:flex !important; flex-direction:column !important; gap:14px !important; }
+  #coverage-map .grid > :first-child{ order:2 !important; }  /* map card */
+  #coverage-map .grid > :last-child{  order:1 !important; }  /* text/cta column */
 
-  /* ===== Below-hero cleanups ===== */
-  #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
-  section.relative.overflow-hidden.py-16 aside { display: none !important; }
-  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
-  #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
+  /* Hide the duplicate Salem/Keizer chip row in the text column */
+  #coverage-map .chip-mirror{ display:none !important; }
+  /* Keep the chips on the MAP itself visible (no change) */
 
-  #reviews .grid > article:nth-child(n+3){ display: none !important; }
-  footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
+  /* Map height on phones */
+  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height:260px !important; min-height:260px !important; }
 
-  img { max-width: 100%; height: auto; }
-  img[width][height]{ height: auto; }
+  /* ===== REVIEWS band: prevent stretched rating pill ===== */
+  #reviews .inline-flex.items-center.gap-2.rounded-full{
+    width:auto !important; max-width:100% !important; display:inline-flex !important;
+  }
 
-  /* Premium sticky mobile action bar */
+  /* Other mobile trims (unchanged) */
+  #guarantees .grid > .group:nth-child(n+3){ display:none !important; }
+  section.relative.overflow-hidden.py-16 aside { display:none !important; }
+  #how-it-works .md\:grid-cols-3{ grid-template-columns:1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns:1fr 1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display:none !important; }
+
+  #reviews .grid > article:nth-child(n+3){ display:none !important; }
+  footer .grid.md\:grid-cols-4{ grid-template-columns:1fr !important; }
+
+  img{ max-width:100%; height:auto; }
+  img[width][height]{ height:auto; }
+
+  /* Sticky action bar */
   .sticky-actions{
-    background: rgba(255,255,255,.9);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.12);
-    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+    background:rgba(255,255,255,.9); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(0,0,0,.06); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.12);
+    padding-bottom:max(env(safe-area-inset-bottom),0px);
   }
-  .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius: .75rem; }
+  .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius:.75rem; }
 }
 
     
