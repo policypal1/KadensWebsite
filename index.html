@@ -39,7 +39,7 @@
   /* Kick headline higher and reserve bottom for CTAs + reviews */
   .hero-left  { 
     padding-top: 6vh !important;
-    padding-bottom: 260px !important;
+    padding-bottom: 300px !important; /* more bottom space to fit all elements comfortably */
     position: relative !important; 
   }
 
@@ -51,23 +51,23 @@
   /* Hide right quick-quote column on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
-  /* Stacked CTAs pinned ~15% from bottom (thumb reach) */
+  /* Stacked CTAs pinned above proofs */
   .hero-ctas{
     position: absolute !important;
     left: 1rem; right: 1rem;
-    bottom: calc(15% + env(safe-area-inset-bottom)) !important;
+    bottom: calc(20% + env(safe-area-inset-bottom)) !important;
     display: grid !important;
     grid-auto-flow: row !important;
-    gap: 10px !important;
+    gap: 14px !important; /* more space between buttons */
     z-index: 3;
   }
   .hero-ctas a { width: 100% !important; }
 
-  /* Small proof cards between CTAs and reviews */
+  /* Proof cards above reviews */
   .hero-proofs{
     position: absolute; left: 1rem; right: 1rem;
-    bottom: calc(9% + env(safe-area-inset-bottom));
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    bottom: calc(10% + env(safe-area-inset-bottom));
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; /* more space between proof cards */
     z-index: 2;
   }
   .hero-proof{
@@ -80,7 +80,7 @@
   }
   .hero-proof .icon{ width:16px; height:16px; color:#ef4444; opacity:.9; }
 
-  /* Reviews at the very bottom (5 stars shown) */
+  /* Reviews at the very bottom */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
     position:absolute; left:1rem; right:1rem;
@@ -143,6 +143,7 @@
   .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius: .75rem; }
 }
 
+    
 /* ================= DESKTOP / NORMAL STYLES (unchanged layout) ================= */
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
 .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
