@@ -37,59 +37,63 @@
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <!-- Logo -->
-        <a href="/index.html" class="flex items-center gap-3 md:gap-4">
-          <img src="logo.png.png" alt="Clear Choice Logo" class="h-12 w-auto md:h-[65px]" loading="lazy">
-          <span class="text-neutral-900 font-extrabold text-2xl md:text-2xl tracking-wide">Clear Choice Auto Glass</span>
+  <!-- HEADER (contained) -->
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Row -->
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
+        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px; width:auto;">
+        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
+        <a href="/index.html"    class="nav-link">Home</a>
+        <a href="/services.html" class="nav-link">Services</a>
+        <a href="/reviews.html"  class="nav-link">Reviews</a>
+        <a href="/quote.html"    class="nav-link">Quote</a>
+        <a href="/faqs.html"     class="nav-link">FAQs</a>
+      </nav>
+
+      <!-- Desktop actions -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
+        <a href="/quote.html"
+           class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
+          Get a Quote
         </a>
-
-        <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
-          <a href="/index.html" class="nav-link">Home</a>
-          <a href="/services.html" class="nav-link">Services</a>
-          <a href="/reviews.html" class="nav-link">Reviews</a>
-          <a href="/quote.html" class="nav-link">Quote</a>
-          <a href="/faqs.html" class="nav-link">FAQs</a>
-        </nav>
-
-        <!-- Desktop actions -->
-        <div class="hidden md:flex items-center gap-4">
-          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
-          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-base text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow transition">Get a Quote</a>
-        </div>
-
-        <!-- Mobile hamburger (only < md) -->
-        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-2xl border border-neutral-300 ring-1 ring-neutral-200 px-3 py-2 text-sm text-neutral-800 bg-white/95 backdrop-blur hover:bg-white shadow"
-                aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="3" y1="6"  x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-          Menu
-        </button>
       </div>
 
-      <!-- Mobile dropdown (hidden by default) -->
-      <nav id="mobileMenu"
-           class="md:hidden hidden border-t border-neutral-200 bg-white"
-           aria-label="Mobile">
-        <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
-          <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
-          <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
-          <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
-          <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
-          <!-- Get a Quote highlighted in #26dcdc on mobile -->
-          <a role="menuitem" href="/quote.html" class="py-2 font-semibold nav-link text-red-600 hover:text-red-700">Get a Quote</a>
-        </div>
-      </nav>
+      <!-- Mobile hamburger (only < md) -->
+      <button id="mobileMenuBtn"
+              class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+              aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6"  x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+      </button>
     </div>
-  </header>
+
+    <!-- Mobile dropdown (hidden by default) -->
+    <nav id="mobileMenu"
+         class="md:hidden hidden border-t border-neutral-200 bg-white"
+         aria-label="Mobile">
+      <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
+        <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+        <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
+        <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+        <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+        <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
@@ -109,7 +113,7 @@
   </section>
 
   <!-- Main -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 md:pb-24" id="services">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-24" id="services">
 
     <!-- MOBILE slider (only < md) -->
     <section class="mt-6 md:hidden">
@@ -426,13 +430,13 @@
     </section>
 
     <!-- Service Area strip (replaces steps) -->
-    <section id="service-area" class="mt-12 md:mt-16">
+    <section id="service-area" class="mt-10 md:mt-12">
       <div class="rounded-2xl border border-neutral-200 bg-white p-5 md:p-6">
         <h3 class="text-xl md:text-3xl font-black text-center">Service Area</h3>
         <p class="mt-1 text-center text-neutral-600 text-sm">Proudly serving Salem & Keizer, Oregon</p>
         <div class="mt-5 grid gap-4 sm:grid-cols-2">
           <!-- Salem card -->
-          <a href="quote.html" class="group relative block overflow-hidden rounded-2xl border border-neutral-200">
+          <a href="quote.html" class="group relative block overflow-hidden rounded-3xl border border-neutral-200 ring-1 ring-black/5 shadow-sm hover:shadow-md transition">
             <img src="salem.png" alt="Salem, Oregon" class="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent"></div>
             <div class="absolute bottom-3 left-4 right-4 text-white">
@@ -444,7 +448,7 @@
           </a>
 
           <!-- Keizer card -->
-          <a href="quote.html" class="group relative block overflow-hidden rounded-2xl border border-neutral-200">
+          <a href="quote.html" class="group relative block overflow-hidden rounded-3xl border border-neutral-200 ring-1 ring-black/5 shadow-sm hover:shadow-md transition">
             <img src="keizer.png" alt="Keizer, Oregon" class="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent"></div>
             <div class="absolute bottom-3 left-4 right-4 text-white">
@@ -455,16 +459,14 @@
             </div>
           </a>
         </div>
-        <div class="mt-5 flex justify-center">
-          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Check Availability</a>
-        </div>
+        
       </div>
     </section>
 
   </main>
 
   <!-- FOOTER (contained) -->
-  <footer class="mt-16 md:mt-20 border-t border-neutral-200 bg-white w-full">
+  <footer class="mt-8 md:mt-12 border-t border-neutral-200 bg-white w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
 
       <!-- Col 1 -->
@@ -518,39 +520,39 @@
   </footer>
 
   <!-- Header scripts (mobile toggle + active link highlight) -->
-  <script>
-  (function(){
-    // Mobile toggle
-    const btn   = document.getElementById('mobileMenuBtn');
-    const menu  = document.getElementById('mobileMenu');
-    const panel = menu ? menu.querySelector('.slide-menu') : null;
-    if (btn && menu && panel) {
-      function toggle(open){
-        const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
-        menu.classList.toggle('hidden', !willOpen);
-        panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-        btn.setAttribute('aria-expanded', String(willOpen));
-      }
-      btn.addEventListener('click', () => toggle());
-      menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
-      document.addEventListener('click', e => {
-        if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
-      });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+<script>
+(function(){
+  // Mobile toggle
+  const btn   = document.getElementById('mobileMenuBtn');
+  const menu  = document.getElementById('mobileMenu');
+  const panel = menu ? menu.querySelector('.slide-menu') : null;
+  if (btn && menu && panel) {
+    function toggle(open){
+      const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !willOpen);
+      panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+      btn.setAttribute('aria-expanded', String(willOpen));
     }
-
-    // Highlight active link (desktop + mobile)
-    const path = location.pathname.replace(/\/+$/, '') || '/';
-    document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
-      const href = a.getAttribute('href') || '';
-      const norm = href.replace(/\/+$/, '') || '/';
-      if (norm === path) {
-        a.classList.add('active');
-        a.setAttribute('aria-current', 'page');
-      }
+    btn.addEventListener('click', () => toggle());
+    menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
     });
-  })();
-  </script>
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+  }
+
+  // Highlight active link (desktop + mobile)
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const norm = href.replace(/\/+$/, '') || '/';
+    if (norm === path) {
+      a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+})();
+</script>
 
   <!-- Utility scripts -->
   <script>
