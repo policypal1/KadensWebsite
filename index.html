@@ -1,369 +1,257 @@
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Clear Choice Auto Glass — Auto Glass</title>
   <meta name="description" content="Mobile auto glass repair & replacement. Same-day service. Family-owned." />
   <meta name="theme-color" content="#ffffff" />
-  
+
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <style>
- /* ================= MOBILE-ONLY OVERRIDES ================= */
-@media (max-width: 640px){
-  /* Type & spacing */
-  body { font-size: 16px; line-height: 1.5; }
-  h1 { font-size: 32px !important; line-height: 1.15 !important; }
-  h2 { font-size: 26px !important; line-height: 1.2 !important; }
-  p  { font-size: 15px !important; }
-
-  /* Mobile header / menu */
-  header { position: sticky; top: 0; z-index: 50; }
-  #mobileMenu { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-
-  /* Smooth slide for the mobile dropdown */
-  .slide-menu{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .25s ease;
-    box-shadow: 0 6px 18px rgba(0,0,0,.06);
-  }
-  .slide-menu[data-state="open"]{ max-height: 320px; }
-
-  /* Kill the moving review marquee under the hero (separate big strip) */
-  .reviews-strip { display: none !important; }
-
-  /* HERO sizing */
-  .h-\[90vh\] { height: 64vh !important; min-height: 520px !important; }
-
-  /* HERO layout tweaks (mobile only) */
-  .hero-shell { align-items: flex-start !important; }
-  /* Start text ~25% from the top (≈ 75% “up” from the bottom) */
-  .hero-left  { padding-top: 25vh !important; } 
-
-  /* Hide right-side quick quote card in hero */
-  section.relative.overflow-hidden:first-of-type aside { display: none !important; }
-
-  /* Top red CTA + stacked CTAs */
-  .hero-top-cta { margin-top: 10px; width: 100% !important; display: inline-flex !important; }
-  .hero-ctas {
-    display: grid !important;
-    grid-auto-flow: row !important;
-    gap: 10px !important;
-    position: absolute !important;
-    left: 1rem; right: 1rem;
-    bottom: 12% !important; /* a bit higher for thumb reach */
-  }
-  .hero-ctas a { width: 100% !important; }
-
-  /* Hide desktop CTA row on mobile */
-  .hero-desktop-ctas { display: none !important; }
-
-  /* De-clutter hero badges (keep more useful ones we add below) */
-  section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
-
-  /* “Crop” hero image & stronger overlay for readability */
-  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position: center 35% !important;
-    filter: saturate(0.95) contrast(1.05);
-  }
-  section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
-    background: linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.50) 40%, rgba(0,0,0,.18) 100%) !important;
-  }
-
-  /* Mini scrolling reviews inside the hero */
-  @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .hero-reviews{
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    overflow: hidden;
-  }
-  .hero-reviews-track{ width: max-content; display: flex; gap: .5rem; animation: heroMarquee 28s linear infinite; }
-  .hero-reviews .review-pill{
-    display: inline-flex; align-items: center; gap: .5rem;
-    padding: .45rem .7rem; border-radius: 9999px; background: #fff;
-    border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgb(0 0 0 / .04);
-    font-size: .78rem; white-space: nowrap;
-  }
-  .hero-reviews .review-star{ color: #f59e0b; }
-
-  /* “Quick facts” row */
-  .hero-facts { display: grid !important; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
-  .hero-fact { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); font-size:12px; }
-  .hero-fact svg{ width:16px; height:16px; opacity:.95; }
-
-  /* “Clear Choice Promise” feature cards: show only top 2 on phones */
-  #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
-
-  /* Same-Day Mobile band: hide right-side “About” card */
-  section.relative.overflow-hidden.py-16 aside { display: none !important; }
-
-  /* Coverage section, How It Works, Reviews, Footer ... unchanged from your block */
-  #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
-  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
-  #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-  #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
-
-  #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
-
-  #reviews .grid > article:nth-child(n+3){ display: none !important; }
-
-  footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
-
-  img { max-width: 100%; height: auto; }
-  img[width][height]{ height: auto; }
-}
-
-
-    /* ================= DESKTOP / NORMAL STYLES ================= */
-    @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
-    .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
-
-    /* nav link underline */
+    /* =============== Base helpers (all sizes) =============== */
+    @keyframes fadeIn { from {opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
+    .animate-fadeIn { animation: fadeIn .25s ease-out forwards; }
     .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
-    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
+    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:#dc2626;transition:width .25s}
     .nav-link:hover::after,.nav-link.active::after{width:100%}
     .nav-link:hover{color:#dc2626}
 
-    /* scrolling review strip */
-    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .reviews-strip { --speed: 38s; }
-    .reviews-track { display:flex; width:max-content; gap:.75rem; animation: marqueeScroll var(--speed) linear infinite; }
-    .reviews-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-    .review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.8125rem; white-space:nowrap; }
-    .review-star { color:#f59e0b; }
-    .reviews-rail:hover .reviews-track { animation-play-state: paused; }
-    @media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
+    /* =============== Mobile-first hero layout =============== */
+    :root{
+      /* tweak these if you want the copy higher/lower */
+      --hero-pt: 25vh;     /* ~start text 25% from top */
+      --cta-bottom: 12vh;  /* CTA cluster height from bottom */
+    }
 
-    /* HOW IT WORKS – premium timeline */
-    @keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
-    .hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
-    @media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
-    .hiw-badge{ background: radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%), linear-gradient(180deg,#ef4444,#b91c1c); box-shadow:0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25); }
-    .hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-    .hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
+    .hero-wrap{min-height:100svh; height:100svh; position:relative; display:flex; align-items:flex-start}
+    .hero-bg img{object-position:center 35%; filter:saturate(.95) contrast(1.05)}
+    .hero-overlay{background:linear-gradient(180deg,rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 45%, rgba(0,0,0,.18) 100%)}
 
-    /* Premium promise band optional helpers */
-    .premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
-    .frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+    .hero-left{padding-top:var(--hero-pt)}
+    .hero-heading{font-size:32px; line-height:1.15}
+    .hero-sub{font-size:15px}
+    .hero-facts{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px}
+    .hero-fact{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:12px}
+    .hero-fact svg{width:16px;height:16px;opacity:.95}
+
+    .hero-ctas{position:absolute; left:1rem; right:1rem; bottom:var(--cta-bottom); display:grid; gap:10px}
+    .hero-ctas a{width:100%}
+
+    /* Mini reviews ticker at the bottom edge */
+    .hero-reviews{position:absolute; left:0; right:0; bottom:0; padding:12px 0; overflow:hidden;
+      -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+              mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    @keyframes heroMarquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .hero-reviews-track{display:flex; gap:.5rem; width:max-content; animation:heroMarquee 28s linear infinite}
+    .review-pill{display:inline-flex; align-items:center; gap:.35rem; padding:.45rem .7rem; border-radius:9999px; background:#fff;
+      border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.78rem; white-space:nowrap}
+    .review-star{color:#f59e0b}
+
+    /* Hide heavy desktop bits on phones; reveal desktop later */
+    .hero-right{display:none}
+
+    /* =============== Small tablets and up =============== */
+    @media (min-width:640px){
+      .hero-heading{font-size:40px}
+      .hero-sub{font-size:16px}
+      .hero-facts{grid-template-columns:repeat(3,1fr)}
+    }
+
+    /* =============== Desktop (restore two-column) =============== */
+    @media (min-width:1024px){
+      :root{ --hero-pt: 0vh; --cta-bottom: 14vh; }
+      .hero-wrap{align-items:center}
+      .hero-left{padding-top:0}
+      .hero-heading{font-size:56px}
+      .hero-sub{font-size:18px}
+      .hero-right{display:block}
+      .hero-ctas{position:static; display:flex; gap:12px; margin-top:24px}
+      .hero-reviews{position:static; padding:0; margin-top:16px}
+    }
+
+    /* =============== Misc mobile polish =============== */
+    header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.95); backdrop-filter:blur(6px); border-bottom:1px solid #e5e7eb}
+    .slide-menu{max-height:0; overflow:hidden; transition:max-height .25s ease; box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .slide-menu[data-state="open"]{max-height:320px}
+    img{max-width:100%; height:auto}
   </style>
 </head>
 
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
 
-  <!-- HEADER (contained) -->
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Row -->
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px; width:auto;">
-        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
-      </a>
-
-      <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
-        <a href="/index.html"    class="nav-link">Home</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/reviews.html"  class="nav-link">Reviews</a>
-        <a href="/quote.html"    class="nav-link">Quote</a>
-        <a href="/faqs.html"     class="nav-link">FAQs</a>
-      </nav>
-
-      <!-- Desktop actions -->
-      <div class="hidden md:flex items-center gap-4">
-        <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
-        <a href="/quote.html"
-           class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
-          Get a Quote
+  <!-- HEADER -->
+  <header>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/index.html" class="flex items-center gap-3" aria-label="Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="Clear Choice Auto Glass" style="height:44px; width:auto;">
+          <span class="text-neutral-900 font-extrabold text-xl tracking-wide">Clear Choice Auto Glass</span>
         </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-base" aria-label="Primary">
+          <a href="/index.html"    class="nav-link">Home</a>
+          <a href="/services.html" class="nav-link">Services</a>
+          <a href="/reviews.html"  class="nav-link">Reviews</a>
+          <a href="/faqs.html"     class="nav-link">FAQs</a>
+          <a href="/quote.html"    class="nav-link font-semibold text-red-600">Get a Quote</a>
+        </nav>
+
+        <button id="mobileMenuBtn"
+                class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          Menu
+        </button>
       </div>
 
-      <!-- Mobile hamburger (only < md) -->
-      <button id="mobileMenuBtn"
-              class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
-              aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="6"  x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-        Menu
-      </button>
+      <!-- Mobile dropdown -->
+      <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
+        <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
+          <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+          <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
+          <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+          <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+          <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 hero-bg">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+           alt="Mobile auto glass service on-site"
+           class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 hero-overlay"></div>
     </div>
 
-    <!-- Mobile dropdown (hidden by default) -->
-    <nav id="mobileMenu"
-         class="md:hidden hidden border-t border-neutral-200 bg-white"
-         aria-label="Mobile">
-      <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
-        <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
-        <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
-        <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
-        <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
-        <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
-      </div>
-    </nav>
-  </div>
-</header>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-wrap">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
+        <!-- LEFT: Text block -->
+        <div class="text-white max-w-2xl hero-left">
+          <h1 class="hero-heading font-black leading-tight">
+            Mobile Windshield Repair & Replacement
+            <span class="text-red-400 block lg:inline">Service You Trust</span>
+          </h1>
 
-<!-- Header scripts (mobile toggle + active link highlight) -->
-<script>
-(function(){
-  // Mobile toggle
-  const btn   = document.getElementById('mobileMenuBtn');
-  const menu  = document.getElementById('mobileMenu');
-  const panel = menu ? menu.querySelector('.slide-menu') : null;
-  if (btn && menu && panel) {
-    function toggle(open){
-      const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
-      menu.classList.toggle('hidden', !willOpen);
-      panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-      btn.setAttribute('aria-expanded', String(willOpen));
-    }
-    btn.addEventListener('click', () => toggle());
-    menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
-    document.addEventListener('click', e => {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
-    });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
-  }
+          <p class="hero-sub mt-3 text-white/90">
+            OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
+          </p>
 
-  // Highlight active link (desktop + mobile)
-  const path = location.pathname.replace(/\/+$/, '') || '/';
-  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    const norm = href.replace(/\/+$/, '') || '/';
-    if (norm === path) {
-      a.classList.add('active');
-      a.setAttribute('aria-current', 'page');
-    }
-  });
-})();
-</script>
+          <!-- Quick facts (compact, believable) -->
+          <div class="hero-facts mt-3">
+            <div class="hero-fact">
+              <!-- truck -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
+              Same-day mobile
+            </div>
+            <div class="hero-fact">
+              <!-- shield -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
+              Lifetime workmanship
+            </div>
+            <div class="hero-fact">
+              <!-- chip/sensor -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg>
+              ADAS sensors handled
+            </div>
+          </div>
 
-
-
-<!-- HERO (full-bleed with mini quick quote) -->
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop" alt="Mobile auto glass service on-site" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
-    <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
-      <!-- Left -->
-      <div class="text-white max-w-2xl hero-left">
-        <!-- Mobile mini-reviews -->
-        <div class="hero-reviews sm:hidden">
-          <div class="hero-reviews-track">
-            <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
-            <!-- duplicate for seamless loop -->
-            <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
-            <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
+          <!-- CTAs (mobile: bottom-fixed cluster; desktop: inline) -->
+          <div class="hero-ctas">
+            <a href="/quote.html"
+               class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+              Get a Quote
+            </a>
+            <a href="tel:+15039492257"
+               class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+              Call (503) 949-2257
+            </a>
           </div>
         </div>
 
-        <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
-          Mobile Windshield Repair & Replacement
-          <span class="text-red-400 block md:inline">Service You Trust</span>
-        </h1>
+        <!-- RIGHT: Quick Quote card (hidden on phones via CSS) -->
+        <aside class="hero-right w-full max-w-md justify-self-end">
+          <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+            <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
+            <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
-        <!-- Mobile “quick facts” row -->
-        <div class="hero-facts sm:hidden">
-          <div class="hero-fact">
-            <!-- truck icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
-            Same-day mobile
+            <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
+              <input name="name" placeholder="Name" autocomplete="name" required
+                     class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+              <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+                     class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+              <select name="service" required
+                      class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+                <option value="" disabled selected>Select service</option>
+                <option>Windshield Replacement</option>
+                <option>Chip Repair</option>
+                <option>Door/Side Glass</option>
+                <option>Back Glass</option>
+              </select>
+              <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+                Get My Quote
+              </button>
+              <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
+            </form>
           </div>
-          <div class="hero-fact">
-            <!-- shield icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
-            Lifetime workmanship
-          </div>
-          <div class="hero-fact">
-            <!-- chip/sensor icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg>
-            ADAS sensors handled
-          </div>
-        </div>
-
-        <p class="mt-4 text-lg md:text-2xl text-white/90">
-          OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
-        </p>
-
-        <!-- Desktop CTAs -->
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 hero-desktop-ctas">
-          <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
-            Get a Quote
-          </a>
-          <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-            Call (503) 949-2257
-          </a>
-        </div>
-
-        <!-- Mobile bottom CTAs (bold red first) -->
-        <div class="hero-ctas sm:hidden">
-          <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
-            Get a Quote
-          </a>
-          <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-            Call (503) 949-2257
-          </a>
-        </div>
+        </aside>
       </div>
 
-      <!-- Right: Mini Quick Quote (hidden on phones by CSS) -->
-      <aside class="w-full max-w-md justify-self-end">
-        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-          <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
-          <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
-
-          <!-- Pure HTML submit to /quote.html -->
-          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
-            <input name="name" placeholder="Name" autocomplete="name" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <select name="service" required
-                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
-              <option value="" disabled selected>Select service</option>
-              <option>Windshield Replacement</option>
-              <option>Chip Repair</option>
-              <option>Door/Side Glass</option>
-              <option>Back Glass</option>
-            </select>
-            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-              Get My Quote
-            </button>
-            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
-          </form>
+      <!-- Mini review ticker (mobile emphasis) -->
+      <div class="hero-reviews sm:mt-4">
+        <div class="hero-reviews-track">
+          <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
+          <!-- duplicate for seamless loop -->
+          <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
+          <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
         </div>
-      </aside>
-
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
-</section>
+  <!-- Simple mobile menu + active link -->
+  <script>
+    (function(){
+      const btn   = document.getElementById('mobileMenuBtn');
+      const menu  = document.getElementById('mobileMenu');
+      const panel = menu ? menu.querySelector('.slide-menu') : null;
+      function toggle(open){
+        const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', !willOpen);
+        if(panel) panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+        if(btn) btn.setAttribute('aria-expanded', String(willOpen));
+      }
+      if(btn && menu){
+        btn.addEventListener('click', () => toggle());
+        menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
+        document.addEventListener('click', e => { if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+      }
+
+      // highlight current nav
+      const path = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('a.nav-link').forEach(a => {
+        const href = (a.getAttribute('href') || '').replace(/\/+$/, '') || '/';
+        if(href === path){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
+      });
+    })();
+  </script>
+</body>
+</html>
 
 
 <script>
