@@ -37,8 +37,9 @@
   .h-\[90vh\] { height: 64vh !important; min-height: 520px !important; }
 
   /* HERO layout tweaks (mobile only) */
-  .hero-shell { align-items: flex-start !important; }   /* start higher on the page */
-  .hero-left  { padding-top: 10vh !important; }         /* ~ top quarter */
+  .hero-shell { align-items: flex-start !important; }
+  /* Start text ~25% from the top (≈ 75% “up” from the bottom) */
+  .hero-left  { padding-top: 25vh !important; } 
 
   /* Hide right-side quick quote card in hero */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
@@ -51,14 +52,14 @@
     gap: 10px !important;
     position: absolute !important;
     left: 1rem; right: 1rem;
-    bottom: 15% !important;
+    bottom: 12% !important; /* a bit higher for thumb reach */
   }
   .hero-ctas a { width: 100% !important; }
 
   /* Hide desktop CTA row on mobile */
   .hero-desktop-ctas { display: none !important; }
 
-  /* De-clutter hero (hide badge row + tiny “Highly rated…” line) */
+  /* De-clutter hero badges (keep more useful ones we add below) */
   section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
@@ -69,7 +70,7 @@
     filter: saturate(0.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
-    background: linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.20) 100%) !important;
+    background: linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.50) 40%, rgba(0,0,0,.18) 100%) !important;
   }
 
   /* Mini scrolling reviews inside the hero */
@@ -88,33 +89,35 @@
   }
   .hero-reviews .review-star{ color: #f59e0b; }
 
+  /* “Quick facts” row */
+  .hero-facts { display: grid !important; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .hero-fact { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); font-size:12px; }
+  .hero-fact svg{ width:16px; height:16px; opacity:.95; }
+
   /* “Clear Choice Promise” feature cards: show only top 2 on phones */
   #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
 
   /* Same-Day Mobile band: hide right-side “About” card */
   section.relative.overflow-hidden.py-16 aside { display: none !important; }
 
-  /* Coverage section: single column, smaller map, trim one info tile */
+  /* Coverage section, How It Works, Reviews, Footer ... unchanged from your block */
   #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
   #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
   #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
   #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
 
-  /* How It Works: force single column; keep copy tight */
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
 
-  /* Reviews grid: show only 2 cards */
   #reviews .grid > article:nth-child(n+3){ display: none !important; }
 
-  /* Footer: collapse to single column */
   footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
 
-  /* Images: prevent overflow/layout shifts */
   img { max-width: 100%; height: auto; }
   img[width][height]{ height: auto; }
 }
+
 
     /* ================= DESKTOP / NORMAL STYLES ================= */
     @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
@@ -254,67 +257,114 @@
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
       <!-- Left -->
-      <div class="text-white max-w-2xl">
-        <div class="flex flex-wrap gap-2">
-          <span class="inline-flex rounded-full bg-red-600/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide shadow">Family-Owned</span>
-          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Mobile Service</span>
-          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-wide ring-1 ring-white/20">Salem • Keizer</span>
+      <div class="text-white max-w-2xl hero-left">
+        <!-- Mobile mini-reviews -->
+        <div class="hero-reviews sm:hidden">
+          <div class="hero-reviews-track">
+            <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
+            <!-- duplicate for seamless loop -->
+            <span class="review-pill"><span class="review-star">★</span> “On time & super clean”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Friendly & fast”</span>
+            <span class="review-pill"><span class="review-star">★</span> “Great communication”</span>
+          </div>
         </div>
 
-        <h1 class="mt-4 text-5xl md:text-7xl font-black leading-tight">
+        <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
           Mobile Windshield Repair & Replacement
           <span class="text-red-400 block md:inline">Service You Trust</span>
         </h1>
+
+        <!-- Mobile “quick facts” row -->
+        <div class="hero-facts sm:hidden">
+          <div class="hero-fact">
+            <!-- truck icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
+            Same-day mobile
+          </div>
+          <div class="hero-fact">
+            <!-- shield icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
+            Lifetime workmanship
+          </div>
+          <div class="hero-fact">
+            <!-- chip/sensor icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg>
+            ADAS sensors handled
+          </div>
+        </div>
 
         <p class="mt-4 text-lg md:text-2xl text-white/90">
           OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
         </p>
 
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-           <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+        <!-- Desktop CTAs -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 hero-desktop-ctas">
+          <a href="/quote.html"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+            Get a Quote
+          </a>
+          <a href="tel:+15039492257"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
             Call (503) 949-2257
           </a>
         </div>
 
-        <p class="mt-3 text-xs md:text-sm text-white/80">Highly rated by local drivers — On-time arrival • Mon–Sat</p>
+        <!-- Mobile bottom CTAs (bold red first) -->
+        <div class="hero-ctas sm:hidden">
+          <a href="/quote.html"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+            Get a Quote
+          </a>
+          <a href="tel:+15039492257"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+            Call (503) 949-2257
+          </a>
+        </div>
       </div>
 
-      <!-- Right: Mini Quick Quote (works, redirects to /quote.html) -->
-<aside class="w-full max-w-md justify-self-end">
-  <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
-    <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
-    <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
+      <!-- Right: Mini Quick Quote (hidden on phones by CSS) -->
+      <aside class="w-full max-w-md justify-self-end">
+        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+          <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
+          <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
-    <!-- Pure HTML submit to /quote.html -->
-    <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
-      <input name="name" placeholder="Name" autocomplete="name" required
-             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-      <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-             class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-      <select name="service" required
-              class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
-        <option value="" disabled selected>Select service</option>
-        <option>Windshield Replacement</option>
-        <option>Chip Repair</option>
-        <option>Door/Side Glass</option>
-        <option>Back Glass</option>
-      </select>
-      <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-        Get My Quote
-      </button>
-      <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
-    </form>
-  </div>
-</aside>
+          <!-- Pure HTML submit to /quote.html -->
+          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
+            <input name="name" placeholder="Name" autocomplete="name" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+            <select name="service" required
+                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+              <option value="" disabled selected>Select service</option>
+              <option>Windshield Replacement</option>
+              <option>Chip Repair</option>
+              <option>Door/Side Glass</option>
+              <option>Back Glass</option>
+            </select>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+              Get My Quote
+            </button>
+            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
+          </form>
+        </div>
+      </aside>
 
     </div>
   </div>
 
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
+
 
 <script>
   function handleMiniQuote(e){
