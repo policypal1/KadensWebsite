@@ -10,7 +10,7 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
- <style>
+  <style>
 /* ================= MOBILE-ONLY OVERRIDES ================= */
 @media (max-width: 640px){
   /* Baseline type/spacing */
@@ -177,38 +177,6 @@
 /* Premium promise band helpers */
 .premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
 .frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-
-==== DESKTOP / NORMAL STYLES (unchanged layout) ================= */
-@keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
-.animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
-
-/* nav link underline */
-.nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
-.nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
-.nav-link:hover::after,.nav-link.active::after{width:100%}
-.nav-link:hover{color:#dc2626}
-
-/* scrolling review strip */
-@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.reviews-strip { --speed: 38s; }
-.reviews-track { display:flex; width:max-content; gap:.75rem; animation: marqueeScroll var(--speed) linear infinite; }
-.reviews-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.8125rem; white-space:nowrap; }
-.review-star { color:#f59e0b; }
-.reviews-rail:hover .reviews-track { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
-
-/* HOW IT WORKS – premium timeline */
-@keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
-.hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
-@media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
-.hiw-badge{ background: radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%), linear-gradient(180deg,#ef4444,#b91c1c); box-shadow:0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25); }
-.hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-.hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
-
-/* Premium promise band helpers */
-.premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
-.frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
   </style>
 </head>
 
@@ -354,8 +322,8 @@
           OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
         </p>
 
-        <!-- Desktop CTAs (hidden on phones by CSS) -->
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 hero-desktop-ctas">
+        <!-- Desktop CTAs (now hidden on phones) -->
+        <div class="mt-8 hidden sm:flex gap-3 hero-desktop-ctas">
           <a href="/quote.html"
              class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
             Get a Quote
@@ -366,7 +334,7 @@
           </a>
         </div>
 
-        <!-- Mobile CTAs pinned ~15% from bottom (order = high-convert first) -->
+        <!-- Mobile CTAs pinned ~15% from bottom (single set on mobile) -->
         <div class="hero-ctas sm:hidden" aria-label="Primary actions">
           <a href="/quote.html"
              class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
@@ -414,7 +382,7 @@
           <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
           <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
-          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3">
+          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3" onsubmit="handleMiniQuote(event)">
             <input name="name" placeholder="Name" autocomplete="name" required
                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
             <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
