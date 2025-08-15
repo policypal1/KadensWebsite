@@ -13,7 +13,7 @@
   <style>
 /* ================= MOBILE-ONLY OVERRIDES (drop-in replace) ================= */
 @media (max-width: 640px){
-  /* Baseline type/spacing */
+  /* Baseline */
   html, body { -webkit-text-size-adjust: 100%; }
   body { font-size: 16px; line-height: 1.5; }
   h1 { font-size: 32px !important; line-height: 1.15 !important; letter-spacing:-0.01em !important; }
@@ -21,31 +21,29 @@
   p  { font-size: 15px !important; }
   a, button { -webkit-tap-highlight-color: transparent; }
 
-  /* Header / mobile menu */
+  /* Header / menu */
   header { position: sticky; top: 0; z-index: 50; }
   #mobileMenu { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-
-  /* Mobile dropdown slide */
   .slide-menu{ max-height: 0; overflow: hidden; transition: max-height .25s ease; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
   .slide-menu[data-state="open"]{ max-height: 320px; }
 
-  /* Hide desktop review band on phones */
+  /* Hide desktop review band */
   .reviews-strip { display: none !important; }
 
-  /* HERO sizing/layout */
+  /* ===== HERO (high converting) ===== */
   .h-\[90vh\] { height: 72vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
 
-  /* Scoot the whole hero content down + reserve bottom area */
-  .hero-left  { 
-    padding-top: 9vh !important;         /* higher headline placement */
-    padding-bottom: 300px !important;     /* room for CTAs + reviews */
-    position: relative !important; 
+  /* Kick the whole block down and reserve bottom for CTAs/reviews */
+  .hero-left{
+    padding-top: 9vh !important;
+    padding-bottom: 300px !important;
+    position: relative !important;
   }
 
-  /* BIGGER/BOLDER headline + kicker on mobile */
+  /* Bigger/bolder headline & kicker */
   .hero-left h1{
-    font-size: 38px !important;
+    font-size: 40px !important;
     line-height: 1.1 !important;
     font-weight: 900 !important;
     letter-spacing: -0.015em !important;
@@ -53,16 +51,17 @@
   }
   .hero-left h1 span{
     display:block !important;
-    font-size: 34px !important;           /* “Service You Trust” */
+    font-size: 34px !important;
     font-weight: 900 !important;
-    letter-spacing: -0.01em !important;
     line-height: 1.05 !important;
+    letter-spacing: -0.01em !important;
   }
 
-  /* Hide the OEM-grade paragraph on mobile */
+  /* Hide the sub-copy (scheduling/next openings/OEM paragraph) on mobile */
   .hero-left > p { display: none !important; }
+  .hero-schedule { display: none !important; }
 
-  /* Quick facts row (keep these badges) */
+  /* Keep the 3 fast-fact badges */
   .hero-facts { display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
   .hero-fact  { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
   .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
@@ -70,11 +69,11 @@
   /* Hide right quick-quote column on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
-  /* CTAs LOWER on the page (closer to bottom) */
+  /* CTAs lower on the page for thumb reach */
   .hero-ctas{
     position: absolute !important;
     left: 1rem; right: 1rem;
-    bottom: calc(12% + env(safe-area-inset-bottom)) !important; /* was 20% */
+    bottom: calc(12% + env(safe-area-inset-bottom)) !important;
     display: grid !important;
     grid-auto-flow: row !important;
     gap: 14px !important;
@@ -82,35 +81,30 @@
   }
   .hero-ctas a { width: 100% !important; }
 
-  /* REMOVE proof chips below the call button on mobile */
+  /* Remove proof chips under Call button on mobile */
   .hero-proofs{ display: none !important; }
 
-  /* Reviews stay at the very bottom */
+  /* Reviews pinned to very bottom; rating pill sizing fix */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
     position:absolute; left:1rem; right:1rem;
     bottom: calc(2% + env(safe-area-inset-bottom));
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    overflow: hidden;
-    z-index: 1;
+    overflow: hidden; z-index: 1;
   }
-  .hero-reviews-track{ width: max-content; display: flex; gap: .5rem; animation: heroMarquee 28s linear infinite; }
+  .hero-reviews-track{ width: max-content; display:flex; gap:.5rem; animation: heroMarquee 28s linear infinite; }
   @media (prefers-reduced-motion: reduce){ .hero-reviews-track{ animation: none; transform: none; } }
+  .review-pill, .rating-pill, .score-pill{ display:inline-flex; align-items:center; width:auto; max-width:100%; }
+
   .hero-reviews .review-pill{
-    display: inline-flex; align-items: center; gap: .5rem;
-    padding: .45rem .7rem; border-radius: 9999px; background: #fff;
-    border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgb(0 0 0 / .04);
-    font-size: .82rem; white-space: nowrap; color:#111;
+    gap:.5rem; padding:.45rem .7rem; border-radius:9999px; background:#fff;
+    border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04);
+    font-size:.82rem; white-space:nowrap; color:#111;
   }
-  .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
+  .hero-reviews .stars{ letter-spacing:.5px; color:#f59e0b; }
 
-  /* Trim duplicate badges under hero headline (from desktop) */
-  section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
-  section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
-
-  /* Image crop + stronger overlay for readability */
+  /* Stronger overlay for readability */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
     object-position: center 35% !important; filter: saturate(0.95) contrast(1.05);
   }
@@ -118,13 +112,19 @@
     background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
   }
 
-  /* Sections below hero */
+  /* ===== COVERAGE section ===== */
+  /* Put the tag + title above the map; hide duplicate chip row */
+  #coverage-map .chip-group:nth-of-type(2){ display:none !important; } /* hides extra Salem/Keizer row */
+  #coverage-map .section-badge{ order:-2; margin-bottom:.5rem; }
+  #coverage-map h2{ order:-1; margin-top:.25rem; }
+  #coverage-map .map-card{ order:0; }
+  #coverage-map .cta-group{ order:1; }
+  #coverage-map .grid{ display:grid; gap:14px !important; }
+
+  /* ===== Below-hero cleanups ===== */
   #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
   section.relative.overflow-hidden.py-16 aside { display: none !important; }
-  #coverage-map .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
   #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
-  #coverage-map .mt-4.grid.grid-cols-3{ grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-  #coverage-map .mt-4.grid.grid-cols-3 > :nth-child(3){ display: none !important; }
   #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
   #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
@@ -274,6 +274,58 @@
       a.classList.add('active');
       a.setAttribute('aria-current', 'page');
     }
+  });
+})();
+</script>
+
+
+  <script>
+/* Mobile fix-ups & helpers (safe no-ops on desktop) */
+(function(){
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+  // 1) HERO: hide any "scheduling / next openings" line on mobile
+  if(isMobile){
+    document.querySelectorAll('.hero-left p').forEach(p=>{
+      const t = (p.textContent||'').toLowerCase();
+      if(t.includes('scheduling') || t.includes('next openings')) p.classList.add('hero-schedule');
+    });
+  }
+
+  // 2) COVERAGE: add helper classes so CSS can order things
+  const cov = document.getElementById('coverage-map');
+  if (cov && isMobile){
+    const h2    = cov.querySelector('h2');
+    const badge = cov.querySelector('[data-badge], .badge, .uppercase.tracking-wide, .text-xs.font-semibold');
+    const map   = cov.querySelector('[data-map], iframe, img[alt*="map"], img[src*="map"], .rounded-2xl img, .rounded-3xl img');
+    const chips = cov.querySelectorAll('.chip-group, .flex.gap-2, .flex.gap-3');
+    const ctas  = cov.querySelector('.cta-group, .grid.gap-3, .grid.gap-4 a[href*="quote"], .grid.gap-4 a[href^="tel"]')?.closest('.grid, .flex');
+
+    if (badge) badge.classList.add('section-badge');
+    if (h2)    h2.classList.add('section-title');
+    if (map)   map.closest('.rounded-2xl, .rounded-3xl, .overflow-hidden, .relative, div')?.classList.add('map-card');
+    if (chips.length) chips[0].classList.add('chip-group');
+    if (chips.length > 1) chips[1].classList.add('chip-group'); // CSS hides second
+    if (ctas)  ctas.classList.add('cta-group');
+
+    // Ensure the immediate container behaves as grid so order works
+    const grid = cov.querySelector('.grid') || cov;
+    grid.classList.add('grid');
+  }
+
+  // 3) REVIEWS: add one more review pill to the hero marquee
+  const marquee = document.querySelector('.hero-reviews-track');
+  if (marquee){
+    marquee.insertAdjacentHTML('beforeend',
+      '<span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Booked AM, installed by lunch”</span>'
+    );
+  }
+
+  // 4) Rating pill width fix (in reviews banner/cards)
+  document.querySelectorAll('.rating-pill, .score-pill').forEach(el=>{
+    el.style.width = 'auto';
+    el.style.display = 'inline-flex';
+    el.style.alignItems = 'center';
   });
 })();
 </script>
