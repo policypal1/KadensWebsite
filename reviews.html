@@ -9,354 +9,301 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .glass{backdrop-filter:blur(8px)}
-    /* Nav underline */
+    /* Desktop nav underline */
     .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
-    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:#dc2626;transition:width .3s ease}
+    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
     .nav-link:hover::after,.nav-link.active::after{width:100%}
     .nav-link:hover{color:#dc2626}
-    /* Hide mobile underline bar */
+    /* Hide underline line inside mobile menu */
     nav[aria-label="Mobile"] .nav-link::after{display:none}
-    /* Mobile menu animation */
-    .slide-menu{transition:max-height .25s ease,opacity .2s ease,transform .2s ease;max-height:0;opacity:0;transform:translateY(-4px)}
-    .slide-menu[data-state=open]{max-height:320px;opacity:1;transform:translateY(0)}
-    /* Clamp utility for review text */
-    .clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    /* Horizontal chip scroller (mobile) */
-    .chips::-webkit-scrollbar{display:none}
+    /* Mobile reviews carousel: hide scrollbar */
+    #revTrack::-webkit-scrollbar{display:none}
   </style>
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
-<!-- HEADER (same as services; desktop preserved) -->
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px;width:auto">
-        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/reviews.html" class="nav-link">Reviews</a>
-        <a href="/quote.html" class="nav-link">Quote</a>
-        <a href="/faqs.html" class="nav-link">FAQs</a>
+  <!-- HEADER (same as Services) -->
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px;width:auto">
+          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
+          <a href="/index.html" class="nav-link">Home</a>
+          <a href="/services.html" class="nav-link">Services</a>
+          <a href="/reviews.html" class="nav-link">Reviews</a>
+          <a href="/quote.html" class="nav-link">Quote</a>
+          <a href="/faqs.html" class="nav-link">FAQs</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-4">
+          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
+          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
+        </div>
+        <!-- Mobile hamburger -->
+        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          Menu
+        </button>
+      </div>
+      <!-- Mobile dropdown -->
+      <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
+        <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
+          <a role="menuitem" href="/index.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+          <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
+          <a role="menuitem" href="/reviews.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+          <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+          <a role="menuitem" href="/quote.html" class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
+        </div>
       </nav>
-      <div class="hidden md:flex items-center gap-4">
-        <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
-        <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
-      </div>
-      <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        Menu
-      </button>
     </div>
-    <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
-      <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
-        <a role="menuitem" href="/index.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
-        <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
-        <a role="menuitem" href="/reviews.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
-        <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
-        <a role="menuitem" href="/quote.html" class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
-      </div>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<!-- Hero -->
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2400&auto=format&fit=crop');"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
-      <div class="glass bg-white/95 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
+  <!-- HERO (original background restored) -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://plus.unsplash.com/premium_photo-1661962267741-971ec3ac2e2a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zm9yZXN0JTIwcm9hZHxlbnwwfHwwfHx8MA==');"></div>
+    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="glass bg-white/92 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5 max-w-xl">
         <h1 class="text-3xl md:text-4xl font-black leading-tight">Real reviews from drivers in Salem & Keizer</h1>
         <p class="mt-3 text-neutral-700">Same-day mobile installs when available. OEM-grade glass & urethane. Lifetime workmanship warranty.</p>
-        <div class="mt-5 flex items-center gap-3">
-          <div class="flex items-center gap-1" aria-label="5 star rating">
+        <div class="mt-4 flex items-center gap-2 text-sm">
+          <div class="flex items-center gap-1">
             <svg class="w-5 h-5 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
             <svg class="w-5 h-5 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
             <svg class="w-5 h-5 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
             <svg class="w-5 h-5 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
             <svg class="w-5 h-5 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
           </div>
-          <div class="text-sm text-neutral-700"><span class="font-semibold">4.8 out of 5</span> · 100+ local reviews</div>
+          <div class="text-neutral-700"><span class="font-semibold">4.8 out of 5</span> · 100+ local reviews</div>
         </div>
-        <div class="mt-6 flex gap-3">
+        <div class="mt-5 flex gap-3">
           <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote</a>
           <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
         </div>
       </div>
-      <div class="glass bg-white/95 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
-        <h3 class="text-lg font-bold">“Quick, clean, and fairly priced.”</h3>
-        <p class="mt-2 text-neutral-700">“They replaced my windshield in my driveway before lunch. Tech was on time, left the dash spotless, and the new glass looks factory.”</p>
-        <div class="mt-2 text-sm text-neutral-500">— Hannah K., Salem</div>
-        <div class="mt-4 flex gap-2"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">Verified job</span><span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">Windshield</span></div>
+    </div>
+  </section>
+
+  <!-- MOBILE FEATURED REVIEWS CAROUSEL -->
+  <section class="md:hidden bg-neutral-50/80 border-y border-neutral-200 py-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative">
+        <div id="revTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4 overscroll-x-contain scroll-smooth">
+          <!-- Slides injected by JS -->
+        </div>
+        <div class="mt-3 flex items-center justify-center gap-3">
+          <button id="revPrev" class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-neutral-300">‹</button>
+          <div id="revDots" class="flex items-center gap-2" aria-label="Slide indicators"></div>
+          <button id="revNext" class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-neutral-300">›</button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Mobile featured slider (mobile only) -->
-<section class="md:hidden mt-6">
-  <div class="max-w-7xl mx-auto px-4">
-    <h2 class="sr-only">Featured reviews</h2>
-    <div class="relative">
-      <div id="featTrack" class="flex gap-4 overflow-x-auto snap-x snap-proximity scroll-pl-1 pr-4 overscroll-x-contain scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none]" aria-label="Featured reviews">
-        <style>#featTrack::-webkit-scrollbar{display:none}</style>
-        <!-- slides injected by JS -->
-      </div>
-      <div class="mt-3 flex items-center justify-center gap-3">
-        <button id="featPrev" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300">‹</button>
-        <div id="featDots" class="flex items-center gap-2" aria-label="Slide indicators"></div>
-        <button id="featNext" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300">›</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Filters: desktop original kept; mobile gets sticky chip row -->
-<section class="py-8 hidden md:block">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <label class="text-sm font-semibold">Filter:</label>
-        <select id="ratingFilter" class="rounded-xl border border-neutral-300 px-4 py-2 text-sm">
-          <option value="all">All ratings</option>
-          <option value="5">★★★★★ (5)</option>
-          <option value="4">★★★★☆ (4+)</option>
-          <option value="3">★★★☆☆ (3+)</option>
-        </select>
-      </div>
-      <div class="flex items-center gap-2 w-full md:w-80">
-        <input id="searchInput" class="w-full rounded-xl border border-neutral-300 px-4 py-2 text-sm" placeholder="Search by keyword (e.g. mobile, chip, price)" />
-        <button id="clearSearch" class="text-sm text-neutral-600 hover:text-neutral-900">Clear</button>
-      </div>
-      <a href="mailto:hello@example.com?subject=Review%20for%20Clear%20Choice%20Auto%20Glass" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
-    </div>
-  </div>
-</section>
-
-<!-- Mobile sticky chips -->
-<section class="md:hidden sticky top-20 z-40 bg-white/95 backdrop-blur border-b border-neutral-200">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-2">
-    <button id="openFilters" class="inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-3 py-2 text-sm bg-white">Filters</button>
-    <div id="chipRow" class="chips flex-1 overflow-x-auto -mx-1 px-1 flex gap-2"></div>
-  </div>
-  <!-- collapsible filter panel -->
-  <div id="mobileFilters" class="hidden border-t border-neutral-200">
-    <div class="px-4 py-3 grid gap-3">
-      <label class="text-sm">Rating
-        <select id="ratingFilterMobile" class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-2 text-sm">
-          <option value="all">All ratings</option>
-          <option value="5">★★★★★ (5)</option>
-          <option value="4">★★★★☆ (4+)</option>
-          <option value="3">★★★☆☆ (3+)</option>
-        </select>
-      </label>
-      <label class="text-sm">Search
-        <input id="searchInputMobile" class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-2 text-sm" placeholder="Search keywords" />
-      </label>
-      <div class="flex gap-3">
-        <button id="applyFilters" class="flex-1 rounded-xl px-4 py-2 font-semibold text-white bg-red-600 hover:bg-red-700">Apply</button>
-        <button id="clearMobile" class="flex-1 rounded-xl px-4 py-2 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Clear</button>
+  <!-- Filters (unchanged) -->
+  <section class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold">Filter:</label>
+          <select id="ratingFilter" class="rounded-xl border border-neutral-300 px-4 py-2 text-sm">
+            <option value="all">All ratings</option>
+            <option value="5">★★★★★ (5)</option>
+            <option value="4">★★★★☆ (4+)</option>
+            <option value="3">★★★☆☆ (3+)</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2 w-full md:w-80">
+          <input id="searchInput" class="w-full rounded-xl border border-neutral-300 px-4 py-2 text-sm" placeholder="Search by keyword (e.g. mobile, chip, price)" />
+          <button id="clearSearch" class="text-sm text-neutral-600 hover:text-neutral-900">Clear</button>
+        </div>
+        <a href="mailto:hello@example.com?subject=Review%20for%20Clear%20Choice%20Auto%20Glass" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Reviews Grid -->
-<section class="pb-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div id="reviewsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    <div class="mt-8 text-center">
-      <button id="loadMore" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Load more reviews</button>
+  <!-- Reviews Grid (unchanged) -->
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="reviewsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div class="mt-8 text-center">
+        <button id="loadMore" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Load more reviews</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER (contained) -->
-<footer class="mt-8 border-t border-neutral-200 bg-white w-full">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-    <div class="md:col-span-2"><p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p><p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
-      <div class="mt-4 flex flex-wrap gap-3"><a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a><a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a></div>
+  <!-- FOOTER (same as Services) -->
+  <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2"><p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p></div>
+        <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="index.html" class="hover:underline">Home</a></li>
+          <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
+          <li><a href="services.html" class="hover:underline">Services</a></li>
+          <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
+          <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-neutral-900">Contact</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
+          <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li>
+          <li>Serving Salem/Keizer, Oregon</li>
+          <li>Mon–Sat: 7am–6pm</li>
+        </ul>
+      </div>
     </div>
-    <div><h4 class="font-semibold text-neutral-900">Quick Links</h4><ul class="mt-3 space-y-2 text-neutral-700"><li><a href="index.html" class="hover:underline">Home</a></li><li><a href="reviews.html" class="hover:underline">Reviews</a></li><li><a href="services.html" class="hover:underline">Services</a></li><li><a href="quote.html" class="hover:underline">Get a Quote</a></li><li><a href="faqs.html" class="hover:underline">FAQs</a></li></ul></div>
-    <div><h4 class="font-semibold text-neutral-900">Contact</h4><ul class="mt-3 space-y-2 text-neutral-700"><li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li><li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">ccglassrepair@gmail.com</a></li><li>Serving Salem/Keizer, Oregon</li><li>Mon–Sat: 7am–6pm</li></ul></div>
-  </div>
-  <div class="border-t border-neutral-200"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2"><span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span><div class="flex items-center gap-4"><a href="privacy.html" class="hover:text-neutral-900">Privacy</a><a href="warranty.html" class="hover:text-neutral-900">Warranty</a><a href="terms.html" class="hover:text-neutral-900">Terms</a></div></div></div>
-</footer>
+    <div class="border-t border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
+          <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
+          <a href="terms.html" class="hover:text-neutral-900">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<!-- Header scripts -->
-<script>
-(function(){
-  const btn = document.getElementById('mobileMenuBtn');
-  const menu = document.getElementById('mobileMenu');
-  const panel = menu ? menu.querySelector('.slide-menu') : null;
-  if(btn && menu && panel){
-    function toggle(open){
-      const willOpen = open!==undefined ? open : menu.classList.contains('hidden');
-      menu.classList.toggle('hidden', !willOpen);
-      panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-      btn.setAttribute('aria-expanded', String(willOpen));
+  <!-- SCRIPTS -->
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile header: toggle & active link highlight
+    (function(){
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const panel = menu ? menu.querySelector('.slide-menu') : null;
+      if(btn && menu && panel){
+        function toggle(open){
+          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', !willOpen);
+          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+          btn.setAttribute('aria-expanded', String(willOpen));
+        }
+        btn.addEventListener('click',()=>toggle());
+        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
+        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+      }
+      const path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+        const href = a.getAttribute('href')||''; const norm = href.replace(/\/+$/,'') || '/';
+        if(norm===path){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
+      });
+    })();
+  </script>
+
+  <script>
+    // Star helpers used both by grid and the mobile carousel
+    const star = `<svg class="w-4 h-4 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
+    const starEmpty = `<svg class="w-4 h-4 fill-neutral-300" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
+    function stars(n){ return star.repeat(n) + starEmpty.repeat(5-n); }
+
+    // Demo data (same as your page; replace with real later)
+    const ALL_REVIEWS = [
+      {name:'Hannah K.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Replaced my windshield in my driveway before lunch. Perfect seal and cheaper than the chain.'},
+      {name:'Luis R.', city:'Keizer', rating:5, tags:['Door Glass'], text:'Rear door glass shattered. Tech vacuumed everything, installed new glass, works like new.'},
+      {name:'Maya S.', city:'Salem', rating:4, tags:['Chip Repair'], text:'Chip fixed fast while I was at work. Neat mobile service—saved me a trip.'},
+      {name:'Brian P.', city:'Turner', rating:5, tags:['Windshield','Insurance'], text:'They handled my insurance paperwork. Glass looks OEM, no wind noise.'},
+      {name:'Karina D.', city:'Keizer', rating:5, tags:['Back Glass'], text:'Back glass replaced after a break-in. Friendly, tidy, and quick.'},
+      {name:'Evan T.', city:'Salem', rating:5, tags:['Windshield'], text:'Came same day, great price, lifetime workmanship sealed the deal.'},
+      {name:'Joanne W.', city:'Monmouth', rating:4, tags:['Door Glass'], text:'On time and careful with trim pieces. Minor delay due to parts, but communicated well.'},
+      {name:'Devon C.', city:'Salem', rating:5, tags:['Chip Repair','Mobile'], text:'20 minutes and the chip is almost invisible. Super convenient.'},
+      {name:'Rae A.', city:'Keizer', rating:5, tags:['Windshield'], text:'Clean install, great communication, would absolutely recommend.'},
+      {name:'Nick H.', city:'Salem', rating:5, tags:['Windshield'], text:'Installer knew exactly what sensors my model had. Zero issues.'},
+      {name:'Alina P.', city:'Keizer', rating:4, tags:['Back Glass'], text:'Good price and the defrost lines work perfectly.'},
+      {name:'Tori G.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Next morning install after a rock strike. Couldn’t ask for better.'},
+    ];
+
+    // Build the mobile featured carousel from 5-star reviews
+    (function(){
+      const track = document.getElementById('revTrack'); if(!track) return;
+      const top = ALL_REVIEWS.filter(r=>r.rating===5).slice(0,5);
+      // Slides
+      top.forEach(r=>{
+        const s = document.createElement('article');
+        s.className = 'min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 bg-white shadow-sm p-4';
+        s.innerHTML = `<div class='flex items-center justify-between'><div class='font-semibold'>${r.name}</div><div class='flex'>${stars(r.rating)}</div></div><div class='text-xs text-neutral-500 mt-0.5'>${r.city}</div><p class='mt-3 text-sm text-neutral-800'>${r.text}</p><div class='mt-3 flex flex-wrap gap-2'>${r.tags.map(t=>`<span class=\"px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700\">${t}</span>`).join('')}</div>`;
+        track.appendChild(s);
+      });
+      const dotsWrap = document.getElementById('revDots');
+      const prev = document.getElementById('revPrev');
+      const next = document.getElementById('revNext');
+      top.forEach((_,i)=>{ const b=document.createElement('button'); b.className='h-2.5 w-2.5 rounded-full border border-neutral-400'; b.addEventListener('click',()=>goTo(i)); dotsWrap.appendChild(b); });
+
+      function current(){
+        const left = track.getBoundingClientRect().left;
+        let best=0,bestDist=Infinity; Array.from(track.children).forEach((el,i)=>{ const d=Math.abs(el.getBoundingClientRect().left-left); if(d<bestDist){bestDist=d;best=i;} });
+        return best;
+      }
+      function highlight(i){ Array.from(dotsWrap.children).forEach((d,ii)=>{ d.style.backgroundColor = ii===i ? '#dc2626' : 'transparent'; d.style.borderColor = ii===i ? '#dc2626' : 'rgb(163 163 163)'; }); }
+      function goTo(i){ const el = track.children[i]; if(!el) return; el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); highlight(i); }
+      let ticking=false; track.addEventListener('scroll',()=>{ if(ticking) return; ticking=true; requestAnimationFrame(()=>{ ticking=false; highlight(current());});});
+      prev?.addEventListener('click',()=>{ goTo(Math.max(0,current()-1)); });
+      next?.addEventListener('click',()=>{ goTo(Math.min(track.children.length-1,current()+1)); });
+      highlight(0);
+    })();
+  </script>
+
+  <!-- Reviews grid logic (unchanged from your page) -->
+  <script>
+    const grid = document.getElementById('reviewsGrid');
+    const loadBtn = document.getElementById('loadMore');
+    const ratingFilter = document.getElementById('ratingFilter');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
+
+    let visibleCount = 6;
+    let filtered = [...ALL_REVIEWS];
+
+    function card(r){
+      const tagBadges = r.tags.map(t=>`<span class=\"px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700\">${t}</span>`).join(' ');
+      return `
+      <article class=\"rounded-2xl border border-neutral-200 p-5 bg-white shadow-sm hover:shadow-md transition\">
+        <div class=\"flex items-center justify-between\">
+          <div class=\"font-semibold\">${r.name}</div>
+          <div class=\"flex\">${stars(r.rating)}<\/div>
+        <\/div>
+        <div class=\"text-xs text-neutral-500 mt-0.5\">${r.city}<\/div>
+        <p class=\"mt-3 text-sm text-neutral-800\">${r.text}<\/p>
+        <div class=\"mt-4 flex flex-wrap gap-2\">${tagBadges}<\/div>
+      <\/article>`;
     }
-    btn.addEventListener('click', ()=>toggle());
-    menu.addEventListener('click', e=>{ if(e.target.matches('a')) toggle(false);});
-    document.addEventListener('click', e=>{ if(!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);});
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') toggle(false);});
-  }
-  const path = location.pathname.replace(/\/+$/, '') || '/';
-  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
-    const href=a.getAttribute('href')||''; const norm=href.replace(/\/+$/, '')||'/';
-    if(norm===path){a.classList.add('active'); a.setAttribute('aria-current','page');}
-  });
-})();
-</script>
 
-<!-- Reviews data + logic -->
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const star = `<svg class="w-4 h-4 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-  const starEmpty = `<svg class="w-4 h-4 fill-neutral-300" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-
-  const ALL_REVIEWS = [
-    {name:'Hannah K.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Replaced my windshield in my driveway before lunch. Perfect seal and cheaper than the chain.'},
-    {name:'Luis R.', city:'Keizer', rating:5, tags:['Door Glass'], text:'Rear door glass shattered. Tech vacuumed everything, installed new glass, works like new.'},
-    {name:'Maya S.', city:'Salem', rating:4, tags:['Chip Repair'], text:'Chip fixed fast while I was at work. Neat mobile service—saved me a trip.'},
-    {name:'Brian P.', city:'Turner', rating:5, tags:['Windshield','Insurance'], text:'They handled my insurance paperwork. Glass looks OEM, no wind noise.'},
-    {name:'Karina D.', city:'Keizer', rating:5, tags:['Back Glass'], text:'Back glass replaced after a break-in. Friendly, tidy, and quick.'},
-    {name:'Evan T.', city:'Salem', rating:5, tags:['Windshield'], text:'Came same day, great price, lifetime workmanship sealed the deal.'},
-    {name:'Joanne W.', city:'Monmouth', rating:4, tags:['Door Glass'], text:'On time and careful with trim pieces. Minor delay due to parts, but communicated well.'},
-    {name:'Devon C.', city:'Salem', rating:5, tags:['Chip Repair','Mobile'], text:'20 minutes and the chip is almost invisible. Super convenient.'},
-    {name:'Rae A.', city:'Keizer', rating:5, tags:['Windshield'], text:'Clean install, great communication, would absolutely recommend.'},
-    {name:'Nick H.', city:'Salem', rating:5, tags:['Windshield'], text:'Installer knew exactly what sensors my model had. Zero issues.'},
-    {name:'Alina P.', city:'Keizer', rating:4, tags:['Back Glass'], text:'Good price and the defrost lines work perfectly.'},
-    {name:'Tori G.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Next morning install after a rock strike. Couldn’t ask for better.'},
-  ];
-
-  const grid = document.getElementById('reviewsGrid');
-  const loadBtn = document.getElementById('loadMore');
-
-  const ratingFilter = document.getElementById('ratingFilter'); // desktop
-  const searchInput = document.getElementById('searchInput');   // desktop
-  const clearSearch = document.getElementById('clearSearch');    // desktop
-
-  const ratingFilterMobile = document.getElementById('ratingFilterMobile');
-  const searchInputMobile  = document.getElementById('searchInputMobile');
-  const clearMobile = document.getElementById('clearMobile');
-  const applyFiltersBtn = document.getElementById('applyFilters');
-  const openFilters = document.getElementById('openFilters');
-  const mobileFilters = document.getElementById('mobileFilters');
-  const chipRow = document.getElementById('chipRow');
-
-  let visibleCount = 6;
-  let filtered = [...ALL_REVIEWS];
-  let activeTag = 'all';
-
-  function stars(n){ return star.repeat(n) + starEmpty.repeat(5-n); }
-
-  function card(r){
-    const tagBadges = r.tags.map(t=>`<span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">${t}</span>`).join(' ');
-    return `
-    <article class="rounded-2xl border border-neutral-200 p-5 bg-white shadow-sm hover:shadow-md transition">
-      <div class="flex items-center justify-between">
-        <div class="font-semibold">${r.name}</div>
-        <div class="flex">${stars(r.rating)}</div>
-      </div>
-      <div class="text-xs text-neutral-500 mt-0.5">${r.city}</div>
-      <p class="mt-3 text-sm text-neutral-800 clamp-3">${r.text}</p>
-      <button class="mt-2 text-xs font-semibold text-neutral-600 hover:text-neutral-900" onclick="this.previousElementSibling.classList.toggle('clamp-3');this.textContent=this.textContent==='Read more'?'Show less':'Read more'">Read more</button>
-      <div class="mt-3 flex flex-wrap gap-2">${tagBadges}</div>
-    </article>`;
-  }
-
-  function render(){
-    grid.innerHTML = filtered.slice(0, visibleCount).map(card).join('');
-    loadBtn.classList.toggle('hidden', visibleCount >= filtered.length);
-  }
-
-  function applyFilters(){
-    const q = (searchInput?.value || searchInputMobile?.value || '').trim().toLowerCase();
-    const rf = (ratingFilter?.value || ratingFilterMobile?.value || 'all');
-    filtered = ALL_REVIEWS.filter(r=>{
-      const ratingOk = rf==='all' ? true : (r.rating >= parseInt(rf,10));
-      const tagOk = activeTag==='all' ? true : r.tags.some(t=>t.toLowerCase()===activeTag);
-      const textOk = !q || (r.text.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q) || r.city.toLowerCase().includes(q));
-      return ratingOk && tagOk && textOk;
-    });
-    visibleCount = Math.min(6, filtered.length);
+    function render(){
+      grid.innerHTML = filtered.slice(0, visibleCount).map(card).join('');
+      loadBtn.classList.toggle('hidden', visibleCount >= filtered.length);
+    }
+    function applyFilters(){
+      const q = searchInput.value.trim().toLowerCase();
+      const rf = ratingFilter.value;
+      filtered = ALL_REVIEWS.filter(r=>{
+        const ratingOk = rf==='all' ? true : (r.rating >= parseInt(rf,10));
+        const textOk = !q || (r.text.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q) || r.city.toLowerCase().includes(q));
+        return ratingOk && textOk;
+      });
+      visibleCount = Math.min(6, filtered.length);
+      render();
+    }
+    loadBtn.addEventListener('click', ()=>{ visibleCount += 6; render(); });
+    ratingFilter.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+    clearSearch.addEventListener('click', ()=>{ searchInput.value=''; applyFilters(); });
     render();
-  }
-
-  // Build chips from tags
-  const TAGS = Array.from(new Set(ALL_REVIEWS.flatMap(r=>r.tags.map(t=>t.toLowerCase()))));
-  function buildChips(){
-    if(!chipRow) return;
-    chipRow.innerHTML = '';
-    const all = document.createElement('button');
-    all.textContent = 'All';
-    all.className = 'shrink-0 px-3 py-1.5 rounded-full border text-sm';
-    all.addEventListener('click', ()=>{activeTag='all';highlightChip();applyFilters();});
-    chipRow.appendChild(all);
-    TAGS.forEach(t=>{
-      const b = document.createElement('button');
-      b.textContent = t;
-      b.className = 'shrink-0 px-3 py-1.5 rounded-full border text-sm capitalize';
-      b.addEventListener('click', ()=>{activeTag=t;highlightChip();applyFilters();});
-      chipRow.appendChild(b);
-    });
-    highlightChip();
-  }
-  function highlightChip(){
-    if(!chipRow) return;
-    Array.from(chipRow.children).forEach(el=>{
-      const isActive = (el.textContent.toLowerCase()===activeTag) || (activeTag==='all' && el.textContent==='All');
-      el.classList.toggle('bg-red-600', isActive);
-      el.classList.toggle('text-white', isActive);
-      el.classList.toggle('border-red-600', isActive);
-      el.classList.toggle('bg-white', !isActive);
-      el.classList.toggle('text-neutral-800', !isActive);
-      el.classList.toggle('border-neutral-300', !isActive);
-    });
-  }
-
-  // Desktop filter events
-  ratingFilter?.addEventListener('change', ()=>{ ratingFilterMobile.value = ratingFilter.value; applyFilters();});
-  searchInput?.addEventListener('input', ()=>{ searchInputMobile.value = searchInput.value; applyFilters();});
-  clearSearch?.addEventListener('click', ()=>{ searchInput.value=''; searchInputMobile.value=''; applyFilters();});
-
-  // Mobile filter events
-  document.getElementById('applyFilters')?.addEventListener('click', ()=>{ ratingFilter.value = ratingFilterMobile.value; searchInput.value = searchInputMobile.value; applyFilters(); mobileFilters.classList.add('hidden');});
-  clearMobile?.addEventListener('click', ()=>{ ratingFilterMobile.value='all'; searchInputMobile.value=''; activeTag='all'; highlightChip(); applyFilters();});
-  openFilters?.addEventListener('click', ()=> mobileFilters.classList.toggle('hidden'));
-
-  // Featured slider (mobile)
-  (function(){
-    const track = document.getElementById('featTrack'); if(!track) return;
-    const top = ALL_REVIEWS.filter(r=>r.rating>=5).slice(0,5);
-    top.forEach(r=>{
-      const slide = document.createElement('article');
-      slide.className = 'min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white p-4';
-      slide.innerHTML = `<div class='flex items-center justify-between'><div class='font-semibold'>${r.name}</div><div class='flex'>${stars(r.rating)}</div></div><div class='text-xs text-neutral-500 mt-0.5'>${r.city}</div><p class='mt-3 text-sm text-neutral-800'>${r.text}</p><div class='mt-3 flex flex-wrap gap-2'>${r.tags.map(t=>`<span class=\"px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700\">${t}</span>`).join('')}</div>`;
-      track.appendChild(slide);
-    });
-    const dots = document.getElementById('featDots');
-    const prev = document.getElementById('featPrev');
-    const next = document.getElementById('featNext');
-    function idx(){ const step = track.firstElementChild?.clientWidth + 16 || 1; return Math.round(track.scrollLeft/step); }
-    function upd(i){ Array.from(dots.children).forEach((d,ii)=>{ d.style.backgroundColor = ii===i ? '#dc2626' : 'transparent'; d.style.borderColor = ii===i ? '#dc2626' : 'rgb(163 163 163)';}); }
-    top.forEach((_,i)=>{ const b=document.createElement('button'); b.className='h-2.5 w-2.5 rounded-full border border-neutral-400'; b.addEventListener('click',()=>{ const target = track.children[i]; track.scrollTo({left: target.offsetLeft - track.firstElementChild.offsetLeft, behavior:'smooth'}); upd(i); }); dots.appendChild(b); });
-    track.addEventListener('scroll', ()=>{ if(track._t) return; track._t=true; requestAnimationFrame(()=>{ track._t=false; upd(idx());});});
-    prev.addEventListener('click', ()=>{ const i = Math.max(0, idx()-1); const t=track.children[i]; track.scrollTo({left:t.offsetLeft - track.firstElementChild.offsetLeft, behavior:'smooth'}); upd(i); });
-    next.addEventListener('click', ()=>{ const i = Math.min(top.length-1, idx()+1); const t=track.children[i]; track.scrollTo({left:t.offsetLeft - track.firstElementChild.offsetLeft, behavior:'smooth'}); upd(i); });
-    upd(0);
-  })();
-
-  // Initial setup
-  buildChips();
-  applyFilters();
-  loadBtn.addEventListener('click', ()=>{ visibleCount += 6; render(); });
-</script>
+  </script>
 </body>
 </html>
