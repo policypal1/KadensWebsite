@@ -38,7 +38,7 @@
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 md:h-20">
         <!-- Logo -->
@@ -63,8 +63,7 @@
         </div>
 
         <!-- Mobile hamburger (only < md) -->
-        <button id="mobileMenuBtn"
-                class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50 shadow-sm"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -95,10 +94,11 @@
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images2.alphacoders.com/108/1086162.jpg');"></div>
-    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
-      <div class="bg-white/90 rounded-2xl p-6 md:p-8 shadow-lg max-w-lg md:max-w-xl">
+      <div class="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 shadow-xl ring-1 ring-white/60 max-w-lg md:max-w-xl">
+        <p class="text-[13px] md:text-sm font-medium text-neutral-600 mb-2">Family‑owned • 20+ years in Salem</p>
         <h1 class="text-2xl md:text-4xl font-black mb-2 md:mb-4">Core Services & Pricing</h1>
         <p class="text-neutral-700 text-sm md:text-base mb-4 md:mb-6">Upfront prices for windshield, rear, and door glass—plus chip repair. OEM-grade materials, installed right.</p>
         <div class="flex flex-wrap gap-3 md:gap-4">
@@ -114,14 +114,14 @@
     <!-- MOBILE slider (only < md) -->
     <section class="mt-6 md:hidden">
       <div class="relative">
-        <div id="svcTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4 [-ms-overflow-style:none] [scrollbar-width:none]" style="scroll-snap-type:x mandatory;" aria-label="Services carousel">
+        <div id="svcTrack" class="flex gap-4 overflow-x-auto snap-x snap-proximity scroll-pl-1 pr-4 overscroll-x-contain scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none]" aria-label="Services carousel">
           <!-- hide scrollbar -->
           <style>#svcTrack::-webkit-scrollbar{display:none}</style>
 
           <!-- Slide: Front Windshield -->
-          <article class="svc-card min-w-[88%] snap-center rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
             <div class="relative w-full aspect-[4/3]">
-              <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Front Windshield" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Front Windshield" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" fetchpriority="high">
             </div>
             <div class="p-4 flex flex-col h-full">
               <div class="flex items-center justify-between gap-3">
@@ -145,9 +145,9 @@
           </article>
 
           <!-- Slide: Rear Glass -->
-          <article class="svc-card min-w-[88%] snap-center rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
             <div class="relative w-full aspect-[4/3]">
-              <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Rear Glass" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
             </div>
             <div class="p-4 flex flex-col h-full">
               <h3 class="text-base font-bold">Rear Glass</h3>
@@ -168,9 +168,9 @@
           </article>
 
           <!-- Slide: Door Glass -->
-          <article class="svc-card min-w-[88%] snap-center rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
             <div class="relative w-full aspect-[4/3]">
-              <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Car Door Glass" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Car Door Glass" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
             </div>
             <div class="p-4 flex flex-col h-full">
               <h3 class="text-base font-bold">Car Door Glass</h3>
@@ -191,9 +191,9 @@
           </article>
 
           <!-- Slide: Chip Repair -->
-          <article class="svc-card min-w-[88%] snap-center rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
             <div class="relative w-full aspect-[4/3]">
-              <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repair" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <img src="https://miracleagc.com/wp-content/uploads/2022/06/auto-glass-chip-repair-san-antonio-1-1024x768.jpg" alt="Chip Repair" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
             </div>
             <div class="p-4 flex flex-col h-full">
               <h3 class="text-base font-bold">Chip Repair</h3>
@@ -325,19 +325,36 @@
 
     <!-- Interactive Estimator -->
     <!-- Premium assurances (below services, above estimator) -->
-    <section id="assurances" class="mt-8 md:mt-12">
-      <div class="grid sm:grid-cols-3 gap-4 md:gap-6">
-        <div class="rounded-2xl border border-neutral-200 bg-white p-5 md:p-6 shadow-sm">
-          <h4 class="font-semibold text-neutral-900">OEM‑grade materials</h4>
-          <p class="mt-1 text-sm text-neutral-600">Quiet, leak‑free seals using premium glass and urethane.</p>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-5 md:p-6 shadow-sm">
-          <h4 class="font-semibold text-neutral-900">Same‑day mobile</h4>
-          <p class="mt-1 text-sm text-neutral-600">We come to you in Salem/Keizer when parts are in stock.</p>
-        </div>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-5 md:p-6 shadow-sm">
-          <h4 class="font-semibold text-neutral-900">Lifetime workmanship</h4>
-          <p class="mt-1 text-sm text-neutral-600">If an install ever leaks or squeaks, we make it right.</p>
+    <section id="proof" class="mt-8 md:mt-12">
+      <div class="rounded-2xl bg-neutral-900 text-white p-6 md:p-8">
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="flex items-center gap-4">
+            <div class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <div class="text-2xl font-black leading-tight">20+ Years</div>
+              <p class="text-sm text-neutral-300">Serving Salem/Keizer</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M9 22V12h6v10"/></svg>
+            </div>
+            <div>
+              <div class="text-2xl font-black leading-tight">Family‑Owned</div>
+              <p class="text-sm text-neutral-300">Local, honest service</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <div class="text-2xl font-black leading-tight">Licensed & Insured</div>
+              <p class="text-sm text-neutral-300">Peace of mind, start to finish</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -621,8 +638,8 @@
 
       function update(active){
         Array.from(dotsWrap.children).forEach((d, i) => {
-          d.style.backgroundColor = i === active ? '#2563eb' : 'transparent';
-          d.style.borderColor = i === active ? '#2563eb' : 'rgb(163 163 163)';
+          d.style.backgroundColor = i === active ? '#dc2626' : 'transparent';
+          d.style.borderColor = i === active ? '#dc2626' : 'rgb(163 163 163)';
         });
       }
 
