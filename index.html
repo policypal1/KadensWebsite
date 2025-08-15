@@ -36,14 +36,33 @@
   .h-\[90vh\] { height: 72vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
 
-  /* Kick headline higher and reserve bottom for CTAs + reviews */
+  /* Scoot the whole hero content down + reserve bottom area */
   .hero-left  { 
-    padding-top: 6vh !important;
-    padding-bottom: 300px !important; /* more bottom space to fit all elements comfortably */
+    padding-top: 9vh !important;         /* higher headline placement */
+    padding-bottom: 300px !important;     /* room for CTAs + reviews */
     position: relative !important; 
   }
 
-  /* Quick facts row (compact tiles) */
+  /* BIGGER/BOLDER headline + kicker on mobile */
+  .hero-left h1{
+    font-size: 38px !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.015em !important;
+    margin-bottom: 10px !important;
+  }
+  .hero-left h1 span{
+    display:block !important;
+    font-size: 34px !important;           /* “Service You Trust” */
+    font-weight: 900 !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Hide the OEM-grade paragraph on mobile */
+  .hero-left > p { display: none !important; }
+
+  /* Quick facts row (keep these badges) */
   .hero-facts { display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
   .hero-fact  { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
   .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
@@ -51,36 +70,22 @@
   /* Hide right quick-quote column on phones */
   section.relative.overflow-hidden:first-of-type aside { display: none !important; }
 
-  /* Stacked CTAs pinned above proofs */
+  /* CTAs LOWER on the page (closer to bottom) */
   .hero-ctas{
     position: absolute !important;
     left: 1rem; right: 1rem;
-    bottom: calc(20% + env(safe-area-inset-bottom)) !important;
+    bottom: calc(12% + env(safe-area-inset-bottom)) !important; /* was 20% */
     display: grid !important;
     grid-auto-flow: row !important;
-    gap: 14px !important; /* more space between buttons */
+    gap: 14px !important;
     z-index: 3;
   }
   .hero-ctas a { width: 100% !important; }
 
-  /* Proof cards above reviews */
-  .hero-proofs{
-    position: absolute; left: 1rem; right: 1rem;
-    bottom: calc(10% + env(safe-area-inset-bottom));
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; /* more space between proof cards */
-    z-index: 2;
-  }
-  .hero-proof{
-    display:flex; align-items:center; gap:8px;
-    padding:10px 12px; border-radius:14px;
-    background: rgba(255,255,255,.92);
-    border:1px solid rgba(0,0,0,.08);
-    box-shadow: 0 6px 18px rgba(0,0,0,.06);
-    font-size:.85rem; color:#111;
-  }
-  .hero-proof .icon{ width:16px; height:16px; color:#ef4444; opacity:.9; }
+  /* REMOVE proof chips below the call button on mobile */
+  .hero-proofs{ display: none !important; }
 
-  /* Reviews at the very bottom */
+  /* Reviews stay at the very bottom */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
     position:absolute; left:1rem; right:1rem;
@@ -100,7 +105,7 @@
   }
   .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
 
-  /* Trim duplicate badges under hero headline */
+  /* Trim duplicate badges under hero headline (from desktop) */
   section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
