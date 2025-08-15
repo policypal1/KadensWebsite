@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-/* ================= MOBILE-ONLY OVERRIDES ================= */
+/* ================= MOBILE-ONLY OVERRIDES (drop-in replace) ================= */
 @media (max-width: 640px){
   /* Baseline type/spacing */
   html, body { -webkit-text-size-adjust: 100%; }
@@ -33,18 +33,18 @@
   .reviews-strip { display: none !important; }
 
   /* HERO sizing/layout */
-  .h-\[90vh\] { height: 70vh !important; min-height: 560px !important; }
+  .h-\[90vh\] { height: 72vh !important; min-height: 560px !important; }
   .hero-shell { align-items: flex-start !important; }
 
-  /* Reserve space so absolute CTAs / proofs / reviews never overlap the text */
+  /* Kick headline higher and reserve bottom for CTAs + reviews */
   .hero-left  { 
-    padding-top: 10vh !important; 
-    padding-bottom: 280px !important;  /* space for CTAs + proofs + reviews */
+    padding-top: 6vh !important;
+    padding-bottom: 260px !important;
     position: relative !important; 
   }
 
-  /* Quick facts row (!!! this fixes huge SVGs) */
-  .hero-facts { display:grid !important; grid-template-columns: 1fr 1fr 1fr; gap:8px; margin-top:10px; }
+  /* Quick facts row (compact tiles) */
+  .hero-facts { display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
   .hero-fact  { display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background: rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
   .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
 
@@ -59,7 +59,7 @@
     display: grid !important;
     grid-auto-flow: row !important;
     gap: 10px !important;
-    z-index: 3; /* above proofs & reviews */
+    z-index: 3;
   }
   .hero-ctas a { width: 100% !important; }
 
@@ -80,7 +80,7 @@
   }
   .hero-proof .icon{ width:16px; height:16px; color:#ef4444; opacity:.9; }
 
-  /* Reviews at the very bottom */
+  /* Reviews at the very bottom (5 stars shown) */
   @keyframes heroMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .hero-reviews{
     position:absolute; left:1rem; right:1rem;
@@ -90,10 +90,7 @@
     overflow: hidden;
     z-index: 1;
   }
-  .hero-reviews-track{
-    width: max-content; display: flex; gap: .5rem;
-    animation: heroMarquee 30s linear infinite;
-  }
+  .hero-reviews-track{ width: max-content; display: flex; gap: .5rem; animation: heroMarquee 28s linear infinite; }
   @media (prefers-reduced-motion: reduce){ .hero-reviews-track{ animation: none; transform: none; } }
   .hero-reviews .review-pill{
     display: inline-flex; align-items: center; gap: .5rem;
@@ -103,7 +100,7 @@
   }
   .hero-reviews .stars{ letter-spacing: .5px; color:#f59e0b; }
 
-  /* Trim repeat badges under hero headline */
+  /* Trim duplicate badges under hero headline */
   section.relative.overflow-hidden:first-of-type .text-white.max-w-2xl > .flex.flex-wrap.gap-2{ display: none !important; }
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs,
   section.relative.overflow-hidden:first-of-type p.mt-3.text-xs *{ display: none !important; }
@@ -277,7 +274,7 @@
 
 
 
-<!-- HERO (full-bleed with mobile-optimized CTAs, proof cards, and bottom reviews) -->
+<!-- HERO (full-bleed; mobile-first layout) -->
 <section class="relative overflow-hidden">
   <!-- Background image + overlay -->
   <div class="absolute inset-0">
@@ -295,15 +292,15 @@
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
 
-      <!-- LEFT: Headline + CTAs (mobile optimized via CSS) -->
+      <!-- LEFT: Headline + facts + CTAs (phones are positioned by CSS above) -->
       <div class="text-white max-w-2xl hero-left">
         <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
           Mobile Windshield Repair &amp; Replacement
           <span class="text-red-400 block md:inline">Service You Trust</span>
         </h1>
 
-        <!-- Quick facts (mobile shows compact tiles) -->
-        <div class="hero-facts sm:hidden">
+        <!-- Quick facts (3 small tiles) -->
+        <div class="hero-facts sm:hidden" aria-label="Fast facts">
           <div class="hero-fact">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
             Same-day mobile
@@ -322,8 +319,8 @@
           OEM-grade glass. Clean installs. Up-front pricing. We come to your home or office.
         </p>
 
-        <!-- Desktop CTAs (now hidden on phones) -->
-        <div class="mt-8 hidden sm:flex gap-3 hero-desktop-ctas">
+        <!-- Desktop CTAs (hidden on phones) -->
+        <div class="mt-8 hidden sm:flex gap-3">
           <a href="/quote.html"
              class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
             Get a Quote
@@ -334,7 +331,7 @@
           </a>
         </div>
 
-        <!-- Mobile CTAs pinned ~15% from bottom (single set on mobile) -->
+        <!-- Mobile CTAs (stacked; pinned ~15% from bottom) -->
         <div class="hero-ctas sm:hidden" aria-label="Primary actions">
           <a href="/quote.html"
              class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
@@ -346,7 +343,7 @@
           </a>
         </div>
 
-        <!-- Compact proof cards between CTAs and reviews (mobile only) -->
+        <!-- Proof chips (between CTAs and reviews on phones) -->
         <div class="hero-proofs sm:hidden" aria-hidden="false">
           <div class="hero-proof">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -358,7 +355,7 @@
           </div>
         </div>
 
-        <!-- Scrolling reviews at the very bottom (mobile only) -->
+        <!-- Scrolling reviews fixed to very bottom (5 stars) -->
         <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
           <div class="hero-reviews-track">
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
@@ -366,7 +363,7 @@
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
-            <!-- duplicate set for seamless loop -->
+            <!-- duplicate for seamless loop -->
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
             <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
@@ -376,7 +373,7 @@
         </div>
       </div>
 
-      <!-- RIGHT: Mini Quick Quote (hidden on phones via CSS) -->
+      <!-- RIGHT: Mini Quick Quote (hidden on phones via CSS above) -->
       <aside class="w-full max-w-md justify-self-end">
         <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
           <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
@@ -409,6 +406,7 @@
   <!-- soft fade into next section -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
+
 
 
 
