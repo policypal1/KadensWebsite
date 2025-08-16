@@ -338,23 +338,65 @@
           </a>
         </div>
 
-        <!-- Reviews at bottom (mobile only) -->
-        <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
-          <div class="hero-reviews-track">
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
-            <!-- duplicate for seamless loop -->
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
-          </div>
-        </div>
-      </div>
+      <!-- Reviews at bottom (mobile only) -->
+<div class="hero-reviews sm:hidden" aria-label="Recent customer reviews">
+  <div id="reviewCarousel" class="relative w-full overflow-hidden rounded-xl bg-white/95 shadow-md border border-neutral-200">
+    <!-- Slides -->
+    <div class="carousel-slide p-4 text-center hidden">
+      <p class="text-yellow-500 text-lg mb-2">★★★★★</p>
+      <p class="text-sm text-neutral-800 italic">“Tech showed up on time and left the area spotless. Highly recommend.”</p>
+      <p class="mt-1 text-xs font-semibold text-neutral-600">— Sarah J.</p>
+    </div>
+    <div class="carousel-slide p-4 text-center hidden">
+      <p class="text-yellow-500 text-lg mb-2">★★★★★</p>
+      <p class="text-sm text-neutral-800 italic">“They replaced my windshield at work during lunch break. Super convenient.”</p>
+      <p class="mt-1 text-xs font-semibold text-neutral-600">— Daniel R.</p>
+    </div>
+    <div class="carousel-slide p-4 text-center hidden">
+      <p class="text-yellow-500 text-lg mb-2">★★★★★</p>
+      <p class="text-sm text-neutral-800 italic">“Matched the quote exactly, no hidden fees. Honest and upfront.”</p>
+      <p class="mt-1 text-xs font-semibold text-neutral-600">— Maria C.</p>
+    </div>
+    <div class="carousel-slide p-4 text-center hidden">
+      <p class="text-yellow-500 text-lg mb-2">★★★★★</p>
+      <p class="text-sm text-neutral-800 italic">“Windshield looks factory new. Zero wind noise now.”</p>
+      <p class="mt-1 text-xs font-semibold text-neutral-600">— Jason K.</p>
+    </div>
+    <div class="carousel-slide p-4 text-center hidden">
+      <p class="text-yellow-500 text-lg mb-2">★★★★★</p>
+      <p class="text-sm text-neutral-800 italic">“Friendly tech, text updates, and super fast service.”</p>
+      <p class="mt-1 text-xs font-semibold text-neutral-600">— Emily T.</p>
+    </div>
+
+    <!-- Controls -->
+    <button id="prevBtn" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow">‹</button>
+    <button id="nextBtn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow">›</button>
+  </div>
+</div>
+
+<script>
+  // Simple carousel logic
+  (function(){
+    const slides = document.querySelectorAll('#reviewCarousel .carousel-slide');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    let index = 0;
+
+    function showSlide(i){
+      slides.forEach((s, idx) => s.classList.toggle('hidden', idx !== i));
+    }
+    showSlide(index);
+
+    prev.addEventListener('click', () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+    next.addEventListener('click', () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    });
+  })();
+</script>
 
       <!-- RIGHT: Mini Quick Quote (hidden on mobile) -->
       <aside class="hidden md:block w-full max-w-md justify-self-end">
