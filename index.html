@@ -17,7 +17,6 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-
 <style>
 /* ================= MOBILE-ONLY OVERRIDES (STRONG SELECTORS) ================= */
 @media (max-width: 640px){
@@ -137,11 +136,269 @@ nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
 
 /* New mobile carousel: hide scrollbar */
 #homeRevTrack::-webkit-scrollbar{ display:none; }
-</style>
-<!-- ================= END STYLE REPLACEMENT ================= -->
+
+/* ================= DESKTOP / NORMAL STYLES (unchanged layout) ================= */
+@keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
+.animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
+
+/* nav link underline (desktop only) */
+.nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
+.nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.nav-link:hover{color:#dc2626}
+
+/* scrolling review strip (desktop band) — LEAVING DESKTOP STYLES ALONE */
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.reviews-strip { --speed: 38s; }
+.reviews-track { display:flex; width:max-content; gap:.75rem; animation: marqueeScroll var(--speed) linear infinite; }
+.reviews-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.review-pill { display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:9999px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgb(0 0 0 / .04); font-size:.8125rem; white-space:nowrap; }
+.review-star { color:#f59e0b; }
+.reviews-rail:hover .reviews-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
+
+/* HOW IT WORKS – premium timeline */
+@keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
+.hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
+@media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
+.hiw-badge{ background: radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35), transparent 60%), linear-gradient(180deg,#ef4444,#b91c1c); box-shadow:0 6px 18px rgba(220,38,38,.25), inset 0 1px 0 rgba(255,255,255,.25); }
+.hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
+
+/* Premium promise band helpers */
+.premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
+.frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  </style>
+</head>
+
+<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
+
+  <!-- HEADER (contained) -->
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Row -->
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
+        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px; width:auto;">
+        <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
+        <a href="/index.html"    class="nav-link">Home</a>
+        <a href="/services.html" class="nav-link">Services</a>
+        <a href="/reviews.html"  class="nav-link">Reviews</a>
+        <a href="/quote.html"    class="nav-link">Quote</a>
+        <a href="/faqs.html"     class="nav-link">FAQs</a>
+      </nav>
+
+      <!-- Desktop actions -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
+        <a href="/quote.html"
+           class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          Menu
+        </button>
+      </div>
+
+      <!-- Mobile dropdown -->
+      <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
+        <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
+          <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+          <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
+          <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+          <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+          <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
 
-<!-- ========== ADD THIS NEW SECTION *RIGHT AFTER* YOUR HERO SECTION ========== -->
+<!-- Header scripts (mobile toggle + active link highlight) -->
+<script>
+(function(){
+  // Mobile toggle
+  const btn   = document.getElementById('mobileMenuBtn');
+  const menu  = document.getElementById('mobileMenu');
+  const panel = menu ? menu.querySelector('.slide-menu') : null;
+  if (btn && menu && panel) {
+    function toggle(open){
+      const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !willOpen);
+      panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+      btn.setAttribute('aria-expanded', String(willOpen));
+    }
+    btn.addEventListener('click', () => toggle());
+    menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+  }
+
+  // Highlight active link (desktop + mobile)
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
+    const href = a.getAttribute('href') || '';
+       const norm = href.replace(/\/+$/, '') || '/';
+    if (norm === path) {
+      a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+})();
+</script>
+
+<!-- HERO (full-bleed; mobile-first layout) -->
+<section class="relative overflow-hidden">
+  <!-- Background image + overlay -->
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+      alt="Mobile auto glass service on-site"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/15"></div>
+  </div>
+
+  <!-- Shell -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[90vh] min-h-[720px] flex items-center hero-shell">
+    <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
+
+      <!-- LEFT: Headline + facts + CTAs -->
+      <div class="text-white max-w-2xl hero-left">
+        <h1 class="mt-3 text-5xl md:text-7xl font-black leading-tight">
+          Mobile Windshield Repair &amp; Replacement
+          <span class="text-red-400 block md:inline">Service You Trust</span>
+        </h1>
+
+        <!-- Quick facts (3 tiles) -->
+        <div class="hero-facts sm:hidden" aria-label="Fast facts">
+          <div class="hero-fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13v10H3z"/><path d="M16 10h4l1 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="18.5" cy="17.5" r="1.5"/></svg>
+            Same-day mobile
+          </div>
+          <div class="hero-fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
+            Lifetime workmanship
+          </div>
+          <div class="hero-fact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg>
+            ADAS sensors handled
+          </div>
+        </div>
+
+        <!-- Desktop CTAs (hidden on phones) -->
+        <div class="mt-8 hidden sm:flex gap-3">
+          <a href="/quote.html"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+            Get a Quote
+          </a>
+          <a href="tel:+15039492257"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+            Call (503) 949-2257
+          </a>
+        </div>
+
+        <!-- Mobile CTAs -->
+        <div class="hero-ctas sm:hidden" aria-label="Primary actions">
+          <a href="/quote.html"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+            Get a Quote
+          </a>
+          <a href="tel:+15039492257"
+             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+            Call (503) 949-2257
+          </a>
+        </div>
+
+        <!-- Reviews at bottom (mobile only) -->
+        <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
+          <div class="hero-reviews-track">
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
+            <!-- duplicate for seamless loop -->
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
+            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Mini Quick Quote (hidden on mobile) -->
+      <aside class="hidden md:block w-full max-w-md justify-self-end">
+        <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
+          <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
+          <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
+
+          <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3" onsubmit="handleMiniQuote(event)">
+            <input name="name" placeholder="Name" autocomplete="name" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+            <select name="service" required
+                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+              <option value="" disabled selected>Select service</option>
+              <option>Windshield Replacement</option>
+              <option>Chip Repair</option>
+              <option>Door/Side Glass</option>
+              <option>Back Glass</option>
+            </select>
+            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+              Get My Quote
+            </button>
+            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
+          </form>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- soft fade into next section -->
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
+</section>
+
+<script>
+  function handleMiniQuote(e){
+    e.preventDefault();
+    const f = e.target;
+    const data = {
+      name: f.name.value.trim(),
+      phone: f.phone.value.trim(),
+      service: f.service.value.trim()
+    };
+    localStorage.setItem('cq_prequote', JSON.stringify(data));
+    const qs = new URLSearchParams(data).toString();
+    window.location.href = '/quote.html?' + qs + '#quote';
+  }
+</script>
+
+
+  <!-- ========== ADD THIS NEW SECTION *RIGHT AFTER* YOUR HERO SECTION ========== -->
 <section class="md:hidden bg-neutral-50/80 border-y border-neutral-200 py-5" aria-label="Customer reviews">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between mb-2">
@@ -215,122 +472,6 @@ nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
 })();
 </script>
 <!-- ========== END NEW MOBILE CAROUSEL SECTION ========== -->
-
-
-<!-- ========== REPLACE YOUR ENTIRE “GUARANTEES” SECTION WITH THIS ========== -->
-<section id="guarantees" class="relative isolate overflow-hidden py-20 bg-neutral-50">
-  <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-200/50 blur-3xl"></div>
-  <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-neutral-300/40 blur-3xl"></div>
-
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <span class="inline-flex items-center rounded-full bg-white shadow-sm ring-1 ring-neutral-200 px-3 py-1 text-[11px] tracking-wide uppercase text-neutral-700">
-        Clear Choice Promise
-      </span>
-      <h2 class="mt-4 text-3xl md:text-5xl font-black leading-tight text-neutral-900">
-        Why Drivers Choose <span class="text-red-600">Clear Choice</span> Auto Glass
-      </h2>
-      <p class="mt-3 text-lg text-neutral-700">
-        We treat every install like it’s our own car—so you get the safest, cleanest, longest-lasting results.
-      </p>
-    </div>
-
-    <!-- lg now shows 5 columns -->
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-
-      <!-- 1 -->
-      <div class="group relative">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white via-white to-white shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-neutral-200 transition-all duration-300 group-hover:ring-red-200"></div>
-        <div class="relative rounded-2xl bg-white p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-xl">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-neutral-900">Lifetime Workmanship</h3>
-              <p class="mt-2 text-sm text-neutral-600">If a seal we installed ever fails, we fix it—free.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 -->
-      <div class="group relative">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white via-white to-white shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-neutral-200 transition-all duration-300 group-hover:ring-red-200"></div>
-        <div class="relative rounded-2xl bg-white p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-xl">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 9h18M8 17l1-4m6 4-1-4"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-neutral-900">OEM-Grade Glass</h3>
-              <p class="mt-2 text-sm text-neutral-600">Quiet, leak-free seal with manufacturer-grade materials.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="group relative">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white via-white to-white shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-neutral-200 transition-all duration-300 group-hover:ring-red-200"></div>
-        <div class="relative rounded-2xl bg-white p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-xl">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path><circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-neutral-900">Fast Mobile Service</h3>
-              <p class="mt-2 text-sm text-neutral-600">Same-day installs at home or work, most weekdays.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="group relative">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white via-white to-white shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-neutral-200 transition-all duration-300 group-hover:ring-red-200"></div>
-        <div class="relative rounded-2xl bg-white p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-xl">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path><path d="M19 4l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-neutral-900">Crystal-Clean Finish</h3>
-              <p class="mt-2 text-sm text-neutral-600">No mess left behind—dash & vents spotless.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 (NEW COLUMN) -->
-      <div class="group relative">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white via-white to-white shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-neutral-200 transition-all duration-300 group-hover:ring-red-200"></div>
-        <div class="relative rounded-2xl bg-white p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-xl">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-neutral-900">Insurance-Friendly</h3>
-              <p class="mt-2 text-sm text-neutral-600">We help with the paperwork and keep your cost clear.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
   <!-- MAIN (contained sections + full-bleed bands) -->
