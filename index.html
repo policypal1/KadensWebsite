@@ -265,7 +265,7 @@ nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
 })();
 </script>
 
-<!-- HERO (full-bleed; mobile-first layout) -->
+<!-- HERO (full-bleed; mobile-first layout) — REPLACE YOUR ENTIRE HERO + its small script -->
 <section class="relative overflow-hidden">
   <!-- Background image + overlay -->
   <div class="absolute inset-0">
@@ -318,34 +318,16 @@ nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
           </a>
         </div>
 
-        <!-- Mobile CTAs -->
+        <!-- Mobile CTAs (only the Call button; pinned low) -->
         <div class="hero-ctas sm:hidden" aria-label="Primary actions">
-          <a href="/quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
-            Get a Quote
-          </a>
           <a href="tel:+15039492257"
              class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
             Call (503) 949-2257
           </a>
         </div>
 
-        <!-- Reviews at bottom (mobile only) -->
-        <div class="hero-reviews sm:hidden" aria-label="Recent customer comments">
-          <div class="hero-reviews-track">
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
-            <!-- duplicate for seamless loop -->
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “On time &amp; super clean”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Price matched the quote”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Mobile install at work”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Friendly tech, great comms”</span>
-            <span class="review-pill"><span class="stars" aria-hidden="true">★★★★★</span> “Windshield looks factory new”</span>
-          </div>
-        </div>
+        <!-- Hide tiny hero review pills on mobile (kept for desktop if you use them) -->
+        <div class="hero-reviews sm:hidden" aria-label="Recent customer comments" hidden></div>
       </div>
 
       <!-- RIGHT: Mini Quick Quote (hidden on mobile) -->
@@ -398,80 +380,115 @@ nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
 </script>
 
 
-  <!-- ========== ADD THIS NEW SECTION *RIGHT AFTER* YOUR HERO SECTION ========== -->
-<section class="md:hidden bg-neutral-50/80 border-y border-neutral-200 py-5" aria-label="Customer reviews">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between mb-2">
+
+  <!-- ========== MOBILE REVIEWS (REPLACE YOUR WHOLE REVIEWS-BELOW-HERO SECTION + SCRIPT) ========== -->
+<section class="md:hidden bg-neutral-50/80 border-y border-neutral-200 py-6" aria-label="Customer reviews">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between mb-3">
       <h3 class="text-sm font-semibold text-neutral-700">What locals say</h3>
-      <div id="homeRevDots" class="flex items-center gap-2" aria-label="Slide indicators"></div>
+      <div id="mRevDotsTop" class="flex items-center gap-2" aria-label="Slide indicators"></div>
     </div>
 
     <div class="relative">
-      <div id="homeRevTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4 overscroll-x-contain">
-        <!-- Slides injected by JS -->
+      <div id="mRevTrack"
+           class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4 overscroll-x-contain pb-9">
+        <!-- Cards injected by JS -->
       </div>
-      <div class="mt-3 flex items-center justify-center gap-3">
-        <button id="homeRevPrev" class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-neutral-300">‹</button>
-        <button id="homeRevNext" class="h-8 w-8 inline-flex items-center justify-center rounded-full border border-neutral-300">›</button>
+
+      <!-- Controls + center dots -->
+      <div class="absolute left-0 right-0 -bottom-1 flex items-center justify-center gap-4">
+        <button id="mRevPrev"
+                class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">
+          &lsaquo;
+        </button>
+        <div id="mRevDots" class="flex items-center gap-2"></div>
+        <button id="mRevNext"
+                class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">
+          &rsaquo;
+        </button>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-/* Build a manual (no autoplay) mobile carousel */
+/* Mobile Reviews Carousel (manual; no autoplay) */
 (function(){
-  const track = document.getElementById('homeRevTrack'); if(!track) return;
-  const star = `<svg class="w-4 h-4 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-  const starEmpty = `<svg class="w-4 h-4 fill-neutral-300" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-  const stars = (n)=> star.repeat(n) + starEmpty.repeat(5-n);
+  const track = document.getElementById('mRevTrack'); if(!track) return;
 
   const REVIEWS = [
-    {name:'Hannah K.', city:'Salem', rating:5, text:'“Replaced my windshield in my driveway. Perfect seal and spotless.”', tags:['Windshield','Verified job']},
-    {name:'Luis R.', city:'Keizer', rating:5, text:'“Rear door glass shattered. Tech vacuumed everything—works like new.”', tags:['Door Glass']},
-    {name:'Devon C.', city:'Salem', rating:5, text:'“Chip is almost invisible. Super convenient mobile service.”', tags:['Chip Repair','Mobile']},
-    {name:'Rae A.', city:'Keizer', rating:5, text:'“Clean install, great communication. Highly recommend.”', tags:['Windshield']},
-    {name:'Brian P.', city:'Turner', rating:5, text:'“They handled insurance. Glass looks OEM, no wind noise.”', tags:['Insurance']},
+    {name:'Hannah K.', city:'Salem',  rating:5, text:'Replaced my windshield in my driveway before lunch. Perfect seal and cheaper than the chain.', tags:['Windshield','Verified job']},
+    {name:'Luis R.',   city:'Keizer', rating:5, text:'Rear door glass shattered. Tech vacuumed everything—works like new.', tags:['Door Glass']},
+    {name:'Devon C.',  city:'Salem',  rating:5, text:'Chip is almost invisible. Super convenient mobile service.', tags:['Chip Repair','Mobile']},
+    {name:'Rae A.',    city:'Keizer', rating:5, text:'Clean install, great communication. Highly recommend.', tags:['Windshield']},
+    {name:'Brian P.',  city:'Turner', rating:5, text:'They handled insurance. Glass looks OEM, no wind noise.', tags:['Insurance']}
   ];
 
-  const dotsWrap = document.getElementById('homeRevDots');
+  const star = '<svg class="w-4 h-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>';
+  const starEmpty = '<svg class="w-4 h-4 text-neutral-300" viewBox="0 0 20 20" fill="currentColor"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>';
+  const stars = n => Array.from({length:5}, (_,i)=> i<n ? star : starEmpty).join('');
+
+  const dotsTop = document.getElementById('mRevDotsTop');
+  const dotsCtr = document.getElementById('mRevDots');
+
+  // build cards
   REVIEWS.forEach(r=>{
-    const el=document.createElement('article');
-    el.className='min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 bg-white shadow-sm p-4';
-    el.innerHTML = `
-      <div class='flex items-center justify-between'>
-        <div class='font-semibold'>${r.name}</div>
-        <div class='flex'>${stars(r.rating)}</div>
+    const card = document.createElement('article');
+    card.className = 'min-w-[88%] snap-center rounded-2xl border border-neutral-200 bg-white shadow-sm p-5';
+    card.innerHTML = `
+      <div class="flex items-start justify-between">
+        <div>
+          <div class="font-semibold text-[15px] text-neutral-900">${r.name}</div>
+          <div class="text-xs text-neutral-500 -mt-0.5">${r.city}</div>
+        </div>
+        <div class="flex items-center gap-0.5">${stars(r.rating)}</div>
       </div>
-      <div class='text-xs text-neutral-500 mt-0.5'>${r.city}</div>
-      <p class='mt-3 text-sm text-neutral-800'>${r.text}</p>
-      <div class='mt-3 flex flex-wrap gap-2'>${(r.tags||[]).map(t=>`<span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">${t}</span>`).join('')}</div>`;
-    track.appendChild(el);
+      <p class="mt-3 text-sm text-neutral-800">${r.text}</p>
+      <div class="mt-3 flex flex-wrap gap-2">
+        ${(r.tags||[]).map(t=>`<span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">${t}</span>`).join('')}
+      </div>`;
+    track.appendChild(card);
   });
 
-  REVIEWS.forEach((_,i)=>{ const b=document.createElement('button'); b.className='h-2.5 w-2.5 rounded-full border border-neutral-400'; b.addEventListener('click',()=>goTo(i)); dotsWrap.appendChild(b); });
+  // dots (top-right and centered)
+  function makeDot(i){
+    const b=document.createElement('button');
+    b.className='h-2.5 w-2.5 rounded-full border border-neutral-400';
+    b.addEventListener('click',()=>go(i));
+    return b;
+  }
+  REVIEWS.forEach((_,i)=>{ dotsTop.appendChild(makeDot(i)); dotsCtr.appendChild(makeDot(i).cloneNode(true)); });
 
-  function indexFromScroll(){
+  function idx(){
     const left = track.getBoundingClientRect().left;
-    let best=0,bestDist=Infinity;
-    Array.from(track.children).forEach((el,i)=>{ const d=Math.abs(el.getBoundingClientRect().left-left); if(d<bestDist){bestDist=d;best=i;} });
+    let best=0, dist=Infinity;
+    Array.from(track.children).forEach((el,i)=>{
+      const d=Math.abs(el.getBoundingClientRect().left-left);
+      if(d<dist){dist=d;best=i;}
+    });
     return best;
   }
   function highlight(i){
-    Array.from(dotsWrap.children).forEach((d,ii)=>{
-      d.style.backgroundColor = ii===i ? '#dc2626' : 'transparent';
-      d.style.borderColor = ii===i ? '#dc2626' : 'rgb(163 163 163)';
+    [dotsTop,dotsCtr].forEach(wrap=>{
+      Array.from(wrap.children).forEach((d,ii)=>{
+        d.style.backgroundColor = ii===i ? '#dc2626' : 'transparent';
+        d.style.borderColor     = ii===i ? '#dc2626' : 'rgb(163 163 163)';
+      });
     });
   }
-  function goTo(i){ const el=track.children[i]; if(!el) return; el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); highlight(i); }
+  function go(i){
+    const el = track.children[i]; if(!el) return;
+    el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    highlight(i);
+  }
 
-  track.addEventListener('scroll', ()=>{ window.requestAnimationFrame(()=>highlight(indexFromScroll())); });
-  document.getElementById('homeRevPrev')?.addEventListener('click', ()=> goTo(Math.max(0, indexFromScroll()-1)));
-  document.getElementById('homeRevNext')?.addEventListener('click', ()=> goTo(Math.min(track.children.length-1, indexFromScroll()+1)));
+  document.getElementById('mRevPrev')?.addEventListener('click',()=> go(Math.max(0, idx()-1)));
+  document.getElementById('mRevNext')?.addEventListener('click',()=> go(Math.min(track.children.length-1, idx()+1)));
+  track.addEventListener('scroll',()=>{ requestAnimationFrame(()=>highlight(idx())); });
   highlight(0);
 })();
 </script>
-<!-- ========== END NEW MOBILE CAROUSEL SECTION ========== -->
+<!-- ========== END MOBILE REVIEWS ========== -->
 
 
   <!-- MAIN (contained sections + full-bleed bands) -->
