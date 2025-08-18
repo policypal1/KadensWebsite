@@ -19,79 +19,112 @@
 
 
 <style>
-/* ===== MOBILE HERO ONLY (keeps everything else untouched) ===== */
-@media (max-width:640px){
+/* ================= MOBILE-ONLY OVERRIDES (REPLACEMENT) ================= */
+@media (max-width: 640px){
 
-  /* Hero height */
-  .h-\[90vh\]{
-    height:66vh !important;
-    min-height:520px !important;
-  }
+  /* Base */
+  html, body { -webkit-text-size-adjust: 100%; }
+  body { font-size: 16px; line-height: 1.5; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  img { max-width: 100%; height: auto; }
+  img[width][height]{ height: auto; }
+  /* keep desktop marquee hidden on phones only */
+  .reviews-strip { display: none !important; }
 
-  /* Headline sizing */
+  /* Header: remove red underline effect inside the mobile drawer only */
+  nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
+
+  /* HERO */
+  .h-\[90vh\]{ height:66vh !important; min-height:520px !important; }
   section.relative.overflow-hidden:first-of-type .hero-left h1{
-    font-size:46px !important;
-    line-height:1.08 !important;
-    font-weight:900 !important;
-    letter-spacing:-0.02em !important;
-    margin-bottom:8px !important;
+    font-size:46px !important; line-height:1.08 !important; font-weight:900 !important;
+    letter-spacing:-0.02em !important; margin-bottom:8px !important;
   }
   section.relative.overflow-hidden:first-of-type .hero-left h1 > span{
-    display:block !important;
-    font-size:40px !important;
-    line-height:1.04 !important;
-    font-weight:900 !important;
+    display:block !important; font-size:40px !important; line-height:1.04 !important; font-weight:900 !important;
   }
-  /* Hide optional paragraph under H1 */
-  section.relative.overflow-hidden:first-of-type .hero-left > p{
-    display:none !important;
-  }
-
-  /* Keep space so CTAs don’t collide; push them lower */
+  section.relative.overflow-hidden:first-of-type .hero-left > p{ display:none !important; }
   section.relative.overflow-hidden:first-of-type .hero-left{
-    position:relative !important;
-    padding-top:7vh !important;
-    padding-bottom:300px !important;   /* more room than before */
+    padding-top:7vh !important; padding-bottom:260px !important; position:relative !important;
   }
-  section.relative.overflow-hidden:first-of-type .hero-ctas{
-    position:absolute !important;
-    left:1rem; right:1rem;
-    bottom:calc(4% + env(safe-area-inset-bottom)) !important; /* lower CTA */
-    display:grid !important; gap:14px !important; z-index:3;
-  }
-
-  /* Quick facts – grid + locked icon size (prevents huge white shapes) */
   .hero-facts{
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:8px !important; margin-top:12px !important;
+    display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:12px;
   }
-  .hero-fact{
-    display:flex !important; align-items:center !important; gap:6px !important;
-    padding:8px 10px !important; border-radius:12px !important;
-    background:rgba(255,255,255,.14) !important;
-    border:1px solid rgba(255,255,255,.18) !important;
-    font-size:12px !important; color:#fff !important;
+  .hero-fact{ display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
+  .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
+  section.relative.overflow-hidden:first-of-type .hero-ctas{
+    position:absolute !important; left:1rem; right:1rem;
+    bottom:calc(12% + env(safe-area-inset-bottom)) !important;
+    display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
   }
-  .hero-fact svg{
-    width:16px !important; height:16px !important; flex:0 0 16px !important;
-    color:#fff !important; opacity:.95 !important;
-    max-width:none !important; /* defeat any global svg {width:100%} */
-  }
-  .hero-fact svg *{ vector-effect: non-scaling-stroke; }
-
-  /* Hide hero sidebar + proof chips on phones only */
   section.relative.overflow-hidden:first-of-type aside{ display:none !important; }
   section.relative.overflow-hidden:first-of-type .hero-proofs{ display:none !important; }
-
-  /* Crop background + stronger top gradient for legibility */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position:center 60% !important;
-    filter:saturate(.95) contrast(1.05);
+    object-position:center 60% !important; filter:saturate(.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
     background:linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
   }
+  .hero-reviews{ display:none !important; }
+
+  /* COVERAGE tweaks */
+  #coverage-map .chip-mirror{ display:none !important; }
+  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height:260px !important; min-height:260px !important; }
+
+  /* Misc trims */
+  #guarantees .grid > .group:nth-child(n+3){ display:none !important; }
+  section.relative.overflow-hidden.py-16 aside{ display:none !important; }
+  #how-it-works .md\:grid-cols-3{ grid-template-columns:1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns:1fr 1fr !important; }
+  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display:none !important; }
+  #reviews .grid > article:nth-child(n+3){ display:none !important; }
+  footer .grid.md\:grid-cols-4{ grid-template-columns:1fr !important; }
+
+  /* ================= SHARED MOBILE CAROUSEL (reviews + popular services) ================= */
+  .m-carousel{
+    position:relative;       /* for absolute arrows */
+    overflow:visible;        /* prevent arrows from being clipped */
+    padding-bottom:56px;     /* room for arrows + dots */
+  }
+  .m-carousel .viewport{ overflow:hidden; width:100%; }
+  .m-carousel .track{ display:flex; touch-action:pan-y; will-change:transform; transition:transform 300ms ease; }
+  @media (prefers-reduced-motion: reduce){ .m-carousel .track{ transition:none; } }
+  .m-carousel .slide{ flex:0 0 100%; padding:.5rem; box-sizing:border-box; }
+  .m-card{
+    border-radius:16px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  /* nudge “Get a Quote” links farther from the text */
+  .m-card a{ margin-top:14px !important; }
+
+  /* Dots row (centered) */
+  .m-carousel .dots{
+    position:absolute; left:50%; transform:translateX(-50%);
+    bottom:10px; display:flex; justify-content:center; align-items:center; gap:8px;
+  }
+  .m-carousel .dot{
+    width:10px; height:10px; border-radius:9999px; border:1px solid #d1d5db; background:#fff;
+  }
+  .m-carousel .dot[aria-current="true"]{ background:#dc2626; border-color:#dc2626; }
+
+  /* Arrows UNDER the card, flanking the dots — outlined circles like the screenshot */
+  .m-carousel .ctrl{
+    position:absolute; bottom:8px; top:auto; transform:none;
+    width:40px; height:40px; border-radius:9999px;
+    display:grid; place-items:center;
+    background:#fff; border:1px solid #e5e7eb;
+    box-shadow:0 1px 2px rgba(0,0,0,.04); z-index:2;
+  }
+  .m-carousel .ctrl:hover{ background:#f9fafb; }
+  .m-carousel .ctrl:focus-visible{ outline:3px solid #93c5fd; outline-offset:2px; }
+  .m-carousel .ctrl svg{ width:18px; height:18px; stroke:#6b7280; } /* gray chevrons */
+  /* place them beside the dots */
+  .m-carousel .prev{ left:calc(50% - 120px); }
+  .m-carousel .next{ right:calc(50% - 120px); }
+
+  /* Tighter spacing between Popular Services and Coverage */
+  section.sm\:hidden[aria-labelledby="popularHeading"]{ padding-bottom:8px !important; margin-bottom:0 !important; }
+  #coverage-map{ margin-top:12px !important; }
 }
 
 
@@ -676,34 +709,24 @@
 </section>
 
 
+<!-- ===== Mobile Carousels JS (powers both carousels) ===== -->
 <script>
 (function(){
-  function isVisible(el){
-    return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
-  }
+  if (window.matchMedia('(max-width: 640px)').matches === false) return;
 
-  document.querySelectorAll('.m-carousel').forEach((root) => {
-    if (!isVisible(root)) return;                    // skip hidden (desktop)
+  function initCarousel(root){
     const viewport = root.querySelector('.viewport');
-    const track    = root.querySelector('.track');
-    const slides   = Array.from(root.querySelectorAll('.slide'));
-    const prev     = root.querySelector('.prev');
-    const next     = root.querySelector('.next');
-    let dotsWrap   = root.querySelector('.dots');
+    const track = root.querySelector('.track');
+    const slides = Array.from(root.querySelectorAll('.slide'));
+    const prev = root.querySelector('.prev');
+    const next = root.querySelector('.next');
+    const dotsWrap = root.querySelector('.dots');
 
-    if (!viewport || !track || slides.length === 0) return;
-
-    // Create dots container if missing
-    if (!dotsWrap) {
-      dotsWrap = document.createElement('div');
-      dotsWrap.className = 'dots';
-      root.appendChild(dotsWrap);
-    } else {
-      dotsWrap.innerHTML = '';
-    }
+    let index = 0;
+    const last = slides.length - 1;
 
     // Build dots
-    const dots = slides.map((_, i) => {
+    slides.forEach((_, i) => {
       const b = document.createElement('button');
       b.className = 'dot';
       b.type = 'button';
@@ -711,56 +734,64 @@
       b.setAttribute('aria-label', 'Go to slide ' + (i+1));
       b.addEventListener('click', () => go(i));
       dotsWrap.appendChild(b);
-      return b;
     });
 
-    let index = 0;
-
-    function vw(){ return viewport.getBoundingClientRect().width; }
-
     function setDot(i){
-      dots.forEach((d, di) => d.setAttribute('aria-current', di===i ? 'true':'false'));
+      dotsWrap.querySelectorAll('.dot').forEach((d, di) => d.setAttribute('aria-current', di===i ? 'true':'false'));
     }
 
     function go(i){
-      index = (i + slides.length) % slides.length;   // wrap-around
-      track.style.transform = 'translateX(' + (-index * vw()) + 'px)';
+      index = (i + slides.length) % slides.length; // wrap infinite
+      const x = -index * viewport.clientWidth;
+      track.style.transform = 'translateX(' + x + 'px)';
       setDot(index);
     }
 
-    // Clicks
+    // Resize handler to keep alignment
+    let rid = null;
+    function onResize(){
+      cancelAnimationFrame(rid);
+      rid = requestAnimationFrame(() => go(index));
+    }
+    window.addEventListener('resize', onResize);
+
+    // Buttons
     prev && prev.addEventListener('click', () => go(index - 1));
     next && next.addEventListener('click', () => go(index + 1));
 
-    // Keyboard when arrow buttons focused
+    // Keyboard (left/right when arrows focused)
     [prev, next].forEach(btn => btn && btn.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft')  go(index - 1);
+      if (e.key === 'ArrowLeft') go(index - 1);
       if (e.key === 'ArrowRight') go(index + 1);
     }));
 
-    // Swipe
-    let startX = 0, dragging = false;
+    // Touch / swipe
+    let startX = 0, curX = 0, dragging = false;
     viewport.addEventListener('pointerdown', (e) => {
-      dragging = true; startX = e.clientX;
+      dragging = true; startX = curX = e.clientX;
       viewport.setPointerCapture(e.pointerId);
     });
+    viewport.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      curX = e.clientX;
+    });
     viewport.addEventListener('pointerup', (e) => {
-      if (!dragging) return; dragging = false;
+      if (!dragging) return;
       const dx = e.clientX - startX;
+      dragging = false;
       if (Math.abs(dx) > 40) { dx < 0 ? go(index + 1) : go(index - 1); }
     });
 
-    // Keep aligned on resize / rotation
-    let rid=null;
-    function onResize(){ cancelAnimationFrame(rid); rid=requestAnimationFrame(()=>go(index)); }
-    window.addEventListener('resize', onResize);
-
     // Init
     go(0);
-  });
+  }
+
+  const rev = document.getElementById('revCarousel');
+  const svc = document.getElementById('svcCarouselMobile');
+  if (rev) initCarousel(rev);
+  if (svc) initCarousel(svc);
 })();
 </script>
-
 
     
 <!-- COVERAGE -->
