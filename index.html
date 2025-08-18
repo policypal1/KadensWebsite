@@ -17,128 +17,86 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-/* ================= MOBILE-ONLY OVERRIDES ================= */
+/* ================== MOBILE-ONLY OVERRIDES ================== */
 @media (max-width: 640px){
 
   html, body { -webkit-text-size-adjust: 100%; }
   body { font-size: 16px; line-height: 1.5; }
   a, button { -webkit-tap-highlight-color: transparent; }
-  .reviews-strip { display: none !important; } /* keep desktop band off on phones */
+  .reviews-strip { display: none !important; } /* desktop band off on phones */
 
-  /* ===== HERO ===== */
+  /* HERO tighten + keep CTAs lower */
   .h-\[90vh\] { height: 66vh !important; min-height: 520px !important; }
-
   section.relative.overflow-hidden:first-of-type .hero-left h1{
-    font-size: 46px !important;
-    line-height: 1.08 !important;
-    font-weight: 900 !important;
-    letter-spacing: -0.02em !important;
-    margin-bottom: 8px !important;
+    font-size: 46px !important; line-height: 1.08 !important; font-weight: 900 !important;
+    letter-spacing: -0.02em !important; margin-bottom: 8px !important;
   }
   section.relative.overflow-hidden:first-of-type .hero-left h1 > span{
-    display: block !important;
-    font-size: 40px !important;
-    line-height: 1.04 !important;
-    font-weight: 900 !important;
+    display: block !important; font-size: 40px !important; line-height: 1.04 !important; font-weight: 900 !important;
   }
-
-  /* hide subcopy */
   section.relative.overflow-hidden:first-of-type .hero-left > p{ display: none !important; }
-
-  /* leave more room so CTAs sit LOWER */
   section.relative.overflow-hidden:first-of-type .hero-left{
-    padding-top: 7vh !important;
-    padding-bottom: 260px !important;
-    position: relative !important;
+    padding-top: 7vh !important; padding-bottom: 260px !important; position: relative !important;
   }
-
-  /* Facts row */
-  .hero-facts{
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 8px; margin-top: 12px;
-  }
-  .hero-fact{
-    display: flex; align-items: center; gap: 6px;
-    padding: 8px 10px; border-radius: 12px;
-    background: rgba(255,255,255,.14);
-    border: 1px solid rgba(255,255,255,.18);
-    font-size: 12px; color: #fff;
-  }
+  .hero-facts{ display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:12px; }
+  .hero-fact{ display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
   .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
 
-  /* CTAs (both buttons, placed lower) */
   section.relative.overflow-hidden:first-of-type .hero-ctas{
-    position: absolute !important;
-    left: 1rem; right: 1rem;
-    bottom: calc(6% + env(safe-area-inset-bottom)) !important;
-    display: grid !important; grid-auto-flow: row !important;
-    gap: 14px !important; z-index: 3;
+    position:absolute !important; left:1rem; right:1rem; bottom:calc(6% + env(safe-area-inset-bottom)) !important;
+    display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
   }
-  section.relative.overflow-hidden:first-of-type .hero-ctas a{ width: 100% !important; }
+  section.relative.overflow-hidden:first-of-type aside{ display:none !important; }
+  section.relative.overflow-hidden:first-of-type .hero-reviews{ display:none !important; }
 
-  /* remove the AUTO-SCROLLING mini reviews under the hero CTAs */
-  section.relative.overflow-hidden:first-of-type .hero-reviews{ display: none !important; }
-
-  /* hide desktop quick-quote card on phones */
-  section.relative.overflow-hidden:first-of-type aside{ display: none !important; }
-
-  /* crop hero image lower */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position: center 60% !important;
-    filter: saturate(.95) contrast(1.05);
+    object-position: center 60% !important; filter:saturate(.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
     background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
   }
 
-  /* ===== COVERAGE quick tweaks ===== */
-  #coverage-map .chip-mirror{ display: none !important; }
-  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height: 260px !important; min-height: 260px !important; }
+  /* Coverage tweaks */
+  #coverage-map .chip-mirror{ display:none !important; }
+  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height:260px !important; min-height:260px !important; }
 
-  /* ===== REVIEWS (full section) rating pill width fix ===== */
-  #reviews .inline-flex.items-center.gap-2.rounded-full{
-    width: auto !important; max-width: 100% !important; display: inline-flex !important;
-  }
+  /* Reviews grid ratings not stretched */
+  #reviews .inline-flex.items-center.gap-2.rounded-full{ width:auto !important; max-width:100% !important; display:inline-flex !important; }
 
-  /* Misc trims */
-  #guarantees .grid > .group:nth-child(n+3){ display: none !important; }
-  section.relative.overflow-hidden.py-16 aside { display: none !important; }
-  #how-it-works .md\:grid-cols-3{ grid-template-columns: 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns: 1fr 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display: none !important; }
-  #reviews .grid > article:nth-child(n+3){ display: none !important; }
-  footer .grid.md\:grid-cols-4{ grid-template-columns: 1fr !important; }
+  /* Trim site-wide spacing on phones */
+  .mt-24{ margin-top:2.5rem !important; }               /* was 6rem in places */
+  .py-16{ padding-top:2.75rem !important; padding-bottom:2.75rem !important; }
+  .py-14{ padding-top:2.25rem !important; padding-bottom:2.25rem !important; }
+  .gap-10{ gap:1.25rem !important; }
+  .gap-6{ gap:1rem !important; }
 
-  img { max-width: 100%; height: auto; }
-  img[width][height]{ height: auto; }
+  img { max-width:100%; height:auto; }
+  img[width][height]{ height:auto; }
 
-  /* Sticky mobile action bar */
+  /* Sticky mobile action bar (if used elsewhere) */
   .sticky-actions{
-    background: rgba(255,255,255,.9);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0,0,0,.06); border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.12);
-    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+    background: rgba(255,255,255,.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0,0,0,.06); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    padding-bottom: max(env(safe-area-inset-bottom),0px);
   }
   .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius:.75rem; }
 }
 
 /* ===== Hide horizontal scrollbar “gray line” on the mobile reviews track ===== */
-#mRevTrack{ -ms-overflow-style: none; scrollbar-width: none; }
-#mRevTrack::-webkit-scrollbar{ display: none; }
+#mRevTrack{ -ms-overflow-style:none; scrollbar-width:none; }
+#mRevTrack::-webkit-scrollbar{ display:none; }
 
 /* ================= DESKTOP / NORMAL STYLES ================= */
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
 .animate-fadeIn { animation: fadeIn 250ms ease-out forwards; }
 
-/* nav link underline */
+/* nav underline */
 .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
 .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
 .nav-link:hover::after,.nav-link.active::after{width:100%}
 .nav-link:hover{color:#dc2626}
 
-/* desktop scrolling review band */
+/* desktop marquee band */
 @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .reviews-strip { --speed: 38s; }
 .reviews-track { display:flex; width:max-content; gap:.75rem; animation: marqueeScroll var(--speed) linear infinite; }
@@ -148,7 +106,7 @@
 .reviews-rail:hover .reviews-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce){ .reviews-track{ animation:none; transform:none; } }
 
-/* HOW IT WORKS – premium timeline */
+/* HIW */
 @keyframes hiwFlow { 0% { background-position:0% 50%; } 100% { background-position:200% 50%; } }
 .hiw-line{ background:linear-gradient(90deg,#e5e7eb,#9ca3af,#e5e7eb); background-size:200% 100%; animation:hiwFlow 4.5s linear infinite; border-radius:9999px; }
 @media (prefers-reduced-motion: reduce){ .hiw-line{ animation:none; } }
@@ -156,9 +114,12 @@
 .hiw-card{ transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
 .hiw-card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color: rgb(229 231 235 / 1); }
 
-/* Premium promise band helpers */
+/* subtle helpers */
 .premium-bleed:before{ content:"";position:absolute;inset:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.15), transparent 60%), radial-gradient(1000px 500px at 90% 30%, rgba(220,38,38,.18), transparent 60%); mix-blend:screen;pointer-events:none; }
 .frost{ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+
+/* Desktop: trim big section gaps slightly */
+.mt-24{ margin-top:4.5rem; } /* global nudge down from 6rem */
   </style>
 </head>
 
@@ -173,7 +134,6 @@
           <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
         </a>
 
-        <!-- Desktop nav -->
         <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
           <a href="/index.html"    class="nav-link">Home</a>
           <a href="/services.html" class="nav-link">Services</a>
@@ -182,7 +142,6 @@
           <a href="/faqs.html"     class="nav-link">FAQs</a>
         </nav>
 
-        <!-- Desktop actions -->
         <div class="hidden md:flex items-center gap-4">
           <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
           <a href="/quote.html"
@@ -191,7 +150,6 @@
           </a>
         </div>
 
-        <!-- Mobile hamburger -->
         <button id="mobileMenuBtn"
                 class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
@@ -205,7 +163,6 @@
         </button>
       </div>
 
-      <!-- Mobile dropdown -->
       <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
         <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
           <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
@@ -234,9 +191,7 @@
       }
       btn.addEventListener('click', () => toggle());
       menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
-      document.addEventListener('click', e => {
-        if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
-      });
+      document.addEventListener('click', e => { if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
     }
 
@@ -297,43 +252,30 @@
             </a>
           </div>
 
-          <!-- Mobile CTAs (kept, lowered) -->
+          <!-- Mobile CTAs -->
           <div class="hero-ctas sm:hidden" aria-label="Primary actions">
-            <a href="/quote.html"
-               class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
-              Get a Quote
-            </a>
-            <a href="tel:+15039492257"
-               class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
-              Call (503) 949-2257
-            </a>
+            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">Get a Quote</a>
+            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-7 py-4 text-base font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">Call (503) 949-2257</a>
           </div>
-
-          <!-- (hero auto-scrolling review pills removed on mobile per request) -->
         </div>
 
-        <!-- RIGHT: Mini Quick Quote (desktop only) -->
+        <!-- RIGHT: Quick Quote (desktop) -->
         <aside class="hidden md:block w-full max-w-md justify-self-end">
           <div class="rounded-2xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur">
             <h3 class="text-lg font-bold text-neutral-900">Quick Quote</h3>
             <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
             <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3" onsubmit="handleMiniQuote(event)">
-              <input name="name" placeholder="Name" autocomplete="name" required
-                     class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-              <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-                     class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-              <select name="service" required
-                      class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+              <input name="name" placeholder="Name" autocomplete="name" required class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+              <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+              <select name="service" required class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
                 <option value="" disabled selected>Select service</option>
                 <option>Windshield Replacement</option>
                 <option>Chip Repair</option>
                 <option>Door/Side Glass</option>
                 <option>Back Glass</option>
               </select>
-              <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-                Get My Quote
-              </button>
+              <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">Get My Quote</button>
               <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
             </form>
           </div>
@@ -348,49 +290,31 @@
     function handleMiniQuote(e){
       e.preventDefault();
       const f = e.target;
-      const data = {
-        name: f.name.value.trim(),
-        phone: f.phone.value.trim(),
-        service: f.service.value.trim()
-      };
+      const data = { name: f.name.value.trim(), phone: f.phone.value.trim(), service: f.service.value.trim() };
       localStorage.setItem('cq_prequote', JSON.stringify(data));
       const qs = new URLSearchParams(data).toString();
       window.location.href = '/quote.html?' + qs + '#quote';
     }
   </script>
 
-  <!-- ===== MOBILE REVIEWS CAROUSEL (manual; hidden scrollbar; one dot row) ===== -->
+  <!-- MOBILE REVIEWS (manual; hidden scrollbar; single dots row) -->
   <section class="md:hidden bg-neutral-50/80 border-y border-neutral-200 py-6" aria-label="Customer reviews">
     <div class="max-w-7xl mx-auto px-4">
       <h3 class="text-sm font-semibold text-neutral-700 mb-3">What locals say</h3>
-
       <div class="relative">
-        <div id="mRevTrack"
-             class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4">
-          <!-- Cards injected by JS -->
-        </div>
-
-        <!-- Controls -->
+        <div id="mRevTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-1 pr-4"></div>
         <div class="mt-3 flex items-center justify-center gap-4">
-          <button id="mRevPrev"
-                  class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">
-            &lsaquo;
-          </button>
+          <button id="mRevPrev" class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">&lsaquo;</button>
           <div id="mRevDots" class="flex items-center gap-2" aria-label="Slide indicators"></div>
-          <button id="mRevNext"
-                  class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">
-            &rsaquo;
-          </button>
+          <button id="mRevNext" class="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white shadow-sm border border-neutral-300">&rsaquo;</button>
         </div>
       </div>
     </div>
   </section>
 
   <script>
-  /* Mobile Reviews Carousel (manual; single-dot row; NO autoplay) */
   (function(){
     const track = document.getElementById('mRevTrack'); if(!track) return;
-
     const REVIEWS = [
       {name:'Hannah K.', city:'Salem',  rating:5, text:'Replaced my windshield in my driveway before lunch. Perfect seal and cheaper than the chain.', tags:['Windshield','Verified job']},
       {name:'Luis R.',   city:'Keizer', rating:5, text:'Rear door glass shattered. Tech vacuumed everything—works like new.', tags:['Door Glass']},
@@ -398,14 +322,11 @@
       {name:'Rae A.',    city:'Keizer', rating:5, text:'Clean install, great communication. Highly recommend.', tags:['Windshield']},
       {name:'Brian P.',  city:'Turner', rating:5, text:'They handled insurance. Glass looks OEM, no wind noise.', tags:['Insurance']}
     ];
-
     const star = '<svg class="w-4 h-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>';
     const starEmpty = '<svg class="w-4 h-4 text-neutral-300" viewBox="0 0 20 20" fill="currentColor"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>';
     const stars = n => Array.from({length:5}, (_,i)=> i<n ? star : starEmpty).join('');
-
     const dots = document.getElementById('mRevDots');
 
-    // build cards
     REVIEWS.forEach(r=>{
       const card = document.createElement('article');
       card.className = 'min-w-[88%] snap-center rounded-2xl border border-neutral-200 bg-white shadow-sm p-5';
@@ -424,22 +345,12 @@
       track.appendChild(card);
     });
 
-    // dots
-    function makeDot(i){
-      const b=document.createElement('button');
-      b.className='h-2.5 w-2.5 rounded-full border border-neutral-400';
-      b.addEventListener('click',()=>go(i));
-      return b;
-    }
+    function makeDot(i){ const b=document.createElement('button'); b.className='h-2.5 w-2.5 rounded-full border border-neutral-400'; b.addEventListener('click',()=>go(i)); return b; }
     REVIEWS.forEach((_,i)=> dots.appendChild(makeDot(i)));
 
     function idx(){
-      const left = track.getBoundingClientRect().left;
-      let best=0, dist=Infinity;
-      Array.from(track.children).forEach((el,i)=>{
-        const d=Math.abs(el.getBoundingClientRect().left-left);
-        if(d<dist){dist=d;best=i;}
-      });
+      const left = track.getBoundingClientRect().left; let best=0, dist=Infinity;
+      Array.from(track.children).forEach((el,i)=>{ const d=Math.abs(el.getBoundingClientRect().left-left); if(d<dist){dist=d;best=i;} });
       return best;
     }
     function highlight(i){
@@ -448,71 +359,142 @@
         d.style.borderColor     = ii===i ? '#dc2626' : 'rgb(163 163 163)';
       });
     }
-    function go(i){
-      const el = track.children[i]; if(!el) return;
-      el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-      highlight(i);
-    }
-
+    function go(i){ const el=track.children[i]; if(!el) return; el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); highlight(i); }
     document.getElementById('mRevPrev')?.addEventListener('click',()=> go(Math.max(0, idx()-1)));
     document.getElementById('mRevNext')?.addEventListener('click',()=> go(Math.min(track.children.length-1, idx()+1)));
     track.addEventListener('scroll',()=>{ requestAnimationFrame(()=>highlight(idx())); });
     highlight(0);
   })();
   </script>
-  <!-- ===== END MOBILE REVIEWS ===== -->
 
-  <!-- ===== OPTIONAL NEW SECTION (place between Coverage and How It Works) =====
-       “Popular Services” mini grid to add substance + SEO + an extra CTA
-  -->
-  <section id="popular-services" class="bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex items-center justify-between gap-4">
-        <h2 class="text-2xl md:text-3xl font-black text-neutral-900">Popular Services</h2>
-        <a href="/services.html" class="hidden sm:inline text-red-600 font-semibold hover:underline">View all services →</a>
-      </div>
+  <!-- FULL-BLEED ACTION BAND: Same-Day Mobile Service -->
+  <section class="relative overflow-hidden py-12 md:py-16"> <!-- tighter than before -->
+    <div class="absolute inset-0">
+      <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
+           alt="Technician installing windshield" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/20"></div>
+    </div>
 
-      <div class="mt-6 grid sm:grid-cols-3 gap-4">
-        <div class="rounded-2xl ring-1 ring-neutral-200 bg-white p-5">
-          <div class="text-sm font-semibold text-neutral-900">Windshield Replacement</div>
-          <p class="mt-2 text-sm text-neutral-600">OEM-grade glass, clean seals, ADAS handled when required.</p>
-          <ul class="mt-3 text-sm text-neutral-700 list-disc pl-5 space-y-1">
-            <li>Most jobs 60–90 min cure</li>
-            <li>Mobile at home or work</li>
-          </ul>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-8">
+        <div class="text-white max-w-2xl">
+          <div class="flex flex-wrap items-center gap-2 -mb-1">
+            <span class="shrink-0 inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs text-white/90 ring-1 ring-white/20 backdrop-blur">Up-front pricing</span>
+            <span class="shrink-0 inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs text-white/90 ring-1 ring-white/20 backdrop-blur">20+ years experience</span>
+            <span class="shrink-0 inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs text-white/90 ring-1 ring-white/20 backdrop-blur">Family-owned & local</span>
+          </div>
+
+          <h2 class="mt-1 text-3xl md:text-5xl font-black leading-tight">
+            Same-Day Mobile Service in <span class="text-red-400">Salem / Keizer</span>
+          </h2>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
+            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">(503) 949-2257</a>
+          </div>
         </div>
 
-        <div class="rounded-2xl ring-1 ring-neutral-200 bg-white p-5">
-          <div class="text-sm font-semibold text-neutral-900">Chip Repair</div>
-          <p class="mt-2 text-sm text-neutral-600">Stop spread fast. Most single chips fixed in ~30 minutes.</p>
-          <ul class="mt-3 text-sm text-neutral-700 list-disc pl-5 space-y-1">
-            <li>Clearer view, stronger glass</li>
-            <li>We come to you</li>
-          </ul>
-        </div>
-
-        <div class="rounded-2xl ring-1 ring-neutral-200 bg-white p-5">
-          <div class="text-sm font-semibold text-neutral-900">Door / Back Glass</div>
-          <p class="mt-2 text-sm text-neutral-600">Vacuum out broken glass and replace with exact-fit parts.</p>
-          <ul class="mt-3 text-sm text-neutral-700 list-disc pl-5 space-y-1">
-            <li>Weatherproof seal</li>
-            <li>Fast turnaround</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/quote.html"
-           class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">
-          Get a Quote
-        </a>
-        <a href="/services.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold border border-neutral-300 hover:bg-neutral-50">
-          See Details
-        </a>
+        <!-- right-side informational card -->
+        <aside class="justify-self-end w-full max-w-md hidden md:block">
+          <div class="rounded-2xl bg-white/90 backdrop-blur p-6 shadow-xl ring-1 ring-black/5">
+            <h3 class="text-lg font-bold text-neutral-900">About Clear Choice</h3>
+            <p class="mt-3 text-sm text-neutral-700">Owner-operated in Salem/Keizer. One tech handles your quote, appointment, and install—no call center.</p>
+            <ul class="mt-4 space-y-2 text-sm text-neutral-700">
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>VIN-matched pricing — we confirm parts before we book.</li>
+              <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>Local routes — efficient schedules across Salem / Keizer.</li>
+              <li class="flex items-start gap-2 text-neutral-600"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>ADAS recalibration arranged with a trusted partner when needed.</li>
+            </ul>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
-  <!-- ===== END NEW SECTION ===== -->
+
+  <!-- ⭐️ POPULAR SERVICES (more visual, placed RIGHT AFTER the band above) -->
+  <section id="popular-services" class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"> <!-- trimmed padding -->
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl md:text-3xl font-black text-neutral-900">Popular Services</h2>
+        <a href="/services.html" class="hidden sm:inline text-red-600 font-semibold hover:underline">View all →</a>
+      </div>
+
+      <!-- Cards: staggered, image toppers, fun badges; swipeable on mobile -->
+      <div class="mt-5 grid sm:grid-cols-3 gap-4">
+        <!-- Card 1 -->
+        <article class="group overflow-hidden rounded-2xl ring-1 ring-neutral-200 bg-white">
+          <div class="relative h-36">
+            <img src="https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute left-3 bottom-3 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold ring-1 ring-neutral-200">
+              <span class="text-red-600">Windshield</span><span>OEM-grade</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-neutral-900">Windshield Replacement</h3>
+            <p class="mt-1 text-sm text-neutral-600">Quiet, leak-free seal with manufacturer-grade materials. ADAS handled when required.</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2 py-1 text-xs rounded-full bg-red-50 text-red-700 ring-1 ring-red-200">60–90 min cure</span>
+              <span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">Mobile</span>
+            </div>
+            <div class="mt-4 flex items-center gap-3">
+              <a href="/quote.html" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-red-600 group-hover:bg-red-700 transition">Get a Quote</a>
+              <a href="/services.html#windshield" class="text-sm font-semibold text-neutral-700 hover:text-red-600">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group overflow-hidden rounded-2xl ring-1 ring-neutral-200 bg-white">
+          <div class="relative h-36">
+            <img src="https://images.unsplash.com/photo-1549319113-48c1696fbb4e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute left-3 bottom-3 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold ring-1 ring-neutral-200">
+              <span class="text-red-600">Chip Repair</span><span>On-site</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-neutral-900">Rock Chip Repair</h3>
+            <p class="mt-1 text-sm text-neutral-600">Stop the spread fast. Most single chips fixed in about 30 minutes.</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2 py-1 text-xs rounded-full bg-red-50 text-red-700 ring-1 ring-red-200">Clearer view</span>
+              <span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">Save your glass</span>
+            </div>
+            <div class="mt-4 flex items-center gap-3">
+              <a href="/quote.html" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-red-600 group-hover:bg-red-700 transition">Get a Quote</a>
+              <a href="/services.html#chip" class="text-sm font-semibold text-neutral-700 hover:text-red-600">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group overflow-hidden rounded-2xl ring-1 ring-neutral-200 bg-white">
+          <div class="relative h-36">
+            <img src="https://images.unsplash.com/photo-1515920243402-56e3bfb9f4e9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute left-3 bottom-3 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold ring-1 ring-neutral-200">
+              <span class="text-red-600">Door/Back</span><span>Exact-fit</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-neutral-900">Door & Back Glass</h3>
+            <p class="mt-1 text-sm text-neutral-600">Vacuum out broken glass and replace with exact-fit components.</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2 py-1 text-xs rounded-full bg-red-50 text-red-700 ring-1 ring-red-200">Weatherproof seal</span>
+              <span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">Fast turnaround</span>
+            </div>
+            <div class="mt-4 flex items-center gap-3">
+              <a href="/quote.html" class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-white bg-red-600 group-hover:bg-red-700 transition">Get a Quote</a>
+              <a href="/services.html#door" class="text-sm font-semibold text-neutral-700 hover:text-red-600">Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-6 sm:hidden">
+        <a href="/services.html" class="inline-flex items-center justify-center rounded-xl px-5 py-2.5 font-semibold border border-neutral-300 hover:bg-neutral-50 w-full">See all services</a>
+      </div>
+    </div>
+  </section>
 
   <!-- DESKTOP TRUST STRIP (unchanged; hidden on phones by CSS) -->
   <section class="bg-neutral-50/70 border-y border-neutral-200/70 reviews-strip">
@@ -526,7 +508,6 @@
         <span class="review-pill"><span class="review-star">★★★★★</span> “On time and professional.” — <b>T. Alvarez</b></span>
         <span class="review-pill"><span class="review-star">★★★★★</span> “Cleaned the dash & vents.” — <b>A. Brooks</b></span>
         <span class="review-pill"><span class="review-star">★★★★★</span> “Insurance was easy.” — <b>L. Ortiz</b></span>
-
         <!-- duplicate for infinite scroll -->
         <span class="review-pill"><span class="review-star">★★★★★</span> “Fast, friendly, spotless install.” — <b>J. Rivera</b></span>
         <span class="review-pill"><span class="review-star">★★★★★</span> “Booked AM, done by lunch.” — <b>M. Chen</b></span>
@@ -539,6 +520,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- MAIN (contained sections + full-bleed bands) -->
   <main class="flex-1">
