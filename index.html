@@ -83,46 +83,50 @@
 
   /* ================= SHARED MOBILE CAROUSEL (reviews + popular services) ================= */
   .m-carousel{
-    position:relative;            /* for absolute arrows */
-    overflow:visible;             /* so arrows aren’t clipped */
-    padding-bottom:44px;          /* room for arrows + dots */
+    position:relative;       /* for absolute arrows */
+    overflow:visible;        /* prevent arrows from being clipped */
+    padding-bottom:56px;     /* room for arrows + dots */
   }
   .m-carousel .viewport{ overflow:hidden; width:100%; }
   .m-carousel .track{ display:flex; touch-action:pan-y; will-change:transform; transition:transform 300ms ease; }
   @media (prefers-reduced-motion: reduce){ .m-carousel .track{ transition:none; } }
   .m-carousel .slide{ flex:0 0 100%; padding:.5rem; box-sizing:border-box; }
-  .m-card{ border-radius:16px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+  .m-card{
+    border-radius:16px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  /* nudge “Get a Quote” links farther from the text */
+  .m-card a{ margin-top:14px !important; }
 
-  /* Dots row */
+  /* Dots row (centered) */
   .m-carousel .dots{
-    display:flex; justify-content:center; align-items:center;
-    gap:8px; margin-top:.25rem;
-    position:absolute; left:50%; transform:translateX(-50%); bottom:6px;
+    position:absolute; left:50%; transform:translateX(-50%);
+    bottom:10px; display:flex; justify-content:center; align-items:center; gap:8px;
   }
   .m-carousel .dot{
     width:10px; height:10px; border-radius:9999px; border:1px solid #d1d5db; background:#fff;
   }
   .m-carousel .dot[aria-current="true"]{ background:#dc2626; border-color:#dc2626; }
 
-  /* Arrows UNDER the card, flanking the dots */
+  /* Arrows UNDER the card, flanking the dots — outlined circles like the screenshot */
   .m-carousel .ctrl{
-    position:absolute; bottom:0; top:auto; transform:none;
-    width:38px; height:38px; border-radius:10px;
+    position:absolute; bottom:8px; top:auto; transform:none;
+    width:40px; height:40px; border-radius:9999px;
     display:grid; place-items:center;
-    background:#dc2626; border:none;
-    box-shadow:0 6px 18px rgba(0,0,0,.14); z-index:2;
+    background:#fff; border:1px solid #e5e7eb;
+    box-shadow:0 1px 2px rgba(0,0,0,.04); z-index:2;
   }
-  .m-carousel .ctrl svg{ width:18px; height:18px; stroke:#fff; }
-  /* place them ~90px left/right of center so they sit beside dots */
-  .m-carousel .prev{ left:calc(50% - 96px); }
-  .m-carousel .next{ right:calc(50% - 96px); }
+  .m-carousel .ctrl:hover{ background:#f9fafb; }
+  .m-carousel .ctrl:focus-visible{ outline:3px solid #93c5fd; outline-offset:2px; }
+  .m-carousel .ctrl svg{ width:18px; height:18px; stroke:#6b7280; } /* gray chevrons */
+  /* place them beside the dots */
+  .m-carousel .prev{ left:calc(50% - 120px); }
+  .m-carousel .next{ right:calc(50% - 120px); }
 
   /* Tighter spacing between Popular Services and Coverage */
   section.sm\:hidden[aria-labelledby="popularHeading"]{ padding-bottom:8px !important; margin-bottom:0 !important; }
   #coverage-map{ margin-top:12px !important; }
 }
 
-  
 
 /* ================= DESKTOP / NORMAL STYLES (unchanged layout) ================= */
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
