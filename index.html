@@ -19,104 +19,79 @@
 
 
 <style>
-/* ================= MOBILE-ONLY OVERRIDES (REPLACEMENT) ================= */
-@media (max-width: 640px){
+/* ===== MOBILE HERO ONLY (keeps everything else untouched) ===== */
+@media (max-width:640px){
 
-  /* Base */
-  html, body { -webkit-text-size-adjust: 100%; }
-  body { font-size: 16px; line-height: 1.5; }
-  a, button { -webkit-tap-highlight-color: transparent; }
-  img { max-width: 100%; height: auto; }
-  img[width][height]{ height: auto; }
-  .reviews-strip { display: none !important; }     /* desktop marquee hidden on phones */
-  nav[aria-label="Mobile"] .nav-link::after{ display:none !important; } /* no red underline in drawer */
+  /* Hero height */
+  .h-\[90vh\]{
+    height:66vh !important;
+    min-height:520px !important;
+  }
 
-  /* HERO */
-  .h-\[90vh\]{ height:66vh !important; min-height:520px !important; }
+  /* Headline sizing */
   section.relative.overflow-hidden:first-of-type .hero-left h1{
-    font-size:46px !important; line-height:1.08 !important; font-weight:900 !important;
-    letter-spacing:-0.02em !important; margin-bottom:8px !important;
+    font-size:46px !important;
+    line-height:1.08 !important;
+    font-weight:900 !important;
+    letter-spacing:-0.02em !important;
+    margin-bottom:8px !important;
   }
   section.relative.overflow-hidden:first-of-type .hero-left h1 > span{
-    display:block !important; font-size:40px !important; line-height:1.04 !important; font-weight:900 !important;
+    display:block !important;
+    font-size:40px !important;
+    line-height:1.04 !important;
+    font-weight:900 !important;
   }
-  section.relative.overflow-hidden:first-of-type .hero-left > p{ display:none !important; }
+  /* Hide optional paragraph under H1 */
+  section.relative.overflow-hidden:first-of-type .hero-left > p{
+    display:none !important;
+  }
+
+  /* Keep space so CTAs don’t collide; push them lower */
   section.relative.overflow-hidden:first-of-type .hero-left{
-    padding-top:7vh !important; padding-bottom:260px !important; position:relative !important;
+    position:relative !important;
+    padding-top:7vh !important;
+    padding-bottom:300px !important;   /* more room than before */
   }
-  /* push mobile CTAs a little LOWER toward the bottom */
   section.relative.overflow-hidden:first-of-type .hero-ctas{
-    position:absolute !important; left:1rem; right:1rem;
-    bottom:calc(6% + env(safe-area-inset-bottom)) !important;  /* was 12% */
-    display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
+    position:absolute !important;
+    left:1rem; right:1rem;
+    bottom:calc(4% + env(safe-area-inset-bottom)) !important; /* lower CTA */
+    display:grid !important; gap:14px !important; z-index:3;
   }
+
+  /* Quick facts – grid + locked icon size (prevents huge white shapes) */
+  .hero-facts{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important; margin-top:12px !important;
+  }
+  .hero-fact{
+    display:flex !important; align-items:center !important; gap:6px !important;
+    padding:8px 10px !important; border-radius:12px !important;
+    background:rgba(255,255,255,.14) !important;
+    border:1px solid rgba(255,255,255,.18) !important;
+    font-size:12px !important; color:#fff !important;
+  }
+  .hero-fact svg{
+    width:16px !important; height:16px !important; flex:0 0 16px !important;
+    color:#fff !important; opacity:.95 !important;
+    max-width:none !important; /* defeat any global svg {width:100%} */
+  }
+  .hero-fact svg *{ vector-effect: non-scaling-stroke; }
+
+  /* Hide hero sidebar + proof chips on phones only */
   section.relative.overflow-hidden:first-of-type aside{ display:none !important; }
   section.relative.overflow-hidden:first-of-type .hero-proofs{ display:none !important; }
+
+  /* Crop background + stronger top gradient for legibility */
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > img.w-full.h-full.object-cover{
-    object-position:center 60% !important; filter:saturate(.95) contrast(1.05);
+    object-position:center 60% !important;
+    filter:saturate(.95) contrast(1.05);
   }
   section.relative.overflow-hidden:first-of-type .absolute.inset-0 > .absolute.inset-0{
     background:linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 40%, rgba(0,0,0,.18) 100%) !important;
   }
-  .hero-reviews{ display:none !important; }
-
-  /* COVERAGE tweaks */
-  #coverage-map .chip-mirror{ display:none !important; }
-  #coverage-map img.h-\[480px\], #coverage-map .min-h-\[480px\]{ height:260px !important; min-height:260px !important; }
-
-  /* Misc trims */
-  #guarantees .grid > .group:nth-child(n+3){ display:none !important; }
-  section.relative.overflow-hidden.py-16 aside{ display:none !important; }
-  #how-it-works .md\:grid-cols-3{ grid-template-columns:1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3{ grid-template-columns:1fr 1fr !important; }
-  #how-it-works .mt-6.grid.sm\:grid-cols-3 > :nth-child(3){ display:none !important; }
-  #reviews .grid > article:nth-child(n+3){ display:none !important; }
-  footer .grid.md\:grid-cols-4{ grid-template-columns:1fr !important; }
-
-  /* ================= SHARED MOBILE CAROUSEL ================= */
-  .m-carousel{
-    position:relative;
-    overflow:visible;               /* prevent arrows being clipped */
-    padding-bottom:64px;            /* room for arrows + dots */
-  }
-  .m-carousel .viewport{ overflow:hidden; width:100%; }
-  .m-carousel .track{ display:flex; touch-action:pan-y; will-change:transform; transition:transform 300ms ease; }
-  @media (prefers-reduced-motion: reduce){ .m-carousel .track{ transition:none; } }
-  .m-carousel .slide{ flex:0 0 100%; padding:.5rem; box-sizing:border-box; }
-
-  .m-card{
-    border-radius:16px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04);
-  }
-  /* “Get a Quote” a bit farther from the paragraph */
-  .m-card a{ margin-top:16px !important; }
-
-  /* Dots row (centered) */
-  .m-carousel .dots{
-    position:absolute; left:50%; transform:translateX(-50%);
-    bottom:14px; display:flex; justify-content:center; align-items:center; gap:8px; z-index:3;
-  }
-  .m-carousel .dot{
-    width:10px; height:10px; border-radius:9999px; border:1px solid #d1d5db; background:#fff;
-  }
-  .m-carousel .dot[aria-current="true"]{ background:#dc2626; border-color:#dc2626; }
-
-  /* Arrows UNDER the card, flanking the dots (white circles) */
-  .m-carousel .ctrl{
-    position:absolute; bottom:8px; top:auto; transform:none;
-    width:40px; height:40px; border-radius:9999px;
-    display:grid; place-items:center;
-    background:#fff; border:1px solid #e5e7eb;
-    box-shadow:0 1px 2px rgba(0,0,0,.04); z-index:3;
-  }
-  .m-carousel .ctrl:hover{ background:#f9fafb; }
-  .m-carousel .ctrl:focus-visible{ outline:3px solid #93c5fd; outline-offset:2px; }
-  .m-carousel .ctrl svg{ width:18px; height:18px; stroke:#6b7280; } /* gray chevrons */
-  .m-carousel .prev{ left:calc(50% - 120px); }
-  .m-carousel .next{ right:calc(50% - 120px); }
-
-  /* Tighten Popular → Coverage gap */
-  section.sm\:hidden[aria-labelledby="popularHeading"]{ padding-bottom:8px !important; margin-bottom:0 !important; }
-  #coverage-map{ margin-top:12px !important; }
 }
 
 
