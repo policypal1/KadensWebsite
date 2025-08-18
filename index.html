@@ -130,49 +130,56 @@
   }
   .btn-lg{ padding:.9rem 1rem; font-weight:600; border-radius:.75rem; }
 
-  /* =======================================================================
-     SHARED CAROUSEL STYLES (mobile review carousel + popular services)
-     ======================================================================= */
-  .m-carousel { overflow: hidden; position: relative; }
-  .m-carousel .viewport { overflow: hidden; width: 100%; }
-  .m-carousel .track {
-    display: flex; touch-action: pan-y; will-change: transform;
-    transition: transform 300ms ease;
-  }
-  @media (prefers-reduced-motion: reduce){ .m-carousel .track { transition: none; } }
-
-  /* 1-up by default; data-cards="2" allows 2-up on wider phones if desired */
-  .m-carousel .slide { flex: 0 0 100%; padding: .5rem; box-sizing: border-box; }
-  .m-carousel[data-cards="2"] .slide { flex-basis: 100%; }
-  @media (min-width: 400px){
-    .m-carousel[data-cards="2"] .slide { flex-basis: 50%; }
+  /* ================= CAROUSEL FIXES ================= */
+@media (max-width: 640px) {
+  /* Fix arrow buttons */
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important; /* makes them square-ish, not circles */
+    background-color: #e60000 !important; /* solid red */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
   }
 
-  .m-card {
-    border-radius: 14px; background: #fff;
-    border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  /* White arrows inside */
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 18px !important;
+    color: #fff !important;
+    font-weight: bold;
   }
 
-  /* Arrows UNDER the cards, centered around the dots */
-  .m-carousel .ctrl{
-    position: absolute; top: auto; bottom: -26px; /* under the card */
-    width: 40px; height: 40px; border-radius: 9999px;
-    display: grid; place-items: center; background: #ffffff; border: 1px solid #e5e7eb;
-    box-shadow: 0 6px 18px rgba(0,0,0,.12); z-index: 2;
+  /* Fix arrows being cut off */
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
   }
-  .m-carousel .ctrl:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
-  .m-carousel .prev{ left: calc(50% - 72px); }
-  .m-carousel .next{ right: calc(50% - 72px); }
 
-  .m-carousel .dots{
-    display: flex; justify-content: center; gap: 8px;
-    margin-top: 1.75rem; /* more room so arrows don’t overlap */
+  /* Adjust spacing between sections */
+  #popular-services, 
+  #reviews {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
-  .m-carousel .dot{
-    width: 10px; height: 10px; border-radius: 9999px;
-    border: 1px solid #d1d5db; background: #fff;
+
+  /* Dot indicators spacing fix */
+  .swiper-pagination {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    position: relative !important;
   }
-  .m-carousel .dot[aria-current="true"]{ background: #dc2626; border-color: #dc2626; }
+
+  /* Make cards more square instead of long rectangles */
+  #popular-services .swiper-slide > div,
+  #reviews .swiper-slide > div {
+    border-radius: 16px !important;
+    min-height: 180px !important;
+  }
 }
 
   
