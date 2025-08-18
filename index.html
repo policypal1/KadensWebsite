@@ -28,11 +28,8 @@
   a, button { -webkit-tap-highlight-color: transparent; }
   img { max-width: 100%; height: auto; }
   img[width][height]{ height: auto; }
-  /* keep desktop marquee hidden on phones only */
-  .reviews-strip { display: none !important; }
-
-  /* Header: remove red underline effect inside the mobile drawer only */
-  nav[aria-label="Mobile"] .nav-link::after{ display:none !important; }
+  .reviews-strip { display: none !important; }     /* desktop marquee hidden on phones */
+  nav[aria-label="Mobile"] .nav-link::after{ display:none !important; } /* no red underline in drawer */
 
   /* HERO */
   .h-\[90vh\]{ height:66vh !important; min-height:520px !important; }
@@ -47,15 +44,10 @@
   section.relative.overflow-hidden:first-of-type .hero-left{
     padding-top:7vh !important; padding-bottom:260px !important; position:relative !important;
   }
-  .hero-facts{
-    display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:12px;
-  }
-  .hero-fact{ display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:12px;
-    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:12px; color:#fff; }
-  .hero-fact svg{ width:16px; height:16px; flex:0 0 16px; color:#fff; opacity:.95; }
+  /* push mobile CTAs a little LOWER toward the bottom */
   section.relative.overflow-hidden:first-of-type .hero-ctas{
     position:absolute !important; left:1rem; right:1rem;
-    bottom:calc(12% + env(safe-area-inset-bottom)) !important;
+    bottom:calc(6% + env(safe-area-inset-bottom)) !important;  /* was 12% */
     display:grid !important; grid-auto-flow:row !important; gap:14px !important; z-index:3;
   }
   section.relative.overflow-hidden:first-of-type aside{ display:none !important; }
@@ -81,48 +73,48 @@
   #reviews .grid > article:nth-child(n+3){ display:none !important; }
   footer .grid.md\:grid-cols-4{ grid-template-columns:1fr !important; }
 
-  /* ================= SHARED MOBILE CAROUSEL (reviews + popular services) ================= */
+  /* ================= SHARED MOBILE CAROUSEL ================= */
   .m-carousel{
-    position:relative;       /* for absolute arrows */
-    overflow:visible;        /* prevent arrows from being clipped */
-    padding-bottom:56px;     /* room for arrows + dots */
+    position:relative;
+    overflow:visible;               /* prevent arrows being clipped */
+    padding-bottom:64px;            /* room for arrows + dots */
   }
   .m-carousel .viewport{ overflow:hidden; width:100%; }
   .m-carousel .track{ display:flex; touch-action:pan-y; will-change:transform; transition:transform 300ms ease; }
   @media (prefers-reduced-motion: reduce){ .m-carousel .track{ transition:none; } }
   .m-carousel .slide{ flex:0 0 100%; padding:.5rem; box-sizing:border-box; }
+
   .m-card{
     border-radius:16px; background:#fff; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04);
   }
-  /* nudge “Get a Quote” links farther from the text */
-  .m-card a{ margin-top:14px !important; }
+  /* “Get a Quote” a bit farther from the paragraph */
+  .m-card a{ margin-top:16px !important; }
 
   /* Dots row (centered) */
   .m-carousel .dots{
     position:absolute; left:50%; transform:translateX(-50%);
-    bottom:10px; display:flex; justify-content:center; align-items:center; gap:8px;
+    bottom:14px; display:flex; justify-content:center; align-items:center; gap:8px; z-index:3;
   }
   .m-carousel .dot{
     width:10px; height:10px; border-radius:9999px; border:1px solid #d1d5db; background:#fff;
   }
   .m-carousel .dot[aria-current="true"]{ background:#dc2626; border-color:#dc2626; }
 
-  /* Arrows UNDER the card, flanking the dots — outlined circles like the screenshot */
+  /* Arrows UNDER the card, flanking the dots (white circles) */
   .m-carousel .ctrl{
     position:absolute; bottom:8px; top:auto; transform:none;
     width:40px; height:40px; border-radius:9999px;
     display:grid; place-items:center;
     background:#fff; border:1px solid #e5e7eb;
-    box-shadow:0 1px 2px rgba(0,0,0,.04); z-index:2;
+    box-shadow:0 1px 2px rgba(0,0,0,.04); z-index:3;
   }
   .m-carousel .ctrl:hover{ background:#f9fafb; }
   .m-carousel .ctrl:focus-visible{ outline:3px solid #93c5fd; outline-offset:2px; }
   .m-carousel .ctrl svg{ width:18px; height:18px; stroke:#6b7280; } /* gray chevrons */
-  /* place them beside the dots */
   .m-carousel .prev{ left:calc(50% - 120px); }
   .m-carousel .next{ right:calc(50% - 120px); }
 
-  /* Tighter spacing between Popular Services and Coverage */
+  /* Tighten Popular → Coverage gap */
   section.sm\:hidden[aria-labelledby="popularHeading"]{ padding-bottom:8px !important; margin-bottom:0 !important; }
   #coverage-map{ margin-top:12px !important; }
 }
@@ -709,24 +701,34 @@
 </section>
 
 
-<!-- ===== Mobile Carousels JS (powers both carousels) ===== -->
 <script>
 (function(){
-  if (window.matchMedia('(max-width: 640px)').matches === false) return;
+  function isVisible(el){
+    return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+  }
 
-  function initCarousel(root){
+  document.querySelectorAll('.m-carousel').forEach((root) => {
+    if (!isVisible(root)) return;                    // skip hidden (desktop)
     const viewport = root.querySelector('.viewport');
-    const track = root.querySelector('.track');
-    const slides = Array.from(root.querySelectorAll('.slide'));
-    const prev = root.querySelector('.prev');
-    const next = root.querySelector('.next');
-    const dotsWrap = root.querySelector('.dots');
+    const track    = root.querySelector('.track');
+    const slides   = Array.from(root.querySelectorAll('.slide'));
+    const prev     = root.querySelector('.prev');
+    const next     = root.querySelector('.next');
+    let dotsWrap   = root.querySelector('.dots');
 
-    let index = 0;
-    const last = slides.length - 1;
+    if (!viewport || !track || slides.length === 0) return;
+
+    // Create dots container if missing
+    if (!dotsWrap) {
+      dotsWrap = document.createElement('div');
+      dotsWrap.className = 'dots';
+      root.appendChild(dotsWrap);
+    } else {
+      dotsWrap.innerHTML = '';
+    }
 
     // Build dots
-    slides.forEach((_, i) => {
+    const dots = slides.map((_, i) => {
       const b = document.createElement('button');
       b.className = 'dot';
       b.type = 'button';
@@ -734,64 +736,56 @@
       b.setAttribute('aria-label', 'Go to slide ' + (i+1));
       b.addEventListener('click', () => go(i));
       dotsWrap.appendChild(b);
+      return b;
     });
 
+    let index = 0;
+
+    function vw(){ return viewport.getBoundingClientRect().width; }
+
     function setDot(i){
-      dotsWrap.querySelectorAll('.dot').forEach((d, di) => d.setAttribute('aria-current', di===i ? 'true':'false'));
+      dots.forEach((d, di) => d.setAttribute('aria-current', di===i ? 'true':'false'));
     }
 
     function go(i){
-      index = (i + slides.length) % slides.length; // wrap infinite
-      const x = -index * viewport.clientWidth;
-      track.style.transform = 'translateX(' + x + 'px)';
+      index = (i + slides.length) % slides.length;   // wrap-around
+      track.style.transform = 'translateX(' + (-index * vw()) + 'px)';
       setDot(index);
     }
 
-    // Resize handler to keep alignment
-    let rid = null;
-    function onResize(){
-      cancelAnimationFrame(rid);
-      rid = requestAnimationFrame(() => go(index));
-    }
-    window.addEventListener('resize', onResize);
-
-    // Buttons
+    // Clicks
     prev && prev.addEventListener('click', () => go(index - 1));
     next && next.addEventListener('click', () => go(index + 1));
 
-    // Keyboard (left/right when arrows focused)
+    // Keyboard when arrow buttons focused
     [prev, next].forEach(btn => btn && btn.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') go(index - 1);
+      if (e.key === 'ArrowLeft')  go(index - 1);
       if (e.key === 'ArrowRight') go(index + 1);
     }));
 
-    // Touch / swipe
-    let startX = 0, curX = 0, dragging = false;
+    // Swipe
+    let startX = 0, dragging = false;
     viewport.addEventListener('pointerdown', (e) => {
-      dragging = true; startX = curX = e.clientX;
+      dragging = true; startX = e.clientX;
       viewport.setPointerCapture(e.pointerId);
     });
-    viewport.addEventListener('pointermove', (e) => {
-      if (!dragging) return;
-      curX = e.clientX;
-    });
     viewport.addEventListener('pointerup', (e) => {
-      if (!dragging) return;
+      if (!dragging) return; dragging = false;
       const dx = e.clientX - startX;
-      dragging = false;
       if (Math.abs(dx) > 40) { dx < 0 ? go(index + 1) : go(index - 1); }
     });
 
+    // Keep aligned on resize / rotation
+    let rid=null;
+    function onResize(){ cancelAnimationFrame(rid); rid=requestAnimationFrame(()=>go(index)); }
+    window.addEventListener('resize', onResize);
+
     // Init
     go(0);
-  }
-
-  const rev = document.getElementById('revCarousel');
-  const svc = document.getElementById('svcCarouselMobile');
-  if (rev) initCarousel(rev);
-  if (svc) initCarousel(svc);
+  });
 })();
 </script>
+
 
     
 <!-- COVERAGE -->
