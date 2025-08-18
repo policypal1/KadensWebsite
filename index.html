@@ -686,11 +686,12 @@
 </section>
 
 
-    <!-- ===== POPULAR SERVICES (mobile-only carousel) ===== -->
+   <!-- ===== POPULAR SERVICES (mobile-only carousel) ===== -->
 <section class="sm:hidden px-4 py-6" aria-labelledby="popularHeading">
   <h2 id="popularHeading" class="text-2xl font-extrabold text-neutral-900">Popular Services</h2>
 
   <div id="svcCarouselMobile" class="m-carousel mt-3" role="region" aria-roledescription="carousel" aria-label="Popular services" data-cards="1">
+    <!-- Controls -->
     <button class="ctrl prev" aria-label="Previous services" data-dir="-1">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
@@ -698,32 +699,48 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
     </button>
 
+    <!-- Viewport -->
     <div class="viewport" tabindex="0">
       <div class="track" style="transform: translateX(0);">
-        <!-- Windshield Replacement -->
+        <!-- Slide 1: Windshield Replacement -->
         <article class="slide">
           <div class="m-card p-4 h-full flex flex-col">
-            <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg=crop" alt="" class="w-full h-28 object-cover rounded-lg">
+            <img
+              src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop"
+              alt="Windshield replacement service"
+              class="w-full h-28 object-cover rounded-lg"
+              loading="lazy" decoding="async"
+            />
             <h3 class="mt-3 font-semibold text-neutral-900">Windshield Replacement</h3>
             <p class="text-sm text-neutral-600">OEM-quality glass, mobile install.</p>
             <a href="/quote.html" class="mt-auto inline-flex text-sm font-semibold text-red-600">Get a Quote</a>
           </div>
         </article>
 
-        <!-- Rock Chip Repair -->
+        <!-- Slide 2: Rock Chip Repair -->
         <article class="slide">
           <div class="m-card p-4 h-full flex flex-col">
-            <img src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg=crop" alt="" class="w-full h-28 object-cover rounded-lg">
+            <img
+              src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop"
+              alt="Rock chip repair"
+              class="w-full h-28 object-cover rounded-lg"
+              loading="lazy" decoding="async"
+            />
             <h3 class="mt-3 font-semibold text-neutral-900">Rock Chip Repair</h3>
             <p class="text-sm text-neutral-600">Stop cracks before they spread.</p>
             <a href="/quote.html" class="mt-auto inline-flex text-sm font-semibold text-red-600">Get a Quote</a>
           </div>
         </article>
 
-        <!-- Door/Back Glass -->
+        <!-- Slide 3: Door/Back Glass -->
         <article class="slide">
           <div class="m-card p-4 h-full flex flex-col">
-            <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg=crop" alt="" class="w-full h-28 object-cover rounded-lg">
+            <img
+              src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop"
+              alt="Door and back glass replacement"
+              class="w-full h-28 object-cover rounded-lg"
+              loading="lazy" decoding="async"
+            />
             <h3 class="mt-3 font-semibold text-neutral-900">Door/Back Glass</h3>
             <p class="text-sm text-neutral-600">Fast replacements, clean finish.</p>
             <a href="/quote.html" class="mt-auto inline-flex text-sm font-semibold text-red-600">Get a Quote</a>
@@ -732,9 +749,11 @@
       </div>
     </div>
 
+    <!-- Dots -->
     <div class="dots mt-2" role="tablist" aria-label="Service slides"></div>
   </div>
 </section>
+
 
 
 <script>
