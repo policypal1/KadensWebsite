@@ -9,11 +9,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- put this in <head> -->
-<link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
-<link rel="apple-touch-icon" href="logo.png.png?v=2">
-<link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
-
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
+  <link rel="apple-touch-icon" href="logo.png.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
   <style>
     @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
@@ -29,9 +28,7 @@
     /* Disable underline effect inside the mobile dropdown */
     nav[aria-label="Mobile"] .nav-link::after { display: none; }
   </style>
-
-  <!-- Jobber embed assets -->
-  <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
+  <!-- (Removed Jobber CSS embed) -->
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
@@ -172,7 +169,7 @@
     </div>
   </section>
 
-  <!-- Quote form (Jobber embed) -->
+  <!-- Quote form (Google Forms embed) -->
   <section id="quote" class="mt-16 md:mt-24 pb-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8">
       <!-- Form card -->
@@ -182,7 +179,16 @@
           <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
 
           <div class="mt-6">
-            <div id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"></div>
+            <!-- Embedded Google Form -->
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLScSJPHlAacd927pYRXlGrFLQnQ64xjJ5QHB2ApU0wFqniYPQQ/viewform?embedded=true"
+              width="100%"
+              height="1000"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              style="border:0; border-radius:12px;"
+            >Loading…</iframe>
           </div>
         </div>
       </div>
@@ -300,10 +306,6 @@
     })();
   </script>
 
-  <!-- Jobber embed script -->
-  <script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js"
-    clienthub_id="a4ca14c2-2889-41b1-bfa3-0c3c042e7d21"
-    form_url="https://clienthub.getjobber.com/client_hubs/a4ca14c2-2889-41b1-bfa3-0c3c042e7d21/public/work_request/embedded_work_request_form">
-  </script>
+  <!-- (Removed Jobber embed script) -->
 </body>
 </html>
