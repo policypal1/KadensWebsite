@@ -241,7 +241,7 @@
                   <div>
                     <label class="text-xs text-neutral-600">Insurance</label>
                     <select name="insurance" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500">
-                      <option>Self‑Pay</option>
+                      <option>Self-Pay</option>
                       <option>Use Insurance</option>
                     </select>
                   </div>
@@ -263,7 +263,7 @@
                   </div>
                   <div>
                     <label class="text-xs text-neutral-600">Phone</label>
-                    <input name="phone" required inputmode="tel" placeholder="(503) 555‑1234" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
+                    <input name="phone" required inputmode="tel" placeholder="(503) 555-1234" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-4">
@@ -290,9 +290,9 @@
                     <label class="text-xs text-neutral-600">Time Window</label>
                     <select name="time" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500">
                       <option>Anytime</option>
-                      <option>Morning (8‑12)</option>
-                      <option>Afternoon (12‑4)</option>
-                      <option>Evening (4‑7)</option>
+                      <option>Morning (8-12)</option>
+                      <option>Afternoon (12-4)</option>
+                      <option>Evening (4-7)</option>
                     </select>
                   </div>
                   <div>
@@ -424,10 +424,11 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
       }
 
-      const path = location.pathname.replace(/\/+$, '') || '/';
+      // FIX: correct regex (was /\/+$, ''/)
+      const path = location.pathname.replace(/\/+$/, '') || '/';
       document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
         const href = a.getAttribute('href') || '';
-        const norm = href.replace(/\/+$, '') || '/';
+        const norm = href.replace(/\/+$/, '') || '/';
         if (norm === path) {
           a.classList.add('active');
           a.setAttribute('aria-current', 'page');
@@ -453,6 +454,24 @@
       const statusEl = document.getElementById('cc-status');
       let i = 0;
 
+      // Prevent native validation from trying to focus hidden controls
+      form.setAttribute('novalidate','');
+
+      // Record which fields were authored as required so we can toggle per-step
+      const authoredRequired = new WeakSet();
+      form.querySelectorAll('input[required],select[required],textarea[required]').forEach(el=>authoredRequired.add(el));
+
+      function setRequiredForSection(idxActive){
+        sections.forEach((sec, idx)=>{
+          sec.querySelectorAll('input,select,textarea').forEach(el=>{
+            if (authoredRequired.has(el)) {
+              if (idx === idxActive) el.setAttribute('required','');
+              else el.removeAttribute('required');
+            }
+          });
+        });
+      }
+
       function showStep(n){
         i = Math.max(0, Math.min(sections.length-1, n));
         sections.forEach((s,idx)=> s.classList.toggle('hidden', idx!==i));
@@ -466,7 +485,9 @@
         if (i>0 && i<sections.length-1 && globalPrev) globalPrev.classList.remove('hidden');
         sections[i].querySelectorAll('.cc-prev').forEach(b=> b.classList.remove('hidden'));
         nextBtn.classList.toggle('hidden', i===sections.length-1);
-        
+
+        // FIX: only current step keeps required fields
+        setRequiredForSection(i);
       }
 
       nextBtn && nextBtn.addEventListener('click',()=> showStep(i+1));
@@ -490,6 +511,9 @@
         // honeypot
         if(form.company && form.company.value) return;
 
+        // ensure hidden steps don't block submission
+        setRequiredForSection(i);
+
         const data = Object.fromEntries(new FormData(form).entries());
         data.sms_ok = !!form.querySelector('[name="sms_ok"]').checked;
         data._site = location.hostname;
@@ -508,7 +532,7 @@
           form.querySelectorAll('input,select,textarea,button').forEach(el=> el.disabled=true);
         }catch(err){
           console.error(err);
-          showStatus('err','Sorry, something went wrong. Please call us at (503) 949‑2257.');
+          showStatus('err','Sorry, something went wrong. Please call us at (503) 949-2257.');
         }
       });
     })();
@@ -517,4 +541,3 @@
   <!-- (Removed Jobber embed script) -->
 </body>
 </html>
-
