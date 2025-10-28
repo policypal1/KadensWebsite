@@ -360,10 +360,7 @@
         <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
 
         <div class="mt-4 flex flex-wrap gap-3">
-          <a href="quote.html"
-             class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">
-            Get a Quote
-          </a>
+          
           <a href="tel:+15039492257"
              class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">
             Call Now
@@ -377,7 +374,7 @@
           <li><a href="index.html" class="hover:underline">Home</a></li>
           <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
           <li><a href="services.html" class="hover:underline">Services</a></li>
-          <li><a href="quote.html" class="hover:underline">Get a Quote</a></li>
+          <li></li>
           <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
         </ul>
       </div>
@@ -480,7 +477,12 @@
       function showStatus(kind, msg){
         statusEl.classList.remove('hidden');
         statusEl.className = '';
-        statusEl.classList.add('mt-2','text-sm','p-3','rounded-lg', kind==='ok' ? 'bg-emerald-600/10','text-emerald-800','border','border-emerald-300' : 'bg-red-600/10','text-red-800','border','border-red-300');
+        statusEl.classList.add('mt-2','text-sm','p-3','rounded-lg');
+        if(kind==='ok'){
+          statusEl.classList.add('bg-emerald-600/10','text-emerald-800','border','border-emerald-300');
+        } else {
+          statusEl.classList.add('bg-red-600/10','text-red-800','border','border-red-300');
+        }
         statusEl.textContent = msg;
       }
 
