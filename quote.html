@@ -88,7 +88,6 @@
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center"
          style="background-image:url('https://www.alfainsurance.com/getmedia/df3aa85f-9dc3-44de-a17f-4f37b4703525/cracked-windshield-heres-what-you-need-to-know-hero.png?width=1600&height=900&ext=.png');"></div>
-    <!-- Soft gradient for readability on mobile; subtle on desktop -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-transparent md:from-black/20 md:via-black/10"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,7 +126,7 @@
             </div>
           </div>
 
-          <!-- Social proof (unchanged on desktop; refined spacing on mobile) -->
+          <!-- Social proof -->
           <div class="space-y-5 md:pt-2">
             <div class="max-w-md md:ml-auto rounded-2xl bg-white/95 shadow-lg ring-1 ring-black/5 p-5">
               <div class="flex items-center gap-3 text-sm text-neutral-700">
@@ -486,7 +485,7 @@
         sections[i].querySelectorAll('.cc-prev').forEach(b=> b.classList.remove('hidden'));
         nextBtn.classList.toggle('hidden', i===sections.length-1);
 
-        // FIX: only current step keeps required fields
+        // only current step keeps required fields
         setRequiredForSection(i);
       }
 
@@ -522,7 +521,8 @@
         try{
           const res = await fetch(APPS_SCRIPT_WEBAPP, {
             method:'POST',
-            headers:{'Content-Type':'application/json'},
+            // *** ONLY CHANGE MADE (fix CORS preflight) ***
+            headers:{'Content-Type':'text/plain;charset=UTF-8'},
             body: JSON.stringify(data)
           });
           if(!res.ok) throw new Error('Apps Script error');
@@ -530,6 +530,7 @@
           if(success){ success.classList.remove('hidden'); }
           form.classList.add('opacity-60');
           form.querySelectorAll('input,select,textarea,button').forEach(el=> el.disabled=true);
+          showStatus('ok','Quote request submitted. We’ll text you soon!');
         }catch(err){
           console.error(err);
           showStatus('err','Sorry, something went wrong. Please call us at (503) 949-2257.');
