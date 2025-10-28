@@ -246,14 +246,10 @@
                     </select>
                   </div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-4">
+                <div class="grid md:grid-cols-1 gap-4">
                   <div>
                     <label class="text-xs text-neutral-600">Damage Details</label>
                     <textarea name="details" rows="4" placeholder="Where is the damage? Chip size? Any spreading cracks?" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
-                  </div>
-                  <div>
-                    <label class="text-xs text-neutral-600">Photo Link (optional)</label>
-                    <input name="photo_link" placeholder="Paste a Google Photos / iCloud link" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
               </section>
@@ -319,7 +315,7 @@
 
               <!-- Nav (for earlier steps) -->
               <div class="flex items-center justify-between gap-4">
-                <button type="button" class="cc-prev hidden inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">Back</button>
+                <button type="button" class="cc-prev cc-prev-global hidden inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">Back</button>
                 <button type="button" class="cc-next inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow">Next</button>
               </div>
 
@@ -452,6 +448,7 @@
       const steps = Array.from(document.querySelectorAll('.cc-step'));
       const nextBtn = form.querySelector('.cc-next');
       const prevBtns = Array.from(form.querySelectorAll('.cc-prev'));
+      const globalPrev = form.querySelector('.cc-prev-global');
       const progress = document.getElementById('cc-progress');
       const statusEl = document.getElementById('cc-status');
       let i = 0;
@@ -465,9 +462,11 @@
         });
         progress.style.width = (i/(sections.length-1))*100 + '%';
         // toggle secondary prev (top or bottom)
-        form.querySelectorAll('.cc-prev').forEach(b=> b.classList.toggle('hidden', i===0));
+        form.querySelectorAll('.cc-prev').forEach(b=> b.classList.add('hidden'));
+        if (i>0 && i<sections.length-1 && globalPrev) globalPrev.classList.remove('hidden');
+        sections[i].querySelectorAll('.cc-prev').forEach(b=> b.classList.remove('hidden'));
         nextBtn.classList.toggle('hidden', i===sections.length-1);
-        window.scrollTo({top:0, behavior:'smooth'});
+        
       }
 
       nextBtn && nextBtn.addEventListener('click',()=> showStep(i+1));
@@ -503,9 +502,10 @@
             body: JSON.stringify(data)
           });
           if(!res.ok) throw new Error('Apps Script error');
-          showStatus('ok','Thanks! Your request was sent. We\'ll text you shortly.');
-          form.reset();
-          showStep(0);
+          const success = document.getElementById('cc-success');
+          if(success){ success.classList.remove('hidden'); }
+          form.classList.add('opacity-60');
+          form.querySelectorAll('input,select,textarea,button').forEach(el=> el.disabled=true);
         }catch(err){
           console.error(err);
           showStatus('err','Sorry, something went wrong. Please call us at (503) 949‑2257.');
