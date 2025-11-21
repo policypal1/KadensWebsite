@@ -276,7 +276,7 @@
                     <input name="address" required placeholder="Street, City" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
-                <label class="flex items-center gap-3 text-sm text-neutral-700"><input type="checkbox" name="sms_ok" class="w-4 h-4 rounded border-neutral-300"/> OK to text me about this quote</label>
+                <label class="flex items-center gap-3 text-sm text-neutral-700"><input type="checkbox" name="sms_ok" class="w-4 h-4 rounded border-neutral-300"/> By submitting, you agree Clear Choice Auto Glass may call or text you at this number about your quote.</label>
               </section>
 
               <!-- STEP 4: Schedule -->
@@ -442,6 +442,50 @@
     (function(){
       const form = document.getElementById('cc-quote-form');
       if(!form) return; // safety if editing other pages
+
+          // PREFILL from Quick Quote on index.html (name, phone, service)
+    (function(){
+      let stored = null;
+      try {
+        stored = JSON.parse(localStorage.getItem('cq_prequote') || 'null');
+      } catch(e) {
+        stored = null;
+      }
+
+      const params  = new URLSearchParams(window.location.search);
+      const name    = params.get('name')   || (stored && stored.name)   || '';
+      const phone   = params.get('phone')  || (stored && stored.phone)  || '';
+      let   service = params.get('service')|| (stored && stored.service)|| '';
+
+      // Prefill contact fields
+      if (name && form.elements['name']) {
+        form.elements['name'].value = name;
+      }
+      if (phone && form.elements['phone']) {
+        form.elements['phone'].value = phone;
+      }
+
+      // Map Quick Quote service options → full form service options
+      if (service && form.elements['service']) {
+        const map = {
+          'Chip Repair':      'Chip / Crack Repair',
+          'Door/Side Glass':  'Side / Rear Glass',
+          'Back Glass':       'Side / Rear Glass'
+        };
+        if (map[service]) {
+          service = map[service];
+        }
+
+        const sel = form.elements['service'];
+        for (const opt of sel.options) {
+          if (opt.value === service || opt.text === service) {
+            sel.value = opt.value;
+            break;
+          }
+        }
+      }
+    })();
+
 
       // NEW URL you provided
       const APPS_SCRIPT_WEBAPP = 'https://script.google.com/macros/s/AKfycbzdSeBu-ZXi4wycyFF0z5jMJTIlvDKmGRaOYjaF8t2Ocobq1Ol5esl2lkMGGa2IzdE/exec';
