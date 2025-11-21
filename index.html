@@ -374,23 +374,32 @@
           <p class="mt-1 text-sm text-neutral-600">Tell us the basics and we’ll carry it over to the quote page.</p>
 
           <form action="/quote.html#quote" method="GET" class="mt-4 grid gap-3" onsubmit="handleMiniQuote(event)">
-            <input name="name" placeholder="Name" autocomplete="name" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
-                   class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
-            <select name="service" required
-                    class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
-              <option value="" disabled selected>Select service</option>
-              <option>Windshield Replacement</option>
-              <option>Chip Repair</option>
-              <option>Door/Side Glass</option>
-              <option>Back Glass</option>
-            </select>
-            <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
-              Get My Quote
-            </button>
-            <p class="text-[11px] text-neutral-500 text-center">No payment now. We confirm by text.</p>
-          </form>
+  <input name="name" placeholder="Name" autocomplete="name" required
+         class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+  <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" required
+         class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+  <select name="service" required
+          class="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+    <option value="" disabled selected>Select service</option>
+    <option>Windshield Replacement</option>
+    <option>Chip Repair</option>
+    <option>Door/Side Glass</option>
+    <option>Back Glass</option>
+  </select>
+
+  <!-- NEW: consent checkbox -->
+  <label class="mt-1 flex items-start gap-2 text-[11px] text-neutral-600">
+    <input type="checkbox" name="consent" required
+           class="mt-0.5 w-4 h-4 rounded border-neutral-300">
+    <span>By filling this out, you agree we may call or text you about this quote. No marketing spam.</span>
+  </label>
+
+  <button type="submit" class="mt-1 inline-flex w-full items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-white font-semibold hover:bg-red-700 transition">
+    Get My Quote
+  </button>
+  <p class="text-[11px] text-neutral-500 text-center">No payment now. We just contact you about your quote.</p>
+</form>
+
         </div>
       </aside>
 
@@ -405,16 +414,28 @@
   function handleMiniQuote(e){
     e.preventDefault();
     const f = e.target;
+
     const data = {
-      name: f.name.value.trim(),
-      phone: f.phone.value.trim(),
-      service: f.service.value.trim()
+      name:   f.name.value.trim(),
+      phone:  f.phone.value.trim(),
+      service:f.service.value.trim()
+      // we don't need to pass consent through, they’ll check again on the full form
     };
+
+    // Save so quote.html can prefill
     localStorage.setItem('cq_prequote', JSON.stringify(data));
-    const qs = new URLSearchParams(data).toString();
+
+    // Only send the fields we actually use on quote.html
+    const qs = new URLSearchParams({
+      name: data.name,
+      phone: data.phone,
+      service: data.service
+    }).toString();
+
     window.location.href = '/quote.html?' + qs + '#quote';
   }
 </script>
+
 
   <!-- TRUST REVIEWS STRIP (desktop only; hidden on mobile) -->
   <section class="bg-neutral-50/70 border-y border-neutral-200/70 reviews-strip">
