@@ -112,14 +112,53 @@
     .svc-card:hover{ transform: translateY(-4px); box-shadow: 0 18px 44px rgb(0 0 0 / .18); }
     .svc-card img{ width:100%; height:210px; object-fit:cover; }
 
+    /* Section separators */
+    .section-break{
+      height:14px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0));
+    }
+    .section-cap{
+      position:relative;
+    }
+    .section-cap::before{
+      content:"";
+      position:absolute;
+      top:-1px; left:0; right:0;
+      height:1px;
+      background:rgba(0,0,0,.08);
+    }
+
+    /* Mobile header: KEEP company name visible */
+    @media (max-width:640px){
+      .reviews-strip{ display:none !important; }
+      #coverage-map .map-frame{ height: 260px !important; }
+    }
+
+    /* FIX: hide About card overlay on mobile (it should NOT exist there) */
+    @media (max-width:767px){
+      #aboutBand aside{ display:none !important; }
+      #aboutBand .cta-row{ margin-top: 14px !important; }
+    }
+
+    /* Services section: dark black + red accents (no grey gradient) */
+    #services{
+      background: #050505;
+    }
+    #services .svc-sheen{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 420px at 15% 10%, rgba(220,38,38,.22), transparent 55%),
+        radial-gradient(700px 380px at 85% 25%, rgba(220,38,38,.16), transparent 55%),
+        radial-gradient(900px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%);
+      pointer-events:none;
+    }
+
     /* Small mobile polish */
     @media (max-width:640px){
-      header .brand-text { display:none; } /* logo only on very small to reduce cramped header */
-      #coverage-map .map-frame{ height: 260px !important; }
-      .reviews-strip{ display:none !important; }
+      .hero-h{ height:72vh; min-height:540px; }
     }
     @media (min-width:641px){
-      header .brand-text { display:inline; }
+      .hero-h{ height:90vh; min-height:720px; }
     }
   </style>
 
@@ -137,7 +176,8 @@
     <div class="flex items-center justify-between h-20">
       <a href="/index.html" class="flex items-center gap-3" aria-label="Clear Choice Auto Glass — Home">
         <img src="logo.png.png" alt="Clear Choice Auto Glass logo" class="h-[60px] w-auto">
-        <span class="brand-text text-neutral-900 font-extrabold text-xl sm:text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        <!-- FIX: show company name on mobile too -->
+        <span class="text-neutral-900 font-extrabold text-lg sm:text-2xl tracking-wide whitespace-nowrap">Clear Choice Auto Glass</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
@@ -228,7 +268,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/10"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72vh] min-h-[540px] md:h-[90vh] md:min-h-[720px] flex items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-h flex items-center">
     <div class="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-10 w-full">
       <div class="text-white max-w-2xl">
         <p class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20 backdrop-blur">
@@ -240,9 +280,8 @@
           <span class="text-red-400 block">Done clean. Done right.</span>
         </h1>
 
-        <p class="mt-4 text-base sm:text-lg text-white/90 max-w-xl">
-          Text your VIN or a photo for a firm quote. We come to your driveway or workplace—often today.
-        </p>
+        <!-- FIX: remove this line per your request -->
+        <!-- <p class="mt-4 text-base sm:text-lg text-white/90 max-w-xl">Text your VIN or a photo for a firm quote. We come to your driveway or workplace—often today.</p> -->
 
         <div class="mt-5 grid grid-cols-3 gap-2 sm:hidden" aria-label="Fast facts">
           <div class="rounded-xl bg-white/10 ring-1 ring-white/20 px-3 py-3 text-[12px] leading-tight">
@@ -302,7 +341,6 @@
     </div>
   </div>
 
-  <!-- Fade into the next (soft) section -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-[#f9fafb]"></div>
 </section>
 
@@ -328,7 +366,6 @@
       <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
       <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
 
-      <!-- repeat for seamless loop -->
       <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
       <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
       <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
@@ -339,7 +376,7 @@
   </div>
 </section>
 
-<!-- MOBILE REVIEW CAROUSEL (now clearly separated + soft background) -->
+<!-- MOBILE REVIEW CAROUSEL -->
 <section class="sm:hidden bg-neutral-50 border-y border-neutral-200/70" aria-labelledby="localsHeading">
   <div class="max-w-7xl mx-auto px-4 py-10">
     <div class="flex items-end justify-between gap-4">
@@ -405,8 +442,8 @@
 
 <main class="flex-1">
 
-<!-- WHY CHOOSE (now white so it doesn't merge with the review band) -->
-<section id="guarantees" class="relative isolate overflow-hidden bg-white">
+<!-- WHY CHOOSE -->
+<section id="guarantees" class="relative isolate overflow-hidden bg-white section-cap">
   <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-200/50 blur-3xl"></div>
   <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-neutral-300/40 blur-3xl"></div>
 
@@ -482,12 +519,12 @@
   </div>
 </section>
 
-<!-- FULL-BLEED ABOUT / ACTION BAND -->
-<section class="relative overflow-hidden">
+<!-- ABOUT / ACTION BAND -->
+<section id="aboutBand" class="relative overflow-hidden">
   <div class="absolute inset-0">
     <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
          alt="Technician installing windshield" class="w-full h-full object-cover">
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/25"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/72 via-black/55 to-black/25"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -503,35 +540,26 @@
           Same-Day Mobile Service in <span class="text-red-400">Salem / Keizer</span>
         </h2>
 
-        <p class="mt-3 text-white/90 max-w-xl">
-          One text line. One tech. Clear quote → clean install.
-        </p>
+        <p class="mt-3 text-white/90 max-w-xl">One text line. One tech. Clear quote → clean install.</p>
 
-        <div class="mt-6 flex flex-wrap gap-3">
+        <div class="cta-row mt-6 flex flex-wrap gap-3">
           <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
           <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white/95 border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">(503) 949-2257</a>
         </div>
       </div>
 
+      <!-- Desktop-only About card (hidden on mobile via CSS above) -->
       <aside class="justify-self-end w-full max-w-md">
-        <div class="rounded-2xl bg-white/92 backdrop-blur p-6 shadow-xl ring-1 ring-black/5">
+        <!-- FIX: more opaque so it’s not washed out on desktop -->
+        <div class="rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/10">
           <h3 class="text-lg font-bold text-neutral-900">About Clear Choice</h3>
           <p class="mt-3 text-sm text-neutral-700">
             We’re owner-operated in Salem/Keizer. You text one number, and the same tech handles your quote, appointment, and install—no call center.
           </p>
           <ul class="mt-4 space-y-2 text-sm text-neutral-700">
-            <li class="flex items-start gap-2">
-              <svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-              Direct text line — quick answers, zero runaround.
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-              VIN-matched pricing — we confirm parts before we book.
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-              Local routes — efficient schedules across Salem / Keizer.
-            </li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>Direct text line — quick answers, zero runaround.</li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>VIN-matched pricing — we confirm parts before we book.</li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-1 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>Local routes — efficient schedules across Salem / Keizer.</li>
           </ul>
 
           <a href="/reviews.html" class="mt-5 inline-flex w-full items-center justify-center rounded-xl px-5 py-2.5 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">
@@ -545,7 +573,7 @@
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-[#f9fafb]"></div>
 </section>
 
-<!-- OUR WORK GALLERY (photos inserted) -->
+<!-- OUR WORK (6 photos only) -->
 <section id="our-work" class="bg-neutral-50 border-y border-neutral-200/70">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="flex items-end justify-between gap-4 flex-wrap mb-6">
@@ -563,25 +591,18 @@
       <figure class="work-gallery-item"><img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async"></figure>
       <figure class="work-gallery-item"><img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async"></figure>
       <figure class="work-gallery-item"><img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="4857530068863860898 - 1.jpg" alt="Technician install close-up" loading="lazy" decoding="async"></figure>
       <figure class="work-gallery-item"><img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async"></figure>
       <figure class="work-gallery-item"><img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="8117225698886609442 - 1.jpg" alt="Side glass replacement completed" loading="lazy" decoding="async"></figure>
       <figure class="work-gallery-item"><img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async"></figure>
     </div>
-
-    <p class="mt-4 text-xs text-neutral-500">
-      Tip: if any image with “ - 1” doesn’t load, rename the file to remove spaces (recommended for hosting).
-    </p>
   </div>
 </section>
 
-<!-- POPULAR SERVICES (combined into ONE cohesive section; no random black bars/lines) -->
-<section id="services" class="relative bg-neutral-950 text-white overflow-hidden">
-  <div class="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-red-600/15 blur-3xl"></div>
-  <div class="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl"></div>
+<!-- SERVICES (dark black + red accents) -->
+<section id="services" class="relative text-white overflow-hidden">
+  <div class="svc-sheen"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative">
     <div class="flex items-end justify-between gap-6 flex-wrap">
       <div>
         <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15 text-white/90">Our Services</span>
@@ -720,7 +741,6 @@
     </div>
   </div>
 
-  <!-- Fade into white (no harsh separators) -->
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white"></div>
 </section>
 
@@ -736,9 +756,7 @@
       <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white">
         <img id="svcMapImg" src="salem.png?v=2" alt="Service area map: Salem"
              class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[480px] object-cover transition-opacity duration-300 ease-out opacity-100"
-             loading="lazy"
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 720%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23f3f4f6%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%229ca3af%22 font-size=%2232%22%3EMap image unavailable%3C/text%3E%3C/svg%3E';" />
-
+             loading="lazy" />
         <div class="absolute bottom-3 left-3 flex gap-2 bg-white/90 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
           <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
                   data-img="salem.png?v=2" data-alt="Service area map: Salem">Salem</button>
@@ -777,6 +795,9 @@
   </div>
 </section>
 
+<!-- FIX: strong separator between Coverage and How It Works -->
+<div class="section-break" aria-hidden="true"></div>
+
 <script>
 (function(){
   const img=document.getElementById('svcMapImg');
@@ -798,17 +819,17 @@
     tabs.forEach(b=>setActive(b,b===btn));
     const nextSrc=btn.dataset.img;
     img.style.opacity='0';
-    const swap=()=>{ img.src=nextSrc; img.alt=btn.dataset.alt||''; };
-    swap();
+    img.src=nextSrc;
+    img.alt=btn.dataset.alt||'';
     img.onload=()=>{ img.style.opacity='1'; };
-    setTimeout(()=>{ img.style.opacity='1'; }, 400);
+    setTimeout(()=>{ img.style.opacity='1'; }, 350);
   }
 
   tabs.forEach(b=>b.addEventListener('click',()=>activate(b)));
 })();
 </script>
 
-<!-- HOW IT WORKS (simplified, cleaner, matches site) -->
+<!-- HOW IT WORKS (simple) -->
 <section id="how-it-works" class="bg-neutral-50 border-y border-neutral-200/70">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-10">
