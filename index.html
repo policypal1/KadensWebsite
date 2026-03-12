@@ -13,13 +13,263 @@
   <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root{
+      --brand:#dc2626;
+      --brand-dark:#b91c1c;
+      --ink:#0a0a0a;
+      --soft:#f8fafc;
+      --line:#e5e7eb;
+      --panel:#ffffff;
+      --services-bg-1:#1a1a1a;
+      --services-bg-2:#111111;
+    }
+
+    html, body { -webkit-text-size-adjust:100%; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    img { max-width:100%; height:auto; }
+    img[width][height]{ height:auto; }
+
+    .nav-link{
+      position:relative;
+      padding-bottom:4px;
+      transition:color .2s ease;
+    }
+    .nav-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0;
+      height:2px;
+      background-color:var(--brand);
+      transition:width .25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after{ width:100%; }
+    .nav-link:hover{ color:var(--brand); }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .reviews-strip { --speed: 38s; }
+    .reviews-track {
+      display:flex;
+      width:max-content;
+      gap:.75rem;
+      animation: marqueeScroll var(--speed) linear infinite;
+    }
+    .reviews-mask {
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .review-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.5rem .75rem;
+      border-radius:9999px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 1px 2px rgb(0 0 0 / .04);
+      font-size:.8125rem;
+      white-space:nowrap;
+    }
+    .review-star { color:#f59e0b; }
+    .reviews-rail:hover .reviews-track { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce){
+      .reviews-track{ animation:none; transform:none; }
+    }
+
+    .m-carousel{
+      position:relative;
+      padding-bottom:58px;
+    }
+    .m-carousel .viewport{
+      overflow:hidden;
+      width:100%;
+      border-radius:16px;
+    }
+    .m-carousel .track{
+      display:flex;
+      will-change:transform;
+      transition:transform 280ms ease;
+      touch-action: pan-y;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .m-carousel .track{ transition:none; }
+    }
+    .m-carousel .slide{
+      flex:0 0 100%;
+      padding:.5rem;
+      box-sizing:border-box;
+    }
+    .m-carousel .dots{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .m-carousel .dot{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      border-radius:9999px;
+      border:1.5px solid #d1d5db;
+      background:#fff;
+    }
+    .m-carousel .dot[aria-current="true"]{
+      background:var(--brand);
+      border-color:var(--brand);
+    }
+    .m-carousel .ctrl{
+      position:absolute;
+      bottom:6px;
+      width:40px;
+      height:40px;
+      border-radius:9999px;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 1px 2px rgb(0 0 0 / .06);
+      z-index:4;
+    }
+    .m-carousel .ctrl:focus-visible{
+      outline:3px solid #93c5fd;
+      outline-offset:2px;
+    }
+    .m-carousel .ctrl svg{
+      width:18px;
+      height:18px;
+      stroke:#6b7280;
+    }
+    .m-carousel .prev{ left:calc(50% - 122px); }
+    .m-carousel .next{ right:calc(50% - 122px); }
+
+    .work-gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap:0.75rem;
+    }
+    .work-gallery-item{
+      border-radius:14px;
+      overflow:hidden;
+      aspect-ratio:4 / 3;
+      background:#f3f4f6;
+      position:relative;
+      border:1px solid var(--line);
+      box-shadow:0 2px 14px rgb(0 0 0 / .05);
+    }
+    .work-gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .work-gallery-item:hover img{ transform:scale(1.04); }
+
+    .svc-card{
+      border-radius:20px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgb(255 255 255 / .08);
+      box-shadow:0 16px 40px rgb(0 0 0 / .18);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .svc-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 48px rgb(0 0 0 / .24);
+    }
+    .svc-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .section-break-soft{
+      height:16px;
+      background:linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,0));
+    }
+    .section-break-strong{
+      height:26px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.12), rgba(15,23,42,0)),
+        linear-gradient(90deg, rgba(220,38,38,.08), rgba(255,255,255,0), rgba(220,38,38,.08));
+    }
+    .section-divider-label{
+      position:relative;
+      height:74px;
+      background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .section-divider-label span{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      white-space:nowrap;
+      padding:.6rem 1rem;
+      border-radius:9999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:#374151;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:0 6px 20px rgb(0 0 0 / .06);
+    }
+
+    .hero-shell{
+      min-height:540px;
+      height:68vh;
+    }
+
+    #services{
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(1000px 500px at 85% 20%, rgba(220,38,38,.10), transparent 55%),
+        linear-gradient(180deg, var(--services-bg-1) 0%, var(--services-bg-2) 100%);
+    }
+    #services .svc-sheen{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(850px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+
+    @media (max-width:640px){
+      .reviews-strip{ display:none !important; }
+      #coverage-map .map-frame{ height:260px !important; }
+      .hero-shell{
+        height:68vh;
+        min-height:520px;
+      }
+    }
+
+    @media (min-width:641px){
+      .hero-shell{
+        height:76vh;
+        min-height:600px;
+      }
+    }
+  </style>
 
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="script.js"></script>
 </head>
 
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
@@ -88,6 +338,30 @@
   </div>
 </header>
 
+<script>
+(function(){
+  const btn=document.getElementById('mobileMenuBtn');
+  const menu=document.getElementById('mobileMenu');
+  if(btn && menu){
+    function toggle(open){
+      const willOpen=(open!==undefined)?open:menu.classList.contains('hidden');
+      menu.classList.toggle('hidden',!willOpen);
+      btn.setAttribute('aria-expanded',String(willOpen));
+    }
+    btn.addEventListener('click',()=>toggle());
+    menu.addEventListener('click',e=>{ if(e.target.matches('a')||e.target.closest('a')) toggle(false); });
+    document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+  }
+  const path=location.pathname.replace(/\/+$/,'')||'/';
+  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+    const href=a.getAttribute('href')||'';
+    const norm=href.replace(/\/+$/,'')||'/';
+    if(norm===path){a.classList.add('active');a.setAttribute('aria-current','page');}
+  });
+})();
+</script>
+
 <section class="relative overflow-hidden">
   <div class="absolute inset-0">
     <img src="Screenshot 2026-03-12 120342.png"
@@ -95,7 +369,6 @@
          class="w-full h-full object-cover"
          loading="eager"
          fetchpriority="high" />
-
     <div
       class="absolute inset-0"
       style="background:
@@ -112,6 +385,18 @@
           rgba(0,0,0,.10) 68%,
           rgba(0,0,0,0) 100%);">
     </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
+    style="background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.18) 38%,
+      rgba(255,255,255,0.48) 68%,
+      rgba(255,255,255,0.82) 88%,
+      rgba(255,255,255,1) 100%
+    );">
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-shell flex items-center">
@@ -242,501 +527,684 @@
 
 <main class="flex-1">
 
-<section id="guarantees" class="relative isolate overflow-hidden border-y border-white/10">
-  <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-500/20 blur-3xl"></div>
-  <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/5 blur-3xl"></div>
+  <!-- UPDATED: Why Drivers Choose Us -->
+  <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-y border-white/10 text-white">
+    <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
 
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="max-w-3xl">
-      <span class="inline-flex items-center rounded-full bg-white/5 text-white px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/10">Why Clear Choice</span>
-      <h2 class="mt-4 text-3xl md:text-5xl font-black leading-tight text-white">
-        Why Drivers Choose <span class="text-red-500">Clear Choice</span> Auto Glass
-      </h2>
-      <p class="mt-3 text-lg text-white/70">
-        Clear pricing, clean installs, and a process that feels simple from start to finish.
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center rounded-full bg-white/10 text-white px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15">Why Clear Choice</span>
+        <h2 class="mt-4 text-3xl md:text-5xl font-black leading-tight text-white">
+          Why Drivers Choose <span class="text-red-500">Clear Choice</span> Auto Glass
+        </h2>
+        <p class="mt-3 text-lg text-white/75">
+          Clean installs, fair pricing, and no runaround.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white">Lifetime Workmanship</h3>
+              <p class="mt-2 text-sm text-white/70">If a seal we installed ever fails, we fix it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 9h18"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white">OEM-Grade Glass</h3>
+              <p class="mt-2 text-sm text-white/70">Quiet, leak-free installs with quality materials.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
+                <circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white">Fast Mobile Service</h3>
+              <p class="mt-2 text-sm text-white/70">Home, work, or parking lot. Same-day when route allows.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white">Clean Finish</h3>
+              <p class="mt-2 text-sm text-white/70">We vacuum broken glass and leave the inside clean.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Count-up stats section -->
+  <section id="stats" class="bg-white border-b border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">Local experience</span>
+        <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          Proven work across Salem &amp; Keizer
+        </h2>
+        <p class="mt-3 text-neutral-600">
+          Real volume. Real experience. Mobile installs done the right way.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
+          <div class="text-4xl md:text-5xl font-black text-neutral-900">
+            <span class="count-up" data-target="20" data-suffix="+">0</span>
+          </div>
+          <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Years of Service</p>
+          <p class="mt-2 text-sm text-neutral-600">Experienced installs without the runaround.</p>
+        </article>
+
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
+          <div class="text-4xl md:text-5xl font-black text-neutral-900">
+            <span class="count-up" data-target="3484" data-suffix="+" data-group="true">0</span>
+          </div>
+          <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Installations Completed</p>
+          <p class="mt-2 text-sm text-neutral-600">Mobile jobs handled with clean finish and solid fitment.</p>
+        </article>
+
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
+          <div class="text-4xl md:text-5xl font-black text-neutral-900">
+            <span class="count-up" data-target="6">0</span>
+          </div>
+          <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Days a Week Available</p>
+          <p class="mt-2 text-sm text-neutral-600">Mobile scheduling built around real driver needs.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOVED UP + UPDATED: Services section -->
+  <section id="services" class="relative text-white overflow-hidden">
+    <div class="svc-sheen"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+      <div class="max-w-2xl">
+        <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15 text-white/90">Our Services</span>
+        <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight">Popular Services</h2>
+        <p class="mt-2 text-white/70 text-sm">The most requested installs we handle every week.</p>
+      </div>
+
+      <div class="hidden sm:grid mt-10 grid-cols-3 gap-6">
+        <article class="svc-card">
+          <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+               alt="Windshield replacement"
+               onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
+               loading="lazy" decoding="async"/>
+          <div class="p-6">
+            <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
+            <h3 class="mt-3 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
+            <p class="mt-2 text-sm text-neutral-600">OEM-quality glass, mobile install, clean finish, and same-day availability when route allows.</p>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <img src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+               alt="Door glass replacement"
+               onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
+               loading="lazy" decoding="async"/>
+          <div class="p-6">
+            <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
+            <h3 class="mt-3 text-lg font-bold text-neutral-900">Door Glass Replacement</h3>
+            <p class="mt-2 text-sm text-neutral-600">Fast side glass replacement with cleanup, proper fitment, and a clean seal.</p>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+               alt="Back glass replacement"
+               onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
+               loading="lazy" decoding="async"/>
+          <div class="p-6">
+            <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Rear Glass</span>
+            <h3 class="mt-3 text-lg font-bold text-neutral-900">Back Glass Replacement</h3>
+            <p class="mt-2 text-sm text-neutral-600">Rear glass replacement with cleanup, fresh install, and a solid seal.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="sm:hidden mt-8">
+        <div id="svcCarouselMobile" class="m-carousel" role="region" aria-roledescription="carousel" aria-label="Popular services" data-autoplay="true">
+          <button class="ctrl prev" aria-label="Previous service" data-dir="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="ctrl next" aria-label="Next service" data-dir="1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+
+          <div class="viewport" tabindex="0">
+            <div class="track" style="transform: translateX(0);">
+              <article class="slide">
+                <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                  <img class="w-full h-[190px] object-cover"
+                       src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+                       alt="Windshield replacement" loading="lazy"
+                       onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"/>
+                  <div class="p-5">
+                    <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
+                    <h3 class="mt-2 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
+                    <p class="mt-1 text-sm text-neutral-600">OEM-quality glass, mobile install, and clean finish.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                  <img class="w-full h-[190px] object-cover"
+                       src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+                       alt="Door glass replacement" loading="lazy"
+                       onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"/>
+                  <div class="p-5">
+                    <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
+                    <h3 class="mt-2 text-lg font-bold text-neutral-900">Door Glass Replacement</h3>
+                    <p class="mt-1 text-sm text-neutral-600">Fast side glass replacement with cleanup and solid fitment.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                  <img class="w-full h-[190px] object-cover"
+                       src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+                       alt="Back glass replacement" loading="lazy"
+                       onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"/>
+                  <div class="p-5">
+                    <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Rear Glass</span>
+                    <h3 class="mt-2 text-lg font-bold text-neutral-900">Back Glass Replacement</h3>
+                    <p class="mt-1 text-sm text-neutral-600">Quick replacement with cleanup and a solid seal.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="dots" role="tablist" aria-label="Service slides"></div>
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <a href="/services.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-white/20 text-white/90 text-sm font-semibold hover:border-white hover:text-white transition">
+          View All Services
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow transition">
+          Request a Quote
+        </a>
+      </div>
+    </div>
+
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-white"></div>
+  </section>
+
+  <!-- MOVED HERE: About band -->
+  <section id="aboutBand" class="bg-white border-y border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-8 items-center">
+        <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm">
+          <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
+               alt="Technician installing windshield"
+               class="w-full h-full min-h-[260px] max-h-[460px] object-cover"
+               loading="lazy">
+        </div>
+
+        <div>
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Local and owner-operated</span>
+          <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+            Straight answers. Clean installs. No runaround.
+          </h2>
+          <p class="mt-4 text-neutral-700 max-w-2xl">
+            You text one number and talk to the same person from quote to install. We confirm the right glass first, give you a clear price, and show up ready to work.
+          </p>
+
+          <ul class="mt-6 grid gap-3 text-sm text-neutral-700">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              Direct text line with quick answers.
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              VIN-matched pricing before we book.
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              Mobile scheduling across Salem and Keizer.
+            </li>
+          </ul>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Call Now</a>
+            <a href="/reviews.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-neutral-900 bg-white border-2 border-neutral-300 hover:border-neutral-400">Read Reviews</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOVED HERE: Our work -->
+  <section id="our-work" class="bg-neutral-50 border-y border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="mb-6">
+        <span class="inline-flex items-center rounded-full bg-white text-neutral-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200">Our Work</span>
+        <h2 class="mt-2 text-2xl md:text-3xl font-black leading-tight text-neutral-900">Clean installs, every time</h2>
+        <p class="mt-1 text-sm text-neutral-600">Real jobs from driveways across Salem and Keizer.</p>
+      </div>
+
+      <div class="work-gallery-grid" aria-label="Work photo gallery">
+        <figure class="work-gallery-item"><img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white order-2 lg:order-1">
+          <img id="svcMapImg" src="salem.png?v=2" alt="Service area map: Salem"
+               class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[460px] object-cover transition-opacity duration-300 ease-out opacity-100"
+               loading="lazy" />
+          <div class="absolute bottom-3 left-3 flex gap-2 bg-white/92 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
+            <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
+                    data-img="salem.png?v=2" data-alt="Service area map: Salem">Salem</button>
+            <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 transition"
+                    data-img="keizer.png?v=2" data-alt="Service area map: Keizer">Keizer</button>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Service Area</span>
+          <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+            We come to you across <span class="text-red-600">Salem</span> &amp; <span class="text-red-600">Keizer</span>
+          </h2>
+
+          <p class="mt-4 text-neutral-700 max-w-xl">
+            Mobile installs at home, work, or a parking lot. Text a VIN or photo and we’ll confirm the right glass before we book.
+          </p>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Home or work</span>
+            <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Same-day when route allows</span>
+            <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Straight pricing</span>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Service</a>
+            <a href="tel:+15039492257" class="font-semibold text-red-700 hover:text-red-800">Call (503) 949-2257</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider-label" aria-hidden="true">
+    <span>Next Section • How It Works</span>
+  </div>
+
+  <script>
+  (function(){
+    const img=document.getElementById('svcMapImg');
+    const tabs=document.querySelectorAll('.svc-tab');
+    if(!img || tabs.length===0) return;
+
+    tabs.forEach(b=>{ const i=new Image(); i.src=b.dataset.img; });
+
+    function setActive(el,on){
+      el.classList.remove('bg-red-600','text-white','shadow','bg-white','text-neutral-800','ring-1','ring-neutral-300');
+      if(on){
+        el.classList.add('bg-red-600','text-white','shadow');
+      } else {
+        el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+      }
+    }
+
+    function activate(btn){
+      tabs.forEach(b=>setActive(b,b===btn));
+      const nextSrc=btn.dataset.img;
+      img.style.opacity='0';
+      img.src=nextSrc;
+      img.alt=btn.dataset.alt||'';
+      img.onload=()=>{ img.style.opacity='1'; };
+      setTimeout(()=>{ img.style.opacity='1'; }, 350);
+    }
+
+    tabs.forEach(b=>b.addEventListener('click',()=>activate(b)));
+  })();
+  </script>
+
+  <section id="how-it-works" class="bg-white border-b border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-10">
+        <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">How it works</span>
+        <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          From quote to <span class="text-red-600">clear glass</span> in 3 steps
+        </h2>
+        <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+          Simple scheduling. No long process.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+          <div class="flex items-center gap-3">
+            <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">1</div>
+            <h3 class="text-lg font-bold text-neutral-900">Text your VIN or photo</h3>
+          </div>
+          <p class="mt-4 text-sm text-neutral-700">We identify the exact glass and send a firm price.</p>
+        </article>
+
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+          <div class="flex items-center gap-3">
+            <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">2</div>
+            <h3 class="text-lg font-bold text-neutral-900">Pick a time window</h3>
+          </div>
+          <p class="mt-4 text-sm text-neutral-700">Choose the best slot for home, work, or wherever your car is parked.</p>
+        </article>
+
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+          <div class="flex items-center gap-3">
+            <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">3</div>
+            <h3 class="text-lg font-bold text-neutral-900">We install and clean up</h3>
+          </div>
+          <p class="mt-4 text-sm text-neutral-700">We finish the install, vacuum broken glass, and get you back on the road.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="relative overflow-hidden">
+    <img src="https://wallpapercave.com/wp/wp9426608.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/58"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
+      <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20">Real Customers</span>
+
+      <div class="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <h2 class="text-3xl md:text-4xl font-black leading-tight">
+          Rated <span class="text-red-400">5-Stars</span> by Salem &amp; Keizer Drivers
+        </h2>
+        <a href="/reviews.html" class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/20 backdrop-blur hover:bg-white/15">
+          Read all reviews
+        </a>
+      </div>
+
+      <p class="mt-2 text-white/90 max-w-2xl">
+        Fast mobile service, clean installs, and fair pricing.
       </p>
-    </div>
 
-    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-[0_16px_40px_rgba(0,0,0,.25)] backdrop-blur-sm transition hover:bg-white/[0.07]">
-        <div class="flex items-start gap-4">
-          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path>
-            </svg>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">SN</div>
+            <div><div class="text-sm font-semibold">S. Nguyen</div><div class="text-xs text-neutral-500">Salem</div></div>
           </div>
-          <div>
-            <h3 class="font-semibold text-white">Lifetime Workmanship</h3>
-            <p class="mt-2 text-sm text-white/70">If a seal we installed ever fails, we fix it.</p>
-          </div>
-        </div>
-      </div>
+          <div class="mt-3 text-yellow-500">★★★★★</div>
+          <p class="mt-3 text-neutral-700">"OEM glass, no wind noise. Tech kept everything spotless and was done fast."</p>
+        </article>
 
-      <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-[0_16px_40px_rgba(0,0,0,.25)] backdrop-blur-sm transition hover:bg-white/[0.07]">
-        <div class="flex items-start gap-4">
-          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 9h18"></path>
-            </svg>
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">JR</div>
+            <div><div class="text-sm font-semibold">J. Rivera</div><div class="text-xs text-neutral-500">Keizer</div></div>
           </div>
-          <div>
-            <h3 class="font-semibold text-white">OEM-Grade Glass</h3>
-            <p class="mt-2 text-sm text-white/70">Quiet, leak-free installs with quality materials.</p>
-          </div>
-        </div>
-      </div>
+          <div class="mt-3 text-yellow-500">★★★★★</div>
+          <p class="mt-3 text-neutral-700">"Texted them my VIN, got a price quickly. Installer arrived on time—super easy."</p>
+        </article>
 
-      <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-[0_16px_40px_rgba(0,0,0,.25)] backdrop-blur-sm transition hover:bg-white/[0.07]">
-        <div class="flex items-start gap-4">
-          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
-              <circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle>
-            </svg>
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">LO</div>
+            <div><div class="text-sm font-semibold">L. Ortiz</div><div class="text-xs text-neutral-500">South Salem</div></div>
           </div>
-          <div>
-            <h3 class="font-semibold text-white">Fast Mobile Service</h3>
-            <p class="mt-2 text-sm text-white/70">Home, work, or parking lot. Same-day when route allows.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-[0_16px_40px_rgba(0,0,0,.25)] backdrop-blur-sm transition hover:bg-white/[0.07]">
-        <div class="flex items-start gap-4">
-          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="font-semibold text-white">Clean Finish</h3>
-            <p class="mt-2 text-sm text-white/70">We vacuum broken glass and leave the inside clean.</p>
-          </div>
-        </div>
+          <div class="mt-3 text-yellow-500">★★★★★</div>
+          <p class="mt-3 text-neutral-700">"Price was fair and the glass fits perfectly. Zero mess left behind."</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="proof-stats" class="bg-white border-b border-neutral-200/70">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="max-w-3xl">
-      <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Proof in numbers</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-        Real volume. Real experience. Real mobile service.
-      </h2>
-      <p class="mt-3 text-lg text-neutral-700">
-        These counters kick up when the section enters view.
+  <section class="relative overflow-hidden bg-white">
+    <div class="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
+      <p class="text-xs uppercase tracking-wide text-neutral-500">Need help fast?</p>
+      <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
+        Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
+      </h3>
+      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+        Start your quote or call now. We’ll come to your home or office when the schedule allows.
       </p>
-    </div>
 
-    <div class="mt-10 grid gap-5 md:grid-cols-3">
-      <article class="rounded-3xl bg-neutral-50 border border-neutral-200 shadow-sm p-7">
-        <div class="text-5xl md:text-6xl font-black leading-none text-red-600">
-          <span class="count-up" data-target="20" data-suffix="+">0</span>
-        </div>
-        <h3 class="mt-4 text-xl font-bold text-neutral-900">Years of service</h3>
-        <p class="mt-2 text-neutral-600">Long-term experience handling mobile auto glass work across the area.</p>
-      </article>
-
-      <article class="rounded-3xl bg-neutral-50 border border-neutral-200 shadow-sm p-7">
-        <div class="text-5xl md:text-6xl font-black leading-none text-red-600">
-          <span class="count-up" data-target="3484" data-suffix="+">0</span>
-        </div>
-        <h3 class="mt-4 text-xl font-bold text-neutral-900">Installations completed</h3>
-        <p class="mt-2 text-neutral-600">Windshield, door glass, and back glass installs handled with clean finish and solid fitment.</p>
-      </article>
-
-      <article class="rounded-3xl bg-neutral-50 border border-neutral-200 shadow-sm p-7">
-        <div class="text-5xl md:text-6xl font-black leading-none text-red-600">
-          <span class="count-up" data-target="100" data-suffix="%">0</span>
-        </div>
-        <h3 class="mt-4 text-xl font-bold text-neutral-900">Mobile convenience</h3>
-        <p class="mt-2 text-neutral-600">Home, work, or parking lot. The service is built around coming to you.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="relative overflow-hidden border-y border-neutral-200/70">
-  <div class="svc-sheen"></div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
-    <div class="max-w-2xl">
-      <span class="inline-flex items-center rounded-full bg-white text-neutral-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200">Our Services</span>
-      <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">Auto Glass Services</h2>
-      <p class="mt-2 text-neutral-600 text-sm">Windshield, door glass, and back glass replacement done on-site.</p>
-    </div>
-
-    <div class="hidden sm:grid mt-10 grid-cols-3 gap-6">
-      <article class="svc-card">
-        <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
-             alt="Windshield replacement"
-             onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
-             loading="lazy" decoding="async"/>
-        <div class="p-6">
-          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
-          <h3 class="mt-3 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
-          <p class="mt-2 text-sm text-neutral-600">OEM-quality glass, mobile install, clean finish, and same-day availability when route allows.</p>
-        </div>
-      </article>
-
-      <article class="svc-card">
-        <img src="https://www.glass.net/images/auto_glass/side-window-replacement.jpg"
-             alt="Door glass replacement"
-             onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
-             loading="lazy" decoding="async"/>
-        <div class="p-6">
-          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
-          <h3 class="mt-3 text-lg font-bold text-neutral-900">Door Glass Replacement</h3>
-          <p class="mt-2 text-sm text-neutral-600">Broken side glass replaced with cleanup, fresh install, and a secure seal.</p>
-        </div>
-      </article>
-
-      <article class="svc-card">
-        <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
-             alt="Back glass replacement"
-             onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
-             loading="lazy" decoding="async"/>
-        <div class="p-6">
-          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Rear Glass</span>
-          <h3 class="mt-3 text-lg font-bold text-neutral-900">Back Glass Replacement</h3>
-          <p class="mt-2 text-sm text-neutral-600">Rear glass replacement with proper cleanup and solid fitment so the vehicle is sealed right.</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="sm:hidden mt-8">
-      <div id="svcCarouselMobile" class="m-carousel" role="region" aria-roledescription="carousel" aria-label="Popular services" data-autoplay="true">
-        <button class="ctrl prev" aria-label="Previous service" data-dir="-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="ctrl next" aria-label="Next service" data-dir="1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-
-        <div class="viewport" tabindex="0">
-          <div class="track" style="transform: translateX(0);">
-            <article class="slide">
-              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
-                <img class="w-full h-[190px] object-cover"
-                     src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
-                     alt="Windshield replacement" loading="lazy"
-                     onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"/>
-                <div class="p-5">
-                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
-                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
-                  <p class="mt-1 text-sm text-neutral-600">OEM-quality glass, mobile install, and clean finish.</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="slide">
-              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
-                <img class="w-full h-[190px] object-cover"
-                     src="https://www.glass.net/images/auto_glass/side-window-replacement.jpg"
-                     alt="Door glass replacement" loading="lazy"
-                     onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"/>
-                <div class="p-5">
-                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
-                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Door Glass Replacement</h3>
-                  <p class="mt-1 text-sm text-neutral-600">Quick replacement with cleanup and a secure seal.</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="slide">
-              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
-                <img class="w-full h-[190px] object-cover"
-                     src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
-                     alt="Back glass replacement" loading="lazy"
-                     onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"/>
-                <div class="p-5">
-                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Rear Glass</span>
-                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Back Glass Replacement</h3>
-                  <p class="mt-1 text-sm text-neutral-600">Rear glass replacement with cleanup and solid fitment.</p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="dots" role="tablist" aria-label="Service slides"></div>
+      <div class="mt-6 flex gap-3 justify-center flex-wrap">
+        <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 shadow-lg transition">Get My Quote</a>
+        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
       </div>
     </div>
+  </section>
 
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-      <a href="/services.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-neutral-300 text-neutral-800 text-sm font-semibold hover:border-neutral-400 transition">
-        View All Services
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow transition">
-        Request a Quote
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="aboutBand" class="bg-white border-y border-neutral-200/70">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-8 items-center">
-      <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm">
-        <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
-             alt="Technician installing windshield"
-             class="w-full h-full min-h-[260px] max-h-[460px] object-cover"
-             loading="lazy">
+  <footer class="border-t border-neutral-200 bg-white w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div class="md:col-span-2">
+        <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+        <p class="mt-3 text-neutral-700">Family-owned • Mobile Auto Glass in Salem, Oregon</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
+        </div>
       </div>
 
       <div>
-        <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Local and owner-operated</span>
-        <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-          Straight answers. Clean installs. No runaround.
-        </h2>
-        <p class="mt-4 text-neutral-700 max-w-2xl">
-          You text one number and talk to the same person from quote to install. We confirm the right glass first, give you a clear price, and show up ready to work.
-        </p>
-
-        <ul class="mt-6 grid gap-3 text-sm text-neutral-700">
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-            Direct text line with quick answers.
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-            VIN-matched pricing before we book.
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-            Mobile scheduling across Salem and Keizer.
-          </li>
+        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="/index.html" class="hover:underline">Home</a></li>
+          <li><a href="/reviews.html" class="hover:underline">Reviews</a></li>
+          <li><a href="/services.html" class="hover:underline">Services</a></li>
+          <li><a href="/quote.html" class="hover:underline">Get a Quote</a></li>
+          <li><a href="/faqs.html" class="hover:underline">FAQs</a></li>
         </ul>
+      </div>
 
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Call Now</a>
-          <a href="/reviews.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-neutral-900 bg-white border-2 border-neutral-300 hover:border-neutral-400">Read Reviews</a>
+      <div>
+        <h4 class="font-semibold text-neutral-900">Contact</h4>
+        <ul class="mt-3 space-y-2 text-neutral-700">
+          <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
+          <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">clearchoiceglasssalem@gmail.com</a></li>
+          <li>Serving Salem/Keizer, Oregon</li>
+          <li>Mon–Sat: 7am–6pm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="/privacy.html" class="hover:text-neutral-900">Privacy</a>
+          <a href="/warranty.html" class="hover:text-neutral-900">Warranty</a>
+          <a href="/terms.html" class="hover:text-neutral-900">Terms</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section id="our-work" class="bg-neutral-50 border-y border-neutral-200/70">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <div class="mb-6">
-      <span class="inline-flex items-center rounded-full bg-white text-neutral-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200">Our Work</span>
-      <h2 class="mt-2 text-2xl md:text-3xl font-black leading-tight text-neutral-900">Clean installs, every time</h2>
-      <p class="mt-1 text-sm text-neutral-600">Real jobs from driveways across Salem and Keizer.</p>
-    </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 
-    <div class="work-gallery-grid" aria-label="Work photo gallery">
-      <figure class="work-gallery-item"><img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async"></figure>
-      <figure class="work-gallery-item"><img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async"></figure>
-    </div>
-  </div>
-</section>
+  <script>
+  (function(){
+    function initCarousel(root){
+      if(!root) return;
+      const viewport=root.querySelector('.viewport');
+      const track=root.querySelector('.track');
+      const slides=Array.from(root.querySelectorAll('.slide'));
+      const prev=root.querySelector('.prev');
+      const next=root.querySelector('.next');
+      const dotsWrap=root.querySelector('.dots');
+      if(!viewport || !track || slides.length===0 || !dotsWrap) return;
 
-<section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
-      <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white order-2 lg:order-1">
-        <img id="svcMapImg" src="salem.png?v=2" alt="Service area map: Salem"
-             class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[460px] object-cover transition-opacity duration-300 ease-out opacity-100"
-             loading="lazy" />
-        <div class="absolute bottom-3 left-3 flex gap-2 bg-white/92 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
-          <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
-                  data-img="salem.png?v=2" data-alt="Service area map: Salem">Salem</button>
-          <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 transition"
-                  data-img="keizer.png?v=2" data-alt="Service area map: Keizer">Keizer</button>
-        </div>
-      </div>
+      const shouldAutoplay=root.dataset.autoplay==='true';
+      let index=0;
 
-      <div class="order-1 lg:order-2">
-        <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Service Area</span>
-        <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-          We come to you across <span class="text-red-600">Salem</span> &amp; <span class="text-red-600">Keizer</span>
-        </h2>
+      const width=()=>viewport.clientWidth;
 
-        <p class="mt-4 text-neutral-700 max-w-xl">
-          Mobile installs at home, work, or a parking lot. Text a VIN or photo and we’ll confirm the right glass before we book.
-        </p>
+      dotsWrap.innerHTML='';
+      slides.forEach((_,i)=>{
+        const b=document.createElement('button');
+        b.type='button';
+        b.className='dot';
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Go to slide '+(i+1));
+        b.addEventListener('click',()=>go(i,true));
+        dotsWrap.appendChild(b);
+      });
 
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Home or work</span>
-          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Same-day when route allows</span>
-          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Straight pricing</span>
-        </div>
+      function setDot(i){
+        dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+          d.setAttribute('aria-current',di===i?'true':'false');
+        });
+      }
 
-        <div class="mt-6 flex flex-wrap items-center gap-4">
-          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Service</a>
-          <a href="tel:+15039492257" class="font-semibold text-red-700 hover:text-red-800">Call (503) 949-2257</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      function translate(){
+        track.style.transform='translateX('+(-index*width())+'px)';
+      }
 
-<div class="section-divider-label" aria-hidden="true">
-  <span>Next Section • How It Works</span>
-</div>
+      function go(i,userInitiated){
+        index=(i+slides.length)%slides.length;
+        translate();
+        setDot(index);
+        if(userInitiated && shouldAutoplay) restart();
+      }
 
-<section id="how-it-works" class="bg-white border-b border-neutral-200/70">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="text-center mb-10">
-      <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">How it works</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-        From quote to <span class="text-red-600">clear glass</span> in 3 steps
-      </h2>
-      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
-        Simple scheduling. No long process.
-      </p>
-    </div>
+      let rid;
+      function onResize(){
+        cancelAnimationFrame(rid);
+        rid=requestAnimationFrame(translate);
+      }
+      window.addEventListener('resize',onResize);
+      window.addEventListener('orientationchange',onResize);
 
-    <div class="grid md:grid-cols-3 gap-5">
-      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
-        <div class="flex items-center gap-3">
-          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">1</div>
-          <h3 class="text-lg font-bold text-neutral-900">Text your VIN or photo</h3>
-        </div>
-        <p class="mt-4 text-sm text-neutral-700">We identify the exact glass and send a firm price.</p>
-      </article>
+      prev && prev.addEventListener('click',()=>go(index-1,true));
+      next && next.addEventListener('click',()=>go(index+1,true));
 
-      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
-        <div class="flex items-center gap-3">
-          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">2</div>
-          <h3 class="text-lg font-bold text-neutral-900">Pick a time window</h3>
-        </div>
-        <p class="mt-4 text-sm text-neutral-700">Choose the best slot for home, work, or wherever your car is parked.</p>
-      </article>
+      let startX=0, active=false;
+      viewport.addEventListener('pointerdown',(e)=>{
+        active=true; startX=e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+        if(shouldAutoplay) pause();
+      });
+      viewport.addEventListener('pointerup',(e)=>{
+        if(!active) return;
+        const dx=e.clientX-startX;
+        active=false;
+        if(Math.abs(dx)>40){
+          dx<0 ? go(index+1,true) : go(index-1,true);
+        }
+        if(shouldAutoplay) restart();
+      });
 
-      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
-        <div class="flex items-center gap-3">
-          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">3</div>
-          <h3 class="text-lg font-bold text-neutral-900">We install and clean up</h3>
-        </div>
-        <p class="mt-4 text-sm text-neutral-700">We finish the install, vacuum broken glass, and get you back on the road.</p>
-      </article>
-    </div>
-  </div>
-</section>
+      let iv=null;
+      function play(){ if(shouldAutoplay && !iv) iv=setInterval(()=>go(index+1,false), 4200); }
+      function pause(){ if(iv) clearInterval(iv); iv=null; }
+      function restart(){ pause(); play(); }
 
-<section id="reviews" class="relative overflow-hidden">
-  <img src="https://wallpapercave.com/wp/wp9426608.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
-  <div class="absolute inset-0 bg-black/58"></div>
+      if(shouldAutoplay){
+        document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
+        [prev,next,viewport].forEach(el=>{
+          if(!el) return;
+          el.addEventListener('mouseenter',pause);
+          el.addEventListener('mouseleave',play);
+          el.addEventListener('focusin',pause);
+          el.addEventListener('focusout',play);
+        });
+      }
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
-    <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20">Real Customers</span>
+      go(0,false);
+      play();
+    }
 
-    <div class="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-      <h2 class="text-3xl md:text-4xl font-black leading-tight">
-        Rated <span class="text-red-400">5-Stars</span> by Salem &amp; Keizer Drivers
-      </h2>
-      <a href="/reviews.html" class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/20 backdrop-blur hover:bg-white/15">
-        Read all reviews
-      </a>
-    </div>
+    initCarousel(document.getElementById('revCarousel'));
+    initCarousel(document.getElementById('svcCarouselMobile'));
+  })();
+  </script>
 
-    <p class="mt-2 text-white/90 max-w-2xl">
-      Fast mobile service, clean installs, and fair pricing.
-    </p>
+  <!-- NEW: Count-up animation -->
+  <script>
+  (function(){
+    const counters = document.querySelectorAll('.count-up');
+    if(!counters.length) return;
 
-    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">SN</div>
-          <div><div class="text-sm font-semibold">S. Nguyen</div><div class="text-xs text-neutral-500">Salem</div></div>
-        </div>
-        <div class="mt-3 text-yellow-500">★★★★★</div>
-        <p class="mt-3 text-neutral-700">"OEM glass, no wind noise. Tech kept everything spotless and was done fast."</p>
-      </article>
+    function formatValue(value, group){
+      return group ? value.toLocaleString('en-US') : String(value);
+    }
 
-      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">JR</div>
-          <div><div class="text-sm font-semibold">J. Rivera</div><div class="text-xs text-neutral-500">Keizer</div></div>
-        </div>
-        <div class="mt-3 text-yellow-500">★★★★★</div>
-        <p class="mt-3 text-neutral-700">"Texted them my VIN, got a price quickly. Installer arrived on time—super easy."</p>
-      </article>
+    function animateCounter(el){
+      if(el.dataset.done === 'true') return;
+      el.dataset.done = 'true';
 
-      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">LO</div>
-          <div><div class="text-sm font-semibold">L. Ortiz</div><div class="text-xs text-neutral-500">South Salem</div></div>
-        </div>
-        <div class="mt-3 text-yellow-500">★★★★★</div>
-        <p class="mt-3 text-neutral-700">"Price was fair and the glass fits perfectly. Zero mess left behind."</p>
-      </article>
-    </div>
-  </div>
-</section>
+      const target = Number(el.dataset.target || 0);
+      const suffix = el.dataset.suffix || '';
+      const group = el.dataset.group === 'true';
+      const duration = 1400;
+      const start = performance.now();
 
-<section class="relative overflow-hidden bg-white">
-  <div class="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50"></div>
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
-    <p class="text-xs uppercase tracking-wide text-neutral-500">Need help fast?</p>
-    <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
-      Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
-    </h3>
-    <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
-      Start your quote or call now. We’ll come to your home or office when the schedule allows.
-    </p>
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * eased);
+        el.textContent = formatValue(current, group) + suffix;
 
-    <div class="mt-6 flex gap-3 justify-center flex-wrap">
-      <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 shadow-lg transition">Get My Quote</a>
-      <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
-    </div>
-  </div>
-</section>
+        if(progress < 1){
+          requestAnimationFrame(tick);
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.45 });
+
+    counters.forEach(counter => observer.observe(counter));
+  })();
+  </script>
 
 </main>
-
-<footer class="border-t border-neutral-200 bg-white w-full">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-    <div class="md:col-span-2">
-      <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
-      <p class="mt-3 text-neutral-700">Family-owned • Mobile Auto Glass in Salem, Oregon</p>
-      <div class="mt-4 flex flex-wrap gap-3">
-        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
-      </div>
-    </div>
-
-    <div>
-      <h4 class="font-semibold text-neutral-900">Quick Links</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="/index.html" class="hover:underline">Home</a></li>
-        <li><a href="/reviews.html" class="hover:underline">Reviews</a></li>
-        <li><a href="/services.html" class="hover:underline">Services</a></li>
-        <li><a href="/quote.html" class="hover:underline">Get a Quote</a></li>
-        <li><a href="/faqs.html" class="hover:underline">FAQs</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-semibold text-neutral-900">Contact</h4>
-      <ul class="mt-3 space-y-2 text-neutral-700">
-        <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
-        <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">clearchoiceglasssalem@gmail.com</a></li>
-        <li>Serving Salem/Keizer, Oregon</li>
-        <li>Mon–Sat: 7am–6pm</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="border-t border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-      <div class="flex items-center gap-4">
-        <a href="/privacy.html" class="hover:text-neutral-900">Privacy</a>
-        <a href="/warranty.html" class="hover:text-neutral-900">Warranty</a>
-        <a href="/terms.html" class="hover:text-neutral-900">Terms</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
 </body>
 </html>
