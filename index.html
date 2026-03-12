@@ -4,990 +4,266 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer</title>
-  <meta
-    name="description"
-    content="Fast mobile auto glass repair and replacement in Salem and Keizer. We come to your home or work for windshield repair, replacement, and more."
-  />
+  <meta name="description" content="Mobile auto glass repair & replacement in Salem/Keizer. Same-day service. Clean installs. Straight pricing." />
   <meta name="theme-color" content="#ffffff" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2" />
-  <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2" />
-  <link rel="apple-touch-icon" href="logo.png.png?v=2" />
-  <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2" />
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
+  <link rel="apple-touch-icon" href="logo.png.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
-  <link rel="preload" as="image" href="Screenshot 2026-03-12 120342.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-:root {
-  --brand: #dc2626;
-  --brand-dark: #b91c1c;
-  --brand-soft: #fee2e2;
-  --ink: #111827;
-  --ink-soft: #4b5563;
-  --white: #ffffff;
-  --line: #e5e7eb;
-  --panel: #ffffff;
-  --panel-soft: #f8fafc;
-  --dark: #0f172a;
-  --dark-soft: #111827;
-  --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.12);
-  --shadow-lg: 0 28px 60px rgba(15, 23, 42, 0.18);
-  --radius: 1.25rem;
-  --container: 72rem;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--ink);
-  background: var(--white);
-  line-height: 1.5;
-  overflow-x: hidden;
-  padding-bottom: 5.5rem;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-a,
-button,
-input,
-select {
-  font: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  padding: 0.95rem 1rem;
-  color: var(--ink);
-  background: var(--white);
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid rgba(59, 130, 246, 0.35);
-  outline-offset: 2px;
-}
-
-.container {
-  width: min(100% - 1.5rem, var(--container));
-  margin-inline: auto;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 3.5rem;
-  padding: 0 1.35rem;
-  border-radius: 1rem;
-  font-weight: 800;
-  font-size: 1rem;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn-primary {
-  background: var(--brand);
-  color: var(--white);
-  box-shadow: 0 16px 30px rgba(220, 38, 38, 0.25);
-}
-
-.btn-primary:hover {
-  background: var(--brand-dark);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--brand);
-  border: 2px solid rgba(220, 38, 38, 0.85);
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
-}
-
-.btn-secondary:hover {
-  background: #fff5f5;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  border-radius: 999px;
-  padding: 0.45rem 0.85rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 800;
-}
-
-.badge-red {
-  background: rgba(220, 38, 38, 0.1);
-  color: var(--brand);
-  border: 1px solid rgba(220, 38, 38, 0.12);
-}
-
-.badge-white {
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-}
-
-.section {
-  padding: 4rem 0;
-}
-
-.section-soft {
-  background: var(--panel-soft);
-}
-
-.section-dark {
-  background: linear-gradient(180deg, #101725 0%, #0a0f1a 100%);
-  color: var(--white);
-}
-
-.section-heading {
-  max-width: 42rem;
-}
-
-.section-heading h2 {
-  margin: 0.75rem 0 0;
-  font-size: clamp(1.9rem, 6vw, 3.4rem);
-  line-height: 1.05;
-  font-weight: 900;
-}
-
-.section-heading p {
-  margin: 1rem 0 0;
-  color: var(--ink-soft);
-  font-size: 1rem;
-}
-
-.section-dark .section-heading p {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.95);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-
-.header-inner {
-  min-height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
-}
-
-.brand img {
-  width: 2.9rem;
-  height: 2.9rem;
-  object-fit: contain;
-  flex: none;
-}
-
-.brand-text {
-  min-width: 0;
-}
-
-.brand-name {
-  display: block;
-  font-weight: 900;
-  font-size: 1rem;
-  line-height: 1.05;
-  color: var(--ink);
-}
-
-.brand-sub {
-  display: block;
-  margin-top: 0.18rem;
-  font-size: 0.72rem;
-  color: var(--ink-soft);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-}
-
-.desktop-nav,
-.desktop-actions {
-  display: none;
-}
-
-.menu-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border-radius: 0.9rem;
-  border: 1px solid var(--line);
-  background: var(--white);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-}
-
-.mobile-menu {
-  display: none;
-  border-top: 1px solid var(--line);
-  background: var(--white);
-}
-
-.mobile-menu.hidden {
-  display: none;
-}
-
-.mobile-menu:not(.hidden) {
-  display: block;
-}
-
-.mobile-menu-inner {
-  display: grid;
-  gap: 0.75rem;
-  padding: 1rem 0 1.2rem;
-}
-
-.mobile-menu a {
-  border-radius: 1rem;
-  padding: 0.95rem 1rem;
-  font-weight: 700;
-  border: 1px solid var(--line);
-  background: var(--panel-soft);
-}
-
-.mobile-menu .btn {
-  min-height: 3.25rem;
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  background: #0b1220;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 5rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-  pointer-events: none;
-}
-
-.hero-media {
-  position: absolute;
-  inset: 0;
-}
-
-.hero-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(7, 10, 18, 0.28) 0%, rgba(7, 10, 18, 0.62) 48%, rgba(7, 10, 18, 0.82) 100%),
-    linear-gradient(90deg, rgba(7, 10, 18, 0.86) 0%, rgba(7, 10, 18, 0.52) 48%, rgba(7, 10, 18, 0.22) 100%);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  min-height: 37rem;
-  display: flex;
-  align-items: center;
-  padding: 4.5rem 0 5rem;
-}
-
-.hero-content {
-  width: min(100%, 39rem);
-  color: var(--white);
-}
-
-.hero-content h1 {
-  margin: 1rem 0 0;
-  font-size: clamp(2.5rem, 10vw, 4.6rem);
-  line-height: 0.96;
-  font-weight: 950;
-  letter-spacing: -0.04em;
-  max-width: 13ch;
-  text-wrap: balance;
-  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
-}
-
-.hero-sub {
-  margin: 1rem 0 0;
-  max-width: 34rem;
-  font-size: 1.06rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
-}
-
-.hero-trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.1rem;
-}
-
-.hero-trust span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 2.4rem;
-  padding: 0.55rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-
-.hero-actions {
-  display: grid;
-  gap: 0.85rem;
-  margin-top: 1.5rem;
-}
-
-.hero-note {
-  margin-top: 0.9rem;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.quick-proof {
-  position: relative;
-  z-index: 2;
-  margin-top: -1.7rem;
-}
-
-.quick-proof-grid {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.quick-proof-card {
-  background: var(--white);
-  border: 1px solid rgba(229, 231, 235, 0.9);
-  border-radius: 1.3rem;
-  padding: 1.1rem 1rem;
-  box-shadow: var(--shadow-md);
-}
-
-.quick-proof-card strong {
-  display: block;
-  font-size: 1rem;
-  color: var(--ink);
-}
-
-.quick-proof-card span {
-  display: block;
-  margin-top: 0.3rem;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-}
-
-.steps-grid,
-.reasons-grid,
-.review-grid,
-.service-grid,
-.stats-grid,
-.faq-grid,
-.footer-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.card,
-.review-card,
-.service-card,
-.reason-card,
-.step-card,
-.stat-card,
-.faq-item,
-.contact-card,
-.map-card,
-.final-cta-card {
-  border-radius: 1.4rem;
-  border: 1px solid rgba(229, 231, 235, 0.92);
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
-}
-
-.step-card,
-.reason-card,
-.review-card,
-.service-card,
-.stat-card,
-.contact-card,
-.map-card,
-.final-cta-card {
-  padding: 1.35rem;
-}
-
-.step-number {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 999px;
-  display: inline-grid;
-  place-items: center;
-  font-weight: 900;
-  color: var(--white);
-  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 16px 24px rgba(220, 38, 38, 0.2);
-}
-
-.step-card h3,
-.reason-card h3,
-.review-card h3,
-.service-card h3,
-.stat-card h3,
-.contact-card h3,
-.final-cta-card h3 {
-  margin: 1rem 0 0;
-  font-size: 1.15rem;
-  line-height: 1.2;
-}
-
-.step-card p,
-.reason-card p,
-.review-card p,
-.service-card p,
-.contact-card p,
-.final-cta-card p,
-.faq-answer,
-.map-copy p,
-.section-copy {
-  margin: 0.85rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.96rem;
-}
-
-.reason-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1rem;
-  display: grid;
-  place-items: center;
-  background: rgba(220, 38, 38, 0.08);
-  color: var(--brand);
-}
-
-.reason-icon svg {
-  width: 1.35rem;
-  height: 1.35rem;
-}
-
-.reviews-banner {
-  position: relative;
-  overflow: hidden;
-}
-
-.reviews-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(8, 12, 20, 0.72) 0%, rgba(8, 12, 20, 0.82) 100%),
-    radial-gradient(circle at top left, rgba(220, 38, 38, 0.32), transparent 45%);
-  pointer-events: none;
-}
-
-.reviews-inner {
-  position: relative;
-  z-index: 1;
-}
-
-.reviews-inner .section-heading p,
-.reviews-inner .section-heading h2 {
-  color: var(--white);
-}
-
-.reviews-inner .section-heading p {
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.review-card {
-  background: rgba(255, 255, 255, 0.98);
-}
-
-.review-top {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.review-avatar {
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgba(220, 38, 38, 0.12);
-  color: var(--brand);
-  font-weight: 900;
-}
-
-.review-stars {
-  margin-top: 0.8rem;
-  color: #f59e0b;
-  letter-spacing: 0.1em;
-}
-
-.stats-section {
-  overflow: hidden;
-}
-
-.stats-grid {
-  margin-top: 2rem;
-}
-
-.stat-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-}
-
-.stat-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 6rem;
-  height: 6rem;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.12), transparent 70%);
-}
-
-.stat-number {
-  font-size: clamp(2.4rem, 9vw, 4rem);
-  line-height: 1;
-  font-weight: 950;
-  letter-spacing: -0.04em;
-  color: var(--brand);
-}
-
-.stat-label {
-  margin-top: 0.7rem;
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.stat-note {
-  margin-top: 0.45rem;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
-
-.service-card {
-  padding: 0;
-  overflow: hidden;
-}
-
-.service-card img {
-  width: 100%;
-  height: 13rem;
-  object-fit: cover;
-}
-
-.service-card-body {
-  padding: 1.25rem;
-}
-
-.service-tag {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0 0.8rem;
-  border-radius: 999px;
-  background: rgba(220, 38, 38, 0.08);
-  color: var(--brand);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.service-area-grid {
-  display: grid;
-  gap: 1rem;
-  align-items: start;
-}
-
-.map-card {
-  overflow: hidden;
-  padding: 0;
-}
-
-.map-card img {
-  width: 100%;
-  height: 20rem;
-  object-fit: cover;
-  transition: opacity 0.25s ease;
-}
-
-.map-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  padding: 1rem;
-  background: var(--white);
-}
-
-.map-tab {
-  min-height: 2.6rem;
-  padding: 0 1rem;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.9rem;
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  background: var(--white);
-}
-
-.map-tab.active {
-  background: var(--brand);
-  color: var(--white);
-  border-color: var(--brand);
-  box-shadow: 0 16px 28px rgba(220, 38, 38, 0.22);
-}
-
-.service-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1rem;
-}
-
-.service-pills span {
-  min-height: 2.35rem;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.9rem;
-  border-radius: 999px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.faq-grid {
-  margin-top: 2rem;
-}
-
-.faq-item {
-  overflow: hidden;
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  text-align: left;
-  padding: 1.15rem 1.2rem;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.faq-question span:last-child {
-  flex: none;
-  font-size: 1.25rem;
-  color: var(--brand);
-  transition: transform 0.2s ease;
-}
-
-.faq-item.open .faq-question span:last-child {
-  transform: rotate(45deg);
-}
-
-.faq-answer {
-  margin: 0;
-  padding: 0 1.2rem 1.2rem;
-  display: none;
-}
-
-.faq-item.open .faq-answer {
-  display: block;
-}
-
-.final-cta-card {
-  background:
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-}
-
-.final-cta-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.final-cta-points {
-  display: grid;
-  gap: 0.85rem;
-  margin-top: 1.15rem;
-}
-
-.final-cta-points span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--ink-soft);
-  font-weight: 700;
-}
-
-.quote-form {
-  display: grid;
-  gap: 0.85rem;
-  margin-top: 1rem;
-}
-
-.quote-form button {
-  width: 100%;
-}
-
-.form-note {
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-  margin-top: 0.4rem;
-}
-
-.footer {
-  border-top: 1px solid var(--line);
-  background: #ffffff;
-}
-
-.footer-grid {
-  padding: 3rem 0 2rem;
-}
-
-.footer-brand p,
-.footer-links,
-.footer-links a {
-  color: var(--ink-soft);
-}
-
-.footer-heading {
-  font-weight: 800;
-  margin: 0 0 0.75rem;
-}
-
-.footer-links {
-  display: grid;
-  gap: 0.55rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.footer-bottom {
-  border-top: 1px solid var(--line);
-}
-
-.footer-bottom-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 1rem 0 1.4rem;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-}
-
-.footer-legal {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.mobile-sticky-cta {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 60;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(229, 231, 235, 0.96);
-  box-shadow: 0 -12px 30px rgba(15, 23, 42, 0.08);
-}
-
-.mobile-sticky-cta .btn {
-  min-height: 3.25rem;
-  padding-inline: 1rem;
-  font-size: 0.95rem;
-}
-
-.hidden-desktop {
-  display: inline-flex;
-}
-
-@media (min-width: 48rem) {
-  body {
-    padding-bottom: 0;
-  }
-
-  .menu-toggle,
-  .mobile-menu,
-  .mobile-sticky-cta,
-  .hidden-desktop {
-    display: none;
-  }
-
-  .desktop-nav,
-  .desktop-actions {
-    display: flex;
-    align-items: center;
-  }
-
-  .desktop-nav {
-    gap: 1.4rem;
-    font-weight: 700;
-    color: var(--ink-soft);
-  }
-
-  .desktop-nav a:hover,
-  .desktop-nav a[aria-current="page"] {
-    color: var(--brand);
-  }
-
-  .desktop-actions {
-    gap: 1rem;
-  }
-
-  .desktop-phone {
-    font-weight: 800;
-    color: var(--ink);
-  }
-
-  .hero-inner {
-    min-height: 43rem;
-    padding: 5.5rem 0 6rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .quick-proof-grid,
-  .steps-grid,
-  .reasons-grid,
-  .review-grid,
-  .stats-grid,
-  .service-grid,
-  .faq-grid,
-  .footer-grid,
-  .final-cta-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .service-area-grid {
-    grid-template-columns: 1.05fr 0.95fr;
-  }
-
-  .footer-bottom-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-@media (min-width: 64rem) {
-  .quick-proof-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .steps-grid,
-  .reasons-grid,
-  .review-grid,
-  .service-grid,
-  .stats-grid,
-  .footer-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .hero-inner {
-    min-height: 45rem;
-  }
-
-  .brand-name {
-    font-size: 1.1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+    :root{
+      --brand:#dc2626;
+      --brand-dark:#b91c1c;
+      --ink:#0a0a0a;
+      --soft:#f8fafc;
+      --line:#e5e7eb;
+      --panel:#ffffff;
+      --services-bg-1:#1a1a1a;
+      --services-bg-2:#111111;
+    }
+
+    html, body { -webkit-text-size-adjust:100%; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    img { max-width:100%; height:auto; }
+    img[width][height]{ height:auto; }
+
+    .nav-link{
+      position:relative;
+      padding-bottom:4px;
+      transition:color .2s ease;
+    }
+    .nav-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0;
+      height:2px;
+      background-color:var(--brand);
+      transition:width .25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after{ width:100%; }
+    .nav-link:hover{ color:var(--brand); }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .reviews-strip { --speed: 38s; }
+    .reviews-track {
+      display:flex;
+      width:max-content;
+      gap:.75rem;
+      animation: marqueeScroll var(--speed) linear infinite;
+    }
+    .reviews-mask {
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .review-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.5rem .75rem;
+      border-radius:9999px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 1px 2px rgb(0 0 0 / .04);
+      font-size:.8125rem;
+      white-space:nowrap;
+    }
+    .review-star { color:#f59e0b; }
+    .reviews-rail:hover .reviews-track { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce){
+      .reviews-track{ animation:none; transform:none; }
+    }
+
+    .m-carousel{
+      position:relative;
+      padding-bottom:58px;
+    }
+    .m-carousel .viewport{
+      overflow:hidden;
+      width:100%;
+      border-radius:16px;
+    }
+    .m-carousel .track{
+      display:flex;
+      will-change:transform;
+      transition:transform 280ms ease;
+      touch-action: pan-y;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .m-carousel .track{ transition:none; }
+    }
+    .m-carousel .slide{
+      flex:0 0 100%;
+      padding:.5rem;
+      box-sizing:border-box;
+    }
+    .m-carousel .dots{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .m-carousel .dot{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      border-radius:9999px;
+      border:1.5px solid #d1d5db;
+      background:#fff;
+    }
+    .m-carousel .dot[aria-current="true"]{
+      background:var(--brand);
+      border-color:var(--brand);
+    }
+    .m-carousel .ctrl{
+      position:absolute;
+      bottom:6px;
+      width:40px;
+      height:40px;
+      border-radius:9999px;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 1px 2px rgb(0 0 0 / .06);
+      z-index:4;
+    }
+    .m-carousel .ctrl:focus-visible{
+      outline:3px solid #93c5fd;
+      outline-offset:2px;
+    }
+    .m-carousel .ctrl svg{
+      width:18px;
+      height:18px;
+      stroke:#6b7280;
+    }
+    .m-carousel .prev{ left:calc(50% - 122px); }
+    .m-carousel .next{ right:calc(50% - 122px); }
+
+    .work-gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap:0.75rem;
+    }
+    .work-gallery-item{
+      border-radius:14px;
+      overflow:hidden;
+      aspect-ratio:4 / 3;
+      background:#f3f4f6;
+      position:relative;
+      border:1px solid var(--line);
+      box-shadow:0 2px 14px rgb(0 0 0 / .05);
+    }
+    .work-gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .work-gallery-item:hover img{ transform:scale(1.04); }
+
+    .svc-card{
+      border-radius:20px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgb(255 255 255 / .08);
+      box-shadow:0 16px 40px rgb(0 0 0 / .18);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .svc-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 48px rgb(0 0 0 / .24);
+    }
+    .svc-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .section-break-soft{
+      height:16px;
+      background:linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,0));
+    }
+    .section-break-strong{
+      height:26px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.12), rgba(15,23,42,0)),
+        linear-gradient(90deg, rgba(220,38,38,.08), rgba(255,255,255,0), rgba(220,38,38,.08));
+    }
+    .section-divider-label{
+      position:relative;
+      height:74px;
+      background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .section-divider-label span{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      white-space:nowrap;
+      padding:.6rem 1rem;
+      border-radius:9999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:#374151;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:0 6px 20px rgb(0 0 0 / .06);
+    }
+
+    .hero-shell{
+      min-height:540px;
+      height:68vh;
+    }
+
+    #services{
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(1000px 500px at 85% 20%, rgba(220,38,38,.10), transparent 55%),
+        linear-gradient(180deg, var(--services-bg-1) 0%, var(--services-bg-2) 100%);
+    }
+    #services .svc-sheen{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(850px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+
+    @media (max-width:640px){
+      .reviews-strip{ display:none !important; }
+      #coverage-map .map-frame{ height:260px !important; }
+      .hero-shell{
+        height:62vh;
+        min-height:460px;
+      }
+    }
+
+    @media (min-width:641px){
+      .hero-shell{
+        height:76vh;
+        min-height:600px;
+      }
+    }
   </style>
 
   <script>
@@ -995,634 +271,806 @@ a:focus-visible {
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/index.html" class="brand" aria-label="Clear Choice Auto Glass — Home">
-        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" />
-        <span class="brand-text">
-          <span class="brand-name">Clear Choice Auto Glass</span>
-          <span class="brand-sub">Mobile service in Salem &amp; Keizer</span>
-        </span>
+
+<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
+
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="/index.html" class="flex items-center gap-3" aria-label="Clear Choice Auto Glass — Home">
+        <img src="logo.png.png" alt="Clear Choice Auto Glass logo" class="h-[60px] w-auto">
+        <span class="text-neutral-900 font-extrabold text-lg sm:text-2xl tracking-wide whitespace-nowrap">Clear Choice Auto Glass</span>
       </a>
 
-      <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="/index.html">Home</a>
-        <a href="/services.html">Services</a>
-        <a href="/reviews.html">Reviews</a>
-        <a href="/faqs.html">FAQs</a>
-        <a href="/quote.html">Quote</a>
+      <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/services.html" class="nav-link">Services</a>
+        <a href="/reviews.html" class="nav-link">Reviews</a>
+        <a href="/quote.html" class="nav-link">Quote</a>
+        <a href="/faqs.html" class="nav-link">FAQs</a>
       </nav>
 
-      <div class="desktop-actions">
-        <a href="tel:+15039492257" class="desktop-phone">(503) 949-2257</a>
-        <a href="/quote.html" class="btn btn-primary">Get Quote</a>
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg">(503) 949-2257</a>
+        <a href="/quote.html"
+           class="inline-flex items-center justify-center rounded-xl px-6 py-2.5 font-semibold text-base text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
+          Request Quote
+        </a>
       </div>
 
-      <button
-        id="mobileMenuBtn"
-        class="menu-toggle"
-        aria-label="Toggle menu"
-        aria-controls="mobileMenu"
-        aria-expanded="false"
-      >
+      <button id="mobileMenuBtn"
+              class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+              aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
+        Menu
       </button>
     </div>
 
-    <nav id="mobileMenu" class="mobile-menu hidden" aria-label="Mobile navigation">
-      <div class="container mobile-menu-inner">
-        <a href="/index.html">Home</a>
-        <a href="/services.html">Services</a>
-        <a href="/reviews.html">Reviews</a>
-        <a href="/faqs.html">FAQs</a>
-        <a href="/quote.html" class="btn btn-primary">Request a Quote</a>
-        <a href="tel:+15039492257" class="btn btn-secondary">Call (503) 949-2257</a>
+    <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
+      <div class="px-4 py-3 grid gap-2" role="menu">
+        <a role="menuitem" href="/index.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+        <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
+        <a role="menuitem" href="/reviews.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+        <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+
+        <a role="menuitem" href="/quote.html"
+           class="mt-2 flex items-center justify-center gap-2 rounded-xl py-4 px-5 bg-red-600 hover:bg-red-700 text-white font-bold text-lg text-center shadow-lg transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          Request a Quote
+        </a>
+
+        <a role="menuitem" href="tel:+15039492257"
+           class="flex items-center justify-center gap-2 rounded-xl py-3 px-5 border-2 border-neutral-300 text-neutral-800 font-semibold text-base text-center transition hover:border-red-600 hover:text-red-700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          (503) 949-2257
+        </a>
       </div>
     </nav>
-  </header>
-
-  <section class="hero" id="top">
-    <div class="hero-media" aria-hidden="true">
-      <img src="Screenshot 2026-03-12 120342.png" alt="" loading="eager" fetchpriority="high" />
-      <div class="hero-overlay"></div>
-    </div>
-
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <span class="badge badge-white">Fast mobile auto glass service</span>
-        <h1>We come to you and fix your auto glass fast.</h1>
-        <p class="hero-sub">
-          Windshield repair and replacement at your home, work, or parking lot in Salem and Keizer. Clean install, clear pricing, and help with insurance claims.
-        </p>
-
-        <div class="hero-trust">
-          <span>Same-day when route allows</span>
-          <span>Mobile to home or work</span>
-          <span>Insurance claim help</span>
-        </div>
-
-        <div class="hero-actions">
-          <a href="/quote.html" class="btn btn-primary">Start Your Quote</a>
-          <a href="tel:+15039492257" class="btn btn-secondary">Call (503) 949-2257</a>
-        </div>
-
-        <p class="hero-note">Request a quote in minutes. We verify the right glass before we book.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="quick-proof">
-    <div class="container quick-proof-grid">
-      <article class="quick-proof-card">
-        <strong>Fast response</strong>
-        <span>Text or call to get pricing and availability quickly.</span>
-      </article>
-      <article class="quick-proof-card">
-        <strong>Mobile convenience</strong>
-        <span>We come to your house, office, or parking lot.</span>
-      </article>
-      <article class="quick-proof-card">
-        <strong>Clean professional install</strong>
-        <span>Quality glass, proper fitment, and cleanup after the job.</span>
-      </article>
-    </div>
-  </section>
-
-  <main>
-    <section class="section" id="how-it-works">
-      <div class="container">
-        <div class="section-heading">
-          <span class="badge badge-red">How it works</span>
-          <h2>Simple from first message to finished glass.</h2>
-          <p>No long process. No confusing steps. Just request, schedule, and get it done.</p>
-        </div>
-
-        <div class="steps-grid" style="margin-top: 2rem;">
-          <article class="step-card">
-            <span class="step-number">1</span>
-            <h3>Request a quote</h3>
-            <p>Send your vehicle info, a VIN, or a photo of the damage. We confirm the right glass and give you clear pricing.</p>
-          </article>
-
-          <article class="step-card">
-            <span class="step-number">2</span>
-            <h3>We come to you</h3>
-            <p>Choose home, work, or another safe location in Salem, Keizer, or nearby areas that fit the route.</p>
-          </article>
-
-          <article class="step-card">
-            <span class="step-number">3</span>
-            <h3>We replace or repair your glass</h3>
-            <p>We complete the install, clean up broken glass, and make sure everything is sealed and ready to go.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="why-choose-us">
-      <div class="container">
-        <div class="section-heading">
-          <span class="badge badge-red">Why choose us</span>
-          <h2>Built around the reasons people actually hire an auto glass company.</h2>
-          <p>Speed, trust, convenience, safety, and pricing clarity matter more than flashy design.</p>
-        </div>
-
-        <div class="reasons-grid" style="margin-top: 2rem;">
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path><circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle></svg>
-            </div>
-            <h3>Same-day service</h3>
-            <p>When the route and glass availability line up, we move fast so you are not waiting days.</p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path></svg>
-            </div>
-            <h3>Professional installation</h3>
-            <p>Clean fitment, proper sealing, and careful cleanup so the job looks right and feels solid.</p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8 10-5-5"></path></svg>
-            </div>
-            <h3>Insurance claim assistance</h3>
-            <p>We help simplify the claim process so you know what is needed before the appointment.</p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="9"></circle></svg>
-            </div>
-            <h3>Mobile to home or work</h3>
-            <p>You do not need to sit in a waiting room. We come to you where it is most convenient.</p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18"></path><path d="M7 15h1"></path><path d="M11 15h6"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg>
-            </div>
-            <h3>Clear pricing</h3>
-            <p>No vague quote process. We confirm the glass and give you straightforward numbers up front.</p>
-          </article>
-
-          <article class="reason-card">
-            <div class="reason-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16"></path><path d="M5 15l3-6 4 3 4-7 3 10"></path></svg>
-            </div>
-            <h3>ADAS-aware replacement process</h3>
-            <p>We account for modern vehicle safety systems and let you know when recalibration may be needed.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark reviews-banner" id="reviews">
-      <div class="container reviews-inner">
-        <div class="section-heading">
-          <span class="badge badge-white">Real local reviews</span>
-          <h2>Drivers trust the work because the process is easy and the install is clean.</h2>
-          <p>Reviews belong high on the page because local service buyers look for trust before they call.</p>
-        </div>
-
-        <div class="review-grid" style="margin-top: 2rem;">
-          <article class="review-card">
-            <div class="review-top">
-              <div class="review-avatar">SN</div>
-              <div>
-                <strong>S. Nguyen</strong>
-                <div style="color: #6b7280; font-size: 0.88rem; margin-top: 0.15rem;">Salem</div>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p>“OEM glass, no wind noise. Tech kept everything spotless and finished fast.”</p>
-          </article>
-
-          <article class="review-card">
-            <div class="review-top">
-              <div class="review-avatar">JR</div>
-              <div>
-                <strong>J. Rivera</strong>
-                <div style="color: #6b7280; font-size: 0.88rem; margin-top: 0.15rem;">Keizer</div>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p>“Texted my VIN, got a price quickly, and they came right to my driveway. Super easy.”</p>
-          </article>
-
-          <article class="review-card">
-            <div class="review-top">
-              <div class="review-avatar">LO</div>
-              <div>
-                <strong>L. Ortiz</strong>
-                <div style="color: #6b7280; font-size: 0.88rem; margin-top: 0.15rem;">South Salem</div>
-              </div>
-            </div>
-            <div class="review-stars">★★★★★</div>
-            <p>“Fair pricing, quick booking, and zero mess left behind. I would use them again.”</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section stats-section" id="trust-stats">
-      <div class="container">
-        <div class="section-heading">
-          <span class="badge badge-red">Trust signals</span>
-          <h2>Numbers that help the page feel credible at a glance.</h2>
-          <p>Replace these with verified numbers before launch so the campaign stays honest and defensible.</p>
-        </div>
-
-        <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-number" data-target="400" data-suffix="+">0</div>
-            <div class="stat-label">Jobs completed</div>
-            <div class="stat-note">A fast count-up animation starts when this section enters view.</div>
-          </article>
-
-          <article class="stat-card">
-            <div class="stat-number" data-target="20" data-suffix="+">0</div>
-            <div class="stat-label">Years of experience</div>
-            <div class="stat-note">Use this only if it is true for the owner or team behind the work.</div>
-          </article>
-
-          <article class="stat-card">
-            <div class="stat-number" data-target="100" data-suffix="%">0</div>
-            <div class="stat-label">Mobile convenience</div>
-            <div class="stat-note">Home, work, or parking lot service built for local drivers with busy schedules.</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <span class="badge badge-red">Services</span>
-          <h2>The main services people are looking for when they land on the page.</h2>
-          <p>Cleaner cards, tighter copy, and faster scanning on mobile.</p>
-        </div>
-
-        <div class="service-grid" style="margin-top: 2rem;">
-          <article class="service-card">
-            <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg" alt="Windshield replacement service" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" />
-            <div class="service-card-body">
-              <span class="service-tag">Most requested</span>
-              <h3>Windshield replacement</h3>
-              <p>OEM-grade glass, mobile install, clean finish, and fast scheduling when the route allows.</p>
-            </div>
-          </article>
-
-          <article class="service-card">
-            <img src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg" alt="Rock chip repair service" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" />
-            <div class="service-card-body">
-              <span class="service-tag">Quick repair</span>
-              <h3>Rock chip repair</h3>
-              <p>Stop small damage before it spreads and turns into a full replacement job.</p>
-            </div>
-          </article>
-
-          <article class="service-card">
-            <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg" alt="Door and back glass replacement service" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&amp;w=1200&amp;auto=format&amp;fit=crop';" />
-            <div class="service-card-body">
-              <span class="service-tag">Full replacement</span>
-              <h3>Door and back glass</h3>
-              <p>Side and rear glass replacement with cleanup, proper fit, and a solid seal.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="service-area">
-      <div class="container service-area-grid">
-        <div class="map-card">
-          <img id="svcMapImg" src="salem.png?v=2" alt="Service area map: Salem" loading="lazy" />
-          <div class="map-tabs">
-            <button type="button" class="map-tab active" data-img="salem.png?v=2" data-alt="Service area map: Salem">Salem</button>
-            <button type="button" class="map-tab" data-img="keizer.png?v=2" data-alt="Service area map: Keizer">Keizer</button>
-          </div>
-        </div>
-
-        <div class="map-copy">
-          <div class="section-heading">
-            <span class="badge badge-red">Service area</span>
-            <h2>We serve Salem, Keizer, and nearby areas that fit the route.</h2>
-            <p>Local visitors want to know right away if you actually come to them. This section answers that fast.</p>
-          </div>
-
-          <div class="service-pills">
-            <span>Home service</span>
-            <span>Workplace service</span>
-            <span>Parking lot installs</span>
-            <span>Same-day when route allows</span>
-          </div>
-
-          <div class="hero-actions" style="margin-top: 1.5rem;">
-            <a href="/quote.html" class="btn btn-primary">Request Service</a>
-            <a href="tel:+15039492257" class="btn btn-secondary">Call Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="faq">
-      <div class="container">
-        <div class="section-heading">
-          <span class="badge badge-red">FAQ</span>
-          <h2>Answer the questions that usually stop people from converting.</h2>
-          <p>Good FAQs lower hesitation and reduce call friction on local service pages.</p>
-        </div>
-
-        <div class="faq-grid">
-          <article class="faq-item open">
-            <button class="faq-question" type="button">
-              <span>Do you accept insurance?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">Yes. We can help walk you through the claim process and let you know what information is needed before the appointment.</p>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button">
-              <span>Can you come to my house or work?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">Yes. Mobile service is available at homes, offices, and other safe locations throughout Salem and Keizer.</p>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button">
-              <span>How long does it take?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">It depends on the vehicle and the job, but many appointments are completed in about an hour plus safe cure time guidance.</p>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button">
-              <span>Do I need ADAS recalibration?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">Some newer vehicles do. We let you know when your windshield replacement involves camera or sensor systems that may require recalibration.</p>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button">
-              <span>Can chips be repaired or does it need replacement?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">Small chips can often be repaired, but large cracks, edge damage, or driver-view damage may require full replacement.</p>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button">
-              <span>How long before I can drive?</span>
-              <span>+</span>
-            </button>
-            <p class="faq-answer">Drive-away time depends on the adhesive and conditions. We give you the exact safe-time guidance after the install.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="final-cta">
-      <div class="container">
-        <div class="final-cta-card">
-          <div class="final-cta-grid">
-            <div>
-              <span class="badge badge-red">Final CTA</span>
-              <h3>Need auto glass repair now?</h3>
-              <p>Call now or request a free quote. Mobile service in Salem and Keizer with clear pricing and quick scheduling.</p>
-
-              <div class="final-cta-points">
-                <span>Call or request a quote in minutes</span>
-                <span>Mobile service at home or work</span>
-                <span>Mon–Sat: 7am–6pm</span>
-                <span>Trusted local service</span>
-              </div>
-            </div>
-
-            <div class="contact-card">
-              <h3>Quick quote form</h3>
-              <p>Keep the form short so more people finish it.</p>
-
-              <form class="quote-form" action="/quote.html" method="get">
-                <input type="text" name="name" placeholder="Name" />
-                <input type="tel" name="phone" placeholder="Phone" />
-                <input type="text" name="vehicle" placeholder="Vehicle" />
-                <select name="damage">
-                  <option value="">Damage type</option>
-                  <option>Windshield replacement</option>
-                  <option>Rock chip repair</option>
-                  <option>Door glass</option>
-                  <option>Back glass</option>
-                </select>
-                <input type="text" name="zip" placeholder="ZIP code" />
-                <button type="submit" class="btn btn-primary">Get My Quote</button>
-              </form>
-
-              <div class="form-note">Or call <a href="tel:+15039492257">(503) 949-2257</a> for faster help.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <p class="footer-heading">Clear Choice Auto Glass</p>
-        <p>Family-owned mobile auto glass service for Salem and Keizer drivers.</p>
-        <div class="hero-actions" style="margin-top: 1rem;">
-          <a href="tel:+15039492257" class="btn btn-secondary hidden-desktop">Call Now</a>
-        </div>
-      </div>
-
-      <div>
-        <p class="footer-heading">Quick Links</p>
-        <ul class="footer-links">
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/reviews.html">Reviews</a></li>
-          <li><a href="/quote.html">Get a Quote</a></li>
-          <li><a href="/faqs.html">FAQs</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="footer-heading">Contact</p>
-        <ul class="footer-links">
-          <li><a href="tel:+15039492257">(503) 949-2257</a></li>
-          <li><a href="mailto:clearchoiceglasssalem@gmail.com">clearchoiceglasssalem@gmail.com</a></li>
-          <li>Serving Salem &amp; Keizer</li>
-          <li>Mon–Sat: 7am–6pm</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-        <div class="footer-legal">
-          <a href="/privacy.html">Privacy</a>
-          <a href="/warranty.html">Warranty</a>
-          <a href="/terms.html">Terms</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="mobile-sticky-cta">
-    <a href="tel:+15039492257" class="btn btn-secondary">Call Now</a>
-    <a href="/quote.html" class="btn btn-primary">Get Quote</a>
   </div>
+</header>
 
-  <script>
-(function () {
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  if (mobileMenuBtn && mobileMenu) {
-    const toggleMenu = (forceState) => {
-      const shouldOpen =
-        typeof forceState === "boolean"
-          ? forceState
-          : mobileMenu.classList.contains("hidden");
-
-      mobileMenu.classList.toggle("hidden", !shouldOpen);
-      mobileMenuBtn.setAttribute("aria-expanded", String(shouldOpen));
-    };
-
-    mobileMenuBtn.addEventListener("click", () => toggleMenu());
-
-    document.addEventListener("click", (event) => {
-      const clickedInsideMenu = mobileMenu.contains(event.target);
-      const clickedButton = mobileMenuBtn.contains(event.target);
-
-      if (!clickedInsideMenu && !clickedButton) {
-        toggleMenu(false);
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        toggleMenu(false);
-      }
-    });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => toggleMenu(false));
-    });
-  }
-
-  document.querySelectorAll(".faq-question").forEach((button) => {
-    button.addEventListener("click", () => {
-      const item = button.closest(".faq-item");
-      if (!item) return;
-      item.classList.toggle("open");
-    });
-  });
-
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
-
-  const statNumbers = document.querySelectorAll(".stat-number");
-
-  if (statNumbers.length) {
-    const animateStat = (element) => {
-      if (element.dataset.done === "true") return;
-
-      const target = Number(element.dataset.target || 0);
-      const suffix = element.dataset.suffix || "";
-      const duration = 1200;
-      const startTime = performance.now();
-
-      const tick = (now) => {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 4);
-        const value = Math.round(target * eased);
-
-        element.textContent = `${value}${suffix}`;
-
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          element.textContent = `${target}${suffix}`;
-          element.dataset.done = "true";
-        }
-      };
-
-      requestAnimationFrame(tick);
-    };
-
-    const statObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateStat(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.35,
-      }
-    );
-
-    statNumbers.forEach((stat) => statObserver.observe(stat));
-  }
-
-  const mapImage = document.getElementById("svcMapImg");
-  const mapTabs = document.querySelectorAll(".map-tab");
-
-  if (mapImage && mapTabs.length) {
-    mapTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        mapTabs.forEach((button) => button.classList.remove("active"));
-        tab.classList.add("active");
-
-        const nextImage = tab.dataset.img;
-        const nextAlt = tab.dataset.alt || "";
-
-        mapImage.style.opacity = "0.2";
-
-        const preload = new Image();
-        preload.src = nextImage;
-        preload.onload = () => {
-          mapImage.src = nextImage;
-          mapImage.alt = nextAlt;
-          mapImage.style.opacity = "1";
-        };
-
-        setTimeout(() => {
-          mapImage.style.opacity = "1";
-        }, 300);
-      });
-    });
-  }
-
-  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-  document.querySelectorAll('a[href]').forEach((link) => {
-    const href = link.getAttribute("href");
-    if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("#")) {
-      return;
+<script>
+(function(){
+  const btn=document.getElementById('mobileMenuBtn');
+  const menu=document.getElementById('mobileMenu');
+  if(btn && menu){
+    function toggle(open){
+      const willOpen=(open!==undefined)?open:menu.classList.contains('hidden');
+      menu.classList.toggle('hidden',!willOpen);
+      btn.setAttribute('aria-expanded',String(willOpen));
     }
-
-    const normalizedHref = href.replace(/\/+$/, "") || "/";
-    if (normalizedHref === currentPath) {
-      link.setAttribute("aria-current", "page");
-    }
+    btn.addEventListener('click',()=>toggle());
+    menu.addEventListener('click',e=>{ if(e.target.matches('a')||e.target.closest('a')) toggle(false); });
+    document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+  }
+  const path=location.pathname.replace(/\/+$/,'')||'/';
+  document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+    const href=a.getAttribute('href')||'';
+    const norm=href.replace(/\/+$/,'')||'/';
+    if(norm===path){a.classList.add('active');a.setAttribute('aria-current','page');}
   });
 })();
-  </script>
+</script>
+
+<section class="relative overflow-hidden border-b border-neutral-200">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2400&auto=format&fit=crop"
+         alt="Mobile auto glass service on-site"
+         class="w-full h-full object-cover"
+         loading="eager"
+         fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/20"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-shell flex items-center">
+    <div class="max-w-2xl text-white">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.04]">
+        Mobile Windshield Repair &amp; Replacement
+      </h1>
+
+      <p class="mt-4 max-w-xl text-base sm:text-lg text-white/85">
+        Mobile service in Salem and Keizer. Clean install. Straight pricing.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="/quote.html"
+           class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 text-base font-semibold text-white bg-red-600 shadow-lg hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+          Start Your Quote
+        </a>
+        <a href="tel:+15039492257"
+           class="inline-flex items-center justify-center rounded-xl px-7 py-3.5 text-base font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-200 transition">
+          Call (503) 949-2257
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-white"></div>
+</section>
+
+<section class="bg-white border-y border-neutral-200/70 reviews-strip">
+  <div class="reviews-rail reviews-mask">
+    <div class="reviews-track py-3 px-2">
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
+
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="sm:hidden bg-white border-b border-neutral-200/70" aria-labelledby="localsHeading">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">Local reviews</span>
+        <h2 id="localsHeading" class="mt-2 text-2xl font-black text-neutral-900">What locals say</h2>
+      </div>
+      <a href="/reviews.html" class="text-sm font-semibold text-red-700">See all</a>
+    </div>
+
+    <div id="revCarousel" class="m-carousel mt-4" role="region" aria-roledescription="carousel" aria-label="Customer reviews" data-autoplay="false">
+      <button class="ctrl prev" aria-label="Previous review" data-dir="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="ctrl next" aria-label="Next review" data-dir="1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="viewport" tabindex="0">
+        <div class="track" style="transform: translateX(0);">
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Fast, friendly, and they came to my driveway in South Salem."</p>
+              <div class="mt-2 text-xs text-neutral-500">Alyssa M. — South Salem</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Showed up same-day and cleaned up the broken glass. Pricing was straight-up."</p>
+              <div class="mt-2 text-xs text-neutral-500">Jorge R. — Keizer</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Scheduled on my lunch break. In and out in under an hour—no upsell."</p>
+              <div class="mt-2 text-xs text-neutral-500">Bethany K. — West Salem</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Texted me 10 mins before arrival. Super respectful, quality work."</p>
+              <div class="mt-2 text-xs text-neutral-500">Marcus T. — Northgate</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Matched my OEM tint and handled the sensors—truck looks new."</p>
+              <div class="mt-2 text-xs text-neutral-500">Dylan P. — Four Corners</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="dots" role="tablist" aria-label="Review slides"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-break-strong" aria-hidden="true"></div>
+
+<main class="flex-1">
+
+<section id="guarantees" class="relative isolate overflow-hidden bg-neutral-50 border-y border-neutral-200/70">
+  <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-200/45 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-neutral-300/35 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Why Clear Choice</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-black leading-tight text-neutral-900">
+        Why Drivers Choose <span class="text-red-600">Clear Choice</span> Auto Glass
+      </h2>
+      <p class="mt-3 text-lg text-neutral-700">
+        Clean installs, fair pricing, and no runaround.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-neutral-200 shadow-sm hover:shadow-lg transition">
+        <div class="flex items-start gap-4">
+          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">Lifetime Workmanship</h3>
+            <p class="mt-2 text-sm text-neutral-600">If a seal we installed ever fails, we fix it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-neutral-200 shadow-sm hover:shadow-lg transition">
+        <div class="flex items-start gap-4">
+          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 9h18"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">OEM-Grade Glass</h3>
+            <p class="mt-2 text-sm text-neutral-600">Quiet, leak-free installs with quality materials.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-neutral-200 shadow-sm hover:shadow-lg transition">
+        <div class="flex items-start gap-4">
+          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
+              <circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">Fast Mobile Service</h3>
+            <p class="mt-2 text-sm text-neutral-600">Home, work, or parking lot. Same-day when route allows.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-neutral-200 shadow-sm hover:shadow-lg transition">
+        <div class="flex items-start gap-4">
+          <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900">Clean Finish</h3>
+            <p class="mt-2 text-sm text-neutral-600">We vacuum broken glass and leave the inside clean.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="aboutBand" class="bg-white border-y border-neutral-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-8 items-center">
+      <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm">
+        <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
+             alt="Technician installing windshield"
+             class="w-full h-full min-h-[260px] max-h-[460px] object-cover"
+             loading="lazy">
+      </div>
+
+      <div>
+        <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Local and owner-operated</span>
+        <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          Straight answers. Clean installs. No runaround.
+        </h2>
+        <p class="mt-4 text-neutral-700 max-w-2xl">
+          You text one number and talk to the same person from quote to install. We confirm the right glass first, give you a clear price, and show up ready to work.
+        </p>
+
+        <ul class="mt-6 grid gap-3 text-sm text-neutral-700">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+            Direct text line with quick answers.
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+            VIN-matched pricing before we book.
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+            Mobile scheduling across Salem and Keizer.
+          </li>
+        </ul>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Call Now</a>
+          <a href="/reviews.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-neutral-900 bg-white border-2 border-neutral-300 hover:border-neutral-400">Read Reviews</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="our-work" class="bg-neutral-50 border-y border-neutral-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="mb-6">
+      <span class="inline-flex items-center rounded-full bg-white text-neutral-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200">Our Work</span>
+      <h2 class="mt-2 text-2xl md:text-3xl font-black leading-tight text-neutral-900">Clean installs, every time</h2>
+      <p class="mt-1 text-sm text-neutral-600">Real jobs from driveways across Salem and Keizer.</p>
+    </div>
+
+    <div class="work-gallery-grid" aria-label="Work photo gallery">
+      <figure class="work-gallery-item"><img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async"></figure>
+      <figure class="work-gallery-item"><img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async"></figure>
+      <figure class="work-gallery-item"><img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async"></figure>
+      <figure class="work-gallery-item"><img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async"></figure>
+      <figure class="work-gallery-item"><img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async"></figure>
+      <figure class="work-gallery-item"><img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="relative text-white overflow-hidden">
+  <div class="svc-sheen"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15 text-white/90">Our Services</span>
+      <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight">Popular Services</h2>
+      <p class="mt-2 text-white/70 text-sm">The most requested installs we handle every week.</p>
+    </div>
+
+    <div class="hidden sm:grid mt-10 grid-cols-3 gap-6">
+      <article class="svc-card">
+        <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+             alt="Windshield replacement"
+             onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
+             loading="lazy" decoding="async"/>
+        <div class="p-6">
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
+          <h3 class="mt-3 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
+          <p class="mt-2 text-sm text-neutral-600">OEM-quality glass, mobile install, clean finish, and same-day availability when route allows.</p>
+        </div>
+      </article>
+
+      <article class="svc-card">
+        <img src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+             alt="Rock chip repair"
+             onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
+             loading="lazy" decoding="async"/>
+        <div class="p-6">
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Quick Fix</span>
+          <h3 class="mt-3 text-lg font-bold text-neutral-900">Rock Chip Repair</h3>
+          <p class="mt-2 text-sm text-neutral-600">Stop small damage before it spreads. Most repairs are quick and done on-site.</p>
+        </div>
+      </article>
+
+      <article class="svc-card">
+        <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+             alt="Door and back glass replacement"
+             onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
+             loading="lazy" decoding="async"/>
+        <div class="p-6">
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Full Replacement</span>
+          <h3 class="mt-3 text-lg font-bold text-neutral-900">Door / Back Glass</h3>
+          <p class="mt-2 text-sm text-neutral-600">Side and rear glass replacement with cleanup, fresh install, and a solid seal.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="sm:hidden mt-8">
+      <div id="svcCarouselMobile" class="m-carousel" role="region" aria-roledescription="carousel" aria-label="Popular services" data-autoplay="true">
+        <button class="ctrl prev" aria-label="Previous service" data-dir="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="ctrl next" aria-label="Next service" data-dir="1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="viewport" tabindex="0">
+          <div class="track" style="transform: translateX(0);">
+            <article class="slide">
+              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                <img class="w-full h-[190px] object-cover"
+                     src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+                     alt="Windshield replacement" loading="lazy"
+                     onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"/>
+                <div class="p-5">
+                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Most Popular</span>
+                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Windshield Replacement</h3>
+                  <p class="mt-1 text-sm text-neutral-600">OEM-quality glass, mobile install, and clean finish.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                <img class="w-full h-[190px] object-cover"
+                     src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+                     alt="Rock chip repair" loading="lazy"
+                     onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"/>
+                <div class="p-5">
+                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Quick Fix</span>
+                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Rock Chip Repair</h3>
+                  <p class="mt-1 text-sm text-neutral-600">Fast on-site repair before the crack spreads.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
+                <img class="w-full h-[190px] object-cover"
+                     src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+                     alt="Door and back glass replacement" loading="lazy"
+                     onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"/>
+                <div class="p-5">
+                  <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Full Replacement</span>
+                  <h3 class="mt-2 text-lg font-bold text-neutral-900">Door / Back Glass</h3>
+                  <p class="mt-1 text-sm text-neutral-600">Quick replacement with cleanup and a solid seal.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="dots" role="tablist" aria-label="Service slides"></div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="/services.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-white/20 text-white/90 text-sm font-semibold hover:border-white hover:text-white transition">
+        View All Services
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow transition">
+        Request a Quote
+      </a>
+    </div>
+  </div>
+
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-white"></div>
+</section>
+
+<section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-white order-2 lg:order-1">
+        <img id="svcMapImg" src="salem.png?v=2" alt="Service area map: Salem"
+             class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[460px] object-cover transition-opacity duration-300 ease-out opacity-100"
+             loading="lazy" />
+        <div class="absolute bottom-3 left-3 flex gap-2 bg-white/92 backdrop-blur px-2 py-2 rounded-xl ring-1 ring-neutral-200 shadow-sm">
+          <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-red-600 text-white shadow transition"
+                  data-img="salem.png?v=2" data-alt="Service area map: Salem">Salem</button>
+          <button type="button" class="svc-tab inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-white text-neutral-800 ring-1 ring-neutral-300 hover:bg-neutral-50 transition"
+                  data-img="keizer.png?v=2" data-alt="Service area map: Keizer">Keizer</button>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Service Area</span>
+        <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          We come to you across <span class="text-red-600">Salem</span> &amp; <span class="text-red-600">Keizer</span>
+        </h2>
+
+        <p class="mt-4 text-neutral-700 max-w-xl">
+          Mobile installs at home, work, or a parking lot. Text a VIN or photo and we’ll confirm the right glass before we book.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Home or work</span>
+          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Same-day when route allows</span>
+          <span class="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200">Straight pricing</span>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Service</a>
+          <a href="tel:+15039492257" class="font-semibold text-red-700 hover:text-red-800">Call (503) 949-2257</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider-label" aria-hidden="true">
+  <span>Next Section • How It Works</span>
+</div>
+
+<script>
+(function(){
+  const img=document.getElementById('svcMapImg');
+  const tabs=document.querySelectorAll('.svc-tab');
+  if(!img || tabs.length===0) return;
+
+  tabs.forEach(b=>{ const i=new Image(); i.src=b.dataset.img; });
+
+  function setActive(el,on){
+    el.classList.remove('bg-red-600','text-white','shadow','bg-white','text-neutral-800','ring-1','ring-neutral-300');
+    if(on){
+      el.classList.add('bg-red-600','text-white','shadow');
+    } else {
+      el.classList.add('bg-white','text-neutral-800','ring-1','ring-neutral-300');
+    }
+  }
+
+  function activate(btn){
+    tabs.forEach(b=>setActive(b,b===btn));
+    const nextSrc=btn.dataset.img;
+    img.style.opacity='0';
+    img.src=nextSrc;
+    img.alt=btn.dataset.alt||'';
+    img.onload=()=>{ img.style.opacity='1'; };
+    setTimeout(()=>{ img.style.opacity='1'; }, 350);
+  }
+
+  tabs.forEach(b=>b.addEventListener('click',()=>activate(b)));
+})();
+</script>
+
+<section id="how-it-works" class="bg-white border-b border-neutral-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-10">
+      <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">How it works</span>
+      <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+        From quote to <span class="text-red-600">clear glass</span> in 3 steps
+      </h2>
+      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+        Simple scheduling. No long process.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+        <div class="flex items-center gap-3">
+          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">1</div>
+          <h3 class="text-lg font-bold text-neutral-900">Text your VIN or photo</h3>
+        </div>
+        <p class="mt-4 text-sm text-neutral-700">We identify the exact glass and send a firm price.</p>
+      </article>
+
+      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+        <div class="flex items-center gap-3">
+          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">2</div>
+          <h3 class="text-lg font-bold text-neutral-900">Pick a time window</h3>
+        </div>
+        <p class="mt-4 text-sm text-neutral-700">Choose the best slot for home, work, or wherever your car is parked.</p>
+      </article>
+
+      <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
+        <div class="flex items-center gap-3">
+          <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">3</div>
+          <h3 class="text-lg font-bold text-neutral-900">We install and clean up</h3>
+        </div>
+        <p class="mt-4 text-sm text-neutral-700">We finish the install, vacuum broken glass, and get you back on the road.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="relative overflow-hidden">
+  <img src="https://wallpapercave.com/wp/wp9426608.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-black/58"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
+    <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20">Real Customers</span>
+
+    <div class="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <h2 class="text-3xl md:text-4xl font-black leading-tight">
+        Rated <span class="text-red-400">5-Stars</span> by Salem &amp; Keizer Drivers
+      </h2>
+      <a href="/reviews.html" class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/20 backdrop-blur hover:bg-white/15">
+        Read all reviews
+      </a>
+    </div>
+
+    <p class="mt-2 text-white/90 max-w-2xl">
+      Fast mobile service, clean installs, and fair pricing.
+    </p>
+
+    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">SN</div>
+          <div><div class="text-sm font-semibold">S. Nguyen</div><div class="text-xs text-neutral-500">Salem</div></div>
+        </div>
+        <div class="mt-3 text-yellow-500">★★★★★</div>
+        <p class="mt-3 text-neutral-700">"OEM glass, no wind noise. Tech kept everything spotless and was done fast."</p>
+      </article>
+
+      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">JR</div>
+          <div><div class="text-sm font-semibold">J. Rivera</div><div class="text-xs text-neutral-500">Keizer</div></div>
+        </div>
+        <div class="mt-3 text-yellow-500">★★★★★</div>
+        <p class="mt-3 text-neutral-700">"Texted them my VIN, got a price quickly. Installer arrived on time—super easy."</p>
+      </article>
+
+      <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">LO</div>
+          <div><div class="text-sm font-semibold">L. Ortiz</div><div class="text-xs text-neutral-500">South Salem</div></div>
+        </div>
+        <div class="mt-3 text-yellow-500">★★★★★</div>
+        <p class="mt-3 text-neutral-700">"Price was fair and the glass fits perfectly. Zero mess left behind."</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
+    <p class="text-xs uppercase tracking-wide text-neutral-500">Need help fast?</p>
+    <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
+      Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
+    </h3>
+    <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+      Start your quote or call now. We’ll come to your home or office when the schedule allows.
+    </p>
+
+    <div class="mt-6 flex gap-3 justify-center flex-wrap">
+      <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 shadow-lg transition">Get My Quote</a>
+      <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-neutral-200 bg-white w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+    <div class="md:col-span-2">
+      <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+      <p class="mt-3 text-neutral-700">Family-owned • Mobile Auto Glass in Salem, Oregon</p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-neutral-900">Quick Links</h4>
+      <ul class="mt-3 space-y-2 text-neutral-700">
+        <li><a href="/index.html" class="hover:underline">Home</a></li>
+        <li><a href="/reviews.html" class="hover:underline">Reviews</a></li>
+        <li><a href="/services.html" class="hover:underline">Services</a></li>
+        <li><a href="/quote.html" class="hover:underline">Get a Quote</a></li>
+        <li><a href="/faqs.html" class="hover:underline">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-neutral-900">Contact</h4>
+      <ul class="mt-3 space-y-2 text-neutral-700">
+        <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
+        <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">clearchoiceglasssalem@gmail.com</a></li>
+        <li>Serving Salem/Keizer, Oregon</li>
+        <li>Mon–Sat: 7am–6pm</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+      <div class="flex items-center gap-4">
+        <a href="/privacy.html" class="hover:text-neutral-900">Privacy</a>
+        <a href="/warranty.html" class="hover:text-neutral-900">Warranty</a>
+        <a href="/terms.html" class="hover:text-neutral-900">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
+<script>
+(function(){
+  function initCarousel(root){
+    if(!root) return;
+    const viewport=root.querySelector('.viewport');
+    const track=root.querySelector('.track');
+    const slides=Array.from(root.querySelectorAll('.slide'));
+    const prev=root.querySelector('.prev');
+    const next=root.querySelector('.next');
+    const dotsWrap=root.querySelector('.dots');
+    if(!viewport || !track || slides.length===0 || !dotsWrap) return;
+
+    const shouldAutoplay=root.dataset.autoplay==='true';
+    let index=0;
+
+    const width=()=>viewport.clientWidth;
+
+    dotsWrap.innerHTML='';
+    slides.forEach((_,i)=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='dot';
+      b.setAttribute('role','tab');
+      b.setAttribute('aria-label','Go to slide '+(i+1));
+      b.addEventListener('click',()=>go(i,true));
+      dotsWrap.appendChild(b);
+    });
+
+    function setDot(i){
+      dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+        d.setAttribute('aria-current',di===i?'true':'false');
+      });
+    }
+
+    function translate(){
+      track.style.transform='translateX('+(-index*width())+'px)';
+    }
+
+    function go(i,userInitiated){
+      index=(i+slides.length)%slides.length;
+      translate();
+      setDot(index);
+      if(userInitiated && shouldAutoplay) restart();
+    }
+
+    let rid;
+    function onResize(){
+      cancelAnimationFrame(rid);
+      rid=requestAnimationFrame(translate);
+    }
+    window.addEventListener('resize',onResize);
+    window.addEventListener('orientationchange',onResize);
+
+    prev && prev.addEventListener('click',()=>go(index-1,true));
+    next && next.addEventListener('click',()=>go(index+1,true));
+
+    let startX=0, active=false;
+    viewport.addEventListener('pointerdown',(e)=>{
+      active=true; startX=e.clientX;
+      viewport.setPointerCapture(e.pointerId);
+      if(shouldAutoplay) pause();
+    });
+    viewport.addEventListener('pointerup',(e)=>{
+      if(!active) return;
+      const dx=e.clientX-startX;
+      active=false;
+      if(Math.abs(dx)>40){
+        dx<0 ? go(index+1,true) : go(index-1,true);
+      }
+      if(shouldAutoplay) restart();
+    });
+
+    let iv=null;
+    function play(){ if(shouldAutoplay && !iv) iv=setInterval(()=>go(index+1,false), 4200); }
+    function pause(){ if(iv) clearInterval(iv); iv=null; }
+    function restart(){ pause(); play(); }
+
+    if(shouldAutoplay){
+      document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
+      [prev,next,viewport].forEach(el=>{
+        if(!el) return;
+        el.addEventListener('mouseenter',pause);
+        el.addEventListener('mouseleave',play);
+        el.addEventListener('focusin',pause);
+        el.addEventListener('focusout',play);
+      });
+    }
+
+    go(0,false);
+    play();
+  }
+
+  initCarousel(document.getElementById('revCarousel'));
+  initCarousel(document.getElementById('svcCarouselMobile'));
+})();
+</script>
+
+</main>
 </body>
 </html>
