@@ -54,7 +54,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
     .reviews-strip { --speed: 38s; }
     .reviews-track {
       display:flex;
@@ -70,7 +69,7 @@
       display:inline-flex;
       align-items:center;
       gap:.5rem;
-      padding:.65rem .9rem;
+      padding:.5rem .75rem;
       border-radius:9999px;
       background:#fff;
       border:1px solid var(--line);
@@ -154,8 +153,31 @@
     .m-carousel .prev{ left:calc(50% - 122px); }
     .m-carousel .next{ right:calc(50% - 122px); }
 
+    .work-gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap:0.75rem;
+    }
+    .work-gallery-item{
+      border-radius:14px;
+      overflow:hidden;
+      aspect-ratio:4 / 3;
+      background:#f3f4f6;
+      position:relative;
+      border:1px solid var(--line);
+      box-shadow:0 2px 14px rgb(0 0 0 / .05);
+    }
+    .work-gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .work-gallery-item:hover img{ transform:scale(1.04); }
+
     .svc-card{
-      border-radius:22px;
+      border-radius:20px;
       overflow:hidden;
       background:#fff;
       border:1px solid rgb(255 255 255 / .08);
@@ -168,102 +190,48 @@
     }
     .svc-card img{
       width:100%;
-      height:228px;
+      height:220px;
       object-fit:cover;
+    }
+
+    .section-break-soft{
+      height:16px;
+      background:linear-gradient(180deg, rgba(15,23,42,.08), rgba(15,23,42,0));
+    }
+    .section-break-strong{
+      height:26px;
+      background:
+        linear-gradient(180deg, rgba(15,23,42,.12), rgba(15,23,42,0)),
+        linear-gradient(90deg, rgba(220,38,38,.08), rgba(255,255,255,0), rgba(220,38,38,.08));
+    }
+    .section-divider-label{
+      position:relative;
+      height:74px;
+      background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .section-divider-label span{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      white-space:nowrap;
+      padding:.6rem 1rem;
+      border-radius:9999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:#374151;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:0 6px 20px rgb(0 0 0 / .06);
     }
 
     .hero-shell{
       min-height:540px;
       height:68vh;
-    }
-
-    .proof-chip{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:22px;
-      box-shadow:0 10px 30px rgb(15 23 42 / .05);
-    }
-
-    .gallery-layout{
-      display:grid;
-      gap:1rem;
-    }
-    .gallery-feature-card,
-    .gallery-tile,
-    .gallery-copy-card{
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#fff;
-      box-shadow:0 14px 40px rgb(15 23 42 / .06);
-    }
-    .gallery-feature-card img,
-    .gallery-tile img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .gallery-feature-media{
-      position:relative;
-      aspect-ratio: 4 / 3;
-      overflow:hidden;
-    }
-    .gallery-feature-media img{
-      transition:transform .35s ease;
-    }
-    .gallery-feature-card:hover .gallery-feature-media img{
-      transform:scale(1.03);
-    }
-    .gallery-support{
-      display:grid;
-      gap:1rem;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      align-content:start;
-    }
-    .gallery-tile{
-      position:relative;
-      aspect-ratio: 4 / 3;
-    }
-    .gallery-tile img{
-      transition:transform .35s ease;
-    }
-    .gallery-tile:hover img{
-      transform:scale(1.04);
-    }
-    .gallery-label{
-      position:absolute;
-      left:1rem;
-      right:1rem;
-      bottom:1rem;
-      display:inline-flex;
-      align-items:center;
-      justify-content:flex-start;
-      width:max-content;
-      max-width:calc(100% - 2rem);
-      padding:.45rem .75rem;
-      border-radius:9999px;
-      background:rgb(255 255 255 / .92);
-      border:1px solid rgb(255 255 255 / .4);
-      color:#111827;
-      font-size:.75rem;
-      font-weight:700;
-      box-shadow:0 8px 20px rgb(0 0 0 / .10);
-    }
-    .gallery-copy-card{
-      padding:1.5rem;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      min-height:100%;
-    }
-
-    .map-card{
-      border-radius:30px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#fff;
-      box-shadow:0 16px 45px rgb(15 23 42 / .07);
     }
 
     #services{
@@ -282,13 +250,11 @@
     }
 
     @media (max-width:640px){
-      #coverage-map .map-frame{ height:280px !important; }
+      .reviews-strip{ display:none !important; }
+      #coverage-map .map-frame{ height:260px !important; }
       .hero-shell{
         height:68vh;
         min-height:520px;
-      }
-      .gallery-copy-card{
-        padding:1.25rem;
       }
     }
 
@@ -296,12 +262,6 @@
       .hero-shell{
         height:76vh;
         min-height:600px;
-      }
-    }
-
-    @media (min-width:1024px){
-      .gallery-layout{
-        grid-template-columns:minmax(0, 1.2fr) minmax(0, .8fr);
       }
     }
   </style>
@@ -428,13 +388,13 @@
   </div>
 
   <div
-    class="pointer-events-none absolute bottom-0 left-0 right-0 h-28"
+    class="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
     style="background: linear-gradient(
       180deg,
       rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.42) 58%,
-      rgba(255,255,255,0.78) 84%,
+      rgba(255,255,255,0.18) 38%,
+      rgba(255,255,255,0.48) 68%,
+      rgba(255,255,255,0.82) 88%,
       rgba(255,255,255,1) 100%
     );">
   </div>
@@ -463,153 +423,109 @@
       </div>
     </div>
   </div>
+
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
+    style="background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.04) 18%,
+      rgba(255,255,255,0.12) 34%,
+      rgba(255,255,255,0.28) 52%,
+      rgba(255,255,255,0.52) 70%,
+      rgba(255,255,255,0.78) 86%,
+      rgba(255,255,255,0.94) 96%,
+      rgba(255,255,255,1) 100%
+    );">
+  </div>
+</section>
+
+<section class="bg-white border-y border-neutral-200/70 reviews-strip">
+  <div class="reviews-rail reviews-mask">
+    <div class="reviews-track py-3 px-2">
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
+
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
+      <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="sm:hidden bg-white border-b border-neutral-200/70" aria-labelledby="localsHeading">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">Local reviews</span>
+        <h2 id="localsHeading" class="mt-2 text-2xl font-black text-neutral-900">What locals say</h2>
+      </div>
+      <a href="/reviews.html" class="text-sm font-semibold text-red-700">See all</a>
+    </div>
+
+    <div id="revCarousel" class="m-carousel mt-4" role="region" aria-roledescription="carousel" aria-label="Customer reviews" data-autoplay="false">
+      <button class="ctrl prev" aria-label="Previous review" data-dir="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="ctrl next" aria-label="Next review" data-dir="1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="viewport" tabindex="0">
+        <div class="track" style="transform: translateX(0);">
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Fast, friendly, and they came to my driveway in South Salem."</p>
+              <div class="mt-2 text-xs text-neutral-500">Alyssa M. — South Salem</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Showed up same-day and cleaned up the broken glass. Pricing was straight-up."</p>
+              <div class="mt-2 text-xs text-neutral-500">Jorge R. — Keizer</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Scheduled on my lunch break. In and out in under an hour—no upsell."</p>
+              <div class="mt-2 text-xs text-neutral-500">Bethany K. — West Salem</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Texted me 10 mins before arrival. Super respectful, quality work."</p>
+              <div class="mt-2 text-xs text-neutral-500">Marcus T. — Northgate</div>
+            </div>
+          </article>
+          <article class="slide">
+            <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
+              <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
+              <p class="mt-2 text-[15px] text-neutral-800">"Matched my OEM tint and handled the sensors—truck looks new."</p>
+              <div class="mt-2 text-xs text-neutral-500">Dylan P. — Four Corners</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="dots" role="tablist" aria-label="Review slides"></div>
+    </div>
+  </div>
 </section>
 
 <main class="flex-1">
 
-  <section id="proof-intro" class="bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 md:pt-10 md:pb-14">
-      <div class="grid gap-4 md:grid-cols-3">
-        <article class="proof-chip p-5">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-red-50 text-red-700 grid place-items-center ring-1 ring-red-100">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 6v6l4 2"></path>
-                <circle cx="12" cy="12" r="9"></circle>
-              </svg>
-            </div>
-            <div>
-              <h2 class="font-semibold text-neutral-900">Fast route-based scheduling</h2>
-              <p class="mt-1 text-sm text-neutral-600">Same-day service when route and glass availability line up.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="proof-chip p-5">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-red-50 text-red-700 grid place-items-center ring-1 ring-red-100">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 12h18"></path>
-                <path d="M6 8h12"></path>
-                <path d="M6 16h12"></path>
-              </svg>
-            </div>
-            <div>
-              <h2 class="font-semibold text-neutral-900">OEM-grade materials</h2>
-              <p class="mt-1 text-sm text-neutral-600">Quiet installs, clean seals, and glass matched correctly before booking.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="proof-chip p-5">
-          <div class="flex items-start gap-4">
-            <div class="h-11 w-11 rounded-xl bg-red-50 text-red-700 grid place-items-center ring-1 ring-red-100">
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
-                <circle cx="7.5" cy="17.5" r="1.5"></circle>
-                <circle cx="17.5" cy="17.5" r="1.5"></circle>
-              </svg>
-            </div>
-            <div>
-              <h2 class="font-semibold text-neutral-900">Mobile across Salem &amp; Keizer</h2>
-              <p class="mt-1 text-sm text-neutral-600">Driveway, office, or parking lot. We come to where the vehicle is parked.</p>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="hidden sm:block mt-8">
-        <div class="flex items-center justify-between gap-4">
-          <div>
-            <p class="text-xs font-semibold tracking-[0.16em] uppercase text-neutral-500">Local feedback</p>
-            <h2 class="mt-2 text-2xl font-black text-neutral-900">Trusted by Salem &amp; Keizer drivers</h2>
-          </div>
-          <a href="/reviews.html" class="text-sm font-semibold text-red-700 hover:text-red-800">See reviews</a>
-        </div>
-
-        <div class="mt-4 rounded-[24px] border border-neutral-200 bg-neutral-50 px-2 reviews-rail reviews-mask reviews-strip">
-          <div class="reviews-track py-4">
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
-
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Fast, friendly, spotless install." — <b>J. Rivera</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Booked AM, done by lunch." — <b>M. Chen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Price was fair, glass perfect." — <b>J. Patel</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "Came to my driveway—easy." — <b>K. Johnson</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "OEM glass. No wind noise." — <b>S. Nguyen</b></span>
-            <span class="review-pill"><span class="review-star">★★★★★</span> "On time and professional." — <b>T. Alvarez</b></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sm:hidden mt-8">
-        <div class="flex items-end justify-between gap-4">
-          <div>
-            <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">Local reviews</span>
-            <h2 id="localsHeading" class="mt-2 text-2xl font-black text-neutral-900">What locals say</h2>
-          </div>
-          <a href="/reviews.html" class="text-sm font-semibold text-red-700">See all</a>
-        </div>
-
-        <div id="revCarousel" class="m-carousel mt-4" role="region" aria-roledescription="carousel" aria-label="Customer reviews" data-autoplay="false">
-          <button class="ctrl prev" aria-label="Previous review" data-dir="-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="ctrl next" aria-label="Next review" data-dir="1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-
-          <div class="viewport" tabindex="0">
-            <div class="track" style="transform: translateX(0);">
-              <article class="slide">
-                <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
-                  <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                  <p class="mt-2 text-[15px] text-neutral-800">"Fast, friendly, and they came to my driveway in South Salem."</p>
-                  <div class="mt-2 text-xs text-neutral-500">Alyssa M. — South Salem</div>
-                </div>
-              </article>
-              <article class="slide">
-                <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
-                  <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                  <p class="mt-2 text-[15px] text-neutral-800">"Showed up same-day and cleaned up the broken glass. Pricing was straight-up."</p>
-                  <div class="mt-2 text-xs text-neutral-500">Jorge R. — Keizer</div>
-                </div>
-              </article>
-              <article class="slide">
-                <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
-                  <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                  <p class="mt-2 text-[15px] text-neutral-800">"Scheduled on my lunch break. In and out in under an hour—no upsell."</p>
-                  <div class="mt-2 text-xs text-neutral-500">Bethany K. — West Salem</div>
-                </div>
-              </article>
-              <article class="slide">
-                <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
-                  <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                  <p class="mt-2 text-[15px] text-neutral-800">"Texted me 10 mins before arrival. Super respectful, quality work."</p>
-                  <div class="mt-2 text-xs text-neutral-500">Marcus T. — Northgate</div>
-                </div>
-              </article>
-              <article class="slide">
-                <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
-                  <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                  <p class="mt-2 text-[15px] text-neutral-800">"Matched my OEM tint and handled the sensors—truck looks new."</p>
-                  <div class="mt-2 text-xs text-neutral-500">Dylan P. — Four Corners</div>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <div class="dots" role="tablist" aria-label="Review slides"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-y border-white/10 text-white">
+  <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white">
     <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
     <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
 
@@ -749,8 +665,9 @@
         </article>
 
         <article class="svc-card">
-          <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
-               alt="Side glass replacement"
+          <img src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+               alt="Door glass replacement"
+               onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
                loading="lazy" decoding="async"/>
           <div class="p-6">
             <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
@@ -800,8 +717,9 @@
               <article class="slide">
                 <div class="rounded-2xl bg-white border border-neutral-200 shadow-sm overflow-hidden">
                   <img class="w-full h-[190px] object-cover"
-                       src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
-                       alt="Side glass replacement" loading="lazy"/>
+                       src="https://mountainvistawindshields.com/wp-content/uploads/2020/04/24hr-Windshield-Replacement.jpg"
+                       alt="Door glass replacement" loading="lazy"
+                       onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"/>
                   <div class="p-5">
                     <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Side Glass</span>
                     <h3 class="mt-2 text-lg font-bold text-neutral-900">Door Glass Replacement</h3>
@@ -843,171 +761,101 @@
   </section>
 
   <section id="our-work" class="bg-neutral-50 border-y border-neutral-200/70">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-18">
-      <div class="max-w-3xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="mb-6">
         <span class="inline-flex items-center rounded-full bg-white text-neutral-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200">Our Work</span>
-        <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">Clean installs, presented with purpose</h2>
-        <p class="mt-3 text-neutral-600">Real jobs from driveways across Salem and Keizer, shown in a cleaner layout that feels as polished as the work itself.</p>
+        <h2 class="mt-2 text-2xl md:text-3xl font-black leading-tight text-neutral-900">Clean installs, every time</h2>
+        <p class="mt-1 text-sm text-neutral-600">Real jobs from driveways across Salem and Keizer.</p>
       </div>
 
-      <div class="gallery-layout mt-8">
-        <article class="gallery-feature-card">
-          <div class="gallery-feature-media">
-            <img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async">
-            <div class="absolute inset-x-0 bottom-0 p-5 md:p-6 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
-              <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">Featured install</p>
-              <h3 class="mt-2 text-xl md:text-2xl font-black text-white">On-site service with a clean, finished result</h3>
-              <p class="mt-2 max-w-lg text-sm text-white/85">The goal is simple: correct glass, clean edges, no mess left behind, and a finished look that feels factory-right.</p>
-            </div>
-          </div>
-        </article>
-
-        <div class="gallery-support">
-          <figure class="gallery-tile">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
-            <figcaption class="gallery-label">Driveway install</figcaption>
-          </figure>
-
-          <figure class="gallery-tile">
-            <img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async">
-            <figcaption class="gallery-label">Finished windshield</figcaption>
-          </figure>
-
-          <figure class="gallery-tile">
-            <img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async">
-            <figcaption class="gallery-label">Clean edge detail</figcaption>
-          </figure>
-
-          <div class="gallery-copy-card">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">What shows in every job</p>
-            <h3 class="mt-2 text-xl font-black text-neutral-900">Fitment first. Cleanup included.</h3>
-            <ul class="mt-4 grid gap-3 text-sm text-neutral-700">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-                Real job photos instead of filler imagery.
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-                Cleaner presentation so the section feels designed, not dropped in.
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
-                Easy to scan on mobile while still looking premium on desktop.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-5 grid gap-4 sm:grid-cols-2">
-        <figure class="gallery-feature-card">
-          <div class="relative aspect-[16/9] overflow-hidden">
-            <img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async" class="w-full h-full object-cover">
-            <figcaption class="absolute left-4 bottom-4 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold text-neutral-900 shadow-sm">Clean replacement result</figcaption>
-          </div>
-        </figure>
-        <figure class="gallery-feature-card">
-          <div class="relative aspect-[16/9] overflow-hidden">
-            <img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async" class="w-full h-full object-cover">
-            <figcaption class="absolute left-4 bottom-4 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold text-neutral-900 shadow-sm">Mobile service in the field</figcaption>
-          </div>
-        </figure>
+      <div class="work-gallery-grid" aria-label="Work photo gallery">
+        <figure class="work-gallery-item"><img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="3152194114388916144.jpg" alt="Windshield replacement completed" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="4707115962129185826.jpg" alt="Mobile auto glass service on-site" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="4857530068863860898.jpg" alt="Finished windshield install" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="5475174072478153365.jpg" alt="Clean auto glass replacement result" loading="lazy" decoding="async"></figure>
+        <figure class="work-gallery-item"><img src="8117225698886609442.jpg" alt="Mobile auto glass job photo" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </section>
 
-  <section id="aboutBand" class="relative overflow-hidden bg-neutral-950 border-y border-white/10 text-white">
-    <div class="pointer-events-none absolute -top-24 left-0 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
-    <div class="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
+  <section id="aboutBand" class="bg-white border-y border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-8 items-center">
+        <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm">
+          <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
+               alt="Technician installing windshield"
+               class="w-full h-full min-h-[260px] max-h-[460px] object-cover"
+               loading="lazy">
+        </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-18 relative">
-      <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-8 items-center">
         <div>
-          <span class="inline-flex items-center rounded-full bg-white/10 text-white px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15">Local and owner-operated</span>
-          <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-white">
+          <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Local and owner-operated</span>
+          <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
             Straight answers. Clean installs. No runaround.
           </h2>
-          <p class="mt-4 text-white/75 max-w-2xl">
+          <p class="mt-4 text-neutral-700 max-w-2xl">
             You text one number and talk to the same person from quote to install. We confirm the right glass first, give you a clear price, and show up ready to work.
           </p>
 
-          <ul class="mt-6 grid gap-3 text-sm text-white/80">
+          <ul class="mt-6 grid gap-3 text-sm text-neutral-700">
             <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 mt-0.5 text-red-500 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
               Direct text line with quick answers.
             </li>
             <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 mt-0.5 text-red-500 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
               VIN-matched pricing before we book.
             </li>
             <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 mt-0.5 text-red-500 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+              <svg class="w-5 h-5 mt-0.5 text-red-600 flex-none" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
               Mobile scheduling across Salem and Keizer.
             </li>
           </ul>
 
           <div class="mt-7 flex flex-wrap gap-3">
             <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Call Now</a>
-            <a href="/reviews.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-transparent border-2 border-white/30 hover:border-white/60 hover:bg-white/5">Read Reviews</a>
+            <a href="/reviews.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-neutral-900 bg-white border-2 border-neutral-300 hover:border-neutral-400">Read Reviews</a>
           </div>
-        </div>
-
-        <div class="rounded-[30px] overflow-hidden border border-white/10 shadow-2xl bg-white/5">
-          <img src="https://affordableautoglass.com/wp-content/uploads/2025/04/mobile-windshield-replacement-650x433.webp?crop"
-               alt="Technician installing windshield"
-               class="w-full h-full min-h-[280px] max-h-[460px] object-cover"
-               loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
-  <section id="coverage-map" class="bg-white border-y border-neutral-200/70">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid gap-8 lg:grid-cols-[.92fr_1.08fr] lg:items-center">
-        <div class="max-w-xl">
-          <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-            We come to you across Salem &amp; Keizer
-          </h2>
-          <p class="mt-4 text-neutral-700">
-            Mobile auto glass service at home, work, or wherever your vehicle is parked. Send a VIN or photo and we’ll get you a fast quote without extra back-and-forth.
-          </p>
+  <section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100">Service Area</span>
+        <h2 class="mt-3 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          We come to you across Salem &amp; Keizer
+        </h2>
+        <p class="mt-4 text-neutral-700">
+          Mobile auto glass service at home, work, or wherever your vehicle is parked. Send a VIN or photo and we’ll get you a fast quote.
+        </p>
 
-          <div class="mt-6 grid gap-3 sm:grid-cols-3">
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Home</p>
-              <p class="mt-1 text-sm font-medium text-neutral-800">Driveway installs when it’s easiest for you.</p>
-            </div>
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Work</p>
-              <p class="mt-1 text-sm font-medium text-neutral-800">Office and parking lot appointments available.</p>
-            </div>
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-              <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Fast quote</p>
-              <p class="mt-1 text-sm font-medium text-neutral-800">Text a VIN or photo and get pricing quickly.</p>
-            </div>
-          </div>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Quote</a>
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
-          </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-300 shadow">Request Quote</a>
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
         </div>
+      </div>
 
-        <div class="map-card">
-          <img src="Screenshot 2026-03-17 063345.png"
-               alt="Service area map for Salem and Keizer"
-               class="w-full map-frame h-[280px] sm:h-[420px] lg:h-[500px] object-contain bg-neutral-100"
-               loading="lazy" />
-        </div>
+      <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
+        <img src="salem.png?v=2"
+             alt="Service area map for Salem and Keizer"
+             class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
+             loading="lazy" />
       </div>
     </div>
   </section>
 
-  <section id="how-it-works" class="bg-neutral-50 border-y border-neutral-200/70">
+  <div class="section-divider-label" aria-hidden="true">
+    <span>Next Section • How It Works</span>
+  </div>
+
+  <section id="how-it-works" class="bg-white border-b border-neutral-200/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-10">
-        <span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">How it works</span>
+        <span class="inline-flex items-center rounded-full bg-neutral-50 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-neutral-200 text-neutral-700">How it works</span>
         <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
           From quote to <span class="text-red-600">clear glass</span> in 3 steps
         </h2>
@@ -1017,7 +865,7 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-5">
-        <article class="rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
           <div class="flex items-center gap-3">
             <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">1</div>
             <h3 class="text-lg font-bold text-neutral-900">Text your VIN or photo</h3>
@@ -1025,7 +873,7 @@
           <p class="mt-4 text-sm text-neutral-700">We identify the exact glass and send a firm price.</p>
         </article>
 
-        <article class="rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
           <div class="flex items-center gap-3">
             <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">2</div>
             <h3 class="text-lg font-bold text-neutral-900">Pick a time window</h3>
@@ -1033,7 +881,7 @@
           <p class="mt-4 text-sm text-neutral-700">Choose the best slot for home, work, or wherever your car is parked.</p>
         </article>
 
-        <article class="rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+        <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-6">
           <div class="flex items-center gap-3">
             <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">3</div>
             <h3 class="text-lg font-bold text-neutral-900">We install and clean up</h3>
@@ -1044,26 +892,28 @@
     </div>
   </section>
 
-  <section id="reviews" class="relative overflow-hidden border-y border-white/10">
-    <img src="Screenshot 2026-03-17 063345.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-neutral-950/72"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/65"></div>
-    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#f8fafc]"></div>
+  <section id="reviews" class="relative overflow-hidden">
+    <img src="https://wallpapercave.com/wp/wp9426608.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/58"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
-      <span class="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15">Real Customers</span>
+      <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20">Real Customers</span>
 
-      <div class="mt-3 max-w-3xl">
+      <div class="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <h2 class="text-3xl md:text-4xl font-black leading-tight">
           Rated <span class="text-red-400">5-Stars</span> by Salem &amp; Keizer Drivers
         </h2>
-        <p class="mt-3 text-white/85">
-          Fast mobile service, clean installs, and fair pricing.
-        </p>
+        <a href="/reviews.html" class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/20 backdrop-blur hover:bg-white/15">
+          Read all reviews
+        </a>
       </div>
 
+      <p class="mt-2 text-white/90 max-w-2xl">
+        Fast mobile service, clean installs, and fair pricing.
+      </p>
+
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200 shadow-xl">
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">SN</div>
             <div><div class="text-sm font-semibold">S. Nguyen</div><div class="text-xs text-neutral-500">Salem</div></div>
@@ -1072,7 +922,7 @@
           <p class="mt-3 text-neutral-700">"OEM glass, no wind noise. Tech kept everything spotless and was done fast."</p>
         </article>
 
-        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200 shadow-xl">
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">JR</div>
             <div><div class="text-sm font-semibold">J. Rivera</div><div class="text-xs text-neutral-500">Keizer</div></div>
@@ -1081,7 +931,7 @@
           <p class="mt-3 text-neutral-700">"Texted them my VIN, got a price quickly. Installer arrived on time—super easy."</p>
         </article>
 
-        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200 shadow-xl">
+        <article class="rounded-2xl bg-white text-neutral-900 p-6 ring-1 ring-neutral-200">
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 grid place-items-center font-bold">LO</div>
             <div><div class="text-sm font-semibold">L. Ortiz</div><div class="text-xs text-neutral-500">South Salem</div></div>
@@ -1093,41 +943,35 @@
     </div>
   </section>
 
-  <section class="bg-neutral-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="rounded-[32px] border border-neutral-200 bg-white px-6 py-10 md:px-12 md:py-12 text-center shadow-[0_20px_60px_rgba(15,23,42,.08)]">
-        <p class="text-xs uppercase tracking-wide text-neutral-500">Need help fast?</p>
-        <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
-          Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
-        </h3>
-        <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
-          Start your quote or call now. We’ll come to your home or office when the schedule allows.
-        </p>
+  <section class="relative overflow-hidden bg-white">
+    <div class="absolute inset-0 bg-gradient-to-r from-red-50 via-white to-red-50"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
+      <p class="text-xs uppercase tracking-wide text-neutral-500">Need help fast?</p>
+      <h3 class="mt-2 text-3xl md:text-5xl font-black text-neutral-900">
+        Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
+      </h3>
+      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto">
+        Start your quote or call now. We’ll come to your home or office when the schedule allows.
+      </p>
 
-        <div class="mt-6 flex gap-3 justify-center flex-wrap">
-          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 shadow-lg transition">Get My Quote</a>
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
-        </div>
+      <div class="mt-6 flex gap-3 justify-center flex-wrap">
+        <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 shadow-lg transition">Get My Quote</a>
+        <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
       </div>
     </div>
   </section>
 
-</main>
-
-<footer class="border-t border-neutral-200 bg-white w-full">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid gap-10 md:grid-cols-3 md:items-start">
-      <div class="max-w-md">
-        <p class="font-semibold text-neutral-900 text-base">Clear Choice Auto Glass</p>
+  <footer class="border-t border-neutral-200 bg-white w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
+      <div class="md:col-span-2">
+        <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
         <p class="mt-3 text-neutral-700">Family-owned • Mobile Auto Glass in Salem, Oregon</p>
-        <p class="mt-3 text-sm text-neutral-600">Fast quotes, clean installs, and mobile service built around real driver schedules.</p>
-        <div class="mt-5 flex flex-wrap gap-3">
+        <div class="mt-4 flex flex-wrap gap-3">
           <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
-          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 shadow-sm">Request Quote</a>
         </div>
       </div>
 
-      <div class="md:justify-self-center">
+      <div>
         <h4 class="font-semibold text-neutral-900">Quick Links</h4>
         <ul class="mt-3 space-y-2 text-neutral-700">
           <li><a href="/index.html" class="hover:underline">Home</a></li>
@@ -1138,174 +982,174 @@
         </ul>
       </div>
 
-      <div class="md:justify-self-end">
+      <div>
         <h4 class="font-semibold text-neutral-900">Contact</h4>
         <ul class="mt-3 space-y-2 text-neutral-700">
           <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
-          <li><a href="mailto:clearchoiceglasssalem@gmail.com" class="hover:underline">clearchoiceglasssalem@gmail.com</a></li>
+          <li><a href="mailto:ccglassrepair@gmail.com" class="hover:underline">clearchoiceglasssalem@gmail.com</a></li>
           <li>Serving Salem/Keizer, Oregon</li>
           <li>Mon–Sat: 7am–6pm</li>
         </ul>
       </div>
     </div>
-  </div>
 
-  <div class="border-t border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-      <div class="flex items-center gap-4">
-        <a href="/privacy.html" class="hover:text-neutral-900">Privacy</a>
-        <a href="/warranty.html" class="hover:text-neutral-900">Warranty</a>
-        <a href="/terms.html" class="hover:text-neutral-900">Terms</a>
+    <div class="border-t border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="/privacy.html" class="hover:text-neutral-900">Privacy</a>
+          <a href="/warranty.html" class="hover:text-neutral-900">Warranty</a>
+          <a href="/terms.html" class="hover:text-neutral-900">Terms</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 
-<script>
-(function(){
-  function initCarousel(root){
-    if(!root) return;
-    const viewport=root.querySelector('.viewport');
-    const track=root.querySelector('.track');
-    const slides=Array.from(root.querySelectorAll('.slide'));
-    const prev=root.querySelector('.prev');
-    const next=root.querySelector('.next');
-    const dotsWrap=root.querySelector('.dots');
-    if(!viewport || !track || slides.length===0 || !dotsWrap) return;
+  <script>
+  (function(){
+    function initCarousel(root){
+      if(!root) return;
+      const viewport=root.querySelector('.viewport');
+      const track=root.querySelector('.track');
+      const slides=Array.from(root.querySelectorAll('.slide'));
+      const prev=root.querySelector('.prev');
+      const next=root.querySelector('.next');
+      const dotsWrap=root.querySelector('.dots');
+      if(!viewport || !track || slides.length===0 || !dotsWrap) return;
 
-    const shouldAutoplay=root.dataset.autoplay==='true';
-    let index=0;
+      const shouldAutoplay=root.dataset.autoplay==='true';
+      let index=0;
 
-    const width=()=>viewport.clientWidth;
+      const width=()=>viewport.clientWidth;
 
-    dotsWrap.innerHTML='';
-    slides.forEach((_,i)=>{
-      const b=document.createElement('button');
-      b.type='button';
-      b.className='dot';
-      b.setAttribute('role','tab');
-      b.setAttribute('aria-label','Go to slide '+(i+1));
-      b.addEventListener('click',()=>go(i,true));
-      dotsWrap.appendChild(b);
-    });
-
-    function setDot(i){
-      dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
-        d.setAttribute('aria-current',di===i?'true':'false');
+      dotsWrap.innerHTML='';
+      slides.forEach((_,i)=>{
+        const b=document.createElement('button');
+        b.type='button';
+        b.className='dot';
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Go to slide '+(i+1));
+        b.addEventListener('click',()=>go(i,true));
+        dotsWrap.appendChild(b);
       });
-    }
 
-    function translate(){
-      track.style.transform='translateX('+(-index*width())+'px)';
-    }
-
-    function go(i,userInitiated){
-      index=(i+slides.length)%slides.length;
-      translate();
-      setDot(index);
-      if(userInitiated && shouldAutoplay) restart();
-    }
-
-    let rid;
-    function onResize(){
-      cancelAnimationFrame(rid);
-      rid=requestAnimationFrame(translate);
-    }
-    window.addEventListener('resize',onResize);
-    window.addEventListener('orientationchange',onResize);
-
-    prev && prev.addEventListener('click',()=>go(index-1,true));
-    next && next.addEventListener('click',()=>go(index+1,true));
-
-    let startX=0, active=false;
-    viewport.addEventListener('pointerdown',(e)=>{
-      active=true; startX=e.clientX;
-      viewport.setPointerCapture(e.pointerId);
-      if(shouldAutoplay) pause();
-    });
-    viewport.addEventListener('pointerup',(e)=>{
-      if(!active) return;
-      const dx=e.clientX-startX;
-      active=false;
-      if(Math.abs(dx)>40){
-        dx<0 ? go(index+1,true) : go(index-1,true);
+      function setDot(i){
+        dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+          d.setAttribute('aria-current',di===i?'true':'false');
+        });
       }
-      if(shouldAutoplay) restart();
-    });
 
-    let iv=null;
-    function play(){ if(shouldAutoplay && !iv) iv=setInterval(()=>go(index+1,false), 4200); }
-    function pause(){ if(iv) clearInterval(iv); iv=null; }
-    function restart(){ pause(); play(); }
+      function translate(){
+        track.style.transform='translateX('+(-index*width())+'px)';
+      }
 
-    if(shouldAutoplay){
-      document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
-      [prev,next,viewport].forEach(el=>{
-        if(!el) return;
-        el.addEventListener('mouseenter',pause);
-        el.addEventListener('mouseleave',play);
-        el.addEventListener('focusin',pause);
-        el.addEventListener('focusout',play);
+      function go(i,userInitiated){
+        index=(i+slides.length)%slides.length;
+        translate();
+        setDot(index);
+        if(userInitiated && shouldAutoplay) restart();
+      }
+
+      let rid;
+      function onResize(){
+        cancelAnimationFrame(rid);
+        rid=requestAnimationFrame(translate);
+      }
+      window.addEventListener('resize',onResize);
+      window.addEventListener('orientationchange',onResize);
+
+      prev && prev.addEventListener('click',()=>go(index-1,true));
+      next && next.addEventListener('click',()=>go(index+1,true));
+
+      let startX=0, active=false;
+      viewport.addEventListener('pointerdown',(e)=>{
+        active=true; startX=e.clientX;
+        viewport.setPointerCapture(e.pointerId);
+        if(shouldAutoplay) pause();
       });
+      viewport.addEventListener('pointerup',(e)=>{
+        if(!active) return;
+        const dx=e.clientX-startX;
+        active=false;
+        if(Math.abs(dx)>40){
+          dx<0 ? go(index+1,true) : go(index-1,true);
+        }
+        if(shouldAutoplay) restart();
+      });
+
+      let iv=null;
+      function play(){ if(shouldAutoplay && !iv) iv=setInterval(()=>go(index+1,false), 4200); }
+      function pause(){ if(iv) clearInterval(iv); iv=null; }
+      function restart(){ pause(); play(); }
+
+      if(shouldAutoplay){
+        document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
+        [prev,next,viewport].forEach(el=>{
+          if(!el) return;
+          el.addEventListener('mouseenter',pause);
+          el.addEventListener('mouseleave',play);
+          el.addEventListener('focusin',pause);
+          el.addEventListener('focusout',play);
+        });
+      }
+
+      go(0,false);
+      play();
     }
 
-    go(0,false);
-    play();
-  }
+    initCarousel(document.getElementById('revCarousel'));
+    initCarousel(document.getElementById('svcCarouselMobile'));
+  })();
+  </script>
 
-  initCarousel(document.getElementById('revCarousel'));
-  initCarousel(document.getElementById('svcCarouselMobile'));
-})();
-</script>
+  <script>
+  (function(){
+    const counters = document.querySelectorAll('.count-up');
+    if(!counters.length) return;
 
-<script>
-(function(){
-  const counters = document.querySelectorAll('.count-up');
-  if(!counters.length) return;
-
-  function formatValue(value, group){
-    return group ? value.toLocaleString('en-US') : String(value);
-  }
-
-  function animateCounter(el){
-    if(el.dataset.done === 'true') return;
-    el.dataset.done = 'true';
-
-    const target = Number(el.dataset.target || 0);
-    const suffix = el.dataset.suffix || '';
-    const group = el.dataset.group === 'true';
-    const duration = 1400;
-    const start = performance.now();
-
-    function tick(now){
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(target * eased);
-      el.textContent = formatValue(current, group) + suffix;
-
-      if(progress < 1){
-        requestAnimationFrame(tick);
-      }
+    function formatValue(value, group){
+      return group ? value.toLocaleString('en-US') : String(value);
     }
 
-    requestAnimationFrame(tick);
-  }
+    function animateCounter(el){
+      if(el.dataset.done === 'true') return;
+      el.dataset.done = 'true';
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
+      const target = Number(el.dataset.target || 0);
+      const suffix = el.dataset.suffix || '';
+      const group = el.dataset.group === 'true';
+      const duration = 1400;
+      const start = performance.now();
+
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * eased);
+        el.textContent = formatValue(current, group) + suffix;
+
+        if(progress < 1){
+          requestAnimationFrame(tick);
+        }
       }
-    });
-  }, { threshold: 0.45 });
 
-  counters.forEach(counter => observer.observe(counter));
-})();
-</script>
+      requestAnimationFrame(tick);
+    }
 
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.45 });
+
+    counters.forEach(counter => observer.observe(counter));
+  })();
+  </script>
+
+</main>
 </body>
 </html>
