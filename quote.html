@@ -8,29 +8,45 @@
   <meta name="theme-color" content="#ffffff" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- put this in <head> -->
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
   <link rel="apple-touch-icon" href="logo.png.png?v=2">
   <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
   <style>
-    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-4px)} 100%{transform:translateY(0)} }
-    .floaty{ animation: floaty 5s ease-in-out infinite; }
     .glass { backdrop-filter: blur(8px); }
 
-    /* Underline effect for desktop nav links */
-    .nav-link { position: relative; padding-bottom: 4px; transition: color .2s ease; }
-    .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background-color: #dc2626; transition: width .3s ease; }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-    .nav-link:hover { color: #dc2626; }
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .2s ease;
+    }
 
-    /* Disable underline effect inside the mobile dropdown */
-    nav[aria-label="Mobile"] .nav-link::after { display: none; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: #dc2626;
+      transition: width .3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #dc2626;
+    }
+
+    nav[aria-label="Mobile"] .nav-link::after {
+      display: none;
+    }
   </style>
-  <!-- (Removed Jobber CSS embed) -->
 
-  <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
@@ -38,13 +54,15 @@
 </head>
 <body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
-  <!-- HEADER (matches Services/Reviews) -->
+  <!-- HEADER -->
   <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="Clear Choice Logo" style="height:65px; width:auto;">
-          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="Clear Choice Logo" class="h-12 md:h-16 w-auto shrink-0">
+          <span class="text-neutral-900 font-extrabold text-lg sm:text-xl md:text-2xl tracking-wide leading-tight">
+            Clear Choice Auto Glass
+          </span>
         </a>
 
         <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
@@ -56,16 +74,17 @@
         </nav>
 
         <div class="hidden md:flex items-center gap-4">
-          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
-          <a href="/quote.html"
+          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">
+            (503) 949-2257
+          </a>
+          <a href="#quote"
              class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">
             Get a Quote
           </a>
         </div>
 
-        <!-- Mobile hamburger -->
         <button id="mobileMenuBtn"
-                class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50"
+                class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50 shrink-0"
                 aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -77,14 +96,13 @@
         </button>
       </div>
 
-      <!-- Mobile dropdown -->
       <nav id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
         <div class="px-4 py-3 grid gap-2 slide-menu" data-state="closed" role="menu">
-          <a role="menuitem" href="/index.html"    class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
+          <a role="menuitem" href="/index.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Home</a>
           <a role="menuitem" href="/services.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Services</a>
-          <a role="menuitem" href="/reviews.html"  class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
-          <a role="menuitem" href="/faqs.html"     class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
-          <a role="menuitem" href="/quote.html"    class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
+          <a role="menuitem" href="/reviews.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">Reviews</a>
+          <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
+          <a role="menuitem" href="/quote.html" class="py-2 text-neutral-800 hover:text-red-700 font-semibold nav-link">Get a Quote</a>
         </div>
       </nav>
     </div>
@@ -94,80 +112,47 @@
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center"
          style="background-image:url('https://www.alfainsurance.com/getmedia/df3aa85f-9dc3-44de-a17f-4f37b4703525/cracked-windshield-heres-what-you-need-to-know-hero.png?width=1600&height=900&ext=.png');"></div>
-    <!-- Soft gradient for readability on mobile; subtle on desktop -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-transparent md:from-black/20 md:via-black/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/35 md:from-black/30 md:via-black/10 md:to-black/25"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="py-14 md:py-20">
-        <div class="grid md:grid-cols-2 gap-8 items-start">
-          <!-- Value prop -->
-          <div class="max-w-xl rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/5 p-6 md:p-8">
-            <h1 class="text-3xl md:text-4xl font-black leading-tight">
-              Lock in <span class="text-red-600">Today’s Price</span><br />
-              Mobile service, fast responses.
-            </h1>
-            <p class="mt-3 text-neutral-700">
-              Text or submit the form — we’ll confirm exact pricing after checking your VIN &amp; glass features.
-            </p>
-
-            <div class="mt-5 flex flex-wrap gap-3">
-              <a href="tel:+15039492257"
-                 class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow">
-                Call (503) 949-2257
-              </a>
-            </div>
-
-            <div class="mt-6 grid grid-cols-3 gap-6 text-xs text-neutral-600">
-              <div>
-                <div class="font-semibold text-neutral-900">Coverage</div>
-                Salem / Keizer
-              </div>
-              <div>
-                <div class="font-semibold text-neutral-900">Hours</div>
-                Mon–Sat 7a–6p
-              </div>
-              <div>
-                <div class="font-semibold text-neutral-900">Warranty</div>
-                Lifetime workmanship
-              </div>
-            </div>
+        <div class="max-w-3xl mx-auto rounded-3xl bg-white/92 shadow-xl ring-1 ring-black/5 p-6 md:p-10 text-center">
+          <div class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-4 py-2 text-sm font-semibold">
+            Mobile auto glass service in Salem / Keizer
           </div>
 
-          <!-- Social proof (unchanged on desktop; refined spacing on mobile) -->
-          <div class="space-y-5 md:pt-2">
-            <div class="max-w-md md:ml-auto rounded-2xl bg-white/95 shadow-lg ring-1 ring-black/5 p-5">
-              <div class="flex items-center gap-3 text-sm text-neutral-700">
-                <div class="flex">
-                  <!-- 5 stars -->
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                </div>
-                <span class="text-neutral-600">4.9 out of 5 · Local reviews · Insurance accepted</span>
-              </div>
-              <p class="mt-2 text-neutral-700 text-sm leading-relaxed">
-                “They replaced my windshield in my driveway before lunch. No mess, perfect seal, and cheaper than the chain.”
-              </p>
-              <div class="mt-2 text-xs text-neutral-500">— Hannah K., Salem</div>
-            </div>
+          <h1 class="mt-4 text-3xl md:text-5xl font-black leading-tight">
+            Lock in <span class="text-red-600">today’s price</span><br>
+            and get a fast quote.
+          </h1>
 
-            <div class="max-w-md md:ml-auto rounded-2xl bg-white/95 shadow-lg ring-1 ring-black/5 p-5">
-              <div class="flex items-center gap-3 text-sm text-neutral-700">
-                <div class="flex">
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                  <svg class="w-4 h-4 fill-amber-400" viewBox="0 0 20 20"><path d="M10 1.5l2.7 5.47 6.05.88-4.38 4.27 1.03 6.03L10 15.9l-5.4 2.85 1.03-6.03L1.25 7.85l6.05-.88L10 1.5z"/></svg>
-                </div>
-                <span class="text-neutral-600">Happy customers · Same-day mobile installs</span>
-              </div>
-              <p class="mt-2 text-neutral-700 text-sm leading-relaxed">
-                “Tech arrived early, finished fast, and cleaned up the glass. Price matched the quote. Would use again.”
-              </p>
-              <div class="mt-2 text-xs text-neutral-500">— Marco R., Keizer</div>
+          <p class="mt-4 text-base md:text-lg text-neutral-700 max-w-2xl mx-auto">
+            Fill out the form below or call now. We’ll confirm exact pricing after checking your VIN and glass features.
+          </p>
+
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#quote"
+               class="inline-flex w-full sm:w-auto items-center justify-center rounded-xl px-6 py-4 font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 shadow">
+              Request Your Quote
+            </a>
+            <a href="tel:+15039492257"
+               class="inline-flex w-full sm:w-auto items-center justify-center rounded-xl px-6 py-4 font-semibold text-neutral-900 bg-white border border-neutral-300 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-300">
+              Call (503) 949-2257
+            </a>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-sm text-neutral-600 text-center">
+            <div>
+              <div class="font-semibold text-neutral-900">Coverage</div>
+              Salem / Keizer
+            </div>
+            <div>
+              <div class="font-semibold text-neutral-900">Hours</div>
+              Mon–Sat 7a–6p
+            </div>
+            <div>
+              <div class="font-semibold text-neutral-900">Warranty</div>
+              Lifetime workmanship
             </div>
           </div>
         </div>
@@ -175,32 +160,32 @@
     </div>
   </section>
 
-  <!-- Quote form (replaces Google Form embed; everything else unchanged) -->
-  <section id="quote" class="mt-16 md:mt-24 pb-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-8">
-      <!-- Form card -->
-      <div class="lg:col-span-2 glass bg-white/80 rounded-3xl border border-white/60 shadow-xl">
+  <!-- QUOTE FORM -->
+  <section id="quote" class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass bg-white/90 rounded-3xl border border-neutral-200 shadow-xl">
         <div class="p-6 md:p-8">
-          <h2 class="text-2xl md:text-3xl font-black">Request an exact quote</h2>
-          <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
+          <div class="text-center">
+            <h2 class="text-2xl md:text-3xl font-black">Request an exact quote</h2>
+            <p class="mt-2 text-neutral-600">We’ll text you back quickly during business hours.</p>
+          </div>
 
-          <!-- BEGIN: Custom multi-step quote form (Apps Script) -->
           <div class="mt-6">
-            <div class="mb-4 h-1.5 w-full bg-neutral-200 rounded overflow-hidden"><div id="cc-progress" class="h-full bg-red-600 w-0"></div></div>
+            <div class="mb-4 h-1.5 w-full bg-neutral-200 rounded overflow-hidden">
+              <div id="cc-progress" class="h-full bg-red-600 w-0"></div>
+            </div>
 
             <form id="cc-quote-form" class="space-y-8" method="post">
-              <!-- Honeypot -->
               <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off" />
 
-              <!-- Step pills -->
-              <div class="grid grid-cols-4 gap-2 text-xs font-semibold">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs font-semibold">
                 <div class="cc-step cc-active text-center rounded-full px-3 py-2 bg-red-600 text-white">1 • Vehicle</div>
                 <div class="cc-step text-center rounded-full px-3 py-2 bg-neutral-100 text-neutral-500">2 • Damage</div>
                 <div class="cc-step text-center rounded-full px-3 py-2 bg-neutral-100 text-neutral-500">3 • Contact</div>
                 <div class="cc-step text-center rounded-full px-3 py-2 bg-neutral-100 text-neutral-500">4 • Schedule</div>
               </div>
 
-              <!-- STEP 1: Vehicle -->
+              <!-- STEP 1 -->
               <section data-cc-step="1" class="space-y-4">
                 <div class="grid md:grid-cols-3 gap-4">
                   <div>
@@ -216,6 +201,7 @@
                     <input name="model" required placeholder="Camry" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
+
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
                     <label class="text-xs text-neutral-600">VIN (optional)</label>
@@ -232,7 +218,7 @@
                 </div>
               </section>
 
-              <!-- STEP 2: Damage -->
+              <!-- STEP 2 -->
               <section data-cc-step="2" class="hidden space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
@@ -252,15 +238,14 @@
                     </select>
                   </div>
                 </div>
-                <div class="grid md:grid-cols-1 gap-4">
-                  <div>
-                    <label class="text-xs text-neutral-600">Damage Details</label>
-                    <textarea name="details" rows="4" placeholder="Where is the damage? Chip size? Any spreading cracks?" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
-                  </div>
+
+                <div>
+                  <label class="text-xs text-neutral-600">Damage Details</label>
+                  <textarea name="details" rows="4" placeholder="Where is the damage? Chip size? Any spreading cracks?" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
                 </div>
               </section>
 
-              <!-- STEP 3: Contact -->
+              <!-- STEP 3 -->
               <section data-cc-step="3" class="hidden space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
@@ -272,6 +257,7 @@
                     <input name="phone" required inputmode="tel" placeholder="(503) 555-1234" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
+
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
                     <label class="text-xs text-neutral-600">Email</label>
@@ -282,10 +268,14 @@
                     <input name="address" required placeholder="Street, City" class="mt-1 w-full rounded-xl border border-neutral-300 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
                   </div>
                 </div>
-                <label class="flex items-center gap-3 text-sm text-neutral-700"><input type="checkbox" name="sms_ok" class="w-4 h-4 rounded border-neutral-300"/> By submitting, you agree Clear Choice Auto Glass may call or text you at this number about your quote.</label>
+
+                <label class="flex items-start gap-3 text-sm text-neutral-700">
+                  <input type="checkbox" name="sms_ok" class="mt-1 w-4 h-4 rounded border-neutral-300" />
+                  <span>By submitting, you agree Clear Choice Auto Glass may call or text you at this number about your quote.</span>
+                </label>
               </section>
 
-              <!-- STEP 4: Schedule -->
+              <!-- STEP 4 -->
               <section data-cc-step="4" class="hidden space-y-4">
                 <div class="grid md:grid-cols-3 gap-4">
                   <div>
@@ -312,116 +302,89 @@
                   </div>
                 </div>
 
-                <div class="flex items-center justify-between gap-4 pt-2">
-                  <button type="button" class="cc-prev inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">Back</button>
-                  <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow">Get My Quote</button>
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                  <button type="button" class="cc-prev inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">
+                    Back
+                  </button>
+                  <button type="submit" class="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow">
+                    Get My Quote
+                  </button>
                 </div>
+
                 <p class="text-xs text-neutral-500">By submitting, you agree to be contacted about your quote. No spam.</p>
               </section>
 
-              <!-- Nav (for earlier steps) -->
-              <div class="flex items-center justify-between gap-4">
-                <button type="button" class="cc-prev cc-prev-global hidden inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">Back</button>
-                <button type="button" class="cc-next inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow">Next</button>
+              <!-- GLOBAL NAV -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button type="button" class="cc-prev cc-prev-global hidden inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800">
+                  Back
+                </button>
+                <button type="button" class="cc-next inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow sm:ml-auto">
+                  Next
+                </button>
               </div>
 
               <div id="cc-status" class="hidden text-sm p-3 rounded-lg"></div>
             </form>
           </div>
-          <!-- END: Custom multi-step quote form -->
         </div>
       </div>
-
-      <!-- Sidebar / perks (unchanged) -->
-      <aside class="space-y-6">
-        <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
-          <h3 class="font-bold text-lg">Why people pick Clear Choice</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Same-day mobile installs (when available)</li>
-            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>OEM-grade glass & urethane</li>
-            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Insurance accepted</li>
-            <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-red-600"></span>Lifetime workmanship warranty</li>
-          </ul>
-        </div>
-        <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
-          <h3 class="font-bold text-lg">Need help now?</h3>
-          <p class="mt-2 text-sm text-neutral-700">Call for urgent same-day jobs. Morning call → often installed by afternoon.</p>
-          <a href="tel:+15039492257" class="mt-4 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Call (503) 949-2257</a>
-        </div>
-      </aside>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8 text-sm">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2">
-          <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
-        </div>
-        <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
+  <footer class="border-t border-neutral-200 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+      <p class="text-xl font-bold text-neutral-900">Clear Choice Auto Glass</p>
+      <p class="mt-2 text-neutral-700">Family-owned mobile auto glass in Salem / Keizer, Oregon</p>
 
-        <div class="mt-4 flex flex-wrap gap-3">
-          
-          <a href="tel:+15039492257"
-             class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">
-            Call Now
-          </a>
-        </div>
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+        <a href="tel:+15039492257"
+           class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
+          Call (503) 949-2257
+        </a>
+        <a href="mailto:donkievit36@gmail.com"
+           class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50">
+          Email Us
+        </a>
       </div>
 
-      <div>
-        <h4 class="font-semibold text-neutral-900">Quick Links</h4>
-        <ul class="mt-3 space-y-2 text-neutral-700">
-          <li><a href="index.html" class="hover:underline">Home</a></li>
-          <li><a href="reviews.html" class="hover:underline">Reviews</a></li>
-          <li><a href="services.html" class="hover:underline">Services</a></li>
-          <li></li>
-          <li><a href="faqs.html" class="hover:underline">FAQs</a></li>
-        </ul>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-neutral-700">
+        <a href="/index.html" class="hover:text-neutral-900">Home</a>
+        <a href="/services.html" class="hover:text-neutral-900">Services</a>
+        <a href="/reviews.html" class="hover:text-neutral-900">Reviews</a>
+        <a href="/faqs.html" class="hover:text-neutral-900">FAQs</a>
+        <a href="/quote.html" class="hover:text-neutral-900">Quote</a>
       </div>
 
-      <div>
-        <h4 class="font-semibold text-neutral-900">Contact</h4>
-        <ul class="mt-3 space-y-2 text-neutral-700">
-          <li><a href="tel:+15039492257" class="hover:underline">(503) 949-2257</a></li>
-          <a href="mailto:donkievit36@gmail.com" class="hover:underline">donkievit36@gmail.com</a>
-          <li>Serving Salem/Keizer, Oregon</li>
-          <li>Mon–Sat: 7am–6pm</li>
-        </ul>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-neutral-600">
+        <span>Serving Salem / Keizer</span>
+        <span>Mon–Sat: 7am–6pm</span>
+        <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
+        <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
+        <a href="terms.html" class="hover:text-neutral-900">Terms</a>
       </div>
-    </div>
 
-    <div class="border-t border-neutral-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
-        <div class="flex items-center gap-4">
-          <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
-          <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
-          <a href="terms.html" class="hover:text-neutral-900">Terms</a>
-        </div>
-      </div>
+      <p class="mt-6 text-xs text-neutral-500">© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile toggle + active link highlight (same behavior across pages)
-    (function(){
-      const btn   = document.getElementById('mobileMenuBtn');
-      const menu  = document.getElementById('mobileMenu');
+    (function () {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
       const panel = menu ? menu.querySelector('.slide-menu') : null;
 
       if (btn && menu && panel) {
-        function toggle(open){
+        function toggle(open) {
           const willOpen = (open !== undefined) ? open : menu.classList.contains('hidden');
           menu.classList.toggle('hidden', !willOpen);
           panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
           btn.setAttribute('aria-expanded', String(willOpen));
         }
+
         btn.addEventListener('click', () => toggle());
         menu.addEventListener('click', e => { if (e.target.matches('a')) toggle(false); });
         document.addEventListener('click', e => {
@@ -430,7 +393,6 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
       }
 
-      // correct regex
       const path = location.pathname.replace(/\/+$/, '') || '/';
       document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a => {
         const href = a.getAttribute('href') || '';
@@ -443,57 +405,46 @@
     })();
   </script>
 
-  <!-- Apps Script + stepper for the custom form -->
   <script>
-    (function(){
+    (function () {
       const form = document.getElementById('cc-quote-form');
-      if(!form) return; // safety if editing other pages
+      if (!form) return;
 
-          // PREFILL from Quick Quote on index.html (name, phone, service)
-    (function(){
-      let stored = null;
-      try {
-        stored = JSON.parse(localStorage.getItem('cq_prequote') || 'null');
-      } catch(e) {
-        stored = null;
-      }
-
-      const params  = new URLSearchParams(window.location.search);
-      const name    = params.get('name')   || (stored && stored.name)   || '';
-      const phone   = params.get('phone')  || (stored && stored.phone)  || '';
-      let   service = params.get('service')|| (stored && stored.service)|| '';
-
-      // Prefill contact fields
-      if (name && form.elements['name']) {
-        form.elements['name'].value = name;
-      }
-      if (phone && form.elements['phone']) {
-        form.elements['phone'].value = phone;
-      }
-
-      // Map Quick Quote service options → full form service options
-      if (service && form.elements['service']) {
-        const map = {
-          'Chip Repair':      'Chip / Crack Repair',
-          'Door/Side Glass':  'Side / Rear Glass',
-          'Back Glass':       'Side / Rear Glass'
-        };
-        if (map[service]) {
-          service = map[service];
+      (function () {
+        let stored = null;
+        try {
+          stored = JSON.parse(localStorage.getItem('cq_prequote') || 'null');
+        } catch (e) {
+          stored = null;
         }
 
-        const sel = form.elements['service'];
-        for (const opt of sel.options) {
-          if (opt.value === service || opt.text === service) {
-            sel.value = opt.value;
-            break;
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || (stored && stored.name) || '';
+        const phone = params.get('phone') || (stored && stored.phone) || '';
+        let service = params.get('service') || (stored && stored.service) || '';
+
+        if (name && form.elements['name']) form.elements['name'].value = name;
+        if (phone && form.elements['phone']) form.elements['phone'].value = phone;
+
+        if (service && form.elements['service']) {
+          const map = {
+            'Chip Repair': 'Chip / Crack Repair',
+            'Door/Side Glass': 'Side / Rear Glass',
+            'Back Glass': 'Side / Rear Glass'
+          };
+
+          if (map[service]) service = map[service];
+
+          const sel = form.elements['service'];
+          for (const opt of sel.options) {
+            if (opt.value === service || opt.text === service) {
+              sel.value = opt.value;
+              break;
+            }
           }
         }
-      }
-    })();
+      })();
 
-
-      // NEW URL you provided
       const APPS_SCRIPT_WEBAPP = 'https://script.google.com/macros/s/AKfycbzdSeBu-ZXi4wycyFF0z5jMJTIlvDKmGRaOYjaF8t2Ocobq1Ol5esl2lkMGGa2IzdE/exec';
 
       const sections = Array.from(form.querySelectorAll('section[data-cc-step]'));
@@ -505,65 +456,89 @@
       const statusEl = document.getElementById('cc-status');
       let i = 0;
 
-      // Prevent native validation from trying to focus hidden controls
-      form.setAttribute('novalidate','');
+      form.setAttribute('novalidate', '');
 
-      // Record which fields were authored as required so we can toggle per-step
       const authoredRequired = new WeakSet();
-      form.querySelectorAll('input[required],select[required],textarea[required]').forEach(el=>authoredRequired.add(el));
+      form.querySelectorAll('input[required],select[required],textarea[required]').forEach(el => authoredRequired.add(el));
 
-      function setRequiredForSection(idxActive){
-        sections.forEach((sec, idx)=>{
-          sec.querySelectorAll('input,select,textarea').forEach(el=>{
+      function setRequiredForSection(idxActive) {
+        sections.forEach((sec, idx) => {
+          sec.querySelectorAll('input,select,textarea').forEach(el => {
             if (authoredRequired.has(el)) {
-              if (idx === idxActive) el.setAttribute('required','');
+              if (idx === idxActive) el.setAttribute('required', '');
               else el.removeAttribute('required');
             }
           });
         });
       }
 
-      function showStep(n){
-        i = Math.max(0, Math.min(sections.length-1, n));
-        sections.forEach((s,idx)=> s.classList.toggle('hidden', idx!==i));
-        steps.forEach((s,idx)=>{
-          if(idx<=i){ s.classList.add('cc-active'); s.classList.remove('text-neutral-500','bg-neutral-100'); s.classList.add('bg-red-600','text-white'); }
-          else { s.classList.remove('bg-red-600','text-white'); s.classList.add('text-neutral-500','bg-neutral-100'); }
-        });
-        progress.style.width = (i/(sections.length-1))*100 + '%';
-        // toggle secondary prev (top or bottom)
-        form.querySelectorAll('.cc-prev').forEach(b=> b.classList.add('hidden'));
-        if (i>0 && i<sections.length-1 && globalPrev) globalPrev.classList.remove('hidden');
-        sections[i].querySelectorAll('.cc-prev').forEach(b=> b.classList.remove('hidden'));
-        nextBtn.classList.toggle('hidden', i===sections.length-1);
+      function validateCurrentStep() {
+        const current = sections[i];
+        const fields = Array.from(current.querySelectorAll('input,select,textarea'));
+        for (const field of fields) {
+          if (!field.checkValidity()) {
+            field.reportValidity();
+            return false;
+          }
+        }
+        return true;
+      }
 
-        // only current step keeps required fields
+      function showStep(n) {
+        i = Math.max(0, Math.min(sections.length - 1, n));
+
+        sections.forEach((s, idx) => s.classList.toggle('hidden', idx !== i));
+
+        steps.forEach((s, idx) => {
+          if (idx <= i) {
+            s.classList.add('cc-active', 'bg-red-600', 'text-white');
+            s.classList.remove('text-neutral-500', 'bg-neutral-100');
+          } else {
+            s.classList.remove('cc-active', 'bg-red-600', 'text-white');
+            s.classList.add('text-neutral-500', 'bg-neutral-100');
+          }
+        });
+
+        progress.style.width = (((i + 1) / sections.length) * 100) + '%';
+
+        form.querySelectorAll('.cc-prev').forEach(b => b.classList.add('hidden'));
+        if (i > 0 && i < sections.length - 1 && globalPrev) globalPrev.classList.remove('hidden');
+        sections[i].querySelectorAll('.cc-prev').forEach(b => b.classList.remove('hidden'));
+
+        nextBtn.classList.toggle('hidden', i === sections.length - 1);
+
         setRequiredForSection(i);
       }
 
-      nextBtn && nextBtn.addEventListener('click',()=> showStep(i+1));
-      prevBtns.forEach(b=> b.addEventListener('click',()=> showStep(i-1)));
+      nextBtn && nextBtn.addEventListener('click', () => {
+        if (!validateCurrentStep()) return;
+        showStep(i + 1);
+      });
+
+      prevBtns.forEach(b => b.addEventListener('click', () => showStep(i - 1)));
+
       showStep(0);
 
-      function showStatus(kind, msg){
+      function showStatus(kind, msg) {
         statusEl.classList.remove('hidden');
         statusEl.className = '';
-        statusEl.classList.add('mt-2','text-sm','p-3','rounded-lg','border');
-        if(kind==='ok'){
-          // SOLID, obvious success (no overlay)
-          statusEl.classList.add('bg-emerald-500','text-white','border-emerald-600');
+        statusEl.classList.add('mt-2', 'text-sm', 'p-3', 'rounded-lg', 'border');
+
+        if (kind === 'ok') {
+          statusEl.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
         } else {
-          statusEl.classList.add('bg-red-600/10','text-red-800','border-red-300');
+          statusEl.classList.add('bg-red-600/10', 'text-red-800', 'border-red-300');
         }
+
         statusEl.textContent = msg;
       }
 
-      form.addEventListener('submit', async (e)=>{
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // honeypot
-        if(form.company && form.company.value) return;
 
-        // ensure hidden steps don't block submission
+        if (form.company && form.company.value) return;
+        if (!validateCurrentStep()) return;
+
         setRequiredForSection(i);
 
         const data = Object.fromEntries(new FormData(form).entries());
@@ -571,27 +546,23 @@
         data._site = location.hostname;
         data._submittedAt = new Date().toISOString();
 
-        try{
-          // SIMPLE cross-origin POST (no preflight). Apps Script receives JSON fine.
+        try {
           await fetch(APPS_SCRIPT_WEBAPP, {
-            method:'POST',
-            mode:'no-cors',
-            headers:{'Content-Type':'text/plain;charset=UTF-8'},
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
             body: JSON.stringify(data)
           });
 
-          // We can’t read the response in no-cors mode; assume success if no exception.
           form.classList.add('opacity-60');
-          form.querySelectorAll('input,select,textarea,button').forEach(el=> el.disabled=true);
-          showStatus('ok','Quote request submitted. We’ll text you soon!');
-        }catch(err){
+          form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+          showStatus('ok', 'Quote request submitted. We’ll text you soon!');
+        } catch (err) {
           console.error(err);
-          showStatus('err','Sorry, something went wrong. Please call us at (503) 949-2257.');
+          showStatus('err', 'Sorry, something went wrong. Please call us at (503) 949-2257.');
         }
       });
     })();
   </script>
-
-  <!-- (Removed Jobber embed script) -->
 </body>
 </html>
