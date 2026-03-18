@@ -81,6 +81,35 @@
     .review-star { color:#f59e0b; }
     .reviews-rail:hover .reviews-track { animation-play-state: paused; }
 
+    .hero-mini-review{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      max-width:100%;
+      padding:.42rem .72rem;
+      border-radius:9999px;
+      background:rgba(0,0,0,.34);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 10px 24px rgb(0 0 0 / .22);
+      color:#fff;
+      font-size:.72rem;
+      line-height:1.15;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .hero-mini-review .stars{
+      color:#fbbf24;
+      letter-spacing:-0.06em;
+      flex:none;
+      font-size:.76rem;
+    }
+    .hero-mini-review .copy{
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
     @media (prefers-reduced-motion: reduce){
       .reviews-track{ animation:none; transform:none; }
     }
@@ -415,22 +444,19 @@
         </a>
       </div>
 
-      <div class="mt-4 grid gap-2 sm:hidden max-w-md">
-        <div class="rounded-2xl border border-white/10 bg-black/30 backdrop-blur px-3 py-3 shadow-lg">
-          <div class="flex items-center justify-between gap-3">
-            <div class="text-[11px] font-semibold uppercase tracking-wide text-white/70">★★★★★ Local feedback</div>
-            <div class="text-[11px] text-white/60">South Salem</div>
-          </div>
-          <p class="mt-1 text-sm leading-6 text-white/95">“Texted my VIN and got a quote back fast. Installer showed up on time and the glass looked perfect.”</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/10 bg-black/30 backdrop-blur px-3 py-3 shadow-lg">
-          <div class="flex items-center justify-between gap-3">
-            <div class="text-[11px] font-semibold uppercase tracking-wide text-white/70">★★★★★ Local feedback</div>
-            <div class="text-[11px] text-white/60">Keizer</div>
-          </div>
-          <p class="mt-1 text-sm leading-6 text-white/95">“They came to my work parking lot, replaced the glass, and cleaned up the broken pieces before I got off.”</p>
-        </div>
+      <div class="mt-4 flex flex-wrap gap-2 sm:hidden">
+        <span class="hero-mini-review">
+          <span class="stars">★★★★★</span>
+          <span class="copy">Fast quote by text.</span>
+        </span>
+        <span class="hero-mini-review">
+          <span class="stars">★★★★★</span>
+          <span class="copy">Showed up on time.</span>
+        </span>
+        <span class="hero-mini-review">
+          <span class="stars">★★★★★</span>
+          <span class="copy">Clean install.</span>
+        </span>
       </div>
     </div>
   </div>
@@ -787,13 +813,12 @@
     </div>
   </section>
 
-  <section id="aboutBand" class="relative overflow-hidden bg-gradient-to-b from-neutral-50 to-white border-y border-neutral-200/70">
-    <div class="pointer-events-none absolute top-0 right-0 h-64 w-64 rounded-full bg-red-100 blur-3xl opacity-70"></div>
-    <div class="pointer-events-none absolute bottom-0 left-0 h-56 w-56 rounded-full bg-neutral-200 blur-3xl opacity-60"></div>
+  <section id="aboutBand" class="relative overflow-hidden bg-neutral-900 border-y border-white/10 text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-8 items-center">
-        <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm bg-white">
+        <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
           <img src="6105496237078034540.jpg"
                alt="Mobile auto glass technician working on-site"
                class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
@@ -801,32 +826,32 @@
         </div>
 
         <div>
-          <span class="inline-flex items-center rounded-full bg-white text-red-700 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-red-100 shadow-sm">Built for busy drivers</span>
-          <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-neutral-900">
+          <span class="inline-flex items-center rounded-full bg-white/10 text-white px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/15">Built for busy drivers</span>
+          <h2 class="mt-4 text-3xl md:text-4xl font-black leading-tight text-white">
             Mobile service that fits real schedules
           </h2>
-          <p class="mt-4 text-neutral-700 max-w-2xl">
+          <p class="mt-4 text-white/75 max-w-2xl">
             This is for people who do not want to lose half a day sitting at a shop. Send the VIN or a photo, get a clear quote, and pick a time window that works around your day.
           </p>
 
           <div class="mt-6 grid gap-3 sm:grid-cols-3">
-            <div class="rounded-2xl bg-white border border-neutral-200 p-4 shadow-sm">
-              <div class="text-sm font-bold text-neutral-900">Home driveway</div>
-              <p class="mt-1 text-sm text-neutral-600">Easy option when the vehicle is parked at home.</p>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4 shadow-sm">
+              <div class="text-sm font-bold text-white">Home driveway</div>
+              <p class="mt-1 text-sm text-white/70">Easy option when the vehicle is parked at home.</p>
             </div>
-            <div class="rounded-2xl bg-white border border-neutral-200 p-4 shadow-sm">
-              <div class="text-sm font-bold text-neutral-900">Work parking lot</div>
-              <p class="mt-1 text-sm text-neutral-600">Get it done while you are on shift or in the office.</p>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4 shadow-sm">
+              <div class="text-sm font-bold text-white">Work parking lot</div>
+              <p class="mt-1 text-sm text-white/70">Get it done while you are on shift or in the office.</p>
             </div>
-            <div class="rounded-2xl bg-white border border-neutral-200 p-4 shadow-sm">
-              <div class="text-sm font-bold text-neutral-900">After break-in cleanup</div>
-              <p class="mt-1 text-sm text-neutral-600">Fast replacement with cleanup after shattered side glass.</p>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4 shadow-sm">
+              <div class="text-sm font-bold text-white">Flexible window</div>
+              <p class="mt-1 text-sm text-white/70">Pick a time block that works without changing your whole day.</p>
             </div>
           </div>
 
           <div class="mt-7 flex flex-wrap gap-3">
             <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Call Now</a>
-            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-700 bg-white border-2 border-red-200 hover:bg-red-50">Get a Quote</a>
+            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-white/5 border-2 border-white/15 hover:bg-white/10">Get a Quote</a>
           </div>
         </div>
       </div>
@@ -902,22 +927,19 @@
   </section>
 
   <section id="reviews" class="relative overflow-hidden">
-    <img src="https://wallpapercave.com/wp/wp9426608.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+    <img src="6087524626301220792.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black/58"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
       <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-white/20">Real Customers</span>
 
-      <div class="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div class="mt-3 max-w-4xl">
         <h2 class="text-3xl md:text-4xl font-black leading-tight">
           Rated <span class="text-red-400">5-Stars</span> by Salem &amp; Keizer Drivers
         </h2>
-        <a href="/reviews.html" class="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/20 backdrop-blur hover:bg-white/15">
-          Read all reviews
-        </a>
       </div>
 
-      <p class="mt-2 text-white/90 max-w-2xl">
+      <p class="mt-3 text-white/90 max-w-2xl">
         Fast mobile service, clean installs, and fair pricing.
       </p>
 
