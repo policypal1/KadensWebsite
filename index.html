@@ -140,6 +140,41 @@
       .hero-actions{
         animation-delay:.18s;
       }
+
+      #hero{
+        border-bottom-color:transparent;
+      }
+      #hero::after{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:-1px;
+        height:150px;
+        background:linear-gradient(
+          to bottom,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,.12) 34%,
+          rgba(255,255,255,.42) 62%,
+          rgba(255,255,255,.78) 84%,
+          #ffffff 100%
+        );
+        pointer-events:none;
+        z-index:2;
+      }
+      #hero .hero-media{
+        object-position:center 34%;
+      }
+      .hero-actions{
+        margin-left:.55rem;
+      }
+      .reviews-strip{
+        --speed:54s;
+        margin-top:-1px;
+        border-top-color:transparent;
+        position:relative;
+        z-index:3;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -484,11 +519,11 @@
     })();
   </script>
 
-  <section class="relative overflow-hidden border-b border-neutral-200">
+  <section id="hero" class="relative overflow-hidden border-b border-neutral-200">
     <div class="absolute inset-0">
       <img src="Screenshot 2026-03-12 120342.png"
            alt="Mobile auto glass service on-site"
-           class="w-full h-full object-cover object-center"
+           class="hero-media w-full h-full object-cover object-center"
            loading="eager"
            fetchpriority="high" />
       <div
@@ -999,10 +1034,6 @@
           <p class="mt-4 text-neutral-700">
             We regularly cover Salem, Keizer, West Salem, South Salem, Four Corners, Hayesville, and nearby routes when they fit the schedule. If your vehicle is in the Salem-Keizer area, there is a good chance we can come out to you.
           </p>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 transition">Call (503) 949-2257</a>
-          </div>
         </div>
 
         <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
