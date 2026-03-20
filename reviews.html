@@ -144,7 +144,7 @@
   </section>
 
   <!-- 20s QUOTE POPUP -->
-  <div id="quotePopup" class="fixed inset-0 z-[60] hidden items-end sm:items-center justify-center p-4">
+  <div id="quotePopup" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
     <div id="quotePopupOverlay" class="absolute inset-0 bg-neutral-900/60"></div>
 
     <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-black/5">
@@ -161,13 +161,10 @@
         Get a fast quote for your windshield, side window, or back glass replacement. Mobile service available when scheduling allows.
       </p>
 
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
-        <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
+      <div class="mt-6">
+        <a href="/quote.html" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
           Get My Quote
         </a>
-        <button id="quotePopupLater" type="button" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-neutral-700 border border-neutral-300 bg-white hover:bg-neutral-50">
-          Maybe later
-        </button>
       </div>
     </div>
   </div>
@@ -366,7 +363,6 @@
       const popup = document.getElementById('quotePopup');
       const overlay = document.getElementById('quotePopupOverlay');
       const closeBtn = document.getElementById('quotePopupClose');
-      const laterBtn = document.getElementById('quotePopupLater');
       const sessionKey = 'reviewsQuotePopupShown';
 
       if (!popup) return;
@@ -388,7 +384,7 @@
 
       const timer = setTimeout(openPopup, 20000);
 
-      [overlay, closeBtn, laterBtn].forEach(el => {
+      [overlay, closeBtn].forEach(el => {
         if(!el) return;
         el.addEventListener('click', () => {
           clearTimeout(timer);
