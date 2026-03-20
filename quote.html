@@ -390,12 +390,29 @@
               </button>
             </div>
           </section>
-
-          <div id="cc-status" class="mt-6 hidden rounded-xl border px-4 py-3 text-sm"></div>
         </form>
       </div>
     </div>
   </main>
+
+  <!-- POPUP -->
+  <div id="cc-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 px-4">
+    <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl">
+      <h3 id="cc-modal-title" class="text-2xl font-black text-neutral-900">Quote request sent</h3>
+      <p id="cc-modal-message" class="mt-3 text-sm leading-6 text-neutral-600">
+        Thanks. Your quote request was submitted and we’ll reach out soon.
+      </p>
+
+      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <button id="cc-modal-close" type="button"
+                class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700">
+          Okay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <iframe name="cc-submit-frame" id="cc-submit-frame" class="hidden" title="Quote submission"></iframe>
 
   <!-- FOOTER -->
   <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
@@ -506,13 +523,40 @@
 
       const damageTypeWrap = document.getElementById('damageTypeWrap');
       const step1Error = document.getElementById('step1-error');
-      const statusEl = document.getElementById('cc-status');
       const serviceField = document.getElementById('serviceField');
       const submitBtn = document.getElementById('cc-submit-btn');
 
       const yearInput = form.elements['year'];
       const makeInput = form.elements['make'];
       const modelInput = form.elements['model'];
+
+      const modal = document.getElementById('cc-modal');
+      const modalTitle = document.getElementById('cc-modal-title');
+      const modalMessage = document.getElementById('cc-modal-message');
+      const modalClose = document.getElementById('cc-modal-close');
+      const submitFrame = document.getElementById('cc-submit-frame');
+
+      let submissionPending = false;
+
+      function openModal(title, message) {
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
 
       function getCheckedValue(name) {
         const checked = form.querySelector(`input[name="${name}"]:checked`);
@@ -604,19 +648,6 @@
         return true;
       }
 
-      function showStatus(type, message) {
-        statusEl.classList.remove('hidden');
-        statusEl.className = 'mt-6 rounded-xl border px-4 py-3 text-sm';
-
-        if (type === 'ok') {
-          statusEl.classList.add('border-emerald-600', 'bg-emerald-600', 'text-white');
-        } else {
-          statusEl.classList.add('border-red-300', 'bg-red-50', 'text-red-800');
-        }
-
-        statusEl.textContent = message;
-      }
-
       function selectRadio(name, value) {
         if (!value) return;
         const radios = Array.from(form.querySelectorAll(`input[name="${name}"]`));
@@ -703,7 +734,19 @@
         showStep(2);
       });
 
-      form.addEventListener('submit', async function (e) {
+      submitFrame.addEventListener('load', function () {
+        if (!submissionPending) return;
+
+        submissionPending = false;
+
+        form.querySelectorAll('input, select, textarea, button').forEach(el => {
+          el.disabled = true;
+        });
+
+        openModal('Quote request sent', 'Thanks. Your quote request was submitted and we’ll reach out soon.');
+      });
+
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         if (form.company && form.company.value) return;
@@ -725,32 +768,50 @@
         data.damage_type = damageTypeChoice;
         data.service = inferService(locationChoice, damageTypeChoice);
         data.damage_summary = `${locationChoice} — ${damageTypeChoice}`;
-        data.sms_ok = !!form.querySelector('[name="sms_ok"]').checked;
+        data.sms_ok = form.querySelector('[name="sms_ok"]').checked ? 'Yes' : 'No';
         data._site = location.hostname;
         data._submittedAt = new Date().toISOString();
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
 
-        try {
-          await fetch(APPS_SCRIPT_WEBAPP, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-            body: JSON.stringify(data)
-          });
+        submissionPending = true;
 
-          form.querySelectorAll('input, select, textarea, button').forEach(el => {
-            el.disabled = true;
-          });
+        const transportForm = document.createElement('form');
+        transportForm.method = 'POST';
+        transportForm.action = APPS_SCRIPT_WEBAPP;
+        transportForm.target = 'cc-submit-frame';
+        transportForm.style.display = 'none';
 
-          showStatus('ok', 'Quote request submitted. We’ll text you soon!');
-        } catch (err) {
-          console.error(err);
+        Object.entries(data).forEach(([key, value]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value == null ? '' : String(value);
+          transportForm.appendChild(input);
+        });
+
+        document.body.appendChild(transportForm);
+        transportForm.submit();
+
+        setTimeout(() => {
+          if (transportForm.parentNode) {
+            transportForm.parentNode.removeChild(transportForm);
+          }
+        }, 1000);
+
+        setTimeout(() => {
+          if (!submissionPending) return;
+
+          submissionPending = false;
           submitBtn.disabled = false;
           submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-          showStatus('err', 'Sorry, something went wrong. Please call us at (503) 949-2257.');
-        }
+
+          openModal(
+            'Could not confirm submission',
+            'We could not confirm that the quote request went through. Please call us at (503) 949-2257.'
+          );
+        }, 15000);
       });
 
       applyPrefill();
