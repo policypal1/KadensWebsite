@@ -3,24 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Customer Reviews — Clear Choice Auto Glass</title>
-  <meta name="description" content="Read real customer reviews for Clear Choice Auto Glass. Same-day mobile installs, OEM-grade glass, and lifetime workmanship warranty." />
+  <title>FAQs — Clear Choice Auto Glass</title>
+  <meta name="description" content="Answers to common questions about mobile installs, pricing, sensors, insurance, and our warranty." />
   <meta name="theme-color" content="#ffffff" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
   <link rel="apple-touch-icon" href="logo.png.png?v=2">
   <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .glass{backdrop-filter:blur(8px)}
-    .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
-    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
-    .nav-link:hover::after,.nav-link.active::after{width:100%}
-    .nav-link:hover{color:#dc2626}
-    nav[aria-label="Mobile"] .nav-link::after{display:none}
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+
+    .glass { backdrop-filter: blur(8px); }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .2s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: #dc2626;
+      transition: width .3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #dc2626;
+    }
+
+    nav[aria-label="Mobile"] .nav-link::after {
+      display: none;
+    }
+
+    .slide-menu {
+      transition: max-height .25s ease, opacity .2s ease, transform .2s ease;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    .slide-menu[data-state="open"] {
+      max-height: 320px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .faq-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: max-height .28s ease, opacity .2s ease, transform .2s ease;
+    }
+
+    .faq-item.open .faq-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .faq-item.open .chev {
+      transform: rotate(180deg);
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Do you offer same-day mobile service?","acceptedAnswer":{"@type":"Answer","text":"Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability and location."}},
+      {"@type":"Question","name":"Do you recalibrate ADAS cameras?","acceptedAnswer":{"@type":"Answer","text":"We currently do not offer ADAS camera recalibration. If needed, we’ll let you know and can refer a local shop."}},
+      {"@type":"Question","name":"What windshield brands do you use?","acceptedAnswer":{"@type":"Answer","text":"We install OEM-grade glass and urethane that meet or exceed DOT and FMVSS standards."}},
+      {"@type":"Question","name":"How long should I wait before driving?","acceptedAnswer":{"@type":"Answer","text":"Safe drive-away time is usually 60–90 minutes after the install."}},
+      {"@type":"Question","name":"Will my insurance cover chip repair?","acceptedAnswer":{"@type":"Answer","text":"Many policies cover chip repair with little or no deductible. We can help you check coverage."}},
+      {"@type":"Question","name":"Do you warranty your work?","acceptedAnswer":{"@type":"Answer","text":"Yes—lifetime workmanship warranty for as long as you own the vehicle."}}
+    ]
+  }
+  </script>
 
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -83,91 +156,222 @@
 
   <!-- HERO -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://plus.unsplash.com/premium_photo-1661962267741-971ec3ac2e2a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zm9yZXN0JTIwcm9hZHxlbnwwfHwwfHx8MA==');"></div>
+    <div class="absolute inset-0 bg-cover bg-center"
+         style="background-image:url('https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=2400&auto=format&fit=crop');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="max-w-3xl">
-        <div class="glass bg-white/90 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
-          <h1 class="text-3xl md:text-4xl font-black leading-tight">
-            Real reviews from drivers in Salem & Keizer
-          </h1>
-
-          <div class="mt-5 flex flex-wrap items-center gap-4">
-            <div class="flex items-center gap-1">
-              <svg class="w-6 h-6 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
-              <svg class="w-6 h-6 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
-              <svg class="w-6 h-6 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
-              <svg class="w-6 h-6 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
-              <svg class="w-6 h-6 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>
-            </div>
-            <div class="text-sm text-neutral-700">
-              <span class="font-semibold">4.8 out of 5</span> · 100+ local reviews
-            </div>
-          </div>
-
-          <div class="mt-6 flex gap-3">
-            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote</a>
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
-          </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+      <div class="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 shadow-xl ring-1 ring-white/60 max-w-lg md:max-w-xl">
+        <p class="text-[13px] md:text-sm font-medium text-neutral-600 mb-2">Family-owned • 20+ years in Salem</p>
+        <h1 class="text-2xl md:text-4xl font-black mb-2 md:mb-4">Frequently Asked Questions</h1>
+        <p class="text-neutral-700 text-sm md:text-base mb-4 md:mb-6">
+          Quick, clear answers about mobile installs, pricing, sensors, insurance, and aftercare.
+        </p>
+        <div class="flex flex-wrap gap-3 md:gap-4">
+          <a href="/quote.html" class="w-full sm:w-auto px-5 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 text-center">
+            Get a Quote
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SIMPLE FILTER -->
+  <!-- Search / Filter -->
   <section class="py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between gap-4 flex-wrap">
-        <div class="flex items-center gap-3">
-          <label class="text-sm font-semibold" for="ratingFilter">Show:</label>
-          <select id="ratingFilter" class="rounded-xl border border-neutral-300 px-4 py-2 text-sm">
-            <option value="all">All reviews</option>
-            <option value="5">5 star reviews</option>
-            <option value="4">4 star reviews</option>
-            <option value="3">3 star reviews</option>
-          </select>
-        </div>
-
-        <a href="https://g.page/r/CTcRy-sP_mSMEAI/review" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
+      <div class="grid md:grid-cols-3 gap-4">
+        <input id="faqSearch" type="search"
+               placeholder="Search FAQs (e.g., sensors, insurance, chip repair)"
+               class="md:col-span-2 w-full rounded-xl border border-neutral-300 px-4 py-3" />
+        <select id="faqFilter" class="w-full rounded-xl border border-neutral-300 px-4 py-3">
+          <option value="all">All topics</option>
+          <option value="service">Mobile Service</option>
+          <option value="pricing">Pricing & Insurance</option>
+          <option value="tech">Sensors & ADAS</option>
+          <option value="aftercare">Aftercare & Warranty</option>
+        </select>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS GRID -->
-  <section class="pb-16">
+  <!-- FAQ Accordion -->
+  <section class="pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div id="reviewsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-      <div class="mt-8 text-center">
-        <button id="loadMore" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Load more reviews</button>
+      <div class="space-y-4" id="faqList">
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you offer same-day mobile service?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Availability varies by glass in stock and timing of your call.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Most weekdays, yes. Morning calls often get installed the same afternoon depending on glass availability
+              and location. We cover Salem / Keizer and nearby areas.
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="tech">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you recalibrate ADAS cameras?</h3>
+              <p class="mt-1 text-sm text-neutral-500">About camera systems and when a recalibration is needed.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              We currently do not offer ADAS camera recalibration. Many vehicles don’t require it when the camera is not
+              disturbed. If your vehicle does require recalibration, we’ll let you know and can refer a local shop.
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="pricing">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Will my insurance cover chip repair?</h3>
+              <p class="mt-1 text-sm text-neutral-500">How coverage typically works for small damage.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Many policies cover chip repair with little or no deductible. We can help you check coverage during your
+              quote, and we’ll walk you through next steps if you choose to file a claim.
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="service">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">What windshield brands do you use?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Quality and safety standards for glass & urethane.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              We install OEM-grade glass and high-performance urethane from trusted manufacturers that meet or exceed
+              DOT and FMVSS standards. You get a quiet, leak-free seal.
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="aftercare">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">How long should I wait before driving?</h3>
+              <p class="mt-1 text-sm text-neutral-500">Safe drive-away time after your install.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Safe drive-away time is usually 60–90 minutes after the install so the urethane can begin curing.
+              We’ll give you quick aftercare tips at handoff.
+            </div>
+          </div>
+        </article>
+
+        <article class="faq-item rounded-2xl border border-neutral-200 bg-white/90 shadow-sm" data-tags="aftercare">
+          <button class="faq-toggle w-full text-left p-5 hover:bg-white rounded-2xl transition flex items-start justify-between gap-4" aria-expanded="false">
+            <div>
+              <h3 class="text-lg font-semibold">Do you warranty your work?</h3>
+              <p class="mt-1 text-sm text-neutral-500">What our lifetime workmanship warranty covers.</p>
+            </div>
+            <span class="chev shrink-0 grid place-items-center rounded-lg border px-2 py-1 text-xs transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.126l3.71-3.896a.75.75 0 111.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </span>
+          </button>
+          <div class="faq-content px-5 pb-5">
+            <div class="border-t pt-4 text-neutral-700">
+              Yes—your install includes a lifetime workmanship warranty for as long as you own the vehicle.
+              If something isn’t right, call us and we’ll make it right.
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 20s QUOTE POPUP -->
-  <div id="quotePopup" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
-    <div id="quotePopupOverlay" class="absolute inset-0 bg-neutral-900/60"></div>
-
-    <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-black/5">
-      <button id="quotePopupClose" type="button" aria-label="Close popup" class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 hover:bg-neutral-50">
-        ✕
-      </button>
-
-      <div class="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
-        Fast local service
+  <!-- ABOUT US -->
+  <section id="about" class="bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-2 gap-10 items-start">
+      <div class="space-y-4">
+        <h2 class="text-2xl md:text-3xl font-black">Family-Owned. Father & Son. 20+ Years.</h2>
+        <p class="text-neutral-700 leading-relaxed md:text-lg">
+          Clear Choice Auto Glass is a local Salem/Keizer team. We’re a small, family outfit that’s
+          been replacing windshields and auto glass for decades—showing up on time, working clean,
+          and treating your car like it’s ours.
+        </p>
+        <p class="text-neutral-700 leading-relaxed md:text-lg">
+          We use quality materials for quiet, leak-free seals and back every install with a lifetime
+          workmanship warranty. If anything ever squeaks or seeps, we make it right.
+        </p>
       </div>
 
-      <h3 class="mt-4 text-2xl font-black leading-tight">Ready to join our happy customers?</h3>
-      <p class="mt-3 text-neutral-700">
-        Get a fast quote for your windshield, side window, or back glass replacement. Mobile service available when scheduling allows.
-      </p>
+      <div class="glass bg-white/80 rounded-3xl border border-white/60 p-6 shadow-xl">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-4 flex items-start gap-3">
+            <span class="shrink-0 h-10 w-10 rounded-xl bg-red-50 ring-1 ring-red-100 grid place-items-center" aria-hidden="true">
+              <svg class="h-5 w-5 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l7 3v6c0 5.25-3.5 9.74-7 11-3.5-1.26-7-5.75-7-11V5l7-3z"/></svg>
+            </span>
+            <div>
+              <p class="font-semibold text-neutral-900">20+ Years</p>
+              <p class="text-sm text-neutral-600">Serving Salem / Keizer</p>
+            </div>
+          </div>
 
-      <div class="mt-6">
-        <a href="/quote.html" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
-          Get My Quote
-        </a>
+          <div class="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-4 flex items-start gap-3">
+            <span class="shrink-0 h-10 w-10 rounded-xl bg-red-50 ring-1 ring-red-100 grid place-items-center" aria-hidden="true">
+              <svg class="h-5 w-5 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3l9-8z"/></svg>
+            </span>
+            <div>
+              <p class="font-semibold text-neutral-900">Family-Owned</p>
+              <p class="text-sm text-neutral-600">Local, honest service</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-4 flex items-start gap-3">
+            <span class="shrink-0 h-10 w-10 rounded-xl bg-red-50 ring-1 ring-red-100 grid place-items-center" aria-hidden="true">
+              <svg class="h-5 w-5 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 8h10v6H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm11 0h3l3 3v3a1 1 0 0 1-1 1h-2.1a2.5 2.5 0 1 0-5 0H14V8zM8.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold text-neutral-900">Clean Mobile Installs</p>
+              <p class="text-sm text-neutral-600">We protect interiors and vacuum up glass.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-4 flex items-start gap-3">
+            <span class="shrink-0 h-10 w-10 rounded-xl bg-red-50 ring-1 ring-red-100 grid place-items-center" aria-hidden="true">
+              <svg class="h-5 w-5 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 2 3-1 2 3 3 1-1 3 2 3-2 3 1 3-3 1-2 3-3-1-3 2-3-2-3 1-2-3-3-1 1-3-2-3 2-3-1-3 3-1 2-3 3 1 3-2zM10 16l7-7-1.5-1.5L10 13l-1.5-1.5L7 12l3 4z"/></svg>
+            </span>
+            <div>
+              <p class="font-semibold text-neutral-900">Lifetime Workmanship</p>
+              <p class="text-sm text-neutral-600">If something’s off, we make it right.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
@@ -249,155 +453,37 @@
         }
       });
     })();
-  </script>
 
-  <script>
-    const star = `<svg class="w-4 h-4 fill-yellow-400" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-    const starEmpty = `<svg class="w-4 h-4 fill-neutral-300" viewBox="0 0 20 20"><path d="m10 15.27 5.18 3.05-1.64-5.81L18 8.24l-6-.26L10 2 8 7.98l-6 .26 4.46 4.27L4.82 18.3 10 15.27z"/></svg>`;
-    function stars(n){ return star.repeat(n) + starEmpty.repeat(5-n); }
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const btn = item.querySelector('.faq-toggle');
+      const content = item.querySelector('.faq-content');
 
-    const ALL_REVIEWS = [
-      { date:'2026-03-07', name:'Sabrina L.', city:'Keizer', rating:5, tags:['Windshield','Mobile'], text:'Booked with them after getting a crack across the driver side. They showed up at my apartment on time, explained the dry time clearly, and the glass looks great. Easy process.' },
-      { date:'2026-03-02', name:'Hannah K.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Got a quote in the morning and they came out that afternoon. The installer was on time, worked in my driveway, and cleaned up before leaving. Everything has been solid since.' },
-      { date:'2026-02-27', name:'Luis R.', city:'Keizer', rating:5, tags:['Side Window'], text:'Someone broke my passenger window overnight. They got me scheduled fast, vacuumed the broken glass out of the door and seat, and the window works like normal again.' },
-      { date:'2026-02-24', name:'Derek N.', city:'Salem', rating:3, tags:['Side Window'], text:'The new glass works fine and the tech was polite, but my appointment window shifted later than I expected. In the end the job itself was done right, I just wish communication had been a little tighter.' },
-      { date:'2026-02-21', name:'Maya S.', city:'Salem', rating:4, tags:['Windshield'], text:'I needed the windshield replaced before the crack got worse. They came out the same day, got it done pretty quickly, and everything looks good now.' },
-      { date:'2026-02-15', name:'Brian P.', city:'Turner', rating:5, tags:['Windshield','Insurance'], text:'They helped me deal with the insurance side and kept me updated by text. Install looked clean, trim was put back correctly, and I have not noticed any wind noise or leaks.' },
-      { date:'2026-02-10', name:'Karina D.', city:'Keizer', rating:5, tags:['Back Glass'], text:'Needed the back glass replaced after a break-in. They showed up when they said they would, cleaned out the shattered glass, and had it done quicker than I expected.' },
-      { date:'2026-02-04', name:'Evan T.', city:'Salem', rating:5, tags:['Windshield'], text:'Fair price, good communication, and no hassle. They replaced the windshield at my office parking lot and explained how long to wait before driving and washing the car.' },
-      { date:'2026-01-29', name:'Joanne W.', city:'Monmouth', rating:4, tags:['Side Window'], text:'Job turned out well and the tech was careful with the trim. The part came in a little later than expected, but they kept me updated and got me in as soon as it arrived.' },
-      { date:'2026-01-23', name:'Devon C.', city:'Salem', rating:5, tags:['Windshield','Mobile'], text:'Super convenient. I did not have to leave work and the windshield replacement was done right in the parking lot. Small thing, but I appreciated that the tech texted before arriving.' },
-      { date:'2026-01-18', name:'Rae A.', city:'Keizer', rating:5, tags:['Windshield'], text:'Called around for a few quotes and theirs was one of the better ones. Appointment was easy to set up, installer was polite, and the windshield looks great.' },
-      { date:'2026-01-12', name:'Nick H.', city:'Salem', rating:5, tags:['Windshield'], text:'My car has sensors near the windshield, so I wanted someone who knew what they were doing. Everything was installed correctly and I have not had any warning lights or issues since.' },
-      { date:'2026-01-05', name:'Alina P.', city:'Keizer', rating:4, tags:['Back Glass'], text:'Good experience overall. The replacement back glass fit well and the defrost lines work. Took a little longer than I expected, but the end result was good.' },
-      { date:'2025-12-29', name:'Tori G.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'I had a big crack show up after a cold morning and needed it done quickly. They got me in the next day, showed up on time, and the whole process was straightforward.' },
-      { date:'2025-12-22', name:'Marcus L.', city:'Dallas', rating:5, tags:['Windshield','Mobile'], text:'They came to my house, finished in the driveway, and the tech was easy to talk to. No pressure, no upsell, just got the job done right.' },
-      { date:'2025-12-16', name:'Stephanie M.', city:'Salem', rating:4, tags:['Back Glass'], text:'Back hatch glass was replaced after a storm knocked a branch down. They were professional and cleaned out the little pieces that were stuck in the seals.' },
-      { date:'2025-12-09', name:'Chris B.', city:'Keizer', rating:5, tags:['Windshield','Insurance'], text:'I was expecting a headache with the claim, but they made it simple. Communication was solid and they showed up exactly when they said they would.' },
-      { date:'2025-12-03', name:'Olivia N.', city:'Silverton', rating:5, tags:['Windshield'], text:'Small crack turned into a bigger problem fast, so I booked a windshield replacement before it got worse. They handled it quickly and the whole thing was easy.' },
-      { date:'2025-11-27', name:'Jared F.', city:'Salem', rating:5, tags:['Side Window'], text:'My truck door glass was smashed and I needed it fixed before the rain came in. They got me in fast and even vacuumed the extra glass out of the floorboard.' },
-      { date:'2025-11-20', name:'Melissa R.', city:'Stayton', rating:4, tags:['Windshield'], text:'Install went well and the windshield looks good. Only reason for four stars is I had to shift the appointment window a bit, but they kept me informed the whole time.' },
-      { date:'2025-11-14', name:'Cole S.', city:'Keizer', rating:5, tags:['Windshield','Sensors'], text:'I drive a newer SUV and was worried about the camera area near the mirror. Everything was handled correctly and I have not had any issues since the replacement.' },
-      { date:'2025-11-07', name:'Amber T.', city:'Salem', rating:5, tags:['Side Window'], text:'Needed a small side glass replaced after someone tried getting into the car. They found the part, came out quickly, and made the car look normal again.' },
-      { date:'2025-11-02', name:'Paige R.', city:'Keizer', rating:3, tags:['Windshield'], text:'The install itself was good and everyone was nice, but the appointment took longer than I expected from start to finish. The new windshield looks fine, just ended up being more of a time block than I planned for.' },
-      { date:'2025-10-31', name:'Peter V.', city:'Aumsville', rating:5, tags:['Back Glass','Mobile'], text:'They replaced the back glass right in my driveway and the tech was careful loading and unloading tools around the car. Smooth process from start to finish.' },
-      { date:'2025-10-24', name:'Danielle C.', city:'Monmouth', rating:4, tags:['Side Window'], text:'Happy with the work. The glass fit and the window motor works fine. Scheduling took an extra day because of the part, but once it arrived they handled it quickly.' },
-      { date:'2025-10-17', name:'Isaac M.', city:'Salem', rating:5, tags:['Windshield'], text:'Price was fair compared with the bigger companies I called. The installer was friendly, on time, and left no mess behind.' },
-      { date:'2025-10-10', name:'Kelsey J.', city:'Keizer', rating:5, tags:['Windshield','Mobile'], text:'Really convenient mobile service. I was able to stay at work while they handled the windshield replacement, and they texted me when they were done.' },
-      { date:'2025-10-03', name:'Aaron D.', city:'Woodburn', rating:5, tags:['Windshield'], text:'I commute a lot and could not keep driving with the crack spreading. They got me scheduled fast and the whole replacement was easier than I expected.' },
-      { date:'2025-09-26', name:'Nina E.', city:'Salem', rating:4, tags:['Back Glass'], text:'Back glass replacement turned out good and the tech was respectful. There was a short delay getting started, but they called ahead so I was not left wondering.' },
-      { date:'2025-09-19', name:'Tyler W.', city:'Independence', rating:5, tags:['Windshield'], text:'No complaints. Good communication, fair quote, and solid install. I would use them again if I needed another windshield.' },
-      { date:'2025-09-12', name:'Rosa H.', city:'Keizer', rating:5, tags:['Side Window'], text:'The tech took time to get the broken pieces out of the door and checked that the window rolled up and down correctly before leaving. Appreciated that.' },
-      { date:'2025-09-05', name:'Grant P.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Needed my windshield replaced before a weekend trip. They got me in, showed up on time, and the car was ready the same day.' },
-      { date:'2025-08-29', name:'Emma C.', city:'Turner', rating:4, tags:['Windshield'], text:'Good overall experience. The replacement windshield looks good and everything has held up fine since then. I would use them again.' }
-    ];
-  </script>
-
-  <script>
-    const grid = document.getElementById('reviewsGrid');
-    const loadBtn = document.getElementById('loadMore');
-    const ratingFilter = document.getElementById('ratingFilter');
-
-    let visibleCount = 6;
-    let filtered = [];
-
-    function card(r){
-      const tagBadges = r.tags.map(t => `<span class="px-2 py-1 text-xs rounded-full bg-neutral-100 text-neutral-700">${t}</span>`).join(' ');
-      return `
-        <article class="rounded-2xl border border-neutral-200 p-5 bg-white shadow-sm hover:shadow-md transition">
-          <div class="flex items-center justify-between gap-4">
-            <div class="font-semibold">${r.name}</div>
-            <div class="flex shrink-0">${stars(r.rating)}</div>
-          </div>
-          <div class="text-xs text-neutral-500 mt-0.5">${r.city}</div>
-          <p class="mt-3 text-sm text-neutral-800">${r.text}</p>
-          <div class="mt-4 flex flex-wrap gap-2">${tagBadges}</div>
-        </article>
-      `;
-    }
-
-    function sortReviews(items){
-      return [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
-
-    function render(){
-      if(filtered.length === 0){
-        grid.innerHTML = `
-          <div class="sm:col-span-2 lg:col-span-3 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 text-center text-neutral-600">
-            No reviews match that selection.
-          </div>
-        `;
-        loadBtn.classList.add('hidden');
-        return;
-      }
-
-      grid.innerHTML = filtered.slice(0, visibleCount).map(card).join('');
-      loadBtn.classList.toggle('hidden', visibleCount >= filtered.length);
-    }
-
-    function applyControls(){
-      const rf = ratingFilter.value;
-
-      let next = ALL_REVIEWS.filter(r => {
-        if(rf === 'all') return true;
-        return r.rating === parseInt(rf, 10);
+      btn.addEventListener('click',()=>{
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        content.style.maxHeight = !isOpen ? (content.scrollHeight + 'px') : 0;
       });
-
-      filtered = sortReviews(next);
-      visibleCount = Math.min(6, filtered.length);
-      render();
-    }
-
-    loadBtn.addEventListener('click', () => {
-      visibleCount += 6;
-      render();
     });
 
-    ratingFilter.addEventListener('change', applyControls);
+    const search = document.getElementById('faqSearch');
+    const filter = document.getElementById('faqFilter');
+    const items = Array.from(document.querySelectorAll('.faq-item'));
 
-    applyControls();
-  </script>
+    function apply(){
+      const q = (search.value || '').toLowerCase();
+      const tag = filter.value;
 
-  <script>
-    (function(){
-      const popup = document.getElementById('quotePopup');
-      const overlay = document.getElementById('quotePopupOverlay');
-      const closeBtn = document.getElementById('quotePopupClose');
-      const sessionKey = 'reviewsQuotePopupShown';
-
-      if (!popup) return;
-      if (sessionStorage.getItem(sessionKey)) return;
-
-      function openPopup(){
-        if (sessionStorage.getItem(sessionKey)) return;
-        popup.classList.remove('hidden');
-        popup.classList.add('flex');
-        document.body.classList.add('overflow-hidden');
-        sessionStorage.setItem(sessionKey, 'true');
-      }
-
-      function closePopup(){
-        popup.classList.add('hidden');
-        popup.classList.remove('flex');
-        document.body.classList.remove('overflow-hidden');
-      }
-
-      const timer = setTimeout(openPopup, 20000);
-
-      [overlay, closeBtn].forEach(el => {
-        if(!el) return;
-        el.addEventListener('click', () => {
-          clearTimeout(timer);
-          closePopup();
-        });
+      items.forEach(it=>{
+        const text = it.innerText.toLowerCase();
+        const matchText = !q || text.includes(q);
+        const matchTag = tag === 'all' || (it.dataset.tags || '').includes(tag);
+        it.style.display = (matchText && matchTag) ? '' : 'none';
       });
+    }
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
-          closePopup();
-        }
-      });
-    })();
+    search.addEventListener('input', apply);
+    filter.addEventListener('change', apply);
   </script>
 </body>
 </html>
