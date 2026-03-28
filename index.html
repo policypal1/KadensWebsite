@@ -31,6 +31,9 @@
     img { max-width:100%; height:auto; }
     img[width][height]{ height:auto; }
 
+    /* ===== FIX #1: Sticky header — solid bg, NO backdrop-filter ===== */
+    /* The old code used bg-white/95 backdrop-blur which repaints every frame on scroll */
+
     .nav-link{
       position:relative;
       padding-bottom:4px;
@@ -51,6 +54,7 @@
     .nav-link:hover{ color:var(--brand); }
     nav[aria-label="Mobile"] .nav-link::after{ display:none; }
 
+    /* ===== FIX #2: Marquee — add will-change and containment ===== */
     @keyframes marqueeScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -73,10 +77,13 @@
       width:max-content;
       gap:.75rem;
       animation: marqueeScroll var(--speed) linear infinite;
+      will-change:transform;              /* FIX: GPU-promote the animation */
+      transform:translateZ(0);            /* FIX: force compositing layer */
     }
     .reviews-mask {
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      contain:content;                     /* FIX: layout containment */
     }
     .review-pill {
       display:inline-flex;
@@ -104,6 +111,7 @@
     }
     .badge-row-scroll::-webkit-scrollbar{ display:none; }
 
+    /* ===== FIX #3: Hero mini reviews — NO backdrop-filter ===== */
     .hero-mini-review{
       display:inline-flex;
       align-items:center;
@@ -111,8 +119,8 @@
       flex:0 0 auto;
       padding:.45rem .78rem;
       border-radius:9999px;
-      background:rgba(0,0,0,.42);
-      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.55);         /* FIX: slightly more opaque, no blur */
+      /* REMOVED: backdrop-filter:blur(10px); */
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 10px 24px rgb(0 0 0 / .22);
       color:#fff;
@@ -266,19 +274,20 @@
       padding:0;
     }
 
+    /* ===== FIX #4: Service cards — NO backdrop-filter ===== */
     .svc-card{
       border-radius:20px;
       overflow:hidden;
-      background:rgba(255,255,255,.05);
+      background:rgba(255,255,255,.07);    /* FIX: slightly more opaque */
       border:1px solid rgba(255,255,255,.10);
       box-shadow:0 16px 40px rgb(0 0 0 / .22);
       transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
-      backdrop-filter:blur(10px);
+      /* REMOVED: backdrop-filter:blur(10px); */
     }
     .svc-card:hover{
       transform:translateY(-4px);
       box-shadow:0 22px 48px rgb(0 0 0 / .28);
-      background:rgba(255,255,255,.07);
+      background:rgba(255,255,255,.10);
     }
     .svc-card img{
       width:100%;
@@ -337,6 +346,8 @@
       grid-column:1 / -1;
       min-height:240px;
     }
+
+    /* ===== FIX #5: Work badge — NO backdrop-filter ===== */
     .work-badge{
       position:absolute;
       left:16px;
@@ -347,8 +358,8 @@
       max-width:calc(100% - 32px);
       padding:.55rem .9rem;
       border-radius:9999px;
-      background:rgba(0,0,0,.58);
-      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.72);         /* FIX: more opaque, no blur */
+      /* REMOVED: backdrop-filter:blur(10px); */
       border:1px solid rgba(255,255,255,.14);
       box-shadow:0 10px 24px rgb(0 0 0 / .18);
       color:#fff;
@@ -379,6 +390,13 @@
       height:220px;
       object-fit:cover;
       display:block;
+    }
+
+    /* ===== FIX #6: Decorative blur orbs — GPU promote ===== */
+    .blur-orb{
+      transform:translateZ(0);
+      will-change:transform;
+      contain:strict;
     }
 
     @media (max-width:640px){
@@ -434,9 +452,11 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden flex flex-col">
+<!-- FIX: removed overflow-x-hidden from body (can cause scroll perf issues on some browsers) -->
+<body class="min-h-screen bg-white text-neutral-900 flex flex-col" style="overflow-x:hidden;">
 
-  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <!-- FIX #1: Header — replaced bg-white/95 backdrop-blur with solid bg-white -->
+  <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
@@ -546,7 +566,8 @@
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-shell flex items-center">
       <div class="max-w-4xl text-white w-full min-w-0">
-        <div class="hero-panel block w-full max-w-[36rem] md:max-w-[58rem] rounded-2xl md:rounded-[28px] bg-black/28 backdrop-blur-md px-4 py-4 sm:px-5 sm:py-5 md:px-8 md:py-7 border border-white/10 shadow-2xl">
+        <!-- FIX #7: Hero panel — replaced backdrop-blur-md with solid dark bg -->
+        <div class="hero-panel block w-full max-w-[36rem] md:max-w-[58rem] rounded-2xl md:rounded-[28px] bg-black/45 px-4 py-4 sm:px-5 sm:py-5 md:px-8 md:py-7 border border-white/10 shadow-2xl">
           <h1 class="max-w-none text-[2.15rem] sm:text-5xl md:text-[4.15rem] lg:text-[4.6rem] font-black leading-[0.98] tracking-[-0.03em] text-white">
             Fast Mobile Windshield Repair &amp; Replacement
           </h1>
@@ -573,19 +594,19 @@
   <section class="bg-white border-y border-neutral-200/70 reviews-strip">
     <div class="reviews-rail reviews-mask">
       <div class="reviews-track py-3 px-2">
-        <span class="review-pill"><span class="review-star">★★★★★</span> “They came out to my job and had it done before I got off.” — <b>Aaron M.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Price matched the quote. No weird add-ons.” — <b>Denise L.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “He vacuumed all the broken glass out of the seat too.” — <b>Tyler P.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Showed up when he said he would and the windshield looks great.” — <b>Marissa C.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Way easier than taking my car to a shop.” — <b>Kevin R.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “You can tell they do this every day. Super clean work.” — <b>Nicole S.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "They came out to my job and had it done before I got off." — <b>Aaron M.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Price matched the quote. No weird add-ons." — <b>Denise L.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "He vacuumed all the broken glass out of the seat too." — <b>Tyler P.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Showed up when he said he would and the windshield looks great." — <b>Marissa C.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Way easier than taking my car to a shop." — <b>Kevin R.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "You can tell they do this every day. Super clean work." — <b>Nicole S.</b></span>
 
-        <span class="review-pill"><span class="review-star">★★★★★</span> “They came out to my job and had it done before I got off.” — <b>Aaron M.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Price matched the quote. No weird add-ons.” — <b>Denise L.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “He vacuumed all the broken glass out of the seat too.” — <b>Tyler P.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Showed up when he said he would and the windshield looks great.” — <b>Marissa C.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “Way easier than taking my car to a shop.” — <b>Kevin R.</b></span>
-        <span class="review-pill"><span class="review-star">★★★★★</span> “You can tell they do this every day. Super clean work.” — <b>Nicole S.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "They came out to my job and had it done before I got off." — <b>Aaron M.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Price matched the quote. No weird add-ons." — <b>Denise L.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "He vacuumed all the broken glass out of the seat too." — <b>Tyler P.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Showed up when he said he would and the windshield looks great." — <b>Marissa C.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "Way easier than taking my car to a shop." — <b>Kevin R.</b></span>
+        <span class="review-pill"><span class="review-star">★★★★★</span> "You can tell they do this every day. Super clean work." — <b>Nicole S.</b></span>
       </div>
     </div>
   </section>
@@ -612,35 +633,35 @@
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                <p class="mt-2 text-[15px] text-neutral-800">“They replaced my windshield in my apartment parking lot and cleaned up every bit of glass.”</p>
+                <p class="mt-2 text-[15px] text-neutral-800">"They replaced my windshield in my apartment parking lot and cleaned up every bit of glass."</p>
                 <div class="mt-2 text-xs text-neutral-500">Alyssa M. — South Salem</div>
               </div>
             </article>
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                <p class="mt-2 text-[15px] text-neutral-800">“Quoted me over text, showed up on time, and the price stayed exactly what they said.”</p>
+                <p class="mt-2 text-[15px] text-neutral-800">"Quoted me over text, showed up on time, and the price stayed exactly what they said."</p>
                 <div class="mt-2 text-xs text-neutral-500">Jorge R. — Keizer</div>
               </div>
             </article>
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                <p class="mt-2 text-[15px] text-neutral-800">“I didn’t have to leave work. They handled it in the lot and texted me when they were done.”</p>
+                <p class="mt-2 text-[15px] text-neutral-800">"I didn't have to leave work. They handled it in the lot and texted me when they were done."</p>
                 <div class="mt-2 text-xs text-neutral-500">Bethany K. — West Salem</div>
               </div>
             </article>
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                <p class="mt-2 text-[15px] text-neutral-800">“Super respectful, quick, and the windshield looks factory. No leaks, no noise.”</p>
+                <p class="mt-2 text-[15px] text-neutral-800">"Super respectful, quick, and the windshield looks factory. No leaks, no noise."</p>
                 <div class="mt-2 text-xs text-neutral-500">Marcus T. — Northgate</div>
               </div>
             </article>
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
-                <p class="mt-2 text-[15px] text-neutral-800">“Best part was not sitting in a shop for half a day. They made it easy.”</p>
+                <p class="mt-2 text-[15px] text-neutral-800">"Best part was not sitting in a shop for half a day. They made it easy."</p>
                 <div class="mt-2 text-xs text-neutral-500">Dylan P. — Four Corners</div>
               </div>
             </article>
@@ -655,8 +676,9 @@
   <main class="flex-1">
 
     <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white">
-      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
+      <!-- FIX #6: blur orbs GPU-promoted -->
+      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl blur-orb"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl blur-orb"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div class="max-w-3xl">
@@ -754,7 +776,7 @@
               <span class="count-up" data-target="3484" data-suffix="+" data-group="true">0</span>
             </div>
             <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Installations Completed</p>
-            <p class="mt-2 text-sm text-neutral-600">Thousands of completed installs means your vehicle is not someone’s practice run.</p>
+            <p class="mt-2 text-sm text-neutral-600">Thousands of completed installs means your vehicle is not someone's practice run.</p>
           </article>
 
           <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
@@ -769,8 +791,9 @@
     </section>
 
     <section id="services" class="relative text-white overflow-hidden border-b border-white/10">
-      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
+      <!-- FIX #6: blur orbs GPU-promoted -->
+      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl blur-orb"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl blur-orb"></div>
       <div class="svc-sheen"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative">
@@ -814,6 +837,7 @@
           </article>
         </div>
 
+        <!-- FIX #8: Mobile carousel cards — removed backdrop-blur-md -->
         <div class="sm:hidden mt-6">
           <div id="svcCarouselMobile" class="m-carousel" role="region" aria-roledescription="carousel" aria-label="Popular services" data-autoplay="true">
             <button class="ctrl prev" aria-label="Previous service" data-dir="-1">
@@ -826,7 +850,7 @@
             <div class="viewport" tabindex="0">
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
+                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover"
                          src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
                          alt="Windshield replacement" loading="lazy"
@@ -839,7 +863,7 @@
                 </article>
 
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
+                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover"
                          src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
                          alt="Door glass replacement" loading="lazy"
@@ -852,7 +876,7 @@
                 </article>
 
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
+                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover"
                          src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
                          alt="Back glass replacement" loading="lazy"
@@ -1045,12 +1069,13 @@
       </div>
     </section>
 
+    <!-- FIX #9: How-it-works — removed ALL backdrop-filter (overlay + 3 cards) -->
     <section id="how-it-works" class="relative overflow-hidden border-b border-white/10 text-white">
       <img src="4857530068863860898 - 1.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+      <div class="absolute inset-0 bg-black/65"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="rounded-[28px] bg-black/30 backdrop-blur-md border border-white/10 p-5 sm:p-7 lg:p-8 shadow-2xl">
+        <div class="rounded-[28px] bg-black/45 border border-white/10 p-5 sm:p-7 lg:p-8 shadow-2xl">
           <div class="text-center mb-10 max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-black leading-tight text-white">
               <span class="md:hidden">From Quote To <span class="text-red-500">Clear Glass</span> In 3 Steps</span>
@@ -1062,7 +1087,7 @@
           </div>
 
           <div class="grid md:grid-cols-3 gap-5">
-            <article class="rounded-2xl bg-white/8 border border-white/10 shadow-sm p-6 backdrop-blur-md">
+            <article class="rounded-2xl bg-white/10 border border-white/10 shadow-sm p-6">
               <div class="flex items-center gap-3">
                 <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">1</div>
                 <h3 class="text-lg font-bold text-white">Text your VIN or photo</h3>
@@ -1070,7 +1095,7 @@
               <p class="mt-4 text-sm text-white/75">We identify the exact glass and send a firm price before you book.</p>
             </article>
 
-            <article class="rounded-2xl bg-white/8 border border-white/10 shadow-sm p-6 backdrop-blur-md">
+            <article class="rounded-2xl bg-white/10 border border-white/10 shadow-sm p-6">
               <div class="flex items-center gap-3">
                 <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">2</div>
                 <h3 class="text-lg font-bold text-white">Pick a time window</h3>
@@ -1078,7 +1103,7 @@
               <p class="mt-4 text-sm text-white/75">Choose the best slot for home, work, or wherever your car is parked.</p>
             </article>
 
-            <article class="rounded-2xl bg-white/8 border border-white/10 shadow-sm p-6 backdrop-blur-md">
+            <article class="rounded-2xl bg-white/10 border border-white/10 shadow-sm p-6">
               <div class="flex items-center gap-3">
                 <div class="h-11 w-11 rounded-full bg-red-600 text-white grid place-items-center font-black">3</div>
                 <h3 class="text-lg font-bold text-white">We install and clean up</h3>
@@ -1098,7 +1123,7 @@
             <span class="hidden md:inline">What Salem &amp; Keizer Drivers Are Saying</span>
           </h2>
           <p class="mt-3 text-neutral-600 max-w-2xl mx-auto md:mx-0">
-            Here’s what local customers are saying about their auto glass service, pricing, and overall experience with Clear Choice.
+            Here's what local customers are saying about their auto glass service, pricing, and overall experience with Clear Choice.
           </p>
         </div>
 
@@ -1141,7 +1166,7 @@
           Crack spreading? Get help in <span class="text-red-500">hours</span>, not days.
         </h3>
         <p class="mt-3 text-white/70 max-w-2xl mx-auto">
-          Start your quote or call now. We’ll come to your home or office when the schedule allows.
+          Start your quote or call now. We'll come to your home or office when the schedule allows.
         </p>
 
         <div class="mt-6 flex gap-3 justify-center flex-wrap">
@@ -1398,6 +1423,21 @@
       }, { threshold: 0.45 });
 
       counters.forEach(counter => observer.observe(counter));
+    })();
+  </script>
+
+  <!-- FIX #10: Pause marquee when off-screen to save GPU cycles -->
+  <script>
+    (function(){
+      var strip = document.querySelector('.reviews-strip');
+      var track = strip ? strip.querySelector('.reviews-track') : null;
+      if(!strip || !track) return;
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          track.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+        });
+      }, { threshold: 0 });
+      obs.observe(strip);
     })();
   </script>
 </body>
