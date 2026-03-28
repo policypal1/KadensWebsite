@@ -31,6 +31,12 @@
     img { max-width:100%; height:auto; }
     img[width][height]{ height:auto; }
 
+    /* ===== FIX: Skip rendering off-screen sections until scrolled into view ===== */
+    #guarantees, #stats, #services, #our-work, #aboutBand, #coverage-map, #how-it-works, #reviews {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 600px;
+    }
+
     /* ===== FIX #1: Sticky header — solid bg, NO backdrop-filter ===== */
     /* The old code used bg-white/95 backdrop-blur which repaints every frame on scroll */
 
@@ -392,12 +398,7 @@
       display:block;
     }
 
-    /* ===== FIX #6: Decorative blur orbs — GPU promote ===== */
-    .blur-orb{
-      transform:translateZ(0);
-      will-change:transform;
-      contain:strict;
-    }
+    /* Decorative backgrounds use radial-gradient now — no filter cost */
 
     @media (max-width:640px){
       .reviews-strip{ display:none !important; }
@@ -676,9 +677,8 @@
   <main class="flex-1">
 
     <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white">
-      <!-- FIX #6: blur orbs GPU-promoted -->
-      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl blur-orb"></div>
-      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl blur-orb"></div>
+      <!-- FIX: replaced blur-3xl filter orbs with zero-cost radial gradients -->
+      <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div class="max-w-3xl">
@@ -791,9 +791,8 @@
     </section>
 
     <section id="services" class="relative text-white overflow-hidden border-b border-white/10">
-      <!-- FIX #6: blur orbs GPU-promoted -->
-      <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl blur-orb"></div>
-      <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl blur-orb"></div>
+      <!-- FIX: replaced blur-3xl filter orbs with zero-cost radial gradients -->
+      <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
       <div class="svc-sheen"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative">
