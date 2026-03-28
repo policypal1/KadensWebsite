@@ -12,22 +12,6 @@
   <link rel="apple-touch-icon" href="logo.png.png?v=2">
   <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
-  <link rel="preconnect" href="https://taylorautoglass.com" crossorigin>
-  <link rel="dns-prefetch" href="//taylorautoglass.com">
-  <link rel="preconnect" href="https://www.texanglass.com" crossorigin>
-  <link rel="dns-prefetch" href="//www.texanglass.com">
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link rel="dns-prefetch" href="//images.unsplash.com">
-
-  <link
-    rel="preload"
-    as="image"
-    href="Screenshot 2026-03-12 120342.png"
-    fetchpriority="high"
-  />
-
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -46,15 +30,6 @@
     a, button { -webkit-tap-highlight-color: transparent; }
     img { max-width:100%; height:auto; }
     img[width][height]{ height:auto; }
-
-    body{
-      text-rendering:optimizeSpeed;
-    }
-
-    .defer-render{
-      content-visibility:auto;
-      contain-intrinsic-size:1px 900px;
-    }
 
     .nav-link{
       position:relative;
@@ -77,8 +52,8 @@
     nav[aria-label="Mobile"] .nav-link::after{ display:none; }
 
     @keyframes marqueeScroll {
-      0% { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(-50%,0,0); }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     @keyframes heroFadeUp {
@@ -98,7 +73,6 @@
       width:max-content;
       gap:.75rem;
       animation: marqueeScroll var(--speed) linear infinite;
-      will-change: transform;
     }
     .reviews-mask {
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -155,14 +129,6 @@
     .hero-mini-review .copy{
       white-space:nowrap;
       font-weight:600;
-    }
-
-    .hero-media,
-    .svc-card img,
-    .work-item img,
-    .work-thumb-card img{
-      transform:translateZ(0);
-      backface-visibility:hidden;
     }
 
     @media (min-width:768px){
@@ -234,7 +200,6 @@
       display:flex;
       gap:0;
       will-change:transform;
-      transform:translate3d(0,0,0);
       transition:transform 280ms ease;
       touch-action: pan-y;
     }
@@ -319,7 +284,6 @@
       width:100%;
       height:200px;
       object-fit:cover;
-      display:block;
     }
 
     .hero-shell{
@@ -476,14 +440,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-          <img
-            src="logo.png.png"
-            alt="Clear Choice Auto Glass logo"
-            style="height:65px;width:auto"
-            width="260"
-            height="65"
-            decoding="async"
-          >
+          <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px;width:auto">
           <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
         </a>
 
@@ -530,18 +487,45 @@
     </div>
   </header>
 
+  <script>
+    (function(){
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const panel = menu ? menu.querySelector('.slide-menu') : null;
+
+      if(btn && menu && panel){
+        function toggle(open){
+          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', !willOpen);
+          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+          btn.setAttribute('aria-expanded', String(willOpen));
+        }
+
+        btn.addEventListener('click',()=>toggle());
+        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
+        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+      }
+
+      const path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+        const href = a.getAttribute('href') || '';
+        const norm = href.replace(/\/+$/,'') || '/';
+        if(norm === path){
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        }
+      });
+    })();
+  </script>
+
   <section id="hero" class="relative overflow-hidden border-b border-neutral-200">
     <div class="absolute inset-0">
-      <img
-        src="Screenshot 2026-03-12 120342.png"
-        alt="Mobile auto glass service on-site"
-        class="hero-media w-full h-full object-cover object-center"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        width="1600"
-        height="1000"
-      />
+      <img src="Screenshot 2026-03-12 120342.png"
+           alt="Mobile auto glass service on-site"
+           class="hero-media w-full h-full object-cover object-center"
+           loading="eager"
+           fetchpriority="high" />
       <div
         class="absolute inset-0"
         style="background:
@@ -616,15 +600,15 @@
       </div>
 
       <div id="revCarousel" class="m-carousel mt-4" role="region" aria-roledescription="carousel" aria-label="Customer reviews" data-autoplay="false">
-        <button class="ctrl prev" aria-label="Previous review" data-dir="-1" type="button">
+        <button class="ctrl prev" aria-label="Previous review" data-dir="-1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <button class="ctrl next" aria-label="Next review" data-dir="1" type="button">
+        <button class="ctrl next" aria-label="Next review" data-dir="1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
         </button>
 
         <div class="viewport" tabindex="0">
-          <div class="track" style="transform:translate3d(0,0,0);">
+          <div class="track" style="transform: translateX(0);">
             <article class="slide">
               <div class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-5">
                 <div class="text-yellow-500" aria-hidden="true">★★★★★</div>
@@ -670,7 +654,7 @@
 
   <main class="flex-1">
 
-    <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white defer-render">
+    <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white">
       <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
 
@@ -745,7 +729,7 @@
       </div>
     </section>
 
-    <section id="stats" class="bg-white border-b border-neutral-200/70 defer-render">
+    <section id="stats" class="bg-white border-b border-neutral-200/70">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
         <div class="text-center max-w-3xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
@@ -784,7 +768,7 @@
       </div>
     </section>
 
-    <section id="services" class="relative text-white overflow-hidden border-b border-white/10 defer-render">
+    <section id="services" class="relative text-white overflow-hidden border-b border-white/10">
       <div class="pointer-events-none absolute -top-24 -right-28 h-72 w-72 rounded-full bg-red-600/20 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-24 -left-28 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
       <div class="svc-sheen"></div>
@@ -797,16 +781,10 @@
 
         <div class="hidden sm:grid mt-8 grid-cols-3 gap-5">
           <article class="svc-card">
-            <img
-              src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
-              alt="Windshield replacement"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              width="800"
-              height="533"
-            />
+            <img src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+                 alt="Windshield replacement"
+                 onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
+                 loading="lazy" decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
@@ -814,16 +792,10 @@
           </article>
 
           <article class="svc-card">
-            <img
-              src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
-              alt="Door glass replacement"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              width="800"
-              height="533"
-            />
+            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
+                 alt="Door glass replacement"
+                 onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
+                 loading="lazy" decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
@@ -831,16 +803,10 @@
           </article>
 
           <article class="svc-card">
-            <img
-              src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
-              alt="Back glass replacement"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              width="800"
-              height="533"
-            />
+            <img src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+                 alt="Back glass replacement"
+                 onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
+                 loading="lazy" decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Handles shattered rear glass, damaged defroster lines, and cleanup after the glass blows out.</p>
@@ -850,28 +816,21 @@
 
         <div class="sm:hidden mt-6">
           <div id="svcCarouselMobile" class="m-carousel" role="region" aria-roledescription="carousel" aria-label="Popular services" data-autoplay="true">
-            <button class="ctrl prev" aria-label="Previous service" data-dir="-1" type="button">
+            <button class="ctrl prev" aria-label="Previous service" data-dir="-1">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <button class="ctrl next" aria-label="Next service" data-dir="1" type="button">
+            <button class="ctrl next" aria-label="Next service" data-dir="1">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
             </button>
 
             <div class="viewport" tabindex="0">
-              <div class="track" style="transform:translate3d(0,0,0);">
+              <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
-                    <img
-                      class="w-full h-[185px] object-cover"
-                      src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
-                      alt="Windshield replacement"
-                      loading="lazy"
-                      fetchpriority="low"
-                      decoding="async"
-                      width="800"
-                      height="533"
-                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"
-                    />
+                    <img class="w-full h-[185px] object-cover"
+                         src="https://taylorautoglass.com/wp-content/uploads/2015/02/windshield-repair.jpg"
+                         alt="Windshield replacement" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop';"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For cracked front glass, spreading damage, or chips that have gone too far.</p>
@@ -881,17 +840,10 @@
 
                 <article class="slide">
                   <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
-                    <img
-                      class="w-full h-[185px] object-cover"
-                      src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
-                      alt="Door glass replacement"
-                      loading="lazy"
-                      fetchpriority="low"
-                      decoding="async"
-                      width="800"
-                      height="533"
-                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"
-                    />
+                    <img class="w-full h-[185px] object-cover"
+                         src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
+                         alt="Door glass replacement" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop';"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
@@ -901,17 +853,10 @@
 
                 <article class="slide">
                   <div class="rounded-2xl bg-white/5 border border-white/10 shadow-sm overflow-hidden backdrop-blur-md">
-                    <img
-                      class="w-full h-[185px] object-cover"
-                      src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
-                      alt="Back glass replacement"
-                      loading="lazy"
-                      fetchpriority="low"
-                      decoding="async"
-                      width="800"
-                      height="533"
-                      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"
-                    />
+                    <img class="w-full h-[185px] object-cover"
+                         src="https://www.texanglass.com/wp-content/uploads/2019/03/rear-window-glass-replacement-The-Woodlands-Texas.jpeg"
+                         alt="Back glass replacement" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=800&auto=format&fit=crop';"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For shattered rear glass, bad rear visibility, or damaged back-window defroster lines.</p>
@@ -934,7 +879,7 @@
       </div>
     </section>
 
-    <section id="our-work" class="bg-white border-y border-neutral-200/70 defer-render">
+    <section id="our-work" class="bg-white border-y border-neutral-200/70">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="mb-7 max-w-3xl">
           <h2 class="text-2xl md:text-4xl font-black leading-tight text-neutral-900">Recent installs from around Salem &amp; Keizer</h2>
@@ -943,82 +888,82 @@
 
         <div class="hidden md:grid work-collage" aria-label="Work photo gallery">
           <figure class="work-item work-item--main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" fetchpriority="low" decoding="async" width="1200" height="900">
+            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
           <figure class="work-item">
-            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" fetchpriority="low" decoding="async" width="1200" height="900">
+            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
           </figure>
         </div>
 
         <div class="md:hidden">
           <figure class="work-item work-mobile-main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" fetchpriority="low" decoding="async" width="1200" height="900">
+            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
           <div id="workCarouselMobile" class="m-carousel m-carousel--twoup mt-4" role="region" aria-roledescription="carousel" aria-label="Recent install photos" data-visible="2" data-step="1" data-autoplay="false">
-            <button class="ctrl prev" aria-label="Previous work images" data-dir="-1" type="button">
+            <button class="ctrl prev" aria-label="Previous work images" data-dir="-1">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <button class="ctrl next" aria-label="Next work images" data-dir="1" type="button">
+            <button class="ctrl next" aria-label="Next work images" data-dir="1">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
             </button>
 
             <div class="viewport" tabindex="0">
-              <div class="track" style="transform:translate3d(0,0,0);">
+              <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" fetchpriority="low" decoding="async" width="1200" height="900">
+                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" fetchpriority="low" decoding="async" width="900" height="1200">
+                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" fetchpriority="low" decoding="async" width="1200" height="900">
+                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async">
                   </div>
                 </article>
               </div>
@@ -1030,7 +975,7 @@
       </div>
     </section>
 
-    <section id="aboutBand" class="relative overflow-hidden bg-neutral-900 border-y border-white/10 text-white defer-render">
+    <section id="aboutBand" class="relative overflow-hidden bg-neutral-900 border-y border-white/10 text-white">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1042,16 +987,10 @@
           </div>
 
           <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
-            <img
-              src="6105496237078034540.jpg"
-              alt="Mobile auto glass technician working on-site"
-              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              width="1200"
-              height="900"
-            >
+            <img src="6105496237078034540.jpg"
+                 alt="Mobile auto glass technician working on-site"
+                 class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
+                 loading="lazy">
           </div>
 
           <div>
@@ -1086,7 +1025,7 @@
       </div>
     </section>
 
-    <section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70 defer-render">
+    <section id="coverage-map" class="bg-neutral-50 border-y border-neutral-200/70">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="max-w-3xl">
           <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
@@ -1098,31 +1037,16 @@
         </div>
 
         <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
-          <img
-            src="salem.png?v=2"
-            alt="Service area map for Salem and Keizer"
-            class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
-            loading="lazy"
-            fetchpriority="low"
-            decoding="async"
-            width="1600"
-            height="900"
-          />
+          <img src="salem.png?v=2"
+               alt="Service area map for Salem and Keizer"
+               class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
+               loading="lazy" />
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" class="relative overflow-hidden border-b border-white/10 text-white defer-render">
-      <img
-        src="4857530068863860898 - 1.jpg"
-        alt="Forest road in Oregon"
-        class="absolute inset-0 w-full h-full object-cover"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-        width="1600"
-        height="900"
-      />
+    <section id="how-it-works" class="relative overflow-hidden border-b border-white/10 text-white">
+      <img src="4857530068863860898 - 1.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1166,7 +1090,7 @@
       </div>
     </section>
 
-    <section id="reviews" class="bg-white border-y border-neutral-200/70 defer-render">
+    <section id="reviews" class="bg-white border-y border-neutral-200/70">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="max-w-4xl text-center md:text-left">
           <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
@@ -1209,7 +1133,7 @@
       </div>
     </section>
 
-    <section class="relative overflow-hidden bg-neutral-950 border-t border-white/10 defer-render">
+    <section class="relative overflow-hidden bg-neutral-950 border-t border-white/10">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]"></div>
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
         <p class="text-xs uppercase tracking-wide text-white/55">Need help fast?</p>
@@ -1271,261 +1195,209 @@
     </div>
   </footer>
 
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
   <script>
-    (() => {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isMobile = window.matchMedia('(max-width: 639px)').matches;
+    (function(){
+      function initCarousel(root){
+        if(!root) return;
 
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+        const viewport=root.querySelector('.viewport');
+        const track=root.querySelector('.track');
+        const slides=Array.from(root.querySelectorAll('.slide'));
+        const prev=root.querySelector('.prev');
+        const next=root.querySelector('.next');
+        const dotsWrap=root.querySelector('.dots');
 
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      const panel = menu ? menu.querySelector('.slide-menu') : null;
+        if(!viewport || !track || !slides.length || !dotsWrap) return;
 
-      if (btn && menu && panel) {
-        function toggleMenu(open) {
-          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
-          menu.classList.toggle('hidden', !willOpen);
-          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-          btn.setAttribute('aria-expanded', String(willOpen));
-        }
+        const shouldAutoplay=root.dataset.autoplay==='true';
+        const visible=Math.max(1, Number(root.dataset.visible || 1));
+        const step=Math.max(1, Number(root.dataset.step || 1));
+        let index=0;
+        let rid;
+        let iv=null;
+        let active=false;
+        let startX=0;
 
-        btn.addEventListener('click', () => toggleMenu());
-        menu.addEventListener('click', (e) => {
-          if (e.target.closest('a')) toggleMenu(false);
-        });
-        document.addEventListener('click', (e) => {
-          if (!menu.contains(e.target) && !btn.contains(e.target)) toggleMenu(false);
-        });
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') toggleMenu(false);
-        });
-      }
-
-      const path = location.pathname.replace(/\/+$/, '') || '/';
-      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach((a) => {
-        const href = a.getAttribute('href') || '';
-        const norm = href.replace(/\/+$/, '') || '/';
-        if (norm === path) {
-          a.classList.add('active');
-          a.setAttribute('aria-current', 'page');
-        }
-      });
-
-      function initCarousel(root) {
-        if (!root) return;
-
-        const viewport = root.querySelector('.viewport');
-        const track = root.querySelector('.track');
-        const slides = Array.from(root.querySelectorAll('.slide'));
-        const prev = root.querySelector('.prev');
-        const next = root.querySelector('.next');
-        const dotsWrap = root.querySelector('.dots');
-
-        if (!viewport || !track || !slides.length || !dotsWrap) return;
-
-        const shouldAutoplay = root.dataset.autoplay === 'true' && !reduceMotion;
-        const visible = Math.max(1, Number(root.dataset.visible || 1));
-        const step = Math.max(1, Number(root.dataset.step || 1));
-
-        let index = 0;
-        let startX = 0;
-        let pointerActive = false;
-        let slideMeasure = 0;
-        let intervalId = null;
-        let resizeRaf = 0;
-        let resizeObserver = null;
-
-        function getGap() {
-          const styles = getComputedStyle(track);
+        function getGap(){
+          const styles=getComputedStyle(track);
           return parseFloat(styles.columnGap || styles.gap || 0) || 0;
         }
 
-        function computeMeasure() {
-          const firstSlide = slides[0];
-          slideMeasure = firstSlide ? (firstSlide.getBoundingClientRect().width + getGap()) : viewport.clientWidth;
+        function getMeasure(){
+          const firstSlide=slides[0];
+          if(!firstSlide) return viewport.clientWidth;
+          return firstSlide.getBoundingClientRect().width + getGap();
         }
 
-        function maxIndex() {
+        function maxIndex(){
           return Math.max(0, slides.length - visible);
         }
 
-        function pageCount() {
-          return Math.max(1, Math.floor(maxIndex() / step) + 1);
+        function pageCount(){
+          return Math.floor(maxIndex() / step) + 1;
         }
 
-        function normalize(i) {
-          const max = maxIndex();
-          if (i < 0) return max;
-          if (i > max) return 0;
-          return i;
-        }
-
-        function buildDots() {
-          const pages = pageCount();
-          dotsWrap.innerHTML = '';
-          for (let i = 0; i < pages; i++) {
-            const targetIndex = Math.min(i * step, maxIndex());
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'dot';
-            dot.setAttribute('role', 'tab');
-            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            dot.addEventListener('click', () => go(targetIndex, true), { passive: true });
-            dotsWrap.appendChild(dot);
+        function buildDots(){
+          dotsWrap.innerHTML='';
+          for(let i=0;i<pageCount();i++){
+            const targetIndex=Math.min(i * step, maxIndex());
+            const b=document.createElement('button');
+            b.type='button';
+            b.className='dot';
+            b.setAttribute('role','tab');
+            b.setAttribute('aria-label','Go to slide '+(i+1));
+            b.addEventListener('click',()=>go(targetIndex,true));
+            dotsWrap.appendChild(b);
           }
         }
 
-        function setDots() {
-          const currentPage = Math.min(Math.round(index / step), pageCount() - 1);
-          dotsWrap.querySelectorAll('.dot').forEach((dot, i) => {
-            dot.setAttribute('aria-current', i === currentPage ? 'true' : 'false');
+        function setDot(){
+          const currentPage=Math.min(Math.round(index / step), pageCount() - 1);
+          dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+            d.setAttribute('aria-current',di===currentPage ? 'true' : 'false');
           });
         }
 
-        function translate() {
-          track.style.transform = 'translate3d(' + (-index * slideMeasure) + 'px,0,0)';
+        function translate(){
+          track.style.transform='translateX('+(-index * getMeasure())+'px)';
         }
 
-        function pause() {
-          if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
+        function normalize(i){
+          const max=maxIndex();
+          if(i < 0) return max;
+          if(i > max) return 0;
+          return i;
+        }
+
+        function go(i,userInitiated){
+          index=normalize(i);
+          translate();
+          setDot();
+          if(userInitiated && shouldAutoplay) restart();
+        }
+
+        function pause(){
+          if(iv) clearInterval(iv);
+          iv=null;
+        }
+
+        function play(){
+          if(shouldAutoplay && !iv && maxIndex() > 0){
+            iv=setInterval(()=>go(index + step,false), 4200);
           }
         }
 
-        function play() {
-          if (!shouldAutoplay || intervalId || maxIndex() <= 0 || document.hidden) return;
-          intervalId = setInterval(() => go(index + step, false), 4200);
-        }
-
-        function restart() {
+        function restart(){
           pause();
           play();
         }
 
-        function go(i, userInitiated) {
-          index = normalize(i);
-          translate();
-          setDots();
-          if (userInitiated && shouldAutoplay) restart();
-        }
-
-        function onResize() {
-          cancelAnimationFrame(resizeRaf);
-          resizeRaf = requestAnimationFrame(() => {
-            computeMeasure();
-            if (index > maxIndex()) index = maxIndex();
+        function onResize(){
+          cancelAnimationFrame(rid);
+          rid=requestAnimationFrame(()=>{
             buildDots();
+            if(index > maxIndex()) index=maxIndex();
             translate();
-            setDots();
+            setDot();
           });
         }
 
-        prev && prev.addEventListener('click', () => go(index - step, true), { passive: true });
-        next && next.addEventListener('click', () => go(index + step, true), { passive: true });
+        prev && prev.addEventListener('click',()=>go(index - step,true));
+        next && next.addEventListener('click',()=>go(index + step,true));
 
-        viewport.addEventListener('pointerdown', (e) => {
-          pointerActive = true;
-          startX = e.clientX;
-          if (viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
-          if (shouldAutoplay) pause();
-        }, { passive: true });
+        viewport.addEventListener('pointerdown',(e)=>{
+          active=true;
+          startX=e.clientX;
+          viewport.setPointerCapture(e.pointerId);
+          if(shouldAutoplay) pause();
+        });
 
-        viewport.addEventListener('pointerup', (e) => {
-          if (!pointerActive) return;
-          const dx = e.clientX - startX;
-          pointerActive = false;
-          if (Math.abs(dx) > 40) {
-            if (dx < 0) go(index + step, true);
-            else go(index - step, true);
-          } else if (shouldAutoplay) {
-            restart();
+        viewport.addEventListener('pointerup',(e)=>{
+          if(!active) return;
+          const dx=e.clientX - startX;
+          active=false;
+          if(Math.abs(dx) > 40){
+            dx < 0 ? go(index + step,true) : go(index - step,true);
           }
-        }, { passive: true });
+          if(shouldAutoplay) restart();
+        });
 
-        viewport.addEventListener('pointercancel', () => {
-          pointerActive = false;
-          if (shouldAutoplay) restart();
-        }, { passive: true });
+        viewport.addEventListener('pointercancel',()=>{
+          active=false;
+          if(shouldAutoplay) restart();
+        });
 
-        if (shouldAutoplay) {
-          document.addEventListener('visibilitychange', () => {
-            if (document.hidden) pause();
-            else play();
-          });
-
-          [prev, next, viewport].forEach((el) => {
-            if (!el) return;
-            el.addEventListener('mouseenter', pause);
-            el.addEventListener('mouseleave', play);
-            el.addEventListener('focusin', pause);
-            el.addEventListener('focusout', play);
+        if(shouldAutoplay){
+          document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
+          [prev,next,viewport].forEach(el=>{
+            if(!el) return;
+            el.addEventListener('mouseenter',pause);
+            el.addEventListener('mouseleave',play);
+            el.addEventListener('focusin',pause);
+            el.addEventListener('focusout',play);
           });
         }
 
-        window.addEventListener('orientationchange', onResize, { passive: true });
-        window.addEventListener('resize', onResize, { passive: true });
+        window.addEventListener('resize',onResize);
+        window.addEventListener('orientationchange',onResize);
+        window.addEventListener('load',onResize,{ once:true });
 
-        if ('ResizeObserver' in window) {
-          resizeObserver = new ResizeObserver(onResize);
-          resizeObserver.observe(viewport);
-        }
-
-        computeMeasure();
         buildDots();
-        go(0, false);
+        go(0,false);
         play();
       }
 
-      if (isMobile) {
-        initCarousel(document.getElementById('revCarousel'));
-        initCarousel(document.getElementById('svcCarouselMobile'));
-        initCarousel(document.getElementById('workCarouselMobile'));
-      }
+      initCarousel(document.getElementById('revCarousel'));
+      initCarousel(document.getElementById('svcCarouselMobile'));
+      initCarousel(document.getElementById('workCarouselMobile'));
+    })();
+  </script>
 
+  <script>
+    (function(){
       const counters = document.querySelectorAll('.count-up');
-      if (counters.length) {
-        function formatValue(value, group) {
-          return group ? value.toLocaleString('en-US') : String(value);
-        }
+      if(!counters.length) return;
 
-        function animateCounter(el) {
-          if (el.dataset.done === 'true') return;
-          el.dataset.done = 'true';
-
-          const target = Number(el.dataset.target || 0);
-          const suffix = el.dataset.suffix || '';
-          const group = el.dataset.group === 'true';
-          const duration = 1400;
-          const start = performance.now();
-
-          function tick(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(target * eased);
-            el.textContent = formatValue(current, group) + suffix;
-
-            if (progress < 1) {
-              requestAnimationFrame(tick);
-            }
-          }
-
-          requestAnimationFrame(tick);
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.35 });
-
-        counters.forEach((counter) => observer.observe(counter));
+      function formatValue(value, group){
+        return group ? value.toLocaleString('en-US') : String(value);
       }
+
+      function animateCounter(el){
+        if(el.dataset.done === 'true') return;
+        el.dataset.done = 'true';
+
+        const target = Number(el.dataset.target || 0);
+        const suffix = el.dataset.suffix || '';
+        const group = el.dataset.group === 'true';
+        const duration = 1400;
+        const start = performance.now();
+
+        function tick(now){
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(target * eased);
+          el.textContent = formatValue(current, group) + suffix;
+
+          if(progress < 1){
+            requestAnimationFrame(tick);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.45 });
+
+      counters.forEach(counter => observer.observe(counter));
     })();
   </script>
 </body>
