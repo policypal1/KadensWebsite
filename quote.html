@@ -3,68 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Get a Quote — Clear Choice Auto Glass</title>
-  <meta name="description" content="Request an auto glass quote from Clear Choice Auto Glass in Salem/Keizer." />
+  <title>Services — Clear Choice Auto Glass</title>
+  <meta name="description" content="Windshield replacement, back glass replacement, and door glass replacement for Salem and Keizer drivers. Mobile service with clean installs and proper sealing." />
   <meta name="theme-color" content="#ffffff" />
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
   <link rel="apple-touch-icon" href="logo.png.png?v=2">
   <link rel="shortcut icon" type="image/png" href="logo.png.png?v=2">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
-
-    .glass { backdrop-filter: blur(8px); }
-
-    .nav-link {
-      position: relative;
-      padding-bottom: 4px;
-      transition: color .2s ease;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background-color: #dc2626;
-      transition: width .3s ease;
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    .nav-link:hover {
-      color: #dc2626;
-    }
-
-    nav[aria-label="Mobile"] .nav-link::after {
-      display: none;
-    }
-
-    .choice-card {
-      transition: transform .18s ease, border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
-    }
-
-    .choice-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .choice-input:focus-visible + .choice-card {
-      outline: 3px solid rgba(220, 38, 38, .18);
-      outline-offset: 2px;
-    }
-
-    .step-panel[hidden] {
-      display: none !important;
-    }
+    .glass{backdrop-filter:blur(8px)}
+    .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
+    .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .nav-link:hover{color:#dc2626}
+    nav[aria-label="Mobile"] .nav-link::after{display:none}
+    .slide-menu{transition:max-height .25s ease,opacity .2s ease,transform .2s ease;max-height:0;opacity:0;transform:translateY(-4px)}
+    .slide-menu[data-state="open"]{max-height:320px;opacity:1;transform:translateY(0)}
   </style>
 
   <script>
@@ -72,7 +30,7 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="min-h-screen bg-neutral-50 text-neutral-900">
+<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
 
   <!-- HEADER -->
   <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
@@ -92,7 +50,8 @@
         </nav>
 
         <div class="hidden md:flex items-center gap-4">
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:border-red-600 hover:text-red-700" aria-label="Call (503) 949-2257">(503) 949-2257</a>
+          <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
+          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
         </div>
 
         <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
@@ -113,6 +72,9 @@
           <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
 
           <div class="pt-3 grid gap-3">
+            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
+              Get a Quote
+            </a>
             <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">
               Call (503) 949-2257
             </a>
@@ -122,298 +84,213 @@
     </div>
   </header>
 
-  <!-- QUOTE FORM -->
-  <main class="px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
-    <div class="mx-auto max-w-4xl">
-      <div class="rounded-3xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
-        <div class="border-b border-neutral-200 px-5 py-5 sm:px-8">
-          <div class="mb-4 h-2 w-full overflow-hidden rounded-full bg-neutral-200">
-            <div id="cc-progress" class="h-full rounded-full bg-red-600 transition-all duration-300" style="width: 33.3333%;"></div>
-          </div>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images2.alphacoders.com/108/1086162.jpg');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
 
-          <div class="grid grid-cols-3 gap-2 text-[11px] font-semibold sm:text-sm">
-            <div id="pill-step-1" class="rounded-full bg-red-600 px-3 py-2 text-center text-white">
-              1 • Damage
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+      <div class="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 shadow-xl ring-1 ring-white/60 max-w-lg md:max-w-xl">
+        <p class="text-[13px] md:text-sm font-medium text-neutral-600 mb-2">Family-owned • Mobile service in Salem &amp; Keizer</p>
+        <h1 class="text-2xl md:text-4xl font-black mb-2 md:mb-4 text-neutral-900">Windshield, door glass, and back glass replacement</h1>
+        <p class="text-neutral-700 text-sm md:text-base mb-4 md:mb-6">Clear, straightforward service for the glass jobs drivers need most. Clean installs, proper sealing, and mobile scheduling that fits home, work, or wherever the vehicle is parked.</p>
+        <div class="flex flex-wrap gap-3 md:gap-4">
+          <a href="/quote.html" class="w-full sm:w-auto px-5 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 text-center">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
+
+    <!-- MOBILE SERVICES -->
+    <section class="mt-8 md:hidden">
+      <div class="relative">
+        <div id="svcTrack" class="flex gap-4 overflow-x-auto snap-x snap-proximity scroll-pl-1 pr-4 overscroll-x-contain scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none]" aria-label="Services carousel">
+          <style>#svcTrack::-webkit-scrollbar{display:none}</style>
+
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+            <div class="relative w-full aspect-[4/3]">
+              <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Windshield replacement" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" fetchpriority="high">
             </div>
-            <div id="pill-step-2" class="rounded-full bg-neutral-100 px-3 py-2 text-center text-neutral-500">
-              2 • Vehicle
+            <div class="p-4 flex flex-col h-full">
+              <div class="flex items-center justify-between gap-3 min-h-[28px]">
+                <h2 class="text-base font-bold leading-tight">Windshield replacement</h2>
+                <span class="text-[10px] px-2 py-1 rounded-full bg-red-100 text-red-700 whitespace-nowrap">Most Popular</span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">OEM-quality glass with proper bonding and a clean finished seal.</p>
+              <div class="mt-3 flex items-center gap-1">
+                <span class="text-xl leading-none font-extrabold text-red-600 tabular-nums">$199</span>
+                <span class="text-black text-sm font-bold leading-none">+</span>
+              </div>
+              <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Helps cut down on leaks and wind noise</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Works well for spreading cracks and major damage</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Mobile install at home or work when route allows</span></li>
+              </ul>
             </div>
-            <div id="pill-step-3" class="rounded-full bg-neutral-100 px-3 py-2 text-center text-neutral-500">
-              3 • Contact
+          </article>
+
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+            <div class="relative w-full aspect-[4/3]">
+              <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Door glass replacement" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
             </div>
-          </div>
+            <div class="p-4 flex flex-col h-full">
+              <div class="min-h-[28px] flex items-center">
+                <h2 class="text-base font-bold leading-tight">Door glass replacement</h2>
+              </div>
+              <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">Fast side glass replacement with cleanup and solid fitment.</p>
+              <div class="mt-3 flex items-center gap-1">
+                <span class="text-xl leading-none font-extrabold text-red-600 tabular-nums">$149</span>
+                <span class="text-black text-sm font-bold leading-none">+</span>
+              </div>
+              <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Broken glass cleaned out from the vehicle</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Tracks and movement checked after install</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Good fit helps the window seal correctly</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="svc-card min-w-[88%] snap-center snap-always rounded-2xl border border-neutral-200 overflow-hidden shadow-sm bg-white flex flex-col">
+            <div class="relative w-full aspect-[4/3]">
+              <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Back glass replacement" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-4 flex flex-col h-full">
+              <div class="min-h-[28px] flex items-center">
+                <h2 class="text-base font-bold leading-tight">Back glass replacement</h2>
+              </div>
+              <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">Rear glass replacement with cleanup and a solid rear seal.</p>
+              <div class="mt-3 flex items-center gap-1">
+                <span class="text-xl leading-none font-extrabold text-red-600 tabular-nums">$189</span>
+                <span class="text-black text-sm font-bold leading-none">+</span>
+              </div>
+              <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Loose broken glass removed during the job</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Defrost-line glass installed when needed</span></li>
+                <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Fresh install with clean rear fitment</span></li>
+              </ul>
+            </div>
+          </article>
         </div>
 
-        <form id="cc-quote-form" class="p-5 sm:p-8" method="post" novalidate>
-          <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="service" id="serviceField" value="" />
+        <div class="mt-3 flex items-center justify-center gap-3">
+          <button id="svcPrev" class="inline-flex md:hidden h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white">‹</button>
+          <div id="svcDots" class="flex items-center gap-2" aria-label="Slide indicators"></div>
+          <button id="svcNext" class="inline-flex md:hidden h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white">›</button>
+        </div>
+      </div>
+    </section>
 
-          <!-- STEP 1 -->
-          <section class="step-panel space-y-6" data-step="1">
-            <div class="rounded-2xl border border-neutral-200 p-4 sm:p-6">
-              <div class="mb-4">
-                <h2 class="text-xl font-black sm:text-2xl">Where is your glass damage?</h2>
-                <p class="mt-1 text-sm text-neutral-600">Pick the glass closest to the damage.</p>
-              </div>
-
-              <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Windshield">
-                  <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (3).png" alt="" class="h-24 w-32 object-contain sm:h-28 sm:w-36" aria-hidden="true">
-                    <span class="mt-3 text-sm font-semibold sm:text-base">Windshield</span>
-                  </span>
-                </label>
-
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Back Glass">
-                  <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (2).png" alt="" class="h-24 w-32 object-contain sm:h-28 sm:w-36" aria-hidden="true">
-                    <span class="mt-3 text-sm font-semibold sm:text-base">Back Glass</span>
-                  </span>
-                </label>
-
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Driver Side">
-                  <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design.png" alt="" class="h-28 w-40 object-contain sm:h-32 sm:w-44" aria-hidden="true">
-                    <span class="mt-3 text-sm font-semibold sm:text-base">Driver Side</span>
-                  </span>
-                </label>
-
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Passenger Side">
-                  <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (1).png" alt="" class="h-28 w-40 object-contain sm:h-32 sm:w-44" aria-hidden="true">
-                    <span class="mt-3 text-sm font-semibold sm:text-base">Passenger Side</span>
-                  </span>
-                </label>
-              </div>
+    <!-- DESKTOP SERVICES -->
+    <section class="hidden md:block mt-10">
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
+          <div class="relative w-full aspect-[16/9]">
+            <img src="https://www.aaa.com/AAA/common/AAR/images/ws.jpg" alt="Windshield replacement" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+          </div>
+          <div class="p-6 flex flex-col h-full">
+            <div class="flex items-center justify-between gap-3 min-h-[32px]">
+              <h2 class="text-lg font-bold leading-tight">Windshield replacement</h2>
+              <span class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700 whitespace-nowrap">Most Popular</span>
             </div>
+            <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">OEM-quality glass with proper bonding and a clean finished seal.</p>
+            <div class="mt-4 flex items-center gap-1">
+              <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$199</span>
+              <span class="text-black text-sm font-bold leading-none">+</span>
+            </div>
+            <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Helps cut down on leaks and wind noise</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Works well for spreading cracks and major damage</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Mobile install at home or work when route allows</span></li>
+            </ul>
+          </div>
+        </article>
 
-            <div id="damageTypeWrap" class="hidden rounded-2xl border border-neutral-200 p-4 sm:p-6" hidden>
-              <div class="mb-4">
-                <h2 class="text-xl font-black sm:text-2xl">What is the damage?</h2>
-                <p class="mt-1 text-sm text-neutral-600">Choose the option that is closest to the damage.</p>
-              </div>
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
+          <div class="relative w-full aspect-[16/9]">
+            <img src="https://www.glasshopperautoglass.com/wp-content/uploads/2015/03/door-glass-img-1.jpg" alt="Door glass replacement" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+          </div>
+          <div class="p-6 flex flex-col h-full">
+            <div class="min-h-[32px] flex items-center">
+              <h2 class="text-lg font-bold leading-tight">Door glass replacement</h2>
+            </div>
+            <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">Fast side glass replacement with cleanup and solid fitment.</p>
+            <div class="mt-4 flex items-center gap-1">
+              <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$149</span>
+              <span class="text-black text-sm font-bold leading-none">+</span>
+            </div>
+            <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Broken glass cleaned out from the vehicle</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Tracks and movement checked after install</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Good fit helps the window seal correctly</span></li>
+            </ul>
+          </div>
+        </article>
 
-              <div class="grid gap-3 sm:grid-cols-2">
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_type" value="Large crack">
-                  <span class="choice-card flex min-h-[220px] cursor-pointer flex-col rounded-2xl border-2 border-neutral-200 bg-white p-4 shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <div class="flex justify-center">
-                      <img src="ChatGPT Image Mar 19, 2026, 09_13_20 PM.png" alt="" class="h-28 w-48 object-contain sm:h-32 sm:w-56" aria-hidden="true">
-                    </div>
-                    <span class="mt-3 text-center text-base font-semibold">Large crack</span>
-                    <span class="mt-1 text-center text-sm text-neutral-600">Damage is larger than 6 inches</span>
-                  </span>
-                </label>
+        <article class="group rounded-3xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col">
+          <div class="relative w-full aspect-[16/9]">
+            <img src="https://only1autoglass.com/portals/0/rear-window-chip-repair-inner.jpg" alt="Back glass replacement" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+          </div>
+          <div class="p-6 flex flex-col h-full">
+            <div class="min-h-[32px] flex items-center">
+              <h2 class="text-lg font-bold leading-tight">Back glass replacement</h2>
+            </div>
+            <p class="mt-2 text-sm text-neutral-600 min-h-[40px]">Rear glass replacement with cleanup and a solid rear seal.</p>
+            <div class="mt-4 flex items-center gap-1">
+              <span class="text-[28px] leading-none font-extrabold text-red-600 tabular-nums">$189</span>
+              <span class="text-black text-sm font-bold leading-none">+</span>
+            </div>
+            <ul class="mt-4 space-y-3 text-sm text-neutral-800">
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Loose broken glass removed during the job</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Defrost-line glass installed when needed</span></li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 h-2 w-2 rounded-full bg-red-500 shrink-0"></span><span>Fresh install with clean rear fitment</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
 
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_type" value="Small chip(s) or crack(s)">
-                  <span class="choice-card flex min-h-[220px] cursor-pointer flex-col rounded-2xl border-2 border-neutral-200 bg-white p-4 shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <div class="flex justify-center">
-                      <img src="ChatGPT Image Mar 19, 2026, 09_15_15 PM.png" alt="" class="h-28 w-48 object-contain sm:h-32 sm:w-56" aria-hidden="true">
-                    </div>
-                    <span class="mt-3 text-center text-base font-semibold">Small chip(s) or crack(s)</span>
-                    <span class="mt-1 text-center text-sm text-neutral-600">Damage is smaller than 6 inches</span>
-                  </span>
-                </label>
-              </div>
+    <!-- SERVICE AREA -->
+    <section class="mt-10 md:mt-14">
+      <div class="rounded-3xl border border-neutral-200 bg-white p-6 md:p-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold tracking-wide text-red-600 uppercase">Service Area</p>
+          <h3 class="mt-2 text-2xl md:text-3xl font-black">Mobile auto glass service across Salem and Keizer</h3>
+          <p class="mt-3 text-neutral-600">We bring windshield, door glass, and back glass replacement directly to drivers in our main service area. If your vehicle is parked at home, work, or another easy stop, we can usually meet you there.</p>
+        </div>
 
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <article class="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50">
+            <div class="relative aspect-[16/10] w-full overflow-hidden">
+              <img src="keizer.png" alt="Keizer service area" class="absolute inset-0 h-full w-full object-cover">
+            </div>
+            <div class="p-5 md:p-6">
+              <h4 class="text-xl font-bold text-neutral-900">Keizer</h4>
+              <p class="mt-2 text-sm md:text-base text-neutral-600">Fast mobile appointments for drivers throughout Keizer. Good fit for cracked windshields, broken side glass, and shattered back glass that needs quick replacement.</p>
               <div class="mt-4">
-                <label class="block">
-                  <input class="choice-input peer sr-only" type="radio" name="damage_type" value="Multiple windows with damage">
-                  <span class="choice-card flex cursor-pointer items-start gap-3 rounded-2xl border-2 border-neutral-200 bg-white p-4 shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <span class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-neutral-400">
-                      <span class="h-2.5 w-2.5 rounded-full bg-red-600 opacity-0 transition peer-checked:opacity-100"></span>
-                    </span>
-                    <span>
-                      <span class="block text-base font-semibold">Multiple windows with damage</span>
-                      <span class="mt-1 block text-sm text-neutral-600">Select the primary glass above and we’ll reach out for more details.</span>
-                    </span>
-                  </span>
-                </label>
+                <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote in Keizer</a>
               </div>
             </div>
+          </article>
 
-            <div id="step1-error" class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-              Please choose where the damage is and what the damage is.
+          <article class="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50">
+            <div class="relative aspect-[16/10] w-full overflow-hidden">
+              <img src="salem.png" alt="Salem service area" class="absolute inset-0 h-full w-full object-cover">
             </div>
-
-            <div class="flex items-center justify-end">
-              <button id="to-step-2" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
-                Continue
-              </button>
-            </div>
-          </section>
-
-          <!-- STEP 2 -->
-          <section class="step-panel space-y-6" data-step="2" hidden>
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 sm:p-5">
-              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p class="text-sm font-semibold text-neutral-500">Damage selected</p>
-                  <p class="mt-1 text-base font-semibold text-neutral-900">
-                    <span id="summary-location">—</span>
-                    <span class="mx-2 text-neutral-400">•</span>
-                    <span id="summary-damage">—</span>
-                  </p>
-                </div>
-                <button id="back-to-step-1" type="button"
-                        class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:bg-neutral-100">
-                  Back
-                </button>
+            <div class="p-5 md:p-6">
+              <h4 class="text-xl font-bold text-neutral-900">Salem</h4>
+              <p class="mt-2 text-sm md:text-base text-neutral-600">Mobile service available across Salem with straightforward scheduling and clean installs. We come to the vehicle so you do not have to sit around at a shop.</p>
+              <div class="mt-4">
+                <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote in Salem</a>
               </div>
             </div>
-
-            <div class="rounded-2xl border border-neutral-200 p-4 sm:p-6">
-              <h2 class="text-xl font-black sm:text-2xl">Vehicle details</h2>
-              <p class="mt-1 text-sm text-neutral-600">Enter the vehicle info so we can match the right glass.</p>
-
-              <div class="mt-5 grid gap-4 md:grid-cols-3">
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Year</label>
-                  <input name="year" required inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="2018"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Make</label>
-                  <input name="make" required placeholder="Toyota"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Model</label>
-                  <input name="model" required placeholder="Camry"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">VIN (optional)</label>
-                  <input name="vin" maxlength="17" placeholder="17 characters"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between gap-4">
-              <button id="step2-back" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800 hover:bg-neutral-200">
-                Back
-              </button>
-
-              <button id="to-step-3" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
-                Continue
-              </button>
-            </div>
-          </section>
-
-          <!-- STEP 3 -->
-          <section class="step-panel space-y-6" data-step="3" hidden>
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 sm:p-5">
-              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p class="text-sm font-semibold text-neutral-500">Vehicle</p>
-                  <p class="mt-1 text-base font-semibold text-neutral-900">
-                    <span id="summary-year">—</span>
-                    <span id="summary-make">—</span>
-                    <span id="summary-model">—</span>
-                  </p>
-                </div>
-                <button id="back-to-step-2" type="button"
-                        class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:bg-neutral-100">
-                  Back
-                </button>
-              </div>
-            </div>
-
-            <div class="rounded-2xl border border-neutral-200 p-4 sm:p-6">
-              <h2 class="text-xl font-black sm:text-2xl">Contact details</h2>
-              <p class="mt-1 text-sm text-neutral-600">We’ll text you back during business hours.</p>
-
-              <div class="mt-5 grid gap-4 md:grid-cols-2">
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Full name</label>
-                  <input name="name" required placeholder="Your full name"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Phone</label>
-                  <input name="phone" required inputmode="tel" placeholder="(503) 555-1234"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Email (optional)</label>
-                  <input type="email" name="email" placeholder="you@example.com"
-                         class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500" />
-                </div>
-
-                <div>
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">How did you hear about us?</label>
-                  <select name="source" required
-                          class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500">
-                    <option value="">Select one</option>
-                    <option>Google</option>
-                    <option>Facebook</option>
-                    <option>Friend / Family</option>
-                    <option>See the Van</option>
-                  </select>
-                </div>
-
-                <div class="md:col-span-2">
-                  <label class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Anything else we should know? (optional)</label>
-                  <textarea name="details" rows="4" placeholder="Extra notes about the damage, glass features, or timing"
-                            class="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
-                </div>
-              </div>
-
-              <label class="mt-5 flex items-start gap-3 rounded-2xl bg-neutral-50 p-4 text-sm text-neutral-700">
-                <input type="checkbox" name="sms_ok" class="mt-0.5 h-4 w-4 rounded border-neutral-300" />
-                <span>By submitting, you agree Clear Choice Auto Glass may call or text you about your quote.</span>
-              </label>
-            </div>
-
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button id="step3-back" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800 hover:bg-neutral-200">
-                Back
-              </button>
-
-              <button id="cc-submit-btn" type="submit"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
-                Get My Quote
-              </button>
-            </div>
-          </section>
-        </form>
+          </article>
+        </div>
       </div>
-    </div>
+    </section>
+
   </main>
-
-  <!-- POPUP -->
-  <div id="cc-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 px-4">
-    <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl">
-      <h3 id="cc-modal-title" class="text-2xl font-black text-neutral-900">Quote request sent</h3>
-      <p id="cc-modal-message" class="mt-3 text-sm leading-6 text-neutral-600">
-        Thanks. Your quote request was submitted and we’ll reach out soon.
-      </p>
-
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
-        <button id="cc-modal-close" type="button"
-                class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700">
-          Okay
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <iframe name="cc-submit-frame" id="cc-submit-frame" class="hidden" title="Quote submission"></iframe>
 
   <!-- FOOTER -->
   <footer class="mt-20 border-t border-neutral-200 bg-white w-full">
@@ -423,6 +300,10 @@
           <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
         </div>
         <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
+        <div class="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
+          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
+          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
+        </div>
       </div>
 
       <div class="col-span-1">
@@ -494,333 +375,55 @@
   </script>
 
   <script>
-    (function () {
-      const form = document.getElementById('cc-quote-form');
-      if (!form) return;
+    (function(){
+      const track = document.getElementById('svcTrack');
+      if (!track) return;
 
-      const APPS_SCRIPT_WEBAPP = 'https://script.google.com/macros/s/AKfycbyMtnMZN_u7j8Lou0KXjmIexHAnxzeZFCaeOT2ikRjZhyF2NF36rUg-suerMnfcF9_y/exec';
+      const slides = Array.from(track.querySelectorAll('.svc-card'));
+      const dotsWrap = document.getElementById('svcDots');
+      const prev = document.getElementById('svcPrev');
+      const next = document.getElementById('svcNext');
 
-      const progress = document.getElementById('cc-progress');
-      const pill1 = document.getElementById('pill-step-1');
-      const pill2 = document.getElementById('pill-step-2');
-      const pill3 = document.getElementById('pill-step-3');
-
-      const step1 = form.querySelector('[data-step="1"]');
-      const step2 = form.querySelector('[data-step="2"]');
-      const step3 = form.querySelector('[data-step="3"]');
-
-      const toStep2 = document.getElementById('to-step-2');
-      const toStep3 = document.getElementById('to-step-3');
-      const step2Back = document.getElementById('step2-back');
-      const step3Back = document.getElementById('step3-back');
-      const backToStep1 = document.getElementById('back-to-step-1');
-      const backToStep2 = document.getElementById('back-to-step-2');
-
-      const summaryLocation = document.getElementById('summary-location');
-      const summaryDamage = document.getElementById('summary-damage');
-      const summaryYear = document.getElementById('summary-year');
-      const summaryMake = document.getElementById('summary-make');
-      const summaryModel = document.getElementById('summary-model');
-
-      const damageTypeWrap = document.getElementById('damageTypeWrap');
-      const step1Error = document.getElementById('step1-error');
-      const serviceField = document.getElementById('serviceField');
-      const submitBtn = document.getElementById('cc-submit-btn');
-
-      const yearInput = form.elements['year'];
-      const makeInput = form.elements['make'];
-      const modelInput = form.elements['model'];
-
-      const modal = document.getElementById('cc-modal');
-      const modalTitle = document.getElementById('cc-modal-title');
-      const modalMessage = document.getElementById('cc-modal-message');
-      const modalClose = document.getElementById('cc-modal-close');
-      const submitFrame = document.getElementById('cc-submit-frame');
-
-      let submissionPending = false;
-
-      function openModal(title, message) {
-        modalTitle.textContent = title;
-        modalMessage.textContent = message;
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-
-      function closeModal() {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-
-      modalClose.addEventListener('click', closeModal);
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) closeModal();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'h-2.5 w-2.5 rounded-full border border-neutral-400';
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(b);
       });
 
-      function getCheckedValue(name) {
-        const checked = form.querySelector(`input[name="${name}"]:checked`);
-        return checked ? checked.value : '';
+      function update(active){
+        Array.from(dotsWrap.children).forEach((d, i) => {
+          d.style.backgroundColor = i === active ? '#dc2626' : 'transparent';
+          d.style.borderColor = i === active ? '#dc2626' : 'rgb(163 163 163)';
+        });
       }
 
-      function inferService(location, damageType) {
-        if (damageType === 'Multiple windows with damage') return 'Multiple Windows';
-        if (location === 'Windshield') {
-          return damageType === 'Small chip(s) or crack(s)' ? 'Chip / Crack Repair' : 'Windshield Replacement';
-        }
-        if (location === 'Back Glass') return 'Back Glass';
-        if (location === 'Driver Side' || location === 'Passenger Side') return 'Side Glass';
-        return 'Auto Glass Quote';
+      function currentIndex(){
+        const step = slides[0].clientWidth + 16;
+        return Math.round(track.scrollLeft / step);
       }
 
-      function updateProgress(step) {
-        if (step === 1) progress.style.width = '33.3333%';
-        if (step === 2) progress.style.width = '66.6666%';
-        if (step === 3) progress.style.width = '100%';
+      function goTo(i){
+        const target = slides[i];
+        if (!target) return;
+        track.scrollTo({ left: target.offsetLeft - track.firstElementChild.offsetLeft, behavior: 'smooth' });
+        update(i);
       }
 
-      function setPillState(el, active, complete) {
-        if (active || complete) {
-          el.className = 'rounded-full bg-red-600 px-3 py-2 text-center text-white';
-        } else {
-          el.className = 'rounded-full bg-neutral-100 px-3 py-2 text-center text-neutral-500';
-        }
-      }
-
-      function showStep(step) {
-        step1.hidden = step !== 1;
-        step2.hidden = step !== 2;
-        step3.hidden = step !== 3;
-
-        setPillState(pill1, step === 1, step > 1);
-        setPillState(pill2, step === 2, step > 2);
-        setPillState(pill3, step === 3, false);
-
-        updateProgress(step);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      function updateDamageSectionVisibility() {
-        const location = getCheckedValue('damage_location');
-        const hasLocation = !!location;
-
-        damageTypeWrap.hidden = !hasLocation;
-        damageTypeWrap.classList.toggle('hidden', !hasLocation);
-
-        if (location) {
-          step1Error.classList.add('hidden');
-        }
-      }
-
-      function updateDamageSummary() {
-        const location = getCheckedValue('damage_location');
-        const damageType = getCheckedValue('damage_type');
-
-        summaryLocation.textContent = location || '—';
-        summaryDamage.textContent = damageType || '—';
-        serviceField.value = inferService(location, damageType);
-      }
-
-      function updateVehicleSummary() {
-        summaryYear.textContent = yearInput.value || '—';
-        summaryMake.textContent = makeInput.value || '—';
-        summaryModel.textContent = modelInput.value || '—';
-      }
-
-      function validateStep1() {
-        const location = getCheckedValue('damage_location');
-        const damageType = getCheckedValue('damage_type');
-
-        if (!location || !damageType) {
-          step1Error.classList.remove('hidden');
-          return false;
-        }
-
-        step1Error.classList.add('hidden');
-        return true;
-      }
-
-      function validateFields(section) {
-        const fields = Array.from(section.querySelectorAll('input, select, textarea'));
-        for (const field of fields) {
-          if (field.type === 'radio' || field.type === 'checkbox' || field.disabled) continue;
-          if (!field.checkValidity()) {
-            field.reportValidity();
-            return false;
-          }
-        }
-        return true;
-      }
-
-      function selectRadio(name, value) {
-        if (!value) return;
-        const radios = Array.from(form.querySelectorAll(`input[name="${name}"]`));
-        const match = radios.find(r => r.value === value);
-        if (match) match.checked = true;
-      }
-
-      function applyPrefill() {
-        let stored = null;
-
-        try {
-          stored = JSON.parse(localStorage.getItem('cq_prequote') || 'null');
-        } catch (e) {
-          stored = null;
-        }
-
-        const params = new URLSearchParams(window.location.search);
-        const service = params.get('service') || (stored && stored.service) || '';
-
-        if (service) {
-          if (service === 'Chip Repair') {
-            selectRadio('damage_location', 'Windshield');
-            selectRadio('damage_type', 'Small chip(s) or crack(s)');
-          } else if (service === 'Windshield Replacement' || service === 'ADAS Recalibration') {
-            selectRadio('damage_location', 'Windshield');
-            selectRadio('damage_type', 'Large crack');
-          } else if (service === 'Back Glass') {
-            selectRadio('damage_location', 'Back Glass');
-            selectRadio('damage_type', 'Large crack');
-          } else if (service === 'Door/Side Glass' || service === 'Side / Rear Glass') {
-            selectRadio('damage_location', 'Driver Side');
-            selectRadio('damage_type', 'Large crack');
-          }
-        }
-
-        updateDamageSectionVisibility();
-        updateDamageSummary();
-        updateVehicleSummary();
-      }
-
-      form.querySelectorAll('input[name="damage_location"]').forEach(input => {
-        input.addEventListener('change', function () {
-          updateDamageSectionVisibility();
-          updateDamageSummary();
+      track.addEventListener('scroll', () => {
+        if (track._ticking) return;
+        track._ticking = true;
+        requestAnimationFrame(() => {
+          track._ticking = false;
+          update(currentIndex());
         });
       });
 
-      form.querySelectorAll('input[name="damage_type"]').forEach(input => {
-        input.addEventListener('change', function () {
-          updateDamageSummary();
-          step1Error.classList.add('hidden');
-        });
-      });
+      prev && prev.addEventListener('click', () => goTo(Math.max(0, currentIndex() - 1)));
+      next && next.addEventListener('click', () => goTo(Math.min(slides.length - 1, currentIndex() + 1)));
 
-      [yearInput, makeInput, modelInput].forEach(input => {
-        input.addEventListener('input', updateVehicleSummary);
-      });
-
-      toStep2.addEventListener('click', function () {
-        if (!validateStep1()) return;
-        updateDamageSummary();
-        showStep(2);
-      });
-
-      toStep3.addEventListener('click', function () {
-        if (!validateFields(step2)) return;
-        updateVehicleSummary();
-        showStep(3);
-      });
-
-      step2Back.addEventListener('click', function () {
-        showStep(1);
-      });
-
-      backToStep1.addEventListener('click', function () {
-        showStep(1);
-      });
-
-      step3Back.addEventListener('click', function () {
-        showStep(2);
-      });
-
-      backToStep2.addEventListener('click', function () {
-        showStep(2);
-      });
-
-      submitFrame.addEventListener('load', function () {
-        if (!submissionPending) return;
-
-        submissionPending = false;
-
-        form.querySelectorAll('input, select, textarea, button').forEach(el => {
-          el.disabled = true;
-        });
-
-        openModal('Quote request sent', 'Thanks. Your quote request was submitted and we’ll reach out soon.');
-      });
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (form.company && form.company.value) return;
-        if (!validateStep1()) {
-          showStep(1);
-          return;
-        }
-        if (!validateFields(step2)) {
-          showStep(2);
-          return;
-        }
-        if (!validateFields(step3)) return;
-
-        const locationChoice = getCheckedValue('damage_location');
-        const damageTypeChoice = getCheckedValue('damage_type');
-
-        const data = Object.fromEntries(new FormData(form).entries());
-        data.damage_location = locationChoice;
-        data.damage_type = damageTypeChoice;
-        data.service = inferService(locationChoice, damageTypeChoice);
-        data.damage_summary = `${locationChoice} — ${damageTypeChoice}`;
-        data.sms_ok = form.querySelector('[name="sms_ok"]').checked ? 'Yes' : 'No';
-        data._site = location.hostname;
-        data._submittedAt = new Date().toISOString();
-
-        submitBtn.disabled = true;
-        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-
-        submissionPending = true;
-
-        const transportForm = document.createElement('form');
-        transportForm.method = 'POST';
-        transportForm.action = APPS_SCRIPT_WEBAPP;
-        transportForm.target = 'cc-submit-frame';
-        transportForm.style.display = 'none';
-
-        Object.entries(data).forEach(([key, value]) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value == null ? '' : String(value);
-          transportForm.appendChild(input);
-        });
-
-        document.body.appendChild(transportForm);
-        transportForm.submit();
-
-        setTimeout(() => {
-          if (transportForm.parentNode) {
-            transportForm.parentNode.removeChild(transportForm);
-          }
-        }, 1000);
-
-        setTimeout(() => {
-          if (!submissionPending) return;
-
-          submissionPending = false;
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-
-          openModal(
-            'Could not confirm submission',
-            'We could not confirm that the quote request went through. Please call us at (503) 949-2257.'
-          );
-        }, 15000);
-      });
-
-      applyPrefill();
-      showStep(1);
+      update(0);
     })();
   </script>
 </body>
