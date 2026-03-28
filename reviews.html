@@ -14,7 +14,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .glass{backdrop-filter:blur(8px)}
+    /* FIX: Removed .glass{backdrop-filter:blur(8px)} — was causing scroll jank */
     .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
     .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
     .nav-link:hover::after,.nav-link.active::after{width:100%}
@@ -27,10 +27,10 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="min-h-screen bg-white text-neutral-900 overflow-x-hidden">
+<body class="min-h-screen bg-white text-neutral-900" style="overflow-x:hidden;">
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-neutral-200">
+  <!-- FIX: Header — replaced bg-white/95 backdrop-blur with solid bg-white -->
+  <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
@@ -87,7 +87,8 @@
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="max-w-3xl">
-        <div class="glass bg-white/90 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
+        <!-- FIX: Replaced "glass" class (backdrop-filter:blur) with solid bg-white/95 -->
+        <div class="bg-white/95 rounded-2xl p-6 md:p-8 shadow ring-1 ring-black/5">
           <h1 class="text-3xl md:text-4xl font-black leading-tight">
             Real reviews from drivers in Salem & Keizer
           </h1>
