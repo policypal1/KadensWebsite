@@ -191,7 +191,7 @@
               </div>
             </div>
 
-            <div id="damageTypeWrap" class="hidden rounded-2xl border border-neutral-200 p-4 sm:p-6" hidden>
+            <div id="damageTypeWrap" class="hidden rounded-2xl border border-neutral-200 p-4 sm:p-6" style="display:none;">
               <div class="mb-4">
                 <h2 class="text-xl font-black sm:text-2xl">What is the damage?</h2>
                 <p class="mt-1 text-sm text-neutral-600">Choose the option that is closest to the damage.</p>
@@ -538,6 +538,7 @@
       const submitFrame = document.getElementById('cc-submit-frame');
 
       let submissionPending = false;
+      let hasUserSelectedDamageLocation = false;
 
       function openModal(title, message) {
         modalTitle.textContent = title;
@@ -601,15 +602,23 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function hideDamageSection() {
+        damageTypeWrap.classList.add('hidden');
+        damageTypeWrap.style.display = 'none';
+      }
+
+      function showDamageSection() {
+        damageTypeWrap.classList.remove('hidden');
+        damageTypeWrap.style.display = '';
+      }
+
       function updateDamageSectionVisibility() {
         const location = getCheckedValue('damage_location');
-        const hasLocation = !!location;
-
-        damageTypeWrap.hidden = !hasLocation;
-        damageTypeWrap.classList.toggle('hidden', !hasLocation);
-
-        if (location) {
+        if (hasUserSelectedDamageLocation && location) {
+          showDamageSection();
           step1Error.classList.add('hidden');
+        } else {
+          hideDamageSection();
         }
       }
 
@@ -688,13 +697,14 @@
           }
         }
 
-        updateDamageSectionVisibility();
+        hideDamageSection();
         updateDamageSummary();
         updateVehicleSummary();
       }
 
       form.querySelectorAll('input[name="damage_location"]').forEach(input => {
         input.addEventListener('change', function () {
+          hasUserSelectedDamageLocation = true;
           updateDamageSectionVisibility();
           updateDamageSummary();
         });
@@ -820,6 +830,7 @@
       });
 
       applyPrefill();
+      hideDamageSection();
       showStep(1);
     })();
   </script>
