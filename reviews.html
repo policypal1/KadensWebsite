@@ -269,7 +269,7 @@
 
     const ALL_REVIEWS = [
       { date:'2026-03-07', name:'Sabrina L.', city:'Keizer', rating:5, tags:['Windshield','Mobile'], text:'Booked with them after getting a crack across the driver side. They showed up at my apartment on time, explained the dry time clearly, and the glass looks great. Easy process.' },
-      { date:'2026-03-02', name:'Hannah K.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Got a quote in the morning and they came out that afternoon. The installer was on time, worked in my driveway, and cleaned up before leaving. Everything has been solid since.' },
+      { date:'2026-03-02', name:'Hannah K.', city:'Salem', rating:5, tags:['Windshield','Verified job'], text:'Got a quote in the morning and they came out that afternoon. The installer was on time, worked in my driveway, and everything has been solid since.' },
       { date:'2026-02-27', name:'Luis R.', city:'Keizer', rating:5, tags:['Side Window'], text:'Someone broke my passenger window overnight. They got me scheduled fast, vacuumed the broken glass out of the door and seat, and the window works like normal again.' },
       { date:'2026-02-24', name:'Derek N.', city:'Salem', rating:3, tags:['Side Window'], text:'The new glass works fine and the tech was polite, but my appointment window shifted later than I expected. In the end the job itself was done right, I just wish communication had been a little tighter.' },
       { date:'2026-02-21', name:'Maya S.', city:'Salem', rating:4, tags:['Windshield'], text:'I needed the windshield replaced before the crack got worse. They came out the same day, got it done pretty quickly, and everything looks good now.' },
@@ -407,6 +407,37 @@
         if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
           closePopup();
         }
+      });
+    })();
+  </script>
+
+  <!-- Analytics click tracking -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      function trackEvent(name, params) {
+        gtag('event', name, params || {});
+      }
+
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('phone_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+          });
+        });
+      });
+
+      document.querySelectorAll('a[href="/quote.html"], a[href="quote.html"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('quote_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+          });
+        });
       });
     })();
   </script>
