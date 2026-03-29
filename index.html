@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer</title>
   <meta name="description" content="Mobile auto glass repair & replacement in Salem/Keizer. Same-day service. Clean installs. Straight pricing." />
+
+  <!-- Social preview tags -->
+  <meta property="og:title" content="Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
+  <meta property="og:description" content="Mobile auto glass replacement in Salem and Keizer with fast scheduling, on-site service, and clean installation." />
+  <meta property="og:image" content="https://www.theoneclearchoiceautoglass.com/social-preview.jpg" />
+  <meta property="og:url" content="https://www.theoneclearchoiceautoglass.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Clear Choice Auto Glass" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
+  <meta name="twitter:description" content="Mobile auto glass replacement in Salem and Keizer with fast scheduling, on-site service, and clean installation." />
+  <meta name="twitter:image" content="https://www.theoneclearchoiceautoglass.com/social-preview.jpg" />
+
   <meta name="theme-color" content="#ffffff" />
 
   <!-- Google tag (gtag.js) -->
@@ -1441,6 +1455,37 @@
         });
       }, { threshold: 0 });
       obs.observe(strip);
+    })();
+  </script>
+
+  <!-- Analytics click tracking -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      function trackEvent(name, params) {
+        gtag('event', name, params || {});
+      }
+
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('phone_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+          });
+        });
+      });
+
+      document.querySelectorAll('a[href="/quote.html"], a[href="quote.html"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('quote_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+          });
+        });
+      });
     })();
   </script>
 </body>
