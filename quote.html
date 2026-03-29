@@ -9,14 +9,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-58T0MPQKYD');
-</script>
+    gtag('config', 'G-58T0MPQKYD');
+  </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="logo.png.png?v=2">
@@ -552,6 +552,36 @@
       let submissionPending = false;
       let hasUserSelectedDamageLocation = false;
 
+      function trackEvent(name, params) {
+        if (typeof gtag !== 'function') return;
+        gtag('event', name, params || {});
+      }
+
+      function currentQuoteParams() {
+        const locationChoice = getCheckedValue('damage_location');
+        const damageTypeChoice = getCheckedValue('damage_type');
+
+        return {
+          page_path: window.location.pathname,
+          damage_location: locationChoice || '',
+          damage_type: damageTypeChoice || '',
+          service: inferService(locationChoice, damageTypeChoice) || '',
+          vehicle_year: yearInput.value || '',
+          vehicle_make: makeInput.value || '',
+          vehicle_model: modelInput.value || ''
+        };
+      }
+
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('phone_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+          });
+        });
+      });
+
       function openModal(title, message) {
         modalTitle.textContent = title;
         modalMessage.textContent = message;
@@ -745,12 +775,14 @@
       toStep2.addEventListener('click', function () {
         if (!validateStep1()) return;
         updateDamageSummary();
+        trackEvent('quote_step_1_complete', currentQuoteParams());
         showStep(2);
       });
 
       toStep3.addEventListener('click', function () {
         if (!validateFields(step2)) return;
         updateVehicleSummary();
+        trackEvent('quote_step_2_complete', currentQuoteParams());
         showStep(3);
       });
 
@@ -774,6 +806,8 @@
         if (!submissionPending) return;
 
         submissionPending = false;
+
+        trackEvent('quote_submit_success', currentQuoteParams());
 
         form.querySelectorAll('input, select, textarea, button').forEach(el => {
           el.disabled = true;
@@ -807,6 +841,8 @@
         data.sms_ok = form.querySelector('[name="sms_ok"]').checked ? 'Yes' : 'No';
         data._site = location.hostname;
         data._submittedAt = new Date().toISOString();
+
+        trackEvent('quote_submit', currentQuoteParams());
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
@@ -842,6 +878,11 @@
           submissionPending = false;
           submitBtn.disabled = false;
           submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+
+          trackEvent('quote_submit_error', {
+            ...currentQuoteParams(),
+            error_type: 'timeout'
+          });
 
           openModal(
             'Could not confirm submission',
