@@ -29,6 +29,22 @@
 
     .glass { backdrop-filter: blur(8px); }
 
+    .btn-pop{
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
+      transform:translateY(0) scale(1);
+      will-change:transform;
+    }
+
+    .btn-pop:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 14px 30px rgb(0 0 0 / .18);
+      filter:brightness(1.04);
+    }
+
+    .btn-pop:active{
+      transform:translateY(-1px) scale(.99);
+    }
+
     .nav-link {
       position: relative;
       padding-bottom: 4px;
@@ -75,6 +91,16 @@
     .step-panel[hidden] {
       display: none !important;
     }
+
+    @media (prefers-reduced-motion: reduce){
+      .btn-pop{
+        transition:none !important;
+      }
+      .btn-pop:hover,
+      .btn-pop:active{
+        transform:none !important;
+      }
+    }
   </style>
 
   <script>
@@ -102,12 +128,12 @@
         </nav>
 
         <div class="hidden md:flex items-center gap-4">
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-2xl border-2 border-red-600 bg-white px-7 py-3 text-base font-medium text-red-600 hover:bg-red-50" aria-label="Call Now">
+          <a href="tel:+15039492257" class="btn-pop inline-flex items-center justify-center rounded-2xl border-2 border-red-600 bg-white px-7 py-3 text-base font-medium text-red-600" aria-label="Call Now">
             Call Now
           </a>
         </div>
 
-        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <button id="mobileMenuBtn" class="btn-pop md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -125,7 +151,7 @@
           <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
 
           <div class="pt-3 grid gap-3">
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">
+            <a href="tel:+15039492257" class="btn-pop inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white">
               Call (503) 949-2257
             </a>
           </div>
@@ -156,7 +182,7 @@
           </div>
         </div>
 
-        <form id="cc-quote-form" class="p-5 sm:p-8" method="post" novalidate>
+        <form id="cc-quote-form" class="p-5 sm:p-8" method="post" novalidate autocomplete="off">
           <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="service" id="serviceField" value="" />
 
@@ -255,7 +281,7 @@
 
             <div class="flex items-center justify-end">
               <button id="to-step-2" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
+                      class="btn-pop inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow">
                 Continue
               </button>
             </div>
@@ -274,7 +300,7 @@
                   </p>
                 </div>
                 <button id="back-to-step-1" type="button"
-                        class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:bg-neutral-100">
+                        class="btn-pop inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800">
                   Back
                 </button>
               </div>
@@ -313,12 +339,12 @@
 
             <div class="flex items-center justify-between gap-4">
               <button id="step2-back" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800 hover:bg-neutral-200">
+                      class="btn-pop inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800">
                 Back
               </button>
 
               <button id="to-step-3" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
+                      class="btn-pop inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow">
                 Continue
               </button>
             </div>
@@ -337,7 +363,7 @@
                   </p>
                 </div>
                 <button id="back-to-step-2" type="button"
-                        class="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:bg-neutral-100">
+                        class="btn-pop inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800">
                   Back
                 </button>
               </div>
@@ -393,12 +419,12 @@
 
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button id="step3-back" type="button"
-                      class="inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800 hover:bg-neutral-200">
+                      class="btn-pop inline-flex items-center justify-center rounded-xl bg-neutral-100 px-5 py-3 font-semibold text-neutral-800">
                 Back
               </button>
 
               <button id="cc-submit-btn" type="submit"
-                      class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-700">
+                      class="btn-pop inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow">
                 Get My Quote
               </button>
             </div>
@@ -418,7 +444,7 @@
 
       <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
         <button id="cc-modal-close" type="button"
-                class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700">
+                class="btn-pop inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 font-semibold text-white">
           Okay
         </button>
       </div>
@@ -721,33 +747,6 @@
       }
 
       function applyPrefill() {
-        let stored = null;
-
-        try {
-          stored = JSON.parse(localStorage.getItem('cq_prequote') || 'null');
-        } catch (e) {
-          stored = null;
-        }
-
-        const params = new URLSearchParams(window.location.search);
-        const service = params.get('service') || (stored && stored.service) || '';
-
-        if (service) {
-          if (service === 'Chip Repair') {
-            selectRadio('damage_location', 'Windshield');
-            selectRadio('damage_type', 'Small chip(s) or crack(s)');
-          } else if (service === 'Windshield Replacement' || service === 'ADAS Recalibration') {
-            selectRadio('damage_location', 'Windshield');
-            selectRadio('damage_type', 'Large crack');
-          } else if (service === 'Back Glass') {
-            selectRadio('damage_location', 'Back Glass');
-            selectRadio('damage_type', 'Large crack');
-          } else if (service === 'Door/Side Glass' || service === 'Side / Rear Glass') {
-            selectRadio('damage_location', 'Driver Side');
-            selectRadio('damage_type', 'Large crack');
-          }
-        }
-
         hideDamageSection();
         updateDamageSummary();
         updateVehicleSummary();
