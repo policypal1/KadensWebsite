@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer</title>
+  <title>The One Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer</title>
   <meta name="description" content="Mobile auto glass repair & replacement in Salem/Keizer. Same-day service. Clean installs. Straight pricing." />
 
   <!-- Social preview tags -->
-  <meta property="og:title" content="Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
+  <meta property="og:title" content="The One Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
   <meta property="og:description" content="Mobile auto glass replacement in Salem and Keizer with fast scheduling, on-site service, and clean installation." />
   <meta property="og:image" content="https://www.theoneclearchoiceautoglass.com/social-preview.jpg" />
   <meta property="og:url" content="https://www.theoneclearchoiceautoglass.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Clear Choice Auto Glass" />
+  <meta property="og:site_name" content="The One Clear Choice Auto Glass" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
+  <meta name="twitter:title" content="The One Clear Choice Auto Glass — Mobile Auto Glass Salem / Keizer" />
   <meta name="twitter:description" content="Mobile auto glass replacement in Salem and Keizer with fast scheduling, on-site service, and clean installation." />
   <meta name="twitter:image" content="https://www.theoneclearchoiceautoglass.com/social-preview.jpg" />
 
@@ -336,6 +336,44 @@
       object-fit:cover;
     }
 
+    .svc-split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+    .svc-split-pane{
+      position:relative;
+      min-height:200px;
+      overflow:hidden;
+    }
+    .svc-split-pane img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .svc-split-pane + .svc-split-pane{
+      border-left:1px solid rgba(255,255,255,.10);
+    }
+    .svc-split-label{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      display:inline-flex;
+      align-items:center;
+      padding:.38rem .65rem;
+      border-radius:9999px;
+      background:rgba(0,0,0,.68);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      font-size:.72rem;
+      font-weight:700;
+      line-height:1;
+      box-shadow:0 8px 20px rgb(0 0 0 / .18);
+    }
+    .svc-split--mobile .svc-split-pane{
+      min-height:185px;
+    }
+
     .hero-shell{
       min-height:620px;
       padding-top:2rem;
@@ -489,9 +527,12 @@
   <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px;width:auto">
-          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
+          <span class="min-w-0 leading-none">
+            <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
+            <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
+          </span>
         </a>
 
         <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
@@ -710,7 +751,7 @@
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div class="max-w-3xl">
           <h2 class="text-3xl md:text-5xl font-black leading-tight text-white">
-            Why Drivers Choose <span class="text-red-500">Clear Choice</span> Auto Glass
+            Why Drivers Choose <span class="text-red-500">The One Clear Choice</span> Auto Glass
           </h2>
           <p class="mt-3 text-lg text-white/75">
             Skip the shop, avoid the wait, and get service that fits your schedule.
@@ -824,10 +865,10 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative">
         <div class="max-w-2xl">
           <h2 class="text-3xl md:text-4xl font-black leading-tight">Popular Services</h2>
-          <p class="mt-2 text-white/70 text-sm">The glass jobs we handle most often, from front windshields to side and rear glass.</p>
+          <p class="mt-2 text-white/70 text-sm">The glass jobs we handle most often, plus careful work for older vehicles and Teslas.</p>
         </div>
 
-        <div class="hidden sm:grid mt-8 grid-cols-3 gap-5">
+        <div class="hidden sm:grid mt-8 grid-cols-2 lg:grid-cols-4 gap-5">
           <article class="svc-card">
             <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
             <div class="p-5">
@@ -849,6 +890,23 @@
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Handles shattered rear glass, damaged defroster lines, and cleanup after the glass blows out.</p>
+            </div>
+          </article>
+
+          <article class="svc-card">
+            <div class="svc-split">
+              <div class="svc-split-pane">
+                <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async"/>
+                <span class="svc-split-label">Older Cars</span>
+              </div>
+              <div class="svc-split-pane">
+                <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async"/>
+                <span class="svc-split-label">Teslas</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
+              <p class="mt-2 text-sm text-white/70">Extra care for older vehicles and Tesla glass jobs where clean fitment, trim detail, and careful installation matter.</p>
             </div>
           </article>
         </div>
@@ -890,6 +948,25 @@
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For shattered rear glass, bad rear visibility, or damaged back-window defroster lines.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="slide">
+                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
+                    <div class="svc-split svc-split--mobile">
+                      <div class="svc-split-pane">
+                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
+                        <span class="svc-split-label">Older Cars</span>
+                      </div>
+                      <div class="svc-split-pane">
+                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
+                        <span class="svc-split-label">Teslas</span>
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
+                      <p class="mt-1 text-sm text-white/70">Careful glass work for older vehicles and Teslas where fitment and finish really matter.</p>
                     </div>
                   </div>
                 </article>
@@ -1081,13 +1158,30 @@
         <div class="grid lg:grid-cols-[1fr_.95fr] gap-8 items-center">
           <div class="max-w-3xl">
             <h2 class="text-3xl md:text-4xl font-black leading-tight text-white">
-              About <span class="text-red-500">Clear Choice</span> Auto Glass
+              About <span class="text-red-500">The One Clear Choice</span> Auto Glass
             </h2>
-            <p class="mt-4 text-white/75 text-base md:text-lg">
-              Clear Choice Auto Glass is a local family-run business serving Salem, Keizer, and nearby areas. We are not a big out-of-town chain or a call center passing you around. When you reach out, you are working with real local people who care about clean installs, honest pricing, clear communication, and making the whole process simple from the first quote to the finished job.
-            </p>
 
-            <div class="mt-5 flex flex-wrap gap-3">
+            <div class="mt-5 rounded-[26px] border border-white/10 bg-white/5 p-5 md:p-6 shadow-2xl backdrop-blur-sm">
+              <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-white/80">
+                Local • Mobile • Straightforward
+              </div>
+
+              <div class="mt-5 grid gap-4">
+                <div class="rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5">
+                  <p class="text-white/82 text-base md:text-lg leading-relaxed">
+                    The One Clear Choice Auto Glass is a local family-run business serving Salem, Keizer, and nearby areas. You are not getting passed around to a big out-of-town chain or a call center.
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5">
+                  <p class="text-white/82 text-base md:text-lg leading-relaxed">
+                    When you reach out, you are working with real local people who care about clean installs, honest pricing, clear communication, and making the whole process simple from the first quote to the finished job.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 badge-row-scroll">
               <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
                 <span class="text-red-500">•</span> Local family-run business
               </span>
@@ -1095,10 +1189,7 @@
                 <span class="text-red-500">•</span> Salem &amp; Keizer based
               </span>
               <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
-                <span class="text-red-500">•</span> Honest pricing
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
-                <span class="text-red-500">•</span> Clean mobile installs
+                <span class="text-red-500">•</span> Honest pricing &amp; clean installs
               </span>
             </div>
           </div>
@@ -1106,7 +1197,7 @@
           <div class="rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
             <img
               src="ChatGPT Image Mar 30, 2026, 06_05_27 AM.png"
-              alt="Clear Choice Auto Glass local family-run team"
+              alt="The One Clear Choice Auto Glass local family-run team"
               class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
               loading="lazy"
             />
@@ -1169,7 +1260,7 @@
               <span class="hidden md:inline">What <span class="text-red-500">Salem &amp; Keizer</span> Drivers Are Saying</span>
             </h2>
             <p class="mt-3 text-white/75 max-w-2xl mx-auto md:mx-0">
-              Here's what local customers are saying about their auto glass service, pricing, and overall experience with Clear Choice.
+              Here's what local customers are saying about their auto glass service, pricing, and overall experience with The One Clear Choice Auto Glass.
             </p>
           </div>
 
@@ -1226,7 +1317,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-center md:text-left">
       <div class="col-span-2 md:col-span-2">
         <div class="flex items-center gap-2 justify-center md:justify-start">
-          <p class="font-semibold text-white">Clear Choice Auto Glass</p>
+          <p class="font-semibold text-white">The One Clear Choice Auto Glass</p>
         </div>
         <p class="mt-3 text-white/70">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
       </div>
@@ -1255,7 +1346,7 @@
 
     <div class="border-t border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-white/60 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <span>© <span id="year"></span> The One Clear Choice Auto Glass. All rights reserved.</span>
         <div class="flex items-center gap-4">
           <a href="privacy.html" class="hover:text-white">Privacy</a>
           <a href="warranty.html" class="hover:text-white">Warranty</a>
