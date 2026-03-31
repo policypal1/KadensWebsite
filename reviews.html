@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Customer Reviews — Clear Choice Auto Glass</title>
-  <meta name="description" content="Read real customer reviews for Clear Choice Auto Glass. Same-day mobile installs, OEM-grade glass, and lifetime workmanship warranty." />
+  <title>Customer Reviews — The One Clear Choice Auto Glass</title>
+  <meta name="description" content="Read real customer reviews for The One Clear Choice Auto Glass. Same-day mobile installs, OEM-grade glass, and lifetime workmanship warranty." />
   <meta name="theme-color" content="#ffffff" />
 
   <!-- Google tag (gtag.js) -->
@@ -25,11 +25,36 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* FIX: Removed .glass{backdrop-filter:blur(8px)} — was causing scroll jank */
+
+    .btn-pop{
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
+      transform:translateY(0) scale(1);
+      will-change:transform;
+    }
+    .btn-pop:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 14px 30px rgb(0 0 0 / .18);
+      filter:brightness(1.04);
+    }
+    .btn-pop:active{
+      transform:translateY(-1px) scale(.99);
+    }
+
     .nav-link{position:relative;padding-bottom:4px;transition:color .2s ease}
     .nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background-color:#dc2626;transition:width .3s ease}
     .nav-link:hover::after,.nav-link.active::after{width:100%}
     .nav-link:hover{color:#dc2626}
     nav[aria-label="Mobile"] .nav-link::after{display:none}
+
+    @media (prefers-reduced-motion: reduce){
+      .btn-pop{
+        transition:none !important;
+      }
+      .btn-pop:hover,
+      .btn-pop:active{
+        transform:none !important;
+      }
+    }
   </style>
 
   <script>
@@ -43,9 +68,9 @@
   <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="/index.html" class="flex items-center gap-4" aria-label="Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="Clear Choice Auto Glass logo" style="height:65px;width:auto">
-          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">Clear Choice Auto Glass</span>
+        <a href="/index.html" class="flex items-center gap-4" aria-label="The One Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" style="height:65px;width:auto">
+          <span class="text-neutral-900 font-extrabold text-2xl tracking-wide">The One Clear Choice Auto Glass</span>
         </a>
 
         <nav class="hidden md:flex items-center gap-6 text-lg" aria-label="Primary">
@@ -58,10 +83,10 @@
 
         <div class="hidden md:flex items-center gap-4">
           <a href="tel:+15039492257" class="text-neutral-900 hover:text-red-700 font-semibold text-lg" aria-label="Call (503) 949-2257">(503) 949-2257</a>
-          <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
+          <a href="/quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
         </div>
 
-        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <button id="mobileMenuBtn" class="btn-pop md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white hover:bg-neutral-50" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -79,10 +104,10 @@
           <a role="menuitem" href="/faqs.html" class="py-2 text-neutral-800 hover:text-red-700 nav-link">FAQs</a>
 
           <div class="pt-3 grid gap-3">
-            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
+            <a href="/quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
               Get a Quote
             </a>
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">
+            <a href="tel:+15039492257" class="btn-pop inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">
               Call (503) 949-2257
             </a>
           </div>
@@ -117,8 +142,8 @@
           </div>
 
           <div class="mt-6 flex gap-3">
-            <a href="/quote.html" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote</a>
-            <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
+            <a href="/quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">Get a Quote</a>
+            <a href="tel:+15039492257" class="btn-pop inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Call (503) 949-2257</a>
           </div>
         </div>
       </div>
@@ -139,7 +164,7 @@
           </select>
         </div>
 
-        <a href="https://g.page/r/CTcRy-sP_mSMEAI/review" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
+        <a href="https://g.page/r/CTcRy-sP_mSMEAI/review" target="_blank" rel="noopener noreferrer" class="btn-pop inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-red-600 hover:bg-red-700">Leave a review</a>
       </div>
     </div>
   </section>
@@ -149,7 +174,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div id="reviewsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
       <div class="mt-8 text-center">
-        <button id="loadMore" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Load more reviews</button>
+        <button id="loadMore" class="btn-pop inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 border-2 border-red-600 bg-white hover:bg-red-50">Load more reviews</button>
       </div>
     </div>
   </section>
@@ -159,7 +184,7 @@
     <div id="quotePopupOverlay" class="absolute inset-0 bg-neutral-900/60"></div>
 
     <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-black/5">
-      <button id="quotePopupClose" type="button" aria-label="Close popup" class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 hover:bg-neutral-50">
+      <button id="quotePopupClose" type="button" aria-label="Close popup" class="btn-pop absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 hover:bg-neutral-50">
         ✕
       </button>
 
@@ -173,7 +198,7 @@
       </p>
 
       <div class="mt-6">
-        <a href="/quote.html" class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
+        <a href="/quote.html" class="btn-pop inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white bg-red-600 hover:bg-red-700">
           Get My Quote
         </a>
       </div>
@@ -185,12 +210,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-center md:text-left">
       <div class="col-span-2 md:col-span-2">
         <div class="flex items-center gap-2 justify-center md:justify-start">
-          <p class="font-semibold text-neutral-900">Clear Choice Auto Glass</p>
+          <p class="font-semibold text-neutral-900">The One Clear Choice Auto Glass</p>
         </div>
         <p class="mt-3 text-neutral-700">Family-Owned • Mobile Auto Glass in Salem, Oregon</p>
         <div class="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
-          <a href="quote.html" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
-          <a href="tel:+15039492257" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
+          <a href="quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-300 shadow">Get a Quote</a>
+          <a href="tel:+15039492257" class="btn-pop inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-red-600 bg-white border-2 border-red-600 hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-red-200">Call Now</a>
         </div>
       </div>
 
@@ -218,7 +243,7 @@
 
     <div class="border-t border-neutral-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-neutral-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© <span id="year"></span> Clear Choice Auto Glass. All rights reserved.</span>
+        <span>© <span id="year"></span> The One Clear Choice Auto Glass. All rights reserved.</span>
         <div class="flex items-center gap-4">
           <a href="privacy.html" class="hover:text-neutral-900">Privacy</a>
           <a href="warranty.html" class="hover:text-neutral-900">Warranty</a>
