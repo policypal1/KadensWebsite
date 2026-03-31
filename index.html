@@ -54,6 +54,24 @@
     img { max-width:100%; height:auto; }
     img[width][height]{ height:auto; }
 
+    .site-header-row{
+      min-height:84px;
+    }
+    .header-brand-logo{
+      height:clamp(54px, 12vw, 68px);
+    }
+    .header-brand-top{
+      display:block;
+      font-size:clamp(.62rem, 1.8vw, .76rem);
+      letter-spacing:.24em;
+      line-height:1;
+    }
+    .header-brand-main{
+      display:block;
+      font-size:clamp(1.02rem, 4.5vw, 1.34rem);
+      line-height:.95;
+    }
+
     .btn-pop{
       transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
       transform:translateY(0) scale(1);
@@ -173,6 +191,24 @@
     .hero-mini-review .copy{
       white-space:nowrap;
       font-weight:600;
+    }
+
+    @media (min-width:640px){
+      .site-header-row{
+        height:80px;
+        min-height:80px;
+      }
+      .header-brand-logo{
+        height:65px;
+      }
+      .header-brand-top{
+        font-size:.6875rem;
+        letter-spacing:.28em;
+      }
+      .header-brand-main{
+        font-size:1.5rem;
+        line-height:1;
+      }
     }
 
     @media (min-width:768px){
@@ -526,12 +562,12 @@
 
   <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
+      <div class="site-header-row flex items-center justify-between gap-3 sm:gap-4 py-2 sm:py-0">
+        <a href="/index.html" class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1" aria-label="The One Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="header-brand-logo w-auto shrink-0">
           <span class="min-w-0 leading-none">
-            <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
-            <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
+            <span class="header-brand-top font-extrabold uppercase text-red-600">The One</span>
+            <span class="header-brand-main font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
           </span>
         </a>
 
@@ -548,7 +584,7 @@
           <a href="/quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
         </div>
 
-        <button id="mobileMenuBtn" class="btn-pop md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <button id="mobileMenuBtn" class="btn-pop md:hidden shrink-0 inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -868,31 +904,7 @@
           <p class="mt-2 text-white/70 text-sm">The glass jobs we handle most often, plus careful work for older vehicles and Teslas.</p>
         </div>
 
-        <div class="hidden sm:grid mt-8 grid-cols-2 lg:grid-cols-4 gap-5">
-          <article class="svc-card">
-            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
-            <div class="p-5">
-              <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
-              <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
-            </div>
-          </article>
-
-          <article class="svc-card">
-            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async"/>
-            <div class="p-5">
-              <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
-              <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
-            </div>
-          </article>
-
-          <article class="svc-card">
-            <img src="rear-window-glass-replacement-The-Woodlands-Texas.jpeg" alt="Back glass replacement" loading="lazy" decoding="async"/>
-            <div class="p-5">
-              <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
-              <p class="mt-2 text-sm text-white/70">Handles shattered rear glass, damaged defroster lines, and cleanup after the glass blows out.</p>
-            </div>
-          </article>
-
+        <div class="hidden sm:grid mt-8 grid-cols-2 lg:grid-cols-3 gap-5">
           <article class="svc-card">
             <div class="svc-split">
               <div class="svc-split-pane">
@@ -907,6 +919,22 @@
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
               <p class="mt-2 text-sm text-white/70">Extra care for older vehicles and Tesla glass jobs where clean fitment, trim detail, and careful installation matter.</p>
+            </div>
+          </article>
+
+          <article class="svc-card">
+            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
+              <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
+            </div>
+          </article>
+
+          <article class="svc-card">
+            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async"/>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
+              <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
             </div>
           </article>
         </div>
@@ -924,6 +952,25 @@
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
+                    <div class="svc-split svc-split--mobile">
+                      <div class="svc-split-pane">
+                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
+                        <span class="svc-split-label">Older Cars</span>
+                      </div>
+                      <div class="svc-split-pane">
+                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
+                        <span class="svc-split-label">Teslas</span>
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
+                      <p class="mt-1 text-sm text-white/70">Careful glass work for older vehicles and Teslas where fitment and finish really matter.</p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="slide">
+                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
@@ -938,35 +985,6 @@
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="slide">
-                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="w-full h-[185px] object-cover" src="rear-window-glass-replacement-The-Woodlands-Texas.jpeg" alt="Back glass replacement" loading="lazy"/>
-                    <div class="p-4">
-                      <h3 class="text-lg font-bold text-white">Back Glass Replacement</h3>
-                      <p class="mt-1 text-sm text-white/70">For shattered rear glass, bad rear visibility, or damaged back-window defroster lines.</p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="slide">
-                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <div class="svc-split svc-split--mobile">
-                      <div class="svc-split-pane">
-                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
-                        <span class="svc-split-label">Older Cars</span>
-                      </div>
-                      <div class="svc-split-pane">
-                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
-                        <span class="svc-split-label">Teslas</span>
-                      </div>
-                    </div>
-                    <div class="p-4">
-                      <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
-                      <p class="mt-1 text-sm text-white/70">Careful glass work for older vehicles and Teslas where fitment and finish really matter.</p>
                     </div>
                   </div>
                 </article>
@@ -989,7 +1007,7 @@
     <section id="our-work" class="bg-white border-y border-neutral-200/70">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="mb-7 max-w-3xl">
-          <h2 class="text-2xl md:text-4xl font-black leading-tight text-neutral-900">Recent installs from around Salem &amp; Keizer</h2>
+          <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">Recent installs from around <span class="text-red-600">Salem &amp; Keizer</span></h2>
           <p class="mt-2 text-sm md:text-base text-neutral-600">A few recent installs and finished results from local jobs.</p>
         </div>
 
@@ -1089,7 +1107,7 @@
         <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-8 items-center">
           <div class="lg:hidden">
             <h2 class="text-3xl md:text-4xl font-black leading-tight text-white">
-              Mobile service that fits real schedules
+              Mobile service that <span class="text-red-500">fits real schedules</span>
             </h2>
           </div>
 
@@ -1102,7 +1120,7 @@
 
           <div>
             <h2 class="hidden lg:block text-3xl md:text-4xl font-black leading-tight text-white">
-              Mobile service that fits real schedules
+              Mobile service that <span class="text-red-500">fits real schedules</span>
             </h2>
             <p class="mt-4 text-white/75 max-w-2xl">
               Built for drivers who need the job handled around work, school pickup, or time at home. Choose a window that fits your day and skip the waiting room altogether.
@@ -1136,7 +1154,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="max-w-3xl">
           <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-            Salem &amp; Keizer service area
+            <span class="text-red-600">Salem &amp; Keizer</span> service area
           </h2>
           <p class="mt-4 text-neutral-700">
             We regularly cover Salem, Keizer, West Salem, South Salem, Four Corners, Hayesville, and nearby routes when they fit the schedule. If your vehicle is in the Salem-Keizer area, there is a good chance we can come out to you.
@@ -1155,18 +1173,14 @@
     <section id="about-us" class="relative overflow-hidden bg-neutral-950 border-y border-white/10 text-white">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.15),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_28%)]"></div>
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
-        <div class="grid lg:grid-cols-[1fr_.95fr] gap-8 items-center">
+        <div class="grid lg:grid-cols-[1fr_.95fr] gap-8 items-stretch">
           <div class="max-w-3xl">
             <h2 class="text-3xl md:text-4xl font-black leading-tight text-white">
               About <span class="text-red-500">The One Clear Choice</span> Auto Glass
             </h2>
 
             <div class="mt-5 rounded-[26px] border border-white/10 bg-white/5 p-5 md:p-6 shadow-2xl backdrop-blur-sm">
-              <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-white/80">
-                Local • Mobile • Straightforward
-              </div>
-
-              <div class="mt-5 grid gap-4">
+              <div class="grid gap-4">
                 <div class="rounded-2xl border border-white/10 bg-black/20 p-4 md:p-5">
                   <p class="text-white/82 text-base md:text-lg leading-relaxed">
                     The One Clear Choice Auto Glass is a local family-run business serving Salem, Keizer, and nearby areas. You are not getting passed around to a big out-of-town chain or a call center.
@@ -1180,27 +1194,17 @@
                 </div>
               </div>
             </div>
-
-            <div class="mt-5 badge-row-scroll">
-              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
-                <span class="text-red-500">•</span> Local family-run business
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
-                <span class="text-red-500">•</span> Salem &amp; Keizer based
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
-                <span class="text-red-500">•</span> Honest pricing &amp; clean installs
-              </span>
-            </div>
           </div>
 
-          <div class="rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
-            <img
-              src="ChatGPT Image Mar 30, 2026, 06_05_27 AM.png"
-              alt="The One Clear Choice Auto Glass local family-run team"
-              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-              loading="lazy"
-            />
+          <div class="lg:pt-[5.25rem]">
+            <div class="rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl h-full min-h-[280px]">
+              <img
+                src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
+                alt="The One Clear Choice Auto Glass local family-run team"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
