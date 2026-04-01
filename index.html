@@ -54,26 +54,6 @@
     img { max-width:100%; height:auto; }
     img[width][height]{ height:auto; }
 
-    .site-header-row{
-      min-height:76px;
-    }
-    .header-brand-logo{
-      height:clamp(38px, 11vw, 52px);
-    }
-    .header-brand-top{
-      display:block;
-      font-size:clamp(.5rem, 1.55vw, .68rem);
-      letter-spacing:.22em;
-      line-height:1;
-    }
-    .header-brand-main{
-      display:block;
-      font-size:clamp(.82rem, 2.7vw, 1.18rem);
-      line-height:.94;
-      letter-spacing:-0.03em;
-      white-space:nowrap;
-    }
-
     .btn-pop{
       transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
       transform:translateY(0) scale(1);
@@ -193,24 +173,6 @@
     .hero-mini-review .copy{
       white-space:nowrap;
       font-weight:600;
-    }
-
-    @media (min-width:640px){
-      .site-header-row{
-        height:80px;
-        min-height:80px;
-      }
-      .header-brand-logo{
-        height:65px;
-      }
-      .header-brand-top{
-        font-size:.6875rem;
-        letter-spacing:.28em;
-      }
-      .header-brand-main{
-        font-size:1.5rem;
-        line-height:1;
-      }
     }
 
     @media (min-width:768px){
@@ -364,6 +326,7 @@
       transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
       display:flex;
       flex-direction:column;
+      min-height:382px;
       height:100%;
     }
     .svc-card:hover{
@@ -373,8 +336,9 @@
     }
     .svc-card img{
       width:100%;
-      height:200px;
+      height:220px;
       object-fit:cover;
+      display:block;
     }
     .svc-card .p-5{
       flex:1;
@@ -383,19 +347,27 @@
     .svc-mobile-card{
       display:flex;
       flex-direction:column;
-      min-height:316px;
+      min-height:348px;
+      height:100%;
     }
     .svc-mobile-card .p-4{
       flex:1;
+    }
+    .svc-mobile-media{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
     }
 
     .svc-split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
+      height:220px;
     }
     .svc-split-pane{
       position:relative;
-      min-height:200px;
+      min-height:220px;
       overflow:hidden;
     }
     .svc-split-pane img{
@@ -423,8 +395,11 @@
       line-height:1;
       box-shadow:0 8px 20px rgb(0 0 0 / .18);
     }
+    .svc-split--mobile{
+      height:220px;
+    }
     .svc-split--mobile .svc-split-pane{
-      min-height:185px;
+      min-height:220px;
     }
 
     .hero-shell{
@@ -579,12 +554,12 @@
 
   <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="site-header-row flex items-center justify-between gap-3 sm:gap-4 py-2 sm:py-0">
-        <a href="/index.html" class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1" aria-label="The One Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="header-brand-logo w-auto shrink-0">
+      <div class="flex items-center justify-between h-20">
+        <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
+          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
           <span class="min-w-0 leading-none">
-            <span class="header-brand-top font-extrabold uppercase text-red-600">The One</span>
-            <span class="header-brand-main font-extrabold text-neutral-900">Clear Choice Auto Glass</span>
+            <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
+            <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
           </span>
         </a>
 
@@ -601,7 +576,7 @@
           <a href="/quote.html" class="btn-pop inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-lg text-white bg-red-600 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 shadow-lg transition">Get a Quote</a>
         </div>
 
-        <button id="mobileMenuBtn" class="btn-pop md:hidden shrink-0 inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <button id="mobileMenuBtn" class="btn-pop md:hidden inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-800 bg-white" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -935,7 +910,7 @@
             </div>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Older Cars &amp; Teslas</h3>
-              <p class="mt-2 text-sm text-white/70">Extra care for older vehicles and Tesla glass jobs where clean fitment, trim detail, and careful installation matter.</p>
+              <p class="mt-2 text-sm text-white/70">Careful glass work for older vehicles and Teslas where fitment and finish really matter.</p>
             </div>
           </article>
 
@@ -988,7 +963,7 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="w-full h-[185px] object-cover" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
+                    <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For cracked front glass, spreading damage, or chips that have gone too far.</p>
@@ -998,7 +973,7 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="w-full h-[185px] object-cover" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
+                    <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
