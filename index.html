@@ -55,21 +55,23 @@
     img[width][height]{ height:auto; }
 
     .site-header-row{
-      min-height:84px;
+      min-height:76px;
     }
     .header-brand-logo{
-      height:clamp(54px, 12vw, 68px);
+      height:clamp(38px, 11vw, 52px);
     }
     .header-brand-top{
       display:block;
-      font-size:clamp(.62rem, 1.8vw, .76rem);
-      letter-spacing:.24em;
+      font-size:clamp(.5rem, 1.55vw, .68rem);
+      letter-spacing:.22em;
       line-height:1;
     }
     .header-brand-main{
       display:block;
-      font-size:clamp(1.02rem, 4.5vw, 1.34rem);
-      line-height:.95;
+      font-size:clamp(.82rem, 2.7vw, 1.18rem);
+      line-height:.94;
+      letter-spacing:-0.03em;
+      white-space:nowrap;
     }
 
     .btn-pop{
@@ -360,6 +362,9 @@
       border:1px solid rgba(255,255,255,.10);
       box-shadow:0 16px 40px rgb(0 0 0 / .22);
       transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+      display:flex;
+      flex-direction:column;
+      height:100%;
     }
     .svc-card:hover{
       transform:translateY(-4px);
@@ -370,6 +375,18 @@
       width:100%;
       height:200px;
       object-fit:cover;
+    }
+    .svc-card .p-5{
+      flex:1;
+    }
+
+    .svc-mobile-card{
+      display:flex;
+      flex-direction:column;
+      min-height:316px;
+    }
+    .svc-mobile-card .p-4{
+      flex:1;
     }
 
     .svc-split{
@@ -567,7 +584,7 @@
           <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="header-brand-logo w-auto shrink-0">
           <span class="min-w-0 leading-none">
             <span class="header-brand-top font-extrabold uppercase text-red-600">The One</span>
-            <span class="header-brand-main font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
+            <span class="header-brand-main font-extrabold text-neutral-900">Clear Choice Auto Glass</span>
           </span>
         </a>
 
@@ -859,7 +876,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
         <div class="text-center max-w-3xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-black leading-tight text-neutral-900">
-            Proven work across Salem &amp; Keizer
+            Proven work across <span class="text-red-600">Salem &amp; Keizer</span>
           </h2>
           <p class="mt-3 text-neutral-600">
             Years in the trade, thousands of installs completed, and steady local service every week.
@@ -951,7 +968,7 @@
             <div class="viewport" tabindex="0">
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
+                  <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <div class="svc-split svc-split--mobile">
                       <div class="svc-split-pane">
                         <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
@@ -970,7 +987,7 @@
                 </article>
 
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
+                  <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
@@ -980,7 +997,7 @@
                 </article>
 
                 <article class="slide">
-                  <div class="rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
+                  <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <img class="w-full h-[185px] object-cover" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
@@ -1193,18 +1210,25 @@
                   </p>
                 </div>
               </div>
+
+              <div class="lg:hidden mt-5 rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 shadow-xl">
+                <img
+                  src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
+                  alt="The One Clear Choice Auto Glass local family-run team"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
 
-          <div class="lg:pt-[5.25rem]">
-            <div class="rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl h-full min-h-[280px]">
-              <img
-                src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
-                alt="The One Clear Choice Auto Glass local family-run team"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+          <div class="hidden lg:block rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
+            <img
+              src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
+              alt="The One Clear Choice Auto Glass local family-run team"
+              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
