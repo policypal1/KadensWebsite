@@ -8,7 +8,11 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
   <link rel="canonical" href="https://www.theoneclearchoiceautoglass.com/" />
-  
+
+  <!-- Preconnect to third-party origins -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
   <!-- Social preview tags -->
   <meta property="og:title" content="Mobile Windshield Replacement in Salem & Keizer | Clear Choice Auto Glass" />
   <meta property="og:description" content="Mobile windshield, side window, and back glass replacement in Salem & Keizer. Fast scheduling, mobile service to your home or work, and quality installation." />
@@ -64,8 +68,8 @@
   }
   </script>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
+  <!-- Google tag (gtag.js) — deferred to not block rendering -->
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -77,37 +81,379 @@
   <link rel="apple-touch-icon" href="653713642_122095982396957277_9126760842103700020_n.jpg">
   <link rel="shortcut icon" type="image/jpeg" href="653713642_122095982396957277_9126760842103700020_n.jpg">
 
-  <script src="https://cdn.tailwindcss.com"></script> 
-
+  <!-- =============================================
+       STATIC CSS — replaces Tailwind CDN script
+       All utility classes extracted + your custom styles
+       ============================================= -->
   <style>
-    :root{
-      --brand:#dc2626;
-      --brand-dark:#b91c1c;
-      --ink:#0a0a0a;
-      --soft:#f8fafc;
-      --line:#e5e7eb;
-      --panel:#ffffff;
-      --services-bg-1:#0a0a0a;
-      --services-bg-2:#111111;
-    }
-
-    html, body { -webkit-text-size-adjust:100%; }
+    /* --- RESET / BASE --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; line-height: 1.5; tab-size: 4; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+    body { line-height: inherit; }
+    a { color: inherit; text-decoration: inherit; }
+    img, svg, video { display: block; vertical-align: middle; }
+    img { max-width: 100%; height: auto; }
+    img[width][height] { height: auto; }
+    button, input { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    ul, ol { list-style: none; }
     a, button { -webkit-tap-highlight-color: transparent; }
-    img { max-width:100%; height:auto; }
-    img[width][height]{ height:auto; }
 
-    .btn-pop{
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
-      transform:translateY(0) scale(1);
-      will-change:transform;
+    /* --- CUSTOM PROPERTIES --- */
+    :root {
+      --brand: #dc2626;
+      --brand-dark: #b91c1c;
+      --ink: #0a0a0a;
+      --soft: #f8fafc;
+      --line: #e5e7eb;
+      --panel: #ffffff;
+      --services-bg-1: #0a0a0a;
+      --services-bg-2: #111111;
     }
-    .btn-pop:hover{
-      transform:translateY(-3px) scale(1.02);
-      box-shadow:0 14px 30px rgb(0 0 0 / .18);
-      filter:brightness(1.04);
+
+    /* --- TAILWIND UTILITY CLASSES (extracted) --- */
+
+    /* Display */
+    .block { display: block; }
+    .inline-flex { display: inline-flex; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .hidden { display: none; }
+    .inline-block { display: inline-block; }
+
+    /* Position */
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .sticky { position: sticky; }
+    .isolate { isolation: isolate; }
+
+    /* Inset */
+    .inset-0 { inset: 0; }
+    .top-0 { top: 0; }
+    .left-0 { left: 0; }
+    .right-0 { right: 0; }
+    .bottom-0 { bottom: 0; }
+
+    /* Z-index */
+    .z-2 { z-index: 2; }
+    .z-4 { z-index: 4; }
+    .z-10 { z-index: 10; }
+    .z-50 { z-index: 50; }
+
+    /* Overflow */
+    .overflow-hidden { overflow: hidden; }
+    .overflow-x-auto { overflow-x: auto; }
+
+    /* Flex */
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-none { flex: none; }
+    .flex-1 { flex: 1 1 0%; }
+    .shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .items-start { align-items: start; }
+    .items-end { align-items: flex-end; }
+    .items-stretch { align-items: stretch; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .place-items-center { place-items: center; }
+
+    /* Grid */
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .col-span-1 { grid-column: span 1 / span 1; }
+    .col-span-2 { grid-column: span 2 / span 2; }
+
+    /* Sizing */
+    .w-full { width: 100%; }
+    .w-auto { width: auto; }
+    .h-full { height: 100%; }
+    .h-10 { height: 2.5rem; }
+    .h-11 { height: 2.75rem; }
+    .h-20 { height: 5rem; }
+    .w-10 { width: 2.5rem; }
+    .w-11 { width: 2.75rem; }
+    .min-w-0 { min-width: 0; }
+    .min-h-screen { min-height: 100vh; }
+    .max-w-none { max-width: none; }
+    .max-w-2xl { max-width: 42rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-4xl { max-width: 56rem; }
+    .max-w-7xl { max-width: 80rem; }
+
+    /* Margin */
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-5 { margin-top: 1.25rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-7 { margin-top: 1.75rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mt-10 { margin-top: 2.5rem; }
+    .mb-7 { margin-bottom: 1.75rem; }
+    .mb-10 { margin-bottom: 2.5rem; }
+
+    /* Padding */
+    .p-4 { padding: 1rem; }
+    .p-5 { padding: 1.25rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-8 { padding: 2rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
+    .px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+    .py-14 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+    .pt-3 { padding-top: 0.75rem; }
+    .pb-4 { padding-bottom: 1rem; }
+
+    /* Border radius */
+    .rounded-full { border-radius: 9999px; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-3xl { border-radius: 1.5rem; }
+
+    /* Border */
+    .border { border-width: 1px; }
+    .border-2 { border-width: 2px; }
+    .border-b { border-bottom-width: 1px; }
+    .border-t { border-top-width: 1px; }
+    .border-y { border-top-width: 1px; border-bottom-width: 1px; }
+    .border-neutral-200 { border-color: #e5e7eb; }
+    .border-neutral-300 { border-color: #d1d5db; }
+    .border-red-600 { border-color: #dc2626; }
+
+    /* Background */
+    .bg-white { background-color: #fff; }
+    .bg-red-600 { background-color: #dc2626; }
+    .bg-neutral-50 { background-color: #fafafa; }
+    .bg-neutral-900 { background-color: #171717; }
+    .bg-neutral-950 { background-color: #0a0a0a; }
+
+    /* Text color */
+    .text-white { color: #fff; }
+    .text-red-500 { color: #ef4444; }
+    .text-red-600 { color: #dc2626; }
+    .text-red-700 { color: #b91c1c; }
+    .text-neutral-500 { color: #737373; }
+    .text-neutral-600 { color: #525252; }
+    .text-neutral-700 { color: #404040; }
+    .text-neutral-800 { color: #262626; }
+    .text-neutral-900 { color: #171717; }
+    .text-yellow-400 { color: #facc15; }
+    .text-yellow-500 { color: #eab308; }
+
+    /* Font size */
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+
+    /* Font weight */
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+    .font-black { font-weight: 900; }
+
+    /* Line height */
+    .leading-none { line-height: 1; }
+    .leading-tight { line-height: 1.25; }
+    .leading-relaxed { line-height: 1.625; }
+
+    /* Letter spacing */
+    .tracking-tight { letter-spacing: -0.025em; }
+    .tracking-wide { letter-spacing: 0.025em; }
+
+    /* Text transform */
+    .uppercase { text-transform: uppercase; }
+    .whitespace-nowrap { white-space: nowrap; }
+    .whitespace-normal { white-space: normal; }
+    .text-center { text-align: center; }
+
+    /* Shadow */
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+    .shadow { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+    .shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    .shadow-2xl { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+
+    /* Ring */
+    .ring-1 { box-shadow: 0 0 0 1px var(--tw-ring-color, rgb(0 0 0 / 0.05)); }
+
+    /* Transition */
+    .transition { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+
+    /* Object fit */
+    .object-cover { object-fit: cover; }
+    .object-center { object-position: center; }
+
+    /* Pointer events */
+    .pointer-events-none { pointer-events: none; }
+
+    /* Hover states */
+    .hover\:text-white:hover { color: #fff; }
+    .hover\:text-red-700:hover { color: #b91c1c; }
+    .hover\:border-white:hover { border-color: #fff; }
+    .active\:bg-red-800:active { background-color: #991b1b; }
+
+    /* Focus */
+    .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+    .focus\:ring-2:focus { box-shadow: 0 0 0 2px var(--tw-ring-color, #93c5fd); }
+    .focus\:ring-red-200:focus { --tw-ring-color: #fecaca; }
+    .focus\:ring-red-300:focus { --tw-ring-color: #fca5a5; }
+    .focus-visible\:ring-2:focus-visible { box-shadow: 0 0 0 2px var(--tw-ring-color, #93c5fd); }
+    .focus-visible\:ring-red-300:focus-visible { --tw-ring-color: #fca5a5; }
+
+    /* Responsive: sm (641px+) */
+    @media (min-width: 640px) {
+      .sm\:hidden { display: none; }
+      .sm\:flex { display: flex; }
+      .sm\:grid { display: grid; }
+      .sm\:block { display: block; }
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sm\:w-auto { width: auto; }
+      .sm\:px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .sm\:py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+      .sm\:p-7 { padding: 1.75rem; }
+      .sm\:text-5xl { font-size: 3rem; line-height: 1; }
+      .sm\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .sm\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .sm\:whitespace-nowrap { white-space: nowrap; }
     }
-    .btn-pop:active{
-      transform:translateY(-1px) scale(.99);
+
+    /* Responsive: md (768px+) */
+    @media (min-width: 768px) {
+      .md\:hidden { display: none; }
+      .md\:flex { display: flex; }
+      .md\:grid { display: grid; }
+      .md\:block { display: block; }
+      .md\:inline { display: inline; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .md\:col-span-2 { grid-column: span 2 / span 2; }
+      .md\:col-span-4 { grid-column: span 4 / span 4; }
+      .md\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+      .md\:py-7 { padding-top: 1.75rem; padding-bottom: 1.75rem; }
+      .md\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+      .md\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+      .md\:p-5 { padding: 1.25rem; }
+      .md\:p-6 { padding: 1.5rem; }
+      .md\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      .md\:text-5xl { font-size: 3rem; line-height: 1; }
+      .md\:text-base { font-size: 1rem; line-height: 1.5rem; }
+      .md\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .md\:text-left { text-align: left; }
+      .md\:mx-0 { margin-left: 0; margin-right: 0; }
+    }
+
+    /* Responsive: lg (1024px+) */
+    @media (min-width: 1024px) {
+      .lg\:flex { display: flex; }
+      .lg\:grid { display: grid; }
+      .lg\:block { display: block; }
+      .lg\:hidden { display: none; }
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+      .lg\:p-8 { padding: 2rem; }
+    }
+
+    /* Special text sizes from inline styles */
+    .text-\[10px\] { font-size: 10px; }
+    .text-\[0\.98rem\] { font-size: 0.98rem; }
+    .text-\[15px\] { font-size: 15px; }
+    .text-\[2\.15rem\] { font-size: 2.15rem; }
+    .text-\[11px\] { font-size: 11px; }
+    .tracking-\[0\.28em\] { letter-spacing: 0.28em; }
+    .tracking-\[-0\.03em\] { letter-spacing: -0.03em; }
+    .leading-\[0\.98\] { line-height: 0.98; }
+    .h-\[50px\] { height: 50px; }
+    .sm\:h-\[65px\] { }
+    @media (min-width: 640px) { .sm\:h-\[65px\] { height: 65px; } }
+    .sm\:text-\[11px\] { }
+    @media (min-width: 640px) { .sm\:text-\[11px\] { font-size: 11px; } }
+    .sm\:text-5xl { }
+    @media (min-width: 640px) { .sm\:text-5xl { font-size: 3rem; line-height: 1; } }
+    .md\:text-\[4\.15rem\] { }
+    @media (min-width: 768px) { .md\:text-\[4\.15rem\] { font-size: 4.15rem; } }
+    .lg\:text-\[4\.6rem\] { }
+    @media (min-width: 1024px) { .lg\:text-\[4\.6rem\] { font-size: 4.6rem; } }
+    .max-w-\[36rem\] { max-width: 36rem; }
+    .md\:max-w-\[58rem\] { }
+    @media (min-width: 768px) { .md\:max-w-\[58rem\] { max-width: 58rem; } }
+    .md\:rounded-\[28px\] { }
+    @media (min-width: 768px) { .md\:rounded-\[28px\] { border-radius: 28px; } }
+    .rounded-\[28px\] { border-radius: 28px; }
+    .rounded-\[26px\] { border-radius: 26px; }
+    .text-4xl.md\:text-5xl { }
+    @media (min-width: 768px) { .md\:text-5xl { font-size: 3rem; line-height: 1; } }
+
+    /* Opacity / alpha utilities used inline */
+    .bg-black\/45 { background-color: rgb(0 0 0 / 0.45); }
+    .bg-black\/70 { background-color: rgb(0 0 0 / 0.70); }
+    .bg-black\/20 { background-color: rgb(0 0 0 / 0.20); }
+    .text-white\/90 { color: rgb(255 255 255 / 0.90); }
+    .text-white\/85 { color: rgb(255 255 255 / 0.85); }
+    .text-white\/82 { color: rgb(255 255 255 / 0.82); }
+    .text-white\/75 { color: rgb(255 255 255 / 0.75); }
+    .text-white\/70 { color: rgb(255 255 255 / 0.70); }
+    .text-white\/60 { color: rgb(255 255 255 / 0.60); }
+    .text-white\/55 { color: rgb(255 255 255 / 0.55); }
+    .text-red-300 { color: #fca5a5; }
+    .bg-red-600\/20 { background-color: rgb(220 38 38 / 0.20); }
+    .bg-white\/5 { background-color: rgb(255 255 255 / 0.05); }
+    .bg-white\/8 { background-color: rgb(255 255 255 / 0.08); }
+    .bg-white\/10 { background-color: rgb(255 255 255 / 0.10); }
+    .ring-white\/10 { --tw-ring-color: rgb(255 255 255 / 0.10); }
+    .border-white\/10 { border-color: rgb(255 255 255 / 0.10); }
+    .border-white\/20 { border-color: rgb(255 255 255 / 0.20); }
+    .border-neutral-200\/70 { border-color: rgb(229 231 235 / 0.70); }
+    .hover\:bg-white\/\[0\.07\]:hover { background-color: rgb(255 255 255 / 0.07); }
+    .border-white\/15 { border-color: rgb(255 255 255 / 0.15); }
+    .bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-from), var(--tw-gradient-to)); }
+    .from-red-600 { --tw-gradient-from: #dc2626; }
+    .to-red-500 { --tw-gradient-to: #ef4444; }
+    .backdrop-blur-sm { backdrop-filter: blur(4px); }
+    .space-y-2 > * + * { margin-top: 0.5rem; }
+
+    /* --- YOUR CUSTOM STYLES (unchanged) --- */
+
+    .btn-pop {
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
+      transform: translateY(0) scale(1);
+      will-change: transform;
+    }
+    .btn-pop:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgb(0 0 0 / .18);
+      filter: brightness(1.04);
+    }
+    .btn-pop:active {
+      transform: translateY(-1px) scale(.99);
     }
 
     #guarantees, #stats, #services, #our-work, #aboutBand, #coverage-map, #about-us, #how-it-works, #reviews {
@@ -115,25 +461,25 @@
       contain-intrinsic-size: auto 600px;
     }
 
-    .nav-link{
-      position:relative;
-      padding-bottom:4px;
-      transition:color .2s ease;
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .2s ease;
     }
-    .nav-link::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:0;
-      height:2px;
-      background-color:var(--brand);
-      transition:width .25s ease;
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--brand);
+      transition: width .25s ease;
     }
     .nav-link:hover::after,
-    .nav-link.active::after{ width:100%; }
-    .nav-link:hover{ color:var(--brand); }
-    nav[aria-label="Mobile"] .nav-link::after{ display:none; }
+    .nav-link.active::after { width: 100%; }
+    .nav-link:hover { color: var(--brand); }
+    nav[aria-label="Mobile"] .nav-link::after { display: none; }
 
     @keyframes marqueeScroll {
       0% { transform: translateX(0); }
@@ -141,448 +487,197 @@
     }
 
     @keyframes heroFadeUp {
-      0% {
-        opacity:0;
-        transform:translateY(24px);
-      }
-      100% {
-        opacity:1;
-        transform:translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .reviews-strip { --speed: 42s; }
     .reviews-track {
-      display:flex;
-      width:max-content;
-      gap:.75rem;
+      display: flex;
+      width: max-content;
+      gap: .75rem;
       animation: marqueeScroll var(--speed) linear infinite;
-      will-change:transform;
-      transform:translateZ(0);
+      will-change: transform;
+      transform: translateZ(0);
     }
     .reviews-mask {
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-      contain:content;
+      contain: content;
     }
     .review-pill {
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.5rem .75rem;
-      border-radius:9999px;
-      background:#fff;
-      border:1px solid var(--line);
-      box-shadow:0 1px 2px rgb(0 0 0 / .04);
-      font-size:.8125rem;
-      white-space:nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem .75rem;
+      border-radius: 9999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 1px 2px rgb(0 0 0 / .04);
+      font-size: .8125rem;
+      white-space: nowrap;
     }
-    .review-star { color:#f59e0b; }
+    .review-star { color: #f59e0b; }
     .reviews-rail:hover .reviews-track { animation-play-state: paused; }
 
-    .badge-row-scroll{
-      display:flex;
-      flex-wrap:nowrap;
-      gap:.5rem;
-      overflow-x:auto;
-      padding-bottom:.2rem;
-      scrollbar-width:none;
-      -ms-overflow-style:none;
+    .badge-row-scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: .5rem;
+      overflow-x: auto;
+      padding-bottom: .2rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .badge-row-scroll::-webkit-scrollbar{ display:none; }
+    .badge-row-scroll::-webkit-scrollbar { display: none; }
 
-    .hero-mini-review{
-      display:inline-flex;
-      align-items:center;
-      gap:.45rem;
-      flex:0 0 auto;
-      padding:.45rem .78rem;
-      border-radius:9999px;
-      background:rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 10px 24px rgb(0 0 0 / .22);
-      color:#fff;
-      font-size:.74rem;
-      line-height:1.15;
-      white-space:nowrap;
+    .hero-mini-review {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      flex: 0 0 auto;
+      padding: .45rem .78rem;
+      border-radius: 9999px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 24px rgb(0 0 0 / .22);
+      color: #fff;
+      font-size: .74rem;
+      line-height: 1.15;
+      white-space: nowrap;
     }
-    .hero-mini-review .stars{
-      color:#fbbf24;
-      letter-spacing:-0.06em;
-      flex:none;
-      font-size:.78rem;
-    }
-    .hero-mini-review .copy{
-      white-space:nowrap;
-      font-weight:600;
-    }
+    .hero-mini-review .stars { color: #fbbf24; letter-spacing: -0.06em; flex: none; font-size: .78rem; }
+    .hero-mini-review .copy { white-space: nowrap; font-weight: 600; }
 
-    @media (min-width:768px){
-      .hero-panel,
-      .hero-actions{
-        opacity:0;
-        animation:heroFadeUp .7s ease forwards;
+    @media (min-width: 768px) {
+      .hero-panel, .hero-actions { opacity: 0; animation: heroFadeUp .7s ease forwards; }
+      .hero-actions { animation-delay: .18s; }
+      #hero { border-bottom-color: transparent; }
+      #hero::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: -1px;
+        height: 150px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.12) 34%, rgba(255,255,255,.42) 62%, rgba(255,255,255,.78) 84%, #ffffff 100%);
+        pointer-events: none;
+        z-index: 2;
       }
-      .hero-actions{
-        animation-delay:.18s;
-      }
-
-      #hero{
-        border-bottom-color:transparent;
-      }
-      #hero::after{
-        content:"";
-        position:absolute;
-        left:0;
-        right:0;
-        bottom:-1px;
-        height:150px;
-        background:linear-gradient(
-          to bottom,
-          rgba(255,255,255,0) 0%,
-          rgba(255,255,255,.12) 34%,
-          rgba(255,255,255,.42) 62%,
-          rgba(255,255,255,.78) 84%,
-          #ffffff 100%
-        );
-        pointer-events:none;
-        z-index:2;
-      }
-      #hero .hero-media{
-        object-position:center 34%;
-      }
-      .hero-actions{
-        margin-left:.55rem;
-      }
-      .reviews-strip{
-        --speed:54s;
-        margin-top:-1px;
-        border-top-color:transparent;
-        position:relative;
-        z-index:3;
-      }
+      #hero .hero-media { object-position: center 34%; }
+      .hero-actions { margin-left: .55rem; }
+      .reviews-strip { --speed: 54s; margin-top: -1px; border-top-color: transparent; position: relative; z-index: 3; }
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .reviews-track{ animation:none; transform:none; }
-      .hero-panel,
-      .hero-actions{
-        animation:none !important;
-        opacity:1 !important;
-        transform:none !important;
-      }
-      .btn-pop{
-        transition:none !important;
-      }
-      .btn-pop:hover,
-      .btn-pop:active{
-        transform:none !important;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .reviews-track { animation: none; transform: none; }
+      .hero-panel, .hero-actions { animation: none !important; opacity: 1 !important; transform: none !important; }
+      .btn-pop { transition: none !important; }
+      .btn-pop:hover, .btn-pop:active { transform: none !important; }
     }
 
-    .m-carousel{
-      position:relative;
-      padding-bottom:58px;
+    .m-carousel { position: relative; padding-bottom: 58px; }
+    .m-carousel .viewport { overflow: hidden; width: 100%; border-radius: 16px; }
+    .m-carousel .track {
+      display: flex; gap: 0; will-change: transform; transition: transform 280ms ease; touch-action: pan-y;
     }
-    .m-carousel .viewport{
-      overflow:hidden;
-      width:100%;
-      border-radius:16px;
-    }
-    .m-carousel .track{
-      display:flex;
-      gap:0;
-      will-change:transform;
-      transition:transform 280ms ease;
-      touch-action: pan-y;
-    }
-    @media (prefers-reduced-motion: reduce){
-      .m-carousel .track{ transition:none; }
-    }
-    .m-carousel .slide{
-      flex:0 0 100%;
-      padding:.5rem;
-      box-sizing:border-box;
-    }
-    .m-carousel .dots{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:12px;
-      display:flex;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-    }
-    .m-carousel .dot{
-      display:inline-block;
-      width:10px;
-      height:10px;
-      border-radius:9999px;
-      border:1.5px solid #d1d5db;
-      background:#fff;
-    }
-    .m-carousel .dot[aria-current="true"]{
-      background:var(--brand);
-      border-color:var(--brand);
-    }
-    .m-carousel .ctrl{
-      position:absolute;
-      bottom:6px;
-      width:40px;
-      height:40px;
-      border-radius:9999px;
-      display:grid;
-      place-items:center;
-      background:#fff;
-      border:1px solid var(--line);
-      box-shadow:0 1px 2px rgb(0 0 0 / .06);
-      z-index:4;
-    }
-    .m-carousel .ctrl:focus-visible{
-      outline:3px solid #93c5fd;
-      outline-offset:2px;
-    }
-    .m-carousel .ctrl svg{
-      width:18px;
-      height:18px;
-      stroke:#6b7280;
-    }
-    .m-carousel .prev{ left:calc(50% - 122px); }
-    .m-carousel .next{ right:calc(50% - 122px); }
+    @media (prefers-reduced-motion: reduce) { .m-carousel .track { transition: none; } }
+    .m-carousel .slide { flex: 0 0 100%; padding: .5rem; box-sizing: border-box; }
+    .m-carousel .dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display: flex; gap: 8px; align-items: center; justify-content: center; }
+    .m-carousel .dot { display: inline-block; width: 10px; height: 10px; border-radius: 9999px; border: 1.5px solid #d1d5db; background: #fff; }
+    .m-carousel .dot[aria-current="true"] { background: var(--brand); border-color: var(--brand); }
+    .m-carousel .ctrl { position: absolute; bottom: 6px; width: 40px; height: 40px; border-radius: 9999px; display: grid; place-items: center; background: #fff; border: 1px solid var(--line); box-shadow: 0 1px 2px rgb(0 0 0 / .06); z-index: 4; }
+    .m-carousel .ctrl:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+    .m-carousel .ctrl svg { width: 18px; height: 18px; stroke: #6b7280; }
+    .m-carousel .prev { left: calc(50% - 122px); }
+    .m-carousel .next { right: calc(50% - 122px); }
 
-    .m-carousel--twoup .track{
-      gap:.85rem;
-    }
-    .m-carousel--twoup .slide{
-      flex:0 0 calc((100% - .85rem) / 2);
-      padding:0;
-    }
+    .m-carousel--twoup .track { gap: .85rem; }
+    .m-carousel--twoup .slide { flex: 0 0 calc((100% - .85rem) / 2); padding: 0; }
 
-    .svc-card{
-      border-radius:20px;
-      overflow:hidden;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 16px 40px rgb(0 0 0 / .22);
-      transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
-      display:flex;
-      flex-direction:column;
-      min-height:382px;
-      height:100%;
+    .svc-card {
+      border-radius: 20px; overflow: hidden; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 16px 40px rgb(0 0 0 / .22); transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      display: flex; flex-direction: column; min-height: 382px; height: 100%;
     }
-    .svc-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 22px 48px rgb(0 0 0 / .28);
-      background:rgba(255,255,255,.10);
-    }
-    .svc-card img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
-    }
-    .svc-card .p-5{
-      flex:1;
-    }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgb(0 0 0 / .28); background: rgba(255,255,255,.10); }
+    .svc-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .svc-card .p-5 { flex: 1; }
 
-    .svc-mobile-card{
-      display:flex;
-      flex-direction:column;
-      min-height:348px;
-      height:100%;
-    }
-    .svc-mobile-card .p-4{
-      flex:1;
-    }
-    .svc-mobile-media{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
-    }
+    .svc-mobile-card { display: flex; flex-direction: column; min-height: 348px; height: 100%; }
+    .svc-mobile-card .p-4 { flex: 1; }
+    .svc-mobile-media { width: 100%; height: 220px; object-fit: cover; display: block; }
 
-    .svc-split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      height:220px;
+    .svc-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); height: 220px; }
+    .svc-split-pane { position: relative; min-height: 220px; overflow: hidden; }
+    .svc-split-pane img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .svc-split-pane + .svc-split-pane { border-left: 1px solid rgba(255,255,255,.10); }
+    .svc-split-label {
+      position: absolute; left: 10px; bottom: 10px; display: inline-flex; align-items: center;
+      padding: .38rem .65rem; border-radius: 9999px; background: rgba(0,0,0,.68);
+      border: 1px solid rgba(255,255,255,.12); color: #fff; font-size: .72rem; font-weight: 700;
+      line-height: 1; box-shadow: 0 8px 20px rgb(0 0 0 / .18);
     }
-    .svc-split-pane{
-      position:relative;
-      min-height:220px;
-      overflow:hidden;
-    }
-    .svc-split-pane img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .svc-split-pane + .svc-split-pane{
-      border-left:1px solid rgba(255,255,255,.10);
-    }
-    .svc-split-label{
-      position:absolute;
-      left:10px;
-      bottom:10px;
-      display:inline-flex;
-      align-items:center;
-      padding:.38rem .65rem;
-      border-radius:9999px;
-      background:rgba(0,0,0,.68);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      font-size:.72rem;
-      font-weight:700;
-      line-height:1;
-      box-shadow:0 8px 20px rgb(0 0 0 / .18);
-    }
-    .svc-split--mobile{
-      height:220px;
-    }
-    .svc-split--mobile .svc-split-pane{
-      min-height:220px;
-    }
+    .svc-split--mobile { height: 220px; }
+    .svc-split--mobile .svc-split-pane { min-height: 220px; }
 
-    .hero-shell{
-      min-height:620px;
-      padding-top:2rem;
-      padding-bottom:2rem;
-    }
-    .hero-panel,
-    .hero-actions{
-      max-width:100%;
-    }
+    .hero-shell { min-height: 620px; padding-top: 2rem; padding-bottom: 2rem; }
+    .hero-panel, .hero-actions { max-width: 100%; }
 
-    #services{
+    #services {
       background:
         radial-gradient(1200px 600px at 15% 10%, rgba(255,255,255,.05), transparent 55%),
         radial-gradient(1000px 500px at 85% 20%, rgba(220,38,38,.12), transparent 55%),
         linear-gradient(180deg, var(--services-bg-1) 0%, var(--services-bg-2) 100%);
     }
-    #services .svc-sheen{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(850px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-      pointer-events:none;
+    #services .svc-sheen {
+      position: absolute; inset: 0;
+      background: radial-gradient(850px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%), linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      pointer-events: none;
     }
 
-    .work-collage{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:.85rem;
+    .work-collage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+    .work-item {
+      position: relative; overflow: hidden; border-radius: 18px; background: #f3f4f6;
+      border: 1px solid var(--line); box-shadow: 0 8px 20px rgb(0 0 0 / .05); min-height: 150px;
     }
-    .work-item{
-      position:relative;
-      overflow:hidden;
-      border-radius:18px;
-      background:#f3f4f6;
-      border:1px solid var(--line);
-      box-shadow:0 8px 20px rgb(0 0 0 / .05);
-      min-height:150px;
-    }
-    .work-item img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transition:transform .35s ease;
-    }
-    .work-item:hover img{ transform:scale(1.03); }
-    .work-item--main{
-      grid-column:1 / -1;
-      min-height:240px;
+    .work-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+    .work-item:hover img { transform: scale(1.03); }
+    .work-item--main { grid-column: 1 / -1; min-height: 240px; }
+
+    .work-badge {
+      position: absolute; left: 16px; bottom: 16px; z-index: 2;
+      display: inline-flex; align-items: center; max-width: calc(100% - 32px);
+      padding: .55rem .9rem; border-radius: 9999px; background: rgba(0,0,0,.72);
+      border: 1px solid rgba(255,255,255,.14); box-shadow: 0 10px 24px rgb(0 0 0 / .18);
+      color: #fff; font-size: .8125rem; font-weight: 600; line-height: 1.2;
     }
 
-    .work-badge{
-      position:absolute;
-      left:16px;
-      bottom:16px;
-      z-index:2;
-      display:inline-flex;
-      align-items:center;
-      max-width:calc(100% - 32px);
-      padding:.55rem .9rem;
-      border-radius:9999px;
-      background:rgba(0,0,0,.72);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 10px 24px rgb(0 0 0 / .18);
-      color:#fff;
-      font-size:.8125rem;
-      font-weight:600;
-      line-height:1.2;
+    .work-mobile-main { min-height: auto; border-radius: 20px; }
+    .work-mobile-main img { width: 100%; height: 320px; object-fit: cover; display: block; }
+    .work-thumb-card { overflow: hidden; border-radius: 18px; background: #f3f4f6; border: 1px solid var(--line); box-shadow: 0 8px 20px rgb(0 0 0 / .05); }
+    .work-thumb-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+
+    @media (max-width: 640px) {
+      .reviews-strip { display: none !important; }
+      #coverage-map .map-frame { height: 260px !important; }
+      .hero-shell { min-height: 620px; align-items: flex-end; padding-top: 2.25rem; padding-bottom: 2rem; }
     }
 
-    .work-mobile-main{
-      min-height:auto;
-      border-radius:20px;
-    }
-    .work-mobile-main img{
-      width:100%;
-      height:320px;
-      object-fit:cover;
-      display:block;
-    }
-    .work-thumb-card{
-      overflow:hidden;
-      border-radius:18px;
-      background:#f3f4f6;
-      border:1px solid var(--line);
-      box-shadow:0 8px 20px rgb(0 0 0 / .05);
-    }
-    .work-thumb-card img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
+    @media (min-width: 641px) {
+      .hero-shell { min-height: 680px; padding-top: 3rem; padding-bottom: 3rem; }
     }
 
-    @media (max-width:640px){
-      .reviews-strip{ display:none !important; }
-      #coverage-map .map-frame{ height:260px !important; }
-      .hero-shell{
-        min-height:620px;
-        align-items:flex-end;
-        padding-top:2.25rem;
-        padding-bottom:2rem;
-      }
+    @media (min-width: 768px) {
+      .work-collage { grid-template-columns: 1.15fr .85fr .85fr; grid-auto-rows: 145px; }
+      .work-item { min-height: 145px; }
+      .work-item--main { grid-column: 1 / span 1; grid-row: 1 / span 2; min-height: 100%; }
     }
 
-    @media (min-width:641px){
-      .hero-shell{
-        min-height:680px;
-        padding-top:3rem;
-        padding-bottom:3rem;
-      }
-    }
-
-    @media (min-width:768px){
-      .work-collage{
-        grid-template-columns:1.15fr .85fr .85fr;
-        grid-auto-rows:145px;
-      }
-      .work-item{
-        min-height:145px;
-      }
-      .work-item--main{
-        grid-column:1 / span 1;
-        grid-row:1 / span 2;
-        min-height:100%;
-      }
-    }
-
-    @media (min-width:1024px){
-      .hero-shell{
-        min-height:620px;
-      }
-      .work-collage{
-        grid-auto-rows:165px;
-      }
-      .work-item{
-        min-height:165px;
-      }
+    @media (min-width: 1024px) {
+      .hero-shell { min-height: 620px; }
+      .work-collage { grid-auto-rows: 165px; }
+      .work-item { min-height: 165px; }
+      .lg\:grid-cols-\[\.95fr_1\.05fr\] { grid-template-columns: .95fr 1.05fr; }
+      .lg\:grid-cols-\[1fr_\.95fr\] { grid-template-columns: 1fr .95fr; }
     }
   </style>
 
@@ -598,7 +693,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
+          <picture>
+            <source srcset="logo.webp" type="image/webp" />
+            <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0" width="1024" height="1536">
+          </picture>
           <span class="min-w-0 leading-none">
             <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
             <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
@@ -650,28 +748,28 @@
 
   <script>
     (function(){
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      const panel = menu ? menu.querySelector('.slide-menu') : null;
+      var btn = document.getElementById('mobileMenuBtn');
+      var menu = document.getElementById('mobileMenu');
+      var panel = menu ? menu.querySelector('.slide-menu') : null;
 
       if(btn && menu && panel){
         function toggle(open){
-          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
+          var willOpen = open !== undefined ? open : menu.classList.contains('hidden');
           menu.classList.toggle('hidden', !willOpen);
           panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
           btn.setAttribute('aria-expanded', String(willOpen));
         }
 
-        btn.addEventListener('click',()=>toggle());
-        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
-        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
-        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+        btn.addEventListener('click',function(){toggle()});
+        menu.addEventListener('click',function(e){ if(e.target.matches('a')) toggle(false); });
+        document.addEventListener('click',function(e){ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggle(false); });
       }
 
-      const path = location.pathname.replace(/\/+$/,'') || '/';
-      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
-        const href = a.getAttribute('href') || '';
-        const norm = href.replace(/\/+$/,'') || '/';
+      var path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(function(a){
+        var href = a.getAttribute('href') || '';
+        var norm = href.replace(/\/+$/,'') || '/';
         if(norm === path){
           a.classList.add('active');
           a.setAttribute('aria-current','page');
@@ -682,11 +780,15 @@
 
   <section id="hero" class="relative overflow-hidden border-b border-neutral-200">
     <div class="absolute inset-0">
-      <img src="Screenshot 2026-03-12 120342.png"
-           alt="Mobile windshield replacement service in Salem and Keizer"
-           class="hero-media w-full h-full object-cover object-center"
-           loading="eager"
-           fetchpriority="high" />
+      <picture>
+        <source srcset="Screenshot 2026-03-12 120342.webp" type="image/webp" />
+        <img src="Screenshot 2026-03-12 120342.png"
+             alt="Mobile windshield replacement service in Salem and Keizer"
+             class="hero-media w-full h-full object-cover object-center"
+             width="1180" height="876"
+             loading="eager"
+             fetchpriority="high" />
+      </picture>
       <div
         class="absolute inset-0"
         style="background:
@@ -832,7 +934,7 @@
           <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
             <div class="flex items-start gap-4">
               <div class="h-11 w-11 flex-none shrink-0 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                   <path d="M3 7h10v8H3zM13 10h4l3 3v2h-7z"></path>
                   <circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle>
                 </svg>
@@ -847,7 +949,7 @@
           <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
             <div class="flex items-start gap-4">
               <div class="h-11 w-11 flex-none shrink-0 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                   <rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 9h18"></path>
                 </svg>
               </div>
@@ -861,7 +963,7 @@
           <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
             <div class="flex items-start gap-4">
               <div class="h-11 w-11 flex-none shrink-0 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                   <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"></path><path d="M8 12l2.5 2.5L16 9"></path>
                 </svg>
               </div>
@@ -875,7 +977,7 @@
           <div class="hidden sm:block rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 shadow-sm hover:bg-white/[0.07] transition">
             <div class="flex items-start gap-4">
               <div class="h-11 w-11 flex-none shrink-0 rounded-xl bg-gradient-to-br from-red-600 to-red-500 text-white grid place-items-center shadow-md">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                   <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"></path>
                 </svg>
               </div>
@@ -942,11 +1044,17 @@
           <article class="svc-card">
             <div class="svc-split">
               <div class="svc-split-pane">
-                <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async"/>
+                <picture>
+                  <source srcset="4193642902448974835 - 1.webp" type="image/webp" />
+                  <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async" width="1542" height="2048"/>
+                </picture>
                 <span class="svc-split-label">Older Cars</span>
               </div>
               <div class="svc-split-pane">
-                <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async"/>
+                <picture>
+                  <source srcset="6105496237078034540.webp" type="image/webp" />
+                  <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async" width="2048" height="1542"/>
+                </picture>
                 <span class="svc-split-label">Teslas</span>
               </div>
             </div>
@@ -957,7 +1065,10 @@
           </article>
 
           <article class="svc-card">
-            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
+            <picture>
+              <source srcset="windshield-repair.webp" type="image/webp" />
+              <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async" width="550" height="327"/>
+            </picture>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
@@ -965,7 +1076,10 @@
           </article>
 
           <article class="svc-card">
-            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async"/>
+            <picture>
+              <source srcset="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window-opt.webp" type="image/webp" />
+              <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async" width="700" height="410"/>
+            </picture>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
@@ -988,11 +1102,17 @@
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <div class="svc-split svc-split--mobile">
                       <div class="svc-split-pane">
-                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
+                        <picture>
+                          <source srcset="4193642902448974835 - 1.webp" type="image/webp" />
+                          <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" width="1542" height="2048"/>
+                        </picture>
                         <span class="svc-split-label">Older Cars</span>
                       </div>
                       <div class="svc-split-pane">
-                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
+                        <picture>
+                          <source srcset="6105496237078034540.webp" type="image/webp" />
+                          <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" width="2048" height="1542"/>
+                        </picture>
                         <span class="svc-split-label">Teslas</span>
                       </div>
                     </div>
@@ -1005,7 +1125,10 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
+                    <picture>
+                      <source srcset="windshield-repair.webp" type="image/webp" />
+                      <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" width="550" height="327"/>
+                    </picture>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For cracked front glass, spreading damage, or chips that have gone too far.</p>
@@ -1015,7 +1138,10 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
+                    <picture>
+                      <source srcset="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window-opt.webp" type="image/webp" />
+                      <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" width="700" height="410"/>
+                    </picture>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
@@ -1047,30 +1173,48 @@
 
         <div class="hidden md:grid work-collage" aria-label="Work photo gallery">
           <figure class="work-item work-item--main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="1727863917416746261.webp" type="image/webp" />
+              <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async" width="2048" height="1542">
+            </picture>
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
           <figure class="work-item">
-            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="4193642902448974835 - 1.webp" type="image/webp" />
+              <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async" width="1542" height="2048">
+            </picture>
           </figure>
 
           <figure class="work-item">
-            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="3152194114388916144.webp" type="image/webp" />
+              <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async" width="2048" height="1542">
+            </picture>
           </figure>
 
           <figure class="work-item">
-            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="4857530068863860898 - 1.webp" type="image/webp" />
+              <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async" width="2048" height="1542">
+            </picture>
           </figure>
 
           <figure class="work-item">
-            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="Screenshot 2026-03-12 120507.webp" type="image/webp" />
+              <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async" width="1169" height="884">
+            </picture>
           </figure>
         </div>
 
         <div class="md:hidden">
           <figure class="work-item work-mobile-main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="1727863917416746261.webp" type="image/webp" />
+              <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async" width="2048" height="1542">
+            </picture>
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
@@ -1086,43 +1230,64 @@
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="4193642902448974835 - 1.webp" type="image/webp" />
+                      <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async" width="1542" height="2048">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="3152194114388916144.webp" type="image/webp" />
+                      <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async" width="2048" height="1542">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="4857530068863860898 - 1.webp" type="image/webp" />
+                      <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async" width="2048" height="1542">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="Screenshot 2026-03-12 120507.webp" type="image/webp" />
+                      <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async" width="1169" height="884">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="4707115962129185826.webp" type="image/webp" />
+                      <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async" width="2048" height="1542">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="6087524626301220792.webp" type="image/webp" />
+                      <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async" width="2048" height="1542">
+                    </picture>
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async">
+                    <picture>
+                      <source srcset="Screenshot 2026-03-18 063643.webp" type="image/webp" />
+                      <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async" width="1169" height="884">
+                    </picture>
                   </div>
                 </article>
               </div>
@@ -1146,10 +1311,15 @@
           </div>
 
           <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
-            <img src="6105496237078034540.jpg"
-                 alt="Mobile auto glass technician working on-site"
-                 class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-                 loading="lazy">
+            <picture>
+              <source srcset="6105496237078034540.webp" type="image/webp" />
+              <img src="6105496237078034540.jpg"
+                   alt="Mobile auto glass technician working on-site"
+                   class="w-full h-full object-cover"
+                   style="min-height:280px;max-height:480px;"
+                   loading="lazy"
+                   width="2048" height="1542">
+            </picture>
           </div>
 
           <div>
@@ -1196,10 +1366,15 @@
         </div>
 
         <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
-          <img src="salem.png?v=2"
-               alt="Service area map for Salem and Keizer"
-               class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
-               loading="lazy" />
+          <picture>
+            <source srcset="salem.webp" type="image/webp" />
+            <img src="salem.png?v=2"
+                 alt="Service area map for Salem and Keizer"
+                 class="w-full map-frame object-cover"
+                 style="height:260px;"
+                 loading="lazy"
+                 width="1300" height="676" />
+          </picture>
         </div>
       </div>
     </section>
@@ -1229,23 +1404,32 @@
               </div>
 
               <div class="lg:hidden mt-5 rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 shadow-xl">
-                <img
-                  src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
-                  alt="The One Clear Choice Auto Glass local family-run team"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset="ChatGPT Image Mar 31, 2026, 06_10_15 AM.webp" type="image/webp" />
+                  <img
+                    src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
+                    alt="The One Clear Choice Auto Glass local family-run team"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    width="1536" height="1024"
+                  />
+                </picture>
               </div>
             </div>
           </div>
 
           <div class="hidden lg:block rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
-            <img
-              src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
-              alt="The One Clear Choice Auto Glass local family-run team"
-              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source srcset="ChatGPT Image Mar 31, 2026, 06_10_15 AM.webp" type="image/webp" />
+              <img
+                src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
+                alt="The One Clear Choice Auto Glass local family-run team"
+                class="w-full h-full object-cover"
+                style="min-height:280px;max-height:480px;"
+                loading="lazy"
+                width="1536" height="1024"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -1294,7 +1478,10 @@
     </section>
 
     <section id="reviews" class="relative overflow-hidden border-y border-white/10 text-white">
-      <img src="4857530068863860898 - 1.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+      <picture>
+        <source srcset="4857530068863860898 - 1.webp" type="image/webp" />
+        <img src="4857530068863860898 - 1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="2048" height="1542" aria-hidden="true" />
+      </picture>
       <div class="absolute inset-0 bg-black/70"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1408,31 +1595,31 @@
       function initCarousel(root){
         if(!root) return;
 
-        const viewport=root.querySelector('.viewport');
-        const track=root.querySelector('.track');
-        const slides=Array.from(root.querySelectorAll('.slide'));
-        const prev=root.querySelector('.prev');
-        const next=root.querySelector('.next');
-        const dotsWrap=root.querySelector('.dots');
+        var viewport=root.querySelector('.viewport');
+        var track=root.querySelector('.track');
+        var slides=Array.from(root.querySelectorAll('.slide'));
+        var prev=root.querySelector('.prev');
+        var next=root.querySelector('.next');
+        var dotsWrap=root.querySelector('.dots');
 
         if(!viewport || !track || !slides.length || !dotsWrap) return;
 
-        const shouldAutoplay=root.dataset.autoplay==='true';
-        const visible=Math.max(1, Number(root.dataset.visible || 1));
-        const step=Math.max(1, Number(root.dataset.step || 1));
-        let index=0;
-        let rid;
-        let iv=null;
-        let active=false;
-        let startX=0;
+        var shouldAutoplay=root.dataset.autoplay==='true';
+        var visible=Math.max(1, Number(root.dataset.visible || 1));
+        var step=Math.max(1, Number(root.dataset.step || 1));
+        var index=0;
+        var rid;
+        var iv=null;
+        var active=false;
+        var startX=0;
 
         function getGap(){
-          const styles=getComputedStyle(track);
+          var styles=getComputedStyle(track);
           return parseFloat(styles.columnGap || styles.gap || 0) || 0;
         }
 
         function getMeasure(){
-          const firstSlide=slides[0];
+          var firstSlide=slides[0];
           if(!firstSlide) return viewport.clientWidth;
           return firstSlide.getBoundingClientRect().width + getGap();
         }
@@ -1447,21 +1634,21 @@
 
         function buildDots(){
           dotsWrap.innerHTML='';
-          for(let i=0;i<pageCount();i++){
-            const targetIndex=Math.min(i * step, maxIndex());
-            const b=document.createElement('button');
+          for(var i=0;i<pageCount();i++){
+            var targetIndex=Math.min(i * step, maxIndex());
+            var b=document.createElement('button');
             b.type='button';
             b.className='dot';
             b.setAttribute('role','tab');
             b.setAttribute('aria-label','Go to slide '+(i+1));
-            b.addEventListener('click',()=>go(targetIndex,true));
+            (function(ti){ b.addEventListener('click',function(){go(ti,true)}); })(targetIndex);
             dotsWrap.appendChild(b);
           }
         }
 
         function setDot(){
-          const currentPage=Math.min(Math.round(index / step), pageCount() - 1);
-          dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+          var currentPage=Math.min(Math.round(index / step), pageCount() - 1);
+          dotsWrap.querySelectorAll('.dot').forEach(function(d,di){
             d.setAttribute('aria-current',di===currentPage ? 'true' : 'false');
           });
         }
@@ -1471,7 +1658,7 @@
         }
 
         function normalize(i){
-          const max=maxIndex();
+          var max=maxIndex();
           if(i < 0) return max;
           if(i > max) return 0;
           return i;
@@ -1491,7 +1678,7 @@
 
         function play(){
           if(shouldAutoplay && !iv && maxIndex() > 0){
-            iv=setInterval(()=>go(index + step,false), 4200);
+            iv=setInterval(function(){go(index + step,false)}, 4200);
           }
         }
 
@@ -1502,7 +1689,7 @@
 
         function onResize(){
           cancelAnimationFrame(rid);
-          rid=requestAnimationFrame(()=>{
+          rid=requestAnimationFrame(function(){
             buildDots();
             if(index > maxIndex()) index=maxIndex();
             translate();
@@ -1510,19 +1697,19 @@
           });
         }
 
-        prev && prev.addEventListener('click',()=>go(index - step,true));
-        next && next.addEventListener('click',()=>go(index + step,true));
+        prev && prev.addEventListener('click',function(){go(index - step,true)});
+        next && next.addEventListener('click',function(){go(index + step,true)});
 
-        viewport.addEventListener('pointerdown',(e)=>{
+        viewport.addEventListener('pointerdown',function(e){
           active=true;
           startX=e.clientX;
           viewport.setPointerCapture(e.pointerId);
           if(shouldAutoplay) pause();
         });
 
-        viewport.addEventListener('pointerup',(e)=>{
+        viewport.addEventListener('pointerup',function(e){
           if(!active) return;
-          const dx=e.clientX - startX;
+          var dx=e.clientX - startX;
           active=false;
           if(Math.abs(dx) > 40){
             dx < 0 ? go(index + step,true) : go(index - step,true);
@@ -1530,14 +1717,14 @@
           if(shouldAutoplay) restart();
         });
 
-        viewport.addEventListener('pointercancel',()=>{
+        viewport.addEventListener('pointercancel',function(){
           active=false;
           if(shouldAutoplay) restart();
         });
 
         if(shouldAutoplay){
-          document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
-          [prev,next,viewport].forEach(el=>{
+          document.addEventListener('visibilitychange',function(){ document.hidden ? pause() : play(); });
+          [prev,next,viewport].forEach(function(el){
             if(!el) return;
             el.addEventListener('mouseenter',pause);
             el.addEventListener('mouseleave',play);
@@ -1563,7 +1750,7 @@
 
   <script>
     (function(){
-      const counters = document.querySelectorAll('.count-up');
+      var counters = document.querySelectorAll('.count-up');
       if(!counters.length) return;
 
       function formatValue(value, group){
@@ -1574,16 +1761,16 @@
         if(el.dataset.done === 'true') return;
         el.dataset.done = 'true';
 
-        const target = Number(el.dataset.target || 0);
-        const suffix = el.dataset.suffix || '';
-        const group = el.dataset.group === 'true';
-        const duration = 1400;
-        const start = performance.now();
+        var target = Number(el.dataset.target || 0);
+        var suffix = el.dataset.suffix || '';
+        var group = el.dataset.group === 'true';
+        var duration = 1400;
+        var start = performance.now();
 
         function tick(now){
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = Math.round(target * eased);
+          var progress = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.round(target * eased);
           el.textContent = formatValue(current, group) + suffix;
 
           if(progress < 1){
@@ -1594,8 +1781,8 @@
         requestAnimationFrame(tick);
       }
 
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
           if(entry.isIntersecting){
             animateCounter(entry.target);
             observer.unobserve(entry.target);
@@ -1603,7 +1790,7 @@
         });
       }, { threshold: 0.45 });
 
-      counters.forEach(counter => observer.observe(counter));
+      counters.forEach(function(counter){ observer.observe(counter); });
     })();
   </script>
 
