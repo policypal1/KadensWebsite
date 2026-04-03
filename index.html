@@ -6,23 +6,9 @@
   <title>Mobile Windshield Replacement in Salem & Keizer | Clear Choice Auto Glass</title>
   <meta name="description" content="Mobile windshield, side window, and back glass replacement in Salem & Keizer. Fast scheduling, mobile service to your home or work, and quality installation." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta http-equiv="x-dns-prefetch-control" content="on" />
 
   <link rel="canonical" href="https://www.theoneclearchoiceautoglass.com/" />
-
-  <!-- Faster connection setup for third-party scripts -->
-  <link rel="dns-prefetch" href="//www.googletagmanager.com">
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-
-  <!-- Preload the LCP image -->
-  <link
-    rel="preload"
-    as="image"
-    href="Screenshot 2026-03-12 120342.png"
-    fetchpriority="high"
-  />
-
+  
   <!-- Social preview tags -->
   <meta property="og:title" content="Mobile Windshield Replacement in Salem & Keizer | Clear Choice Auto Glass" />
   <meta property="og:description" content="Mobile windshield, side window, and back glass replacement in Salem & Keizer. Fast scheduling, mobile service to your home or work, and quality installation." />
@@ -39,6 +25,8 @@
   <meta name="twitter:description" content="Mobile windshield, side window, and back glass replacement in Salem & Keizer. Fast scheduling, mobile service to your home or work, and quality installation." />
   <meta name="twitter:image" content="https://www.theoneclearchoiceautoglass.com/social-preview.jpg" />
   <meta name="twitter:image:alt" content="Mobile auto glass technician replacing a windshield in a shop" />
+
+  <meta name="theme-color" content="#ffffff" />
 
   <script type="application/ld+json">
   {
@@ -76,54 +64,20 @@
   }
   </script>
 
-  <!-- Analytics stubs first, actual scripts load later at idle -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-58T0MPQKYD');
-
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-
-    (function () {
-      function onIdle(cb) {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(cb, { timeout: 2000 });
-        } else {
-          window.addEventListener('load', function () { setTimeout(cb, 0); }, { once: true });
-        }
-      }
-
-      function loadScript(src, opts) {
-        opts = opts || {};
-        if (opts.id && document.getElementById(opts.id)) return;
-        var s = document.createElement('script');
-        if (opts.id) s.id = opts.id;
-        s.src = src;
-        if (opts.async) s.async = true;
-        if (opts.defer) s.defer = true;
-        document.head.appendChild(s);
-      }
-
-      onIdle(function () {
-        loadScript('https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD', {
-          id: 'gtag-lib',
-          async: true
-        });
-
-        loadScript('/_vercel/insights/script.js', {
-          id: 'vercel-insights',
-          defer: true
-        });
-      });
-    })();
   </script>
 
   <link rel="icon" type="image/jpeg" href="653713642_122095982396957277_9126760842103700020_n.jpg">
   <link rel="apple-touch-icon" href="653713642_122095982396957277_9126760842103700020_n.jpg">
   <link rel="shortcut icon" type="image/jpeg" href="653713642_122095982396957277_9126760842103700020_n.jpg">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script> 
 
   <style>
     :root{
@@ -145,6 +99,7 @@
     .btn-pop{
       transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
       transform:translateY(0) scale(1);
+      will-change:transform;
     }
     .btn-pop:hover{
       transform:translateY(-3px) scale(1.02);
@@ -155,7 +110,7 @@
       transform:translateY(-1px) scale(.99);
     }
 
-    #guarantees, #stats, #services, #our-work, #aboutBand, #coverage-map, #about-us, #how-it-works, #reviews, #final-cta, footer {
+    #guarantees, #stats, #services, #our-work, #aboutBand, #coverage-map, #about-us, #how-it-works, #reviews {
       content-visibility: auto;
       contain-intrinsic-size: auto 600px;
     }
@@ -202,7 +157,8 @@
       width:max-content;
       gap:.75rem;
       animation: marqueeScroll var(--speed) linear infinite;
-      backface-visibility:hidden;
+      will-change:transform;
+      transform:translateZ(0);
     }
     .reviews-mask {
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -336,6 +292,7 @@
     .m-carousel .track{
       display:flex;
       gap:0;
+      will-change:transform;
       transition:transform 280ms ease;
       touch-action: pan-y;
     }
@@ -628,6 +585,11 @@
       }
     }
   </style>
+
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body class="min-h-screen bg-white text-neutral-900 flex flex-col" style="overflow-x:hidden;">
@@ -636,14 +598,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
-          <img
-            src="logo.png.png"
-            alt="The One Clear Choice Auto Glass logo"
-            class="h-[50px] sm:h-[65px] w-auto shrink-0"
-            width="520"
-            height="145"
-            decoding="async"
-          >
+          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
           <span class="min-w-0 leading-none">
             <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
             <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
@@ -693,21 +648,47 @@
     </div>
   </header>
 
+  <script>
+    (function(){
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const panel = menu ? menu.querySelector('.slide-menu') : null;
+
+      if(btn && menu && panel){
+        function toggle(open){
+          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', !willOpen);
+          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+          btn.setAttribute('aria-expanded', String(willOpen));
+        }
+
+        btn.addEventListener('click',()=>toggle());
+        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
+        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+      }
+
+      const path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+        const href = a.getAttribute('href') || '';
+        const norm = href.replace(/\/+$/,'') || '/';
+        if(norm === path){
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        }
+      });
+    })();
+  </script>
+
   <section id="hero" class="relative overflow-hidden border-b border-neutral-200">
     <div class="absolute inset-0">
-      <img
-        src="Screenshot 2026-03-12 120342.png"
-        alt="Mobile windshield replacement service in Salem and Keizer"
-        class="hero-media w-full h-full object-cover object-center"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        width="1600"
-        height="900"
-      />
+      <img src="Screenshot 2026-03-12 120342.png"
+           alt="Mobile windshield replacement service in Salem and Keizer"
+           class="hero-media w-full h-full object-cover object-center"
+           loading="eager"
+           fetchpriority="high" />
       <div
         class="absolute inset-0"
-        aria-hidden="true"
         style="background:
           radial-gradient(125% 110% at 0% 100%,
             rgba(0,0,0,.96) 0%,
@@ -835,7 +816,7 @@
   <main class="flex-1">
 
     <section id="guarantees" class="relative isolate overflow-hidden bg-neutral-950 border-b border-white/10 text-white">
-      <div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
+      <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div class="max-w-3xl">
@@ -948,8 +929,8 @@
     </section>
 
     <section id="services" class="relative text-white overflow-hidden border-b border-white/10">
-      <div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
-      <div class="svc-sheen" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(600px 400px at calc(100% + 28px) -96px, rgba(220,38,38,.13), transparent 70%), radial-gradient(600px 400px at -112px calc(100% + 96px), rgba(255,255,255,.06), transparent 70%);"></div>
+      <div class="svc-sheen"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative">
         <div class="max-w-2xl">
@@ -961,11 +942,11 @@
           <article class="svc-card">
             <div class="svc-split">
               <div class="svc-split-pane">
-                <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async" fetchpriority="low" width="1200" height="1200"/>
+                <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async"/>
                 <span class="svc-split-label">Older Cars</span>
               </div>
               <div class="svc-split-pane">
-                <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async" fetchpriority="low" width="1200" height="1200"/>
+                <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async"/>
                 <span class="svc-split-label">Teslas</span>
               </div>
             </div>
@@ -976,7 +957,7 @@
           </article>
 
           <article class="svc-card">
-            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1000"/>
+            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
@@ -984,7 +965,7 @@
           </article>
 
           <article class="svc-card">
-            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1000"/>
+            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
@@ -1007,11 +988,11 @@
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <div class="svc-split svc-split--mobile">
                       <div class="svc-split-pane">
-                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async" fetchpriority="low" width="1200" height="1200"/>
+                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
                         <span class="svc-split-label">Older Cars</span>
                       </div>
                       <div class="svc-split-pane">
-                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async" fetchpriority="low" width="1200" height="1200"/>
+                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
                         <span class="svc-split-label">Teslas</span>
                       </div>
                     </div>
@@ -1024,7 +1005,7 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1000"/>
+                    <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For cracked front glass, spreading damage, or chips that have gone too far.</p>
@@ -1034,7 +1015,7 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1000"/>
+                    <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
@@ -1066,30 +1047,30 @@
 
         <div class="hidden md:grid work-collage" aria-label="Work photo gallery">
           <figure class="work-item work-item--main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
           <figure class="work-item">
-            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
           </figure>
         </div>
 
         <div class="md:hidden">
           <figure class="work-item work-mobile-main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
@@ -1105,43 +1086,43 @@
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="1200">
+                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async">
                   </div>
                 </article>
               </div>
@@ -1154,7 +1135,7 @@
     </section>
 
     <section id="aboutBand" class="relative overflow-hidden bg-neutral-900 border-y border-white/10 text-white">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_30%)]"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-8 items-center">
@@ -1165,16 +1146,10 @@
           </div>
 
           <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
-            <img
-              src="6105496237078034540.jpg"
-              alt="Mobile auto glass technician working on-site"
-              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-              loading="lazy"
-              decoding="async"
-              fetchpriority="low"
-              width="1200"
-              height="1500"
-            >
+            <img src="6105496237078034540.jpg"
+                 alt="Mobile auto glass technician working on-site"
+                 class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
+                 loading="lazy">
           </div>
 
           <div>
@@ -1221,22 +1196,16 @@
         </div>
 
         <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
-          <img
-            src="salem.png?v=2"
-            alt="Service area map for Salem and Keizer"
-            class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-            width="1600"
-            height="900"
-          />
+          <img src="salem.png?v=2"
+               alt="Service area map for Salem and Keizer"
+               class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
+               loading="lazy" />
         </div>
       </div>
     </section>
 
     <section id="about-us" class="relative overflow-hidden bg-neutral-950 border-y border-white/10 text-white">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.15),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_28%)]" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.15),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_28%)]"></div>
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
         <div class="grid lg:grid-cols-[1fr_.95fr] gap-8 items-stretch">
           <div class="max-w-3xl">
@@ -1265,10 +1234,6 @@
                   alt="The One Clear Choice Auto Glass local family-run team"
                   class="w-full h-full object-cover"
                   loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                  width="1200"
-                  height="1200"
                 />
               </div>
             </div>
@@ -1280,10 +1245,6 @@
               alt="The One Clear Choice Auto Glass local family-run team"
               class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
               loading="lazy"
-              decoding="async"
-              fetchpriority="low"
-              width="1200"
-              height="1200"
             />
           </div>
         </div>
@@ -1333,8 +1294,8 @@
     </section>
 
     <section id="reviews" class="relative overflow-hidden border-y border-white/10 text-white">
-      <img src="4857530068863860898 - 1.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" fetchpriority="low" width="1600" height="900" />
-      <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+      <img src="4857530068863860898 - 1.jpg" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/70"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="rounded-[28px] bg-black/45 border border-white/10 p-5 sm:p-7 lg:p-8 shadow-2xl">
@@ -1380,7 +1341,7 @@
       </div>
     </section>
 
-    <section id="final-cta" class="bg-neutral-50 border-t border-neutral-200">
+    <section class="bg-neutral-50 border-t border-neutral-200">
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 text-center">
         <h3 class="text-3xl md:text-5xl font-black text-neutral-900">
           Crack spreading? Get help in <span class="text-red-600">hours</span>, not days.
@@ -1440,341 +1401,252 @@
     </div>
   </footer>
 
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
   <script>
-    (function () {
-      function onIdle(cb) {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(cb, { timeout: 1500 });
-        } else {
-          window.addEventListener('load', function () { setTimeout(cb, 0); }, { once: true });
-        }
-      }
+    (function(){
+      function initCarousel(root){
+        if(!root) return;
 
-      function initWhenNear(el, fn) {
-        if (!el) return;
-        if (!('IntersectionObserver' in window)) {
-          fn();
-          return;
-        }
-        var done = false;
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (!done && (entry.isIntersecting || entry.intersectionRatio > 0)) {
-              done = true;
-              observer.disconnect();
-              fn();
-            }
-          });
-        }, { rootMargin: '250px 0px' });
-        observer.observe(el);
-      }
+        const viewport=root.querySelector('.viewport');
+        const track=root.querySelector('.track');
+        const slides=Array.from(root.querySelectorAll('.slide'));
+        const prev=root.querySelector('.prev');
+        const next=root.querySelector('.next');
+        const dotsWrap=root.querySelector('.dots');
 
-      function initMenuAndNav() {
-        var btn = document.getElementById('mobileMenuBtn');
-        var menu = document.getElementById('mobileMenu');
-        var panel = menu ? menu.querySelector('.slide-menu') : null;
+        if(!viewport || !track || !slides.length || !dotsWrap) return;
 
-        if (btn && menu && panel) {
-          function toggle(open) {
-            var willOpen = open !== undefined ? open : menu.classList.contains('hidden');
-            menu.classList.toggle('hidden', !willOpen);
-            panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-            btn.setAttribute('aria-expanded', String(willOpen));
-          }
+        const shouldAutoplay=root.dataset.autoplay==='true';
+        const visible=Math.max(1, Number(root.dataset.visible || 1));
+        const step=Math.max(1, Number(root.dataset.step || 1));
+        let index=0;
+        let rid;
+        let iv=null;
+        let active=false;
+        let startX=0;
 
-          btn.addEventListener('click', function () { toggle(); });
-          menu.addEventListener('click', function (e) {
-            if (e.target && e.target.matches('a')) toggle(false);
-          });
-          document.addEventListener('click', function (e) {
-            if (!menu.contains(e.target) && !btn.contains(e.target)) toggle(false);
-          });
-          document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') toggle(false);
-          });
-        }
-
-        var path = location.pathname.replace(/\/+$/, '') || '/';
-        document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(function (a) {
-          var href = a.getAttribute('href') || '';
-          var norm = href.replace(/\/+$/, '') || '/';
-          if (norm === path) {
-            a.classList.add('active');
-            a.setAttribute('aria-current', 'page');
-          }
-        });
-      }
-
-      function initCarousel(root) {
-        if (!root || root.dataset.carouselReady === 'true') return;
-        root.dataset.carouselReady = 'true';
-
-        var viewport = root.querySelector('.viewport');
-        var track = root.querySelector('.track');
-        var slides = Array.prototype.slice.call(root.querySelectorAll('.slide'));
-        var prev = root.querySelector('.prev');
-        var next = root.querySelector('.next');
-        var dotsWrap = root.querySelector('.dots');
-
-        if (!viewport || !track || !slides.length || !dotsWrap) return;
-
-        var shouldAutoplay = root.dataset.autoplay === 'true';
-        var visible = Math.max(1, Number(root.dataset.visible || 1));
-        var step = Math.max(1, Number(root.dataset.step || 1));
-        var index = 0;
-        var resizeRaf = 0;
-        var intervalId = null;
-        var active = false;
-        var startX = 0;
-
-        function getGap() {
-          var styles = getComputedStyle(track);
+        function getGap(){
+          const styles=getComputedStyle(track);
           return parseFloat(styles.columnGap || styles.gap || 0) || 0;
         }
 
-        function getMeasure() {
-          var firstSlide = slides[0];
-          if (!firstSlide) return viewport.clientWidth;
+        function getMeasure(){
+          const firstSlide=slides[0];
+          if(!firstSlide) return viewport.clientWidth;
           return firstSlide.getBoundingClientRect().width + getGap();
         }
 
-        function maxIndex() {
+        function maxIndex(){
           return Math.max(0, slides.length - visible);
         }
 
-        function pageCount() {
+        function pageCount(){
           return Math.floor(maxIndex() / step) + 1;
         }
 
-        function buildDots() {
-          dotsWrap.innerHTML = '';
-          for (var i = 0; i < pageCount(); i++) {
-            (function (page) {
-              var targetIndex = Math.min(page * step, maxIndex());
-              var b = document.createElement('button');
-              b.type = 'button';
-              b.className = 'dot';
-              b.setAttribute('role', 'tab');
-              b.setAttribute('aria-label', 'Go to slide ' + (page + 1));
-              b.addEventListener('click', function () { go(targetIndex, true); });
-              dotsWrap.appendChild(b);
-            })(i);
+        function buildDots(){
+          dotsWrap.innerHTML='';
+          for(let i=0;i<pageCount();i++){
+            const targetIndex=Math.min(i * step, maxIndex());
+            const b=document.createElement('button');
+            b.type='button';
+            b.className='dot';
+            b.setAttribute('role','tab');
+            b.setAttribute('aria-label','Go to slide '+(i+1));
+            b.addEventListener('click',()=>go(targetIndex,true));
+            dotsWrap.appendChild(b);
           }
         }
 
-        function setDot() {
-          var currentPage = Math.min(Math.round(index / step), pageCount() - 1);
-          dotsWrap.querySelectorAll('.dot').forEach(function (d, di) {
-            d.setAttribute('aria-current', di === currentPage ? 'true' : 'false');
+        function setDot(){
+          const currentPage=Math.min(Math.round(index / step), pageCount() - 1);
+          dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
+            d.setAttribute('aria-current',di===currentPage ? 'true' : 'false');
           });
         }
 
-        function translate() {
-          track.style.transform = 'translateX(' + (-index * getMeasure()) + 'px)';
+        function translate(){
+          track.style.transform='translateX('+(-index * getMeasure())+'px)';
         }
 
-        function normalize(i) {
-          var max = maxIndex();
-          if (i < 0) return max;
-          if (i > max) return 0;
+        function normalize(i){
+          const max=maxIndex();
+          if(i < 0) return max;
+          if(i > max) return 0;
           return i;
         }
 
-        function go(i, userInitiated) {
-          index = normalize(i);
+        function go(i,userInitiated){
+          index=normalize(i);
           translate();
           setDot();
-          if (userInitiated && shouldAutoplay) restart();
+          if(userInitiated && shouldAutoplay) restart();
         }
 
-        function pause() {
-          if (intervalId) clearInterval(intervalId);
-          intervalId = null;
+        function pause(){
+          if(iv) clearInterval(iv);
+          iv=null;
         }
 
-        function play() {
-          if (shouldAutoplay && !intervalId && maxIndex() > 0) {
-            intervalId = setInterval(function () {
-              go(index + step, false);
-            }, 4200);
+        function play(){
+          if(shouldAutoplay && !iv && maxIndex() > 0){
+            iv=setInterval(()=>go(index + step,false), 4200);
           }
         }
 
-        function restart() {
+        function restart(){
           pause();
           play();
         }
 
-        function onResize() {
-          cancelAnimationFrame(resizeRaf);
-          resizeRaf = requestAnimationFrame(function () {
+        function onResize(){
+          cancelAnimationFrame(rid);
+          rid=requestAnimationFrame(()=>{
             buildDots();
-            if (index > maxIndex()) index = maxIndex();
+            if(index > maxIndex()) index=maxIndex();
             translate();
             setDot();
           });
         }
 
-        if (prev) prev.addEventListener('click', function () { go(index - step, true); });
-        if (next) next.addEventListener('click', function () { go(index + step, true); });
+        prev && prev.addEventListener('click',()=>go(index - step,true));
+        next && next.addEventListener('click',()=>go(index + step,true));
 
-        viewport.addEventListener('pointerdown', function (e) {
-          active = true;
-          startX = e.clientX;
+        viewport.addEventListener('pointerdown',(e)=>{
+          active=true;
+          startX=e.clientX;
           viewport.setPointerCapture(e.pointerId);
-          if (shouldAutoplay) pause();
+          if(shouldAutoplay) pause();
         });
 
-        viewport.addEventListener('pointerup', function (e) {
-          if (!active) return;
-          var dx = e.clientX - startX;
-          active = false;
-          if (Math.abs(dx) > 40) {
-            dx < 0 ? go(index + step, true) : go(index - step, true);
+        viewport.addEventListener('pointerup',(e)=>{
+          if(!active) return;
+          const dx=e.clientX - startX;
+          active=false;
+          if(Math.abs(dx) > 40){
+            dx < 0 ? go(index + step,true) : go(index - step,true);
           }
-          if (shouldAutoplay) restart();
+          if(shouldAutoplay) restart();
         });
 
-        viewport.addEventListener('pointercancel', function () {
-          active = false;
-          if (shouldAutoplay) restart();
+        viewport.addEventListener('pointercancel',()=>{
+          active=false;
+          if(shouldAutoplay) restart();
         });
 
-        if (shouldAutoplay) {
-          document.addEventListener('visibilitychange', function () {
-            if (document.hidden) pause(); else play();
-          });
-
-          [prev, next, viewport].forEach(function (el) {
-            if (!el) return;
-            el.addEventListener('mouseenter', pause);
-            el.addEventListener('mouseleave', play);
-            el.addEventListener('focusin', pause);
-            el.addEventListener('focusout', play);
+        if(shouldAutoplay){
+          document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
+          [prev,next,viewport].forEach(el=>{
+            if(!el) return;
+            el.addEventListener('mouseenter',pause);
+            el.addEventListener('mouseleave',play);
+            el.addEventListener('focusin',pause);
+            el.addEventListener('focusout',play);
           });
         }
 
-        window.addEventListener('resize', onResize);
-        window.addEventListener('orientationchange', onResize);
-        window.addEventListener('load', onResize, { once: true });
+        window.addEventListener('resize',onResize);
+        window.addEventListener('orientationchange',onResize);
+        window.addEventListener('load',onResize,{ once:true });
 
         buildDots();
-        go(0, false);
+        go(0,false);
         play();
       }
 
-      function initCounters() {
-        var counters = document.querySelectorAll('.count-up');
-        if (!counters.length) return;
+      initCarousel(document.getElementById('revCarousel'));
+      initCarousel(document.getElementById('svcCarouselMobile'));
+      initCarousel(document.getElementById('workCarouselMobile'));
+    })();
+  </script>
 
-        function formatValue(value, group) {
-          return group ? value.toLocaleString('en-US') : String(value);
-        }
+  <script>
+    (function(){
+      const counters = document.querySelectorAll('.count-up');
+      if(!counters.length) return;
 
-        function animateCounter(el) {
-          if (el.dataset.done === 'true') return;
-          el.dataset.done = 'true';
+      function formatValue(value, group){
+        return group ? value.toLocaleString('en-US') : String(value);
+      }
 
-          var target = Number(el.dataset.target || 0);
-          var suffix = el.dataset.suffix || '';
-          var group = el.dataset.group === 'true';
-          var duration = 1400;
-          var start = performance.now();
+      function animateCounter(el){
+        if(el.dataset.done === 'true') return;
+        el.dataset.done = 'true';
 
-          function tick(now) {
-            var progress = Math.min((now - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            var current = Math.round(target * eased);
-            el.textContent = formatValue(current, group) + suffix;
+        const target = Number(el.dataset.target || 0);
+        const suffix = el.dataset.suffix || '';
+        const group = el.dataset.group === 'true';
+        const duration = 1400;
+        const start = performance.now();
 
-            if (progress < 1) {
-              requestAnimationFrame(tick);
-            }
+        function tick(now){
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(target * eased);
+          el.textContent = formatValue(current, group) + suffix;
+
+          if(progress < 1){
+            requestAnimationFrame(tick);
           }
-
-          requestAnimationFrame(tick);
         }
 
-        if (!('IntersectionObserver' in window)) {
-          counters.forEach(animateCounter);
-          return;
-        }
-
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.45 });
-
-        counters.forEach(function (counter) { observer.observe(counter); });
+        requestAnimationFrame(tick);
       }
 
-      function initReviewStrip() {
-        var strip = document.querySelector('.reviews-strip');
-        var track = strip ? strip.querySelector('.reviews-track') : null;
-        if (!strip || !track || !('IntersectionObserver' in window)) return;
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.45 });
 
-        var obs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-          });
-        }, { threshold: 0 });
+      counters.forEach(counter => observer.observe(counter));
+    })();
+  </script>
 
-        obs.observe(strip);
+  <script>
+    (function(){
+      var strip = document.querySelector('.reviews-strip');
+      var track = strip ? strip.querySelector('.reviews-track') : null;
+      if(!strip || !track) return;
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          track.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+        });
+      }, { threshold: 0 });
+      obs.observe(strip);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      function trackEvent(name, params) {
+        gtag('event', name, params || {});
       }
 
-      function bindAnalyticsClicks() {
-        function trackEvent(name, params) {
-          if (typeof gtag !== 'function') return;
-          gtag('event', name, params || {});
-        }
-
-        document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
-          link.addEventListener('click', function () {
-            trackEvent('phone_click', {
-              link_text: (link.textContent || '').trim(),
-              link_url: link.getAttribute('href'),
-              page_path: window.location.pathname
-            });
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('phone_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
           });
         });
+      });
 
-        document.querySelectorAll('a[href="/quote.html"], a[href="quote.html"]').forEach(function (link) {
-          link.addEventListener('click', function () {
-            trackEvent('quote_click', {
-              link_text: (link.textContent || '').trim(),
-              link_url: link.getAttribute('href'),
-              page_path: window.location.pathname
-            });
+      document.querySelectorAll('a[href="/quote.html"], a[href="quote.html"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          trackEvent('quote_click', {
+            link_text: (link.textContent || '').trim(),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
           });
         });
-      }
-
-      var year = document.getElementById('year');
-      if (year) year.textContent = new Date().getFullYear();
-
-      initMenuAndNav();
-
-      onIdle(function () {
-        bindAnalyticsClicks();
-        initReviewStrip();
-
-        initWhenNear(document.getElementById('revCarousel'), function () {
-          initCarousel(document.getElementById('revCarousel'));
-        });
-
-        initWhenNear(document.getElementById('svcCarouselMobile'), function () {
-          initCarousel(document.getElementById('svcCarouselMobile'));
-        });
-
-        initWhenNear(document.getElementById('workCarouselMobile'), function () {
-          initCarousel(document.getElementById('workCarouselMobile'));
-        });
-
-        initWhenNear(document.getElementById('stats'), initCounters);
       });
     })();
   </script>
