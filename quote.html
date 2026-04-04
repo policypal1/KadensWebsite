@@ -10,6 +10,15 @@
 
   <link rel="canonical" href="https://www.theoneclearchoiceautoglass.com/quote.html" />
 
+  <!-- Preconnect / performance -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <!-- Preload likely LCP image -->
+  <link rel="preload" as="image" href="92b1aa13-323e-4466-b1b7-30c1d9160797 (3) (1).webp" />
+
   <!-- Social preview tags -->
   <meta property="og:title" content="Get an Auto Glass Quote in Salem & Keizer | Clear Choice Auto Glass" />
   <meta property="og:description" content="Get a fast mobile auto glass quote in Salem & Keizer for windshield, back glass, and side window replacement. Clear pricing and local service." />
@@ -49,7 +58,7 @@
         "alternateName": "The One Clear Choice Auto Glass",
         "url": "https://www.theoneclearchoiceautoglass.com/",
         "image": "https://www.theoneclearchoiceautoglass.com/social-preview.jpg",
-        "logo": "https://www.theoneclearchoiceautoglass.com/logo.png.png",
+        "logo": "https://www.theoneclearchoiceautoglass.com/logo.png_4_1_30.webp",
         "telephone": "+1-503-949-2257",
         "email": "mailto:donkievit36@gmail.com",
         "areaServed": [
@@ -88,15 +97,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-58T0MPQKYD');
   </script>
 
   <style>
     html { scroll-behavior: smooth; }
     body { overflow-x: hidden; }
-
-    .glass { backdrop-filter: blur(8px); }
 
     .btn-pop{
       transition:none !important;
@@ -175,16 +181,30 @@
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      const s = document.createElement('script');
+      s.src = '/_vercel/insights/script.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    });
+  </script>
 </head>
 <body class="min-h-screen bg-neutral-50 text-neutral-900">
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200" style="transform:translateZ(0);">
+  <header class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
-          <img src="logo.png.png" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
+          <img
+            src="logo.png_4_1_30.webp"
+            alt="The One Clear Choice Auto Glass logo"
+            width="461"
+            height="307"
+            decoding="async"
+            class="h-[50px] sm:h-[65px] w-auto shrink-0"
+          >
           <span class="min-w-0 leading-none">
             <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
             <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
@@ -272,7 +292,15 @@
                 <label class="block">
                   <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Windshield">
                   <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (3).png" alt="" class="h-24 w-32 object-contain sm:h-28 sm:w-36" aria-hidden="true">
+                    <img
+                      src="Untitled design (3) (1).webp"
+                      alt=""
+                      width="1080"
+                      height="1080"
+                      decoding="async"
+                      class="h-24 w-32 object-contain sm:h-28 sm:w-36"
+                      aria-hidden="true"
+                    >
                     <span class="mt-3 text-sm font-semibold sm:text-base">Windshield</span>
                   </span>
                 </label>
@@ -280,7 +308,15 @@
                 <label class="block">
                   <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Back Glass">
                   <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (2).png" alt="" class="h-24 w-32 object-contain sm:h-28 sm:w-36" aria-hidden="true">
+                    <img
+                      src="Untitled design (2) (1).webp"
+                      alt=""
+                      width="1080"
+                      height="1080"
+                      decoding="async"
+                      class="h-24 w-32 object-contain sm:h-28 sm:w-36"
+                      aria-hidden="true"
+                    >
                     <span class="mt-3 text-sm font-semibold sm:text-base">Back Glass</span>
                   </span>
                 </label>
@@ -288,7 +324,16 @@
                 <label class="block">
                   <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Driver Side">
                   <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design.png" alt="" class="h-28 w-40 object-contain sm:h-32 sm:w-44" aria-hidden="true">
+                    <img
+                      src="92b1aa13-323e-4466-b1b7-30c1d9160797 (3) (1).webp"
+                      alt=""
+                      width="1080"
+                      height="1080"
+                      fetchpriority="high"
+                      decoding="async"
+                      class="h-28 w-40 object-contain sm:h-32 sm:w-44"
+                      aria-hidden="true"
+                    >
                     <span class="mt-3 text-sm font-semibold sm:text-base">Driver Side</span>
                   </span>
                 </label>
@@ -296,7 +341,15 @@
                 <label class="block">
                   <input class="choice-input peer sr-only" type="radio" name="damage_location" value="Passenger Side">
                   <span class="choice-card flex min-h-[190px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-neutral-200 bg-white p-4 text-center shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
-                    <img src="Untitled design (1).png" alt="" class="h-28 w-40 object-contain sm:h-32 sm:w-44" aria-hidden="true">
+                    <img
+                      src="Untitled design (1) (1).webp"
+                      alt=""
+                      width="1080"
+                      height="1080"
+                      decoding="async"
+                      class="h-28 w-40 object-contain sm:h-32 sm:w-44"
+                      aria-hidden="true"
+                    >
                     <span class="mt-3 text-sm font-semibold sm:text-base">Passenger Side</span>
                   </span>
                 </label>
@@ -314,7 +367,16 @@
                   <input class="choice-input peer sr-only" type="radio" name="damage_type" value="Large crack">
                   <span class="choice-card flex min-h-[220px] cursor-pointer flex-col rounded-2xl border-2 border-neutral-200 bg-white p-4 shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
                     <div class="flex justify-center">
-                      <img src="ChatGPT Image Mar 19, 2026, 09_13_20 PM.png" alt="" class="h-28 w-48 object-contain sm:h-32 sm:w-56" aria-hidden="true">
+                      <img
+                        data-src="ChatGPT Image Mar 19, 2026, 09_13_20 PM (1).webp"
+                        alt=""
+                        width="1024"
+                        height="1536"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-28 w-48 object-contain sm:h-32 sm:w-56"
+                        aria-hidden="true"
+                      >
                     </div>
                     <span class="mt-3 text-center text-base font-semibold">Large crack</span>
                     <span class="mt-1 text-center text-sm text-neutral-600">Damage is larger than 6 inches</span>
@@ -325,7 +387,16 @@
                   <input class="choice-input peer sr-only" type="radio" name="damage_type" value="Small chip(s) or crack(s)">
                   <span class="choice-card flex min-h-[220px] cursor-pointer flex-col rounded-2xl border-2 border-neutral-200 bg-white p-4 shadow-sm peer-checked:border-red-600 peer-checked:bg-red-50 peer-checked:shadow-md">
                     <div class="flex justify-center">
-                      <img src="ChatGPT Image Mar 19, 2026, 09_15_15 PM.png" alt="" class="h-28 w-48 object-contain sm:h-32 sm:w-56" aria-hidden="true">
+                      <img
+                        data-src="ChatGPT Image Mar 19, 2026, 09_15_15 PM (1).webp"
+                        alt=""
+                        width="1024"
+                        height="1536"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-28 w-48 object-contain sm:h-32 sm:w-56"
+                        aria-hidden="true"
+                      >
                     </div>
                     <span class="mt-3 text-center text-base font-semibold">Small chip(s) or crack(s)</span>
                     <span class="mt-1 text-center text-sm text-neutral-600">Damage is smaller than 6 inches</span>
@@ -705,7 +776,9 @@
         modal.classList.remove('flex');
       }
 
-      modalClose.addEventListener('click', closeModal);
+      if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+      }
 
       function getCheckedValue(name) {
         const checked = form.querySelector(`input[name="${name}"]:checked`);
@@ -749,6 +822,15 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function loadDamageTypeImages() {
+        const hiddenImgs = damageTypeWrap.querySelectorAll('img[data-src]');
+        hiddenImgs.forEach(img => {
+          if (!img.getAttribute('src')) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+          }
+        });
+      }
+
       function hideDamageSection() {
         damageTypeWrap.classList.add('hidden');
         damageTypeWrap.style.display = 'none';
@@ -757,6 +839,7 @@
       function showDamageSection() {
         damageTypeWrap.classList.remove('hidden');
         damageTypeWrap.style.display = '';
+        loadDamageTypeImages();
       }
 
       function updateDamageSectionVisibility() {
@@ -816,13 +899,6 @@
           }
         }
         return true;
-      }
-
-      function selectRadio(name, value) {
-        if (!value) return;
-        const radios = Array.from(form.querySelectorAll(`input[name="${name}"]`));
-        const match = radios.find(r => r.value === value);
-        if (match) match.checked = true;
       }
 
       function applyPrefill() {
