@@ -99,19 +99,19 @@
     .glass { backdrop-filter: blur(8px); }
 
     .btn-pop{
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease;
-      transform:translateY(0) scale(1);
-      will-change:transform;
+      transition:none !important;
+      transform:none !important;
+      will-change:auto !important;
     }
 
     .btn-pop:hover{
-      transform:translateY(-3px) scale(1.02);
-      box-shadow:0 14px 30px rgb(0 0 0 / .18);
-      filter:brightness(1.04);
+      transform:none !important;
+      box-shadow:none !important;
+      filter:none !important;
     }
 
     .btn-pop:active{
-      transform:translateY(-1px) scale(.99);
+      transform:none !important;
     }
 
     .nav-link {
@@ -516,7 +516,18 @@
         Thanks. Your quote request was submitted and we’ll reach out soon.
       </p>
 
+      <div class="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
+        <p class="text-sm leading-6 text-neutral-700">
+          Want to reach us faster? Call us now at
+          <a href="tel:+15039492257" class="font-semibold text-red-600">(503) 949-2257</a>.
+        </p>
+      </div>
+
       <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <a href="tel:+15039492257"
+           class="btn-pop inline-flex items-center justify-center rounded-xl border-2 border-red-600 px-5 py-3 font-semibold text-red-600 bg-white">
+          Call Now
+        </a>
         <button id="cc-modal-close" type="button"
                 class="btn-pop inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 font-semibold text-white">
           Okay
@@ -610,7 +621,7 @@
       const form = document.getElementById('cc-quote-form');
       if (!form) return;
 
-      const APPS_SCRIPT_WEBAPP = 'https://script.google.com/macros/s/AKfycbyg2kjseuCXxjvjCJaJsJjqJfzjpcwGuZc4wPBiyVmlu0_LoogHyQushC4N1DfwTclUlg/exec';
+      const APPS_SCRIPT_WEBAPP = 'https://script.google.com/macros/s/AKfycbyllrqRBvSxi3oD503OsIlrUkMeaExUV3iNVtBf2BC_CAVLqaV0V0wec8qpRNerxyvuHQ/exec';
 
       const progress = document.getElementById('cc-progress');
       const pill1 = document.getElementById('pill-step-1');
@@ -695,12 +706,6 @@
       }
 
       modalClose.addEventListener('click', closeModal);
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) closeModal();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
-      });
 
       function getCheckedValue(name) {
         const checked = form.querySelector(`input[name="${name}"]:checked`);
@@ -886,7 +891,10 @@
           el.disabled = true;
         });
 
-        openModal('Quote request sent', 'Thanks. Your quote request was submitted and we’ll reach out soon.');
+        openModal(
+          'Quote request sent',
+          'Thanks. Your quote request was submitted and we’ll reach out soon.'
+        );
       });
 
       form.addEventListener('submit', function (e) {
