@@ -1,0 +1,25 @@
+{
+  "name": "kadenswebsite",
+  "version": "1.0.0",
+  "description": "This is a static site deployed on Vercel using HTML, CSS, and JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/policypal1/KadensWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/policypal1/KadensWebsite/issues"
+  },
+  "homepage": "https://github.com/policypal1/KadensWebsite#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}
