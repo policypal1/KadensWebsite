@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  
+
   <!-- Social preview tags -->
   <meta property="og:title" content="Mobile Windshield Replacement in Salem & Keizer | Clear Choice Auto Glass" />
   <meta property="og:description" content="Mobile windshield, side window, and back glass replacement in Salem & Keizer. Fast scheduling, mobile service to your home or work, and quality installation." />
@@ -83,12 +83,12 @@
   <link rel="apple-touch-icon" href="653713642_122095982396957277_9126760842103700020_n.jpg">
   <link rel="shortcut icon" type="image/jpeg" href="653713642_122095982396957277_9126760842103700020_n.jpg">
 
- <!-- Safe LCP preload -->
-<link rel="preload" as="image" href="Screenshot 2026-03-12 120342.webp" fetchpriority="high">
+  <!-- Safe LCP preload -->
+  <link rel="preload" as="image" href="Screenshot 2026-03-12 120342.webp" fetchpriority="high">
 
-<script src="https://cdn.tailwindcss.com"></script>
-  
-<style>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
     :root{
       --brand:#dc2626;
       --brand-dark:#b91c1c;
@@ -607,7 +607,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <a href="/index.html" class="flex items-center gap-3 min-w-0" aria-label="The One Clear Choice Auto Glass — Home">
-          <img src="logo.png_4_1_30.webp" alt="The One Clear Choice Auto Glass logo" class="h-[50px] sm:h-[65px] w-auto shrink-0">
+          <img
+            src="logo.png_4_1_30.webp"
+            alt="The One Clear Choice Auto Glass logo"
+            width="307"
+            height="461"
+            decoding="async"
+            class="h-[50px] sm:h-[65px] w-auto shrink-0">
           <span class="min-w-0 leading-none">
             <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.28em] text-red-600">The One</span>
             <span class="block text-[0.98rem] sm:text-2xl font-extrabold tracking-tight text-neutral-900 whitespace-normal sm:whitespace-nowrap">Clear Choice Auto Glass</span>
@@ -657,45 +663,16 @@
     </div>
   </header>
 
-  <script>
-    (function(){
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      const panel = menu ? menu.querySelector('.slide-menu') : null;
-
-      if(btn && menu && panel){
-        function toggle(open){
-          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
-          menu.classList.toggle('hidden', !willOpen);
-          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
-          btn.setAttribute('aria-expanded', String(willOpen));
-        }
-
-        btn.addEventListener('click',()=>toggle());
-        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
-        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
-        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
-      }
-
-      const path = location.pathname.replace(/\/+$/,'') || '/';
-      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
-        const href = a.getAttribute('href') || '';
-        const norm = href.replace(/\/+$/,'') || '/';
-        if(norm === path){
-          a.classList.add('active');
-          a.setAttribute('aria-current','page');
-        }
-      });
-    })();
-  </script>
-
   <section id="hero" class="relative overflow-hidden border-b border-neutral-200">
     <div class="absolute inset-0">
-      <img src="Screenshot 2026-03-12 120342.webp"
-           alt="Mobile windshield replacement service in Salem and Keizer"
-           class="hero-media w-full h-full object-cover object-center"
-           loading="eager"
-           fetchpriority="high" />
+      <img
+        src="Screenshot 2026-03-12 120342.webp"
+        alt="Mobile windshield replacement service in Salem and Keizer"
+        width="876"
+        height="1180"
+        class="hero-media w-full h-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high" />
       <div
         class="absolute inset-0"
         style="background:
@@ -951,11 +928,23 @@
           <article class="svc-card">
             <div class="svc-split">
               <div class="svc-split-pane">
-                <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy" decoding="async"/>
+                <img
+                  src="4193642902448974835 - 1.jpg"
+                  alt="Older vehicle auto glass work"
+                  width="1542"
+                  height="2048"
+                  loading="lazy"
+                  decoding="async"/>
                 <span class="svc-split-label">Older Cars</span>
               </div>
               <div class="svc-split-pane">
-                <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy" decoding="async"/>
+                <img
+                  src="6105496237078034540.jpg"
+                  alt="Tesla auto glass service"
+                  width="2048"
+                  height="1542"
+                  loading="lazy"
+                  decoding="async"/>
                 <span class="svc-split-label">Teslas</span>
               </div>
             </div>
@@ -966,7 +955,13 @@
           </article>
 
           <article class="svc-card">
-            <img src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy" decoding="async"/>
+            <img
+              src="windshield-repair.webp"
+              alt="Windshield replacement"
+              width="327"
+              height="550"
+              loading="lazy"
+              decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Best for cracked front glass, bad chips, or damage spreading across your line of sight.</p>
@@ -974,7 +969,13 @@
           </article>
 
           <article class="svc-card">
-            <img src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy" decoding="async"/>
+            <img
+              src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
+              alt="Door glass replacement"
+              width="410"
+              height="700"
+              loading="lazy"
+              decoding="async"/>
             <div class="p-5">
               <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
               <p class="mt-2 text-sm text-white/70">Ideal when a side window was smashed, will not roll up right, or left glass inside the door.</p>
@@ -997,11 +998,23 @@
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
                     <div class="svc-split svc-split--mobile">
                       <div class="svc-split-pane">
-                        <img src="4193642902448974835 - 1.jpg" alt="Older vehicle auto glass work" loading="lazy"/>
+                        <img
+                          src="4193642902448974835 - 1.jpg"
+                          alt="Older vehicle auto glass work"
+                          width="1542"
+                          height="2048"
+                          loading="lazy"
+                          decoding="async"/>
                         <span class="svc-split-label">Older Cars</span>
                       </div>
                       <div class="svc-split-pane">
-                        <img src="6105496237078034540.jpg" alt="Tesla auto glass service" loading="lazy"/>
+                        <img
+                          src="6105496237078034540.jpg"
+                          alt="Tesla auto glass service"
+                          width="2048"
+                          height="1542"
+                          loading="lazy"
+                          decoding="async"/>
                         <span class="svc-split-label">Teslas</span>
                       </div>
                     </div>
@@ -1014,7 +1027,14 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="windshield-repair.jpg" alt="Windshield replacement" loading="lazy"/>
+                    <img
+                      class="svc-mobile-media"
+                      src="windshield-repair.webp"
+                      alt="Windshield replacement"
+                      width="327"
+                      height="550"
+                      loading="lazy"
+                      decoding="async"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Windshield Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For cracked front glass, spreading damage, or chips that have gone too far.</p>
@@ -1024,7 +1044,14 @@
 
                 <article class="slide">
                   <div class="svc-mobile-card rounded-2xl bg-white/8 border border-white/10 shadow-sm overflow-hidden">
-                    <img class="svc-mobile-media" src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp" alt="Door glass replacement" loading="lazy"/>
+                    <img
+                      class="svc-mobile-media"
+                      src="The-Dangers-of-Ignoring-a-Broken-Car-Side-Window.webp"
+                      alt="Door glass replacement"
+                      width="410"
+                      height="700"
+                      loading="lazy"
+                      decoding="async"/>
                     <div class="p-4">
                       <h3 class="text-lg font-bold text-white">Door Glass Replacement</h3>
                       <p class="mt-1 text-sm text-white/70">For broken side windows, stuck glass, or a door full of shattered pieces.</p>
@@ -1056,30 +1083,66 @@
 
         <div class="hidden md:grid work-collage" aria-label="Work photo gallery">
           <figure class="work-item work-item--main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
+            <img
+              src="1727863917416746261.webp"
+              alt="Auto glass install in driveway"
+              width="2048"
+              height="1542"
+              loading="lazy"
+              decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
           <figure class="work-item">
-            <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
+            <img
+              src="4193642902448974835 - 1.jpg"
+              alt="Recent mobile auto glass install detail"
+              width="1542"
+              height="2048"
+              loading="lazy"
+              decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
+            <img
+              src="3152194114388916144.jpg"
+              alt="Vehicle glass replacement result"
+              width="2048"
+              height="1542"
+              loading="lazy"
+              decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
+            <img
+              src="4857530068863860898_-_1_1_70.webp"
+              alt="Windshield replacement close-up"
+              width="1434"
+              height="1079"
+              loading="lazy"
+              decoding="async">
           </figure>
 
           <figure class="work-item">
-            <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
+            <img
+              src="Screenshot 2026-03-12 120507.png"
+              alt="Recent customer vehicle install photo"
+              width="884"
+              height="1169"
+              loading="lazy"
+              decoding="async">
           </figure>
         </div>
 
         <div class="md:hidden">
           <figure class="work-item work-mobile-main">
-            <img src="1727863917416746261.jpg" alt="Auto glass install in driveway" loading="lazy" decoding="async">
+            <img
+              src="1727863917416746261.webp"
+              alt="Auto glass install in driveway"
+              width="2048"
+              height="1542"
+              loading="lazy"
+              decoding="async">
             <figcaption class="work-badge">Recent on-site windshield replacement</figcaption>
           </figure>
 
@@ -1095,43 +1158,85 @@
               <div class="track" style="transform: translateX(0);">
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4193642902448974835 - 1.jpg" alt="Recent mobile auto glass install detail" loading="lazy" decoding="async">
+                    <img
+                      src="4193642902448974835 - 1.jpg"
+                      alt="Recent mobile auto glass install detail"
+                      width="1542"
+                      height="2048"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="3152194114388916144.jpg" alt="Vehicle glass replacement result" loading="lazy" decoding="async">
+                    <img
+                      src="3152194114388916144.jpg"
+                      alt="Vehicle glass replacement result"
+                      width="2048"
+                      height="1542"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4857530068863860898 - 1.jpg" alt="Windshield replacement close-up" loading="lazy" decoding="async">
+                    <img
+                      src="4857530068863860898_-_1_1_70.webp"
+                      alt="Windshield replacement close-up"
+                      width="1434"
+                      height="1079"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-12 120507.png" alt="Recent customer vehicle install photo" loading="lazy" decoding="async">
+                    <img
+                      src="Screenshot 2026-03-12 120507.png"
+                      alt="Recent customer vehicle install photo"
+                      width="884"
+                      height="1169"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="4707115962129185826.jpg" alt="Recent mobile auto glass service photo" loading="lazy" decoding="async">
+                    <img
+                      src="4707115962129185826.jpg"
+                      alt="Recent mobile auto glass service photo"
+                      width="2048"
+                      height="1542"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="6087524626301220792.jpg" alt="Recent completed mobile auto glass job" loading="lazy" decoding="async">
+                    <img
+                      src="6087524626301220792.jpg"
+                      alt="Recent completed mobile auto glass job"
+                      width="2048"
+                      height="1542"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
 
                 <article class="slide">
                   <div class="work-thumb-card">
-                    <img src="Screenshot 2026-03-18 063643.png" alt="Additional recent install photo" loading="lazy" decoding="async">
+                    <img
+                      src="Screenshot 2026-03-18 063643.png"
+                      alt="Additional recent install photo"
+                      width="907"
+                      height="1184"
+                      loading="lazy"
+                      decoding="async">
                   </div>
                 </article>
               </div>
@@ -1155,10 +1260,14 @@
           </div>
 
           <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
-            <img src="6105496237078034540.jpg"
-                 alt="Mobile auto glass technician working on-site"
-                 class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
-                 loading="lazy">
+            <img
+              src="6105496237078034540.jpg"
+              alt="Mobile auto glass technician working on-site"
+              width="2048"
+              height="1542"
+              class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
+              loading="lazy"
+              decoding="async">
           </div>
 
           <div>
@@ -1205,10 +1314,14 @@
         </div>
 
         <div class="mt-8 rounded-3xl overflow-hidden ring-1 ring-neutral-200 bg-white shadow-sm">
-          <img src="salem.png?v=2"
-               alt="Service area map for Salem and Keizer"
-               class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
-               loading="lazy" />
+          <img
+            src="salem.png?v=2"
+            alt="Service area map for Salem and Keizer"
+            width="676"
+            height="1300"
+            class="w-full map-frame h-[260px] sm:h-[420px] lg:h-[520px] object-cover"
+            loading="lazy"
+            decoding="async" />
         </div>
       </div>
     </section>
@@ -1241,8 +1354,11 @@
                 <img
                   src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
                   alt="The One Clear Choice Auto Glass local family-run team"
+                  width="1024"
+                  height="1536"
                   class="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -1252,8 +1368,11 @@
             <img
               src="ChatGPT Image Mar 31, 2026, 06_10_15 AM.png"
               alt="The One Clear Choice Auto Glass local family-run team"
+              width="1024"
+              height="1536"
               class="w-full h-full min-h-[280px] max-h-[480px] object-cover"
               loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -1303,7 +1422,14 @@
     </section>
 
     <section id="reviews" class="relative overflow-hidden border-y border-white/10 text-white">
-      <img src="4857530068863860898_-_1_1_70.webp" alt="Forest road in Oregon" class="absolute inset-0 w-full h-full object-cover" />
+      <img
+        src="4857530068863860898_-_1_1_70.webp"
+        alt="Forest road in Oregon"
+        width="1434"
+        height="1079"
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-black/70"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1410,40 +1536,72 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    (function(){
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const panel = menu ? menu.querySelector('.slide-menu') : null;
+
+      if(btn && menu && panel){
+        function toggle(open){
+          const willOpen = open !== undefined ? open : menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', !willOpen);
+          panel.setAttribute('data-state', willOpen ? 'open' : 'closed');
+          btn.setAttribute('aria-expanded', String(willOpen));
+        }
+
+        btn.addEventListener('click',()=>toggle());
+        menu.addEventListener('click',e=>{ if(e.target.matches('a')) toggle(false); });
+        document.addEventListener('click',e=>{ if(!menu.contains(e.target)&&!btn.contains(e.target)) toggle(false); });
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggle(false); });
+      }
+
+      const path = location.pathname.replace(/\/+$/,'') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a.nav-link, nav[aria-label="Mobile"] a.nav-link').forEach(a=>{
+        const href = a.getAttribute('href') || '';
+        const norm = href.replace(/\/+$/,'') || '/';
+        if(norm === path){
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
   <script>
     (function(){
       function initCarousel(root){
         if(!root) return;
 
-        const viewport=root.querySelector('.viewport');
-        const track=root.querySelector('.track');
-        const slides=Array.from(root.querySelectorAll('.slide'));
-        const prev=root.querySelector('.prev');
-        const next=root.querySelector('.next');
-        const dotsWrap=root.querySelector('.dots');
+        const viewport = root.querySelector('.viewport');
+        const track = root.querySelector('.track');
+        const slides = Array.from(root.querySelectorAll('.slide'));
+        const prev = root.querySelector('.prev');
+        const next = root.querySelector('.next');
+        const dotsWrap = root.querySelector('.dots');
 
         if(!viewport || !track || !slides.length || !dotsWrap) return;
 
-        const shouldAutoplay=root.dataset.autoplay==='true';
-        const visible=Math.max(1, Number(root.dataset.visible || 1));
-        const step=Math.max(1, Number(root.dataset.step || 1));
-        let index=0;
-        let rid;
-        let iv=null;
-        let active=false;
-        let startX=0;
+        const shouldAutoplay = root.dataset.autoplay === 'true';
+        const visible = Math.max(1, Number(root.dataset.visible || 1));
+        const step = Math.max(1, Number(root.dataset.step || 1));
 
-        function getGap(){
-          const styles=getComputedStyle(track);
-          return parseFloat(styles.columnGap || styles.gap || 0) || 0;
-        }
+        let index = 0;
+        let iv = null;
+        let active = false;
+        let startX = 0;
+        let measure = 0;
+        let gap = 0;
 
-        function getMeasure(){
-          const firstSlide=slides[0];
-          if(!firstSlide) return viewport.clientWidth;
-          return firstSlide.getBoundingClientRect().width + getGap();
+        function updateMeasure(){
+          const styles = getComputedStyle(track);
+          gap = parseFloat(styles.columnGap || styles.gap || 0) || 0;
+          const firstSlide = slides[0];
+          measure = firstSlide ? (firstSlide.offsetWidth + gap) : viewport.clientWidth;
         }
 
         function maxIndex(){
@@ -1455,39 +1613,39 @@
         }
 
         function buildDots(){
-          dotsWrap.innerHTML='';
-          for(let i=0;i<pageCount();i++){
-            const targetIndex=Math.min(i * step, maxIndex());
-            const b=document.createElement('button');
-            b.type='button';
-            b.className='dot';
+          dotsWrap.innerHTML = '';
+          for(let i = 0; i < pageCount(); i++){
+            const targetIndex = Math.min(i * step, maxIndex());
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'dot';
             b.setAttribute('role','tab');
-            b.setAttribute('aria-label','Go to slide '+(i+1));
-            b.addEventListener('click',()=>go(targetIndex,true));
+            b.setAttribute('aria-label','Go to slide ' + (i + 1));
+            b.addEventListener('click', () => go(targetIndex, true));
             dotsWrap.appendChild(b);
           }
         }
 
         function setDot(){
-          const currentPage=Math.min(Math.round(index / step), pageCount() - 1);
-          dotsWrap.querySelectorAll('.dot').forEach((d,di)=>{
-            d.setAttribute('aria-current',di===currentPage ? 'true' : 'false');
+          const currentPage = Math.min(Math.round(index / step), pageCount() - 1);
+          dotsWrap.querySelectorAll('.dot').forEach((d, di) => {
+            d.setAttribute('aria-current', di === currentPage ? 'true' : 'false');
           });
         }
 
         function translate(){
-          track.style.transform='translateX('+(-index * getMeasure())+'px)';
+          track.style.transform = `translate3d(${-index * measure}px,0,0)`;
         }
 
         function normalize(i){
-          const max=maxIndex();
+          const max = maxIndex();
           if(i < 0) return max;
           if(i > max) return 0;
           return i;
         }
 
-        function go(i,userInitiated){
-          index=normalize(i);
+        function go(i, userInitiated){
+          index = normalize(i);
           translate();
           setDot();
           if(userInitiated && shouldAutoplay) restart();
@@ -1495,12 +1653,12 @@
 
         function pause(){
           if(iv) clearInterval(iv);
-          iv=null;
+          iv = null;
         }
 
         function play(){
           if(shouldAutoplay && !iv && maxIndex() > 0){
-            iv=setInterval(()=>go(index + step,false), 4200);
+            iv = setInterval(() => go(index + step, false), 4200);
           }
         }
 
@@ -1509,58 +1667,58 @@
           play();
         }
 
-        function onResize(){
-          cancelAnimationFrame(rid);
-          rid=requestAnimationFrame(()=>{
-            buildDots();
-            if(index > maxIndex()) index=maxIndex();
-            translate();
-            setDot();
-          });
+        function refresh(){
+          updateMeasure();
+          buildDots();
+          if(index > maxIndex()) index = maxIndex();
+          translate();
+          setDot();
         }
 
-        prev && prev.addEventListener('click',()=>go(index - step,true));
-        next && next.addEventListener('click',()=>go(index + step,true));
+        prev && prev.addEventListener('click', () => go(index - step, true));
+        next && next.addEventListener('click', () => go(index + step, true));
 
-        viewport.addEventListener('pointerdown',(e)=>{
-          active=true;
-          startX=e.clientX;
+        viewport.addEventListener('pointerdown', (e) => {
+          active = true;
+          startX = e.clientX;
           viewport.setPointerCapture(e.pointerId);
           if(shouldAutoplay) pause();
         });
 
-        viewport.addEventListener('pointerup',(e)=>{
+        viewport.addEventListener('pointerup', (e) => {
           if(!active) return;
-          const dx=e.clientX - startX;
-          active=false;
+          const dx = e.clientX - startX;
+          active = false;
           if(Math.abs(dx) > 40){
-            dx < 0 ? go(index + step,true) : go(index - step,true);
+            dx < 0 ? go(index + step, true) : go(index - step, true);
           }
           if(shouldAutoplay) restart();
         });
 
-        viewport.addEventListener('pointercancel',()=>{
-          active=false;
+        viewport.addEventListener('pointercancel', () => {
+          active = false;
           if(shouldAutoplay) restart();
         });
 
         if(shouldAutoplay){
-          document.addEventListener('visibilitychange',()=> (document.hidden ? pause() : play()));
-          [prev,next,viewport].forEach(el=>{
+          document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
+          [prev, next, viewport].forEach(el => {
             if(!el) return;
-            el.addEventListener('mouseenter',pause);
-            el.addEventListener('mouseleave',play);
-            el.addEventListener('focusin',pause);
-            el.addEventListener('focusout',play);
+            el.addEventListener('mouseenter', pause);
+            el.addEventListener('mouseleave', play);
+            el.addEventListener('focusin', pause);
+            el.addEventListener('focusout', play);
           });
         }
 
-        window.addEventListener('resize',onResize);
-        window.addEventListener('orientationchange',onResize);
-        window.addEventListener('load',onResize,{ once:true });
+        const ro = new ResizeObserver(refresh);
+        ro.observe(viewport);
+        if(slides[0]) ro.observe(slides[0]);
 
-        buildDots();
-        go(0,false);
+        window.addEventListener('load', refresh, { once:true });
+
+        refresh();
+        go(0, false);
         play();
       }
 
