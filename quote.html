@@ -98,6 +98,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-58T0MPQKYD');
+    gtag('config', 'AW-17949658140');
   </script>
 
   <style>
@@ -743,6 +744,13 @@
         gtag('event', name, params || {});
       }
 
+      function fireGoogleAdsLeadConversion() {
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17949658140/FQ7-CPy1m5gcEJyYiO9C'
+        });
+      }
+
       function currentQuoteParams() {
         const locationChoice = getCheckedValue('damage_location');
         const damageTypeChoice = getCheckedValue('damage_type');
@@ -966,6 +974,7 @@
         submissionPending = false;
 
         trackEvent('quote_submit_success', currentQuoteParams());
+        fireGoogleAdsLeadConversion();
 
         form.querySelectorAll('input, select, textarea, button').forEach(el => {
           el.disabled = true;
