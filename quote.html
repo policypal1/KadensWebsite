@@ -92,7 +92,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58T0MPQKYD"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17949658140"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -738,18 +738,23 @@
 
       let submissionPending = false;
       let hasUserSelectedDamageLocation = false;
+      let googleAdsLeadConversionFired = false;
 
       function trackEvent(name, params) {
         if (typeof gtag !== 'function') return;
         gtag('event', name, params || {});
       }
 
-     function fireGoogleAdsLeadConversion() {
-  if (typeof gtag !== 'function') return;
-  gtag('event', 'conversion', {
-    'send_to': 'AW-17949658140/FQ7-CPylm5gcEJyYi09C'
-  });
-}
+      function fireGoogleAdsLeadConversion() {
+        if (googleAdsLeadConversionFired) return;
+        if (typeof gtag !== 'function') return;
+
+        googleAdsLeadConversionFired = true;
+
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17949658140/FQ7-CPylm5gcEJyYi09C'
+        });
+      }
 
       function currentQuoteParams() {
         const locationChoice = getCheckedValue('damage_location');
@@ -1013,6 +1018,7 @@
         data._submittedAt = new Date().toISOString();
 
         trackEvent('quote_submit', currentQuoteParams());
+        fireGoogleAdsLeadConversion();
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
