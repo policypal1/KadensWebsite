@@ -888,7 +888,7 @@
         <div class="mt-10 grid gap-5 sm:grid-cols-3">
           <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
             <div class="text-4xl md:text-5xl font-black text-red-600">
-              <span class="count-up" data-target="20" data-suffix="+">0</span>
+              <span class="count-up" data-target="20" data-suffix="+">20+</span>
             </div>
             <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Years of Service</p>
             <p class="mt-2 text-sm text-neutral-600">That kind of time in the trade means less guesswork and more confidence on the job.</p>
@@ -896,7 +896,7 @@
 
           <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
             <div class="text-4xl md:text-5xl font-black text-red-600">
-              <span class="count-up" data-target="3484" data-suffix="+" data-group="true">0</span>
+              <span class="count-up" data-target="3484" data-suffix="+" data-group="true">3,484+</span>
             </div>
             <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Installations Completed</p>
             <p class="mt-2 text-sm text-neutral-600">Thousands of completed installs means your vehicle is not someone's practice run.</p>
@@ -904,7 +904,7 @@
 
           <article class="rounded-2xl bg-neutral-50 border border-neutral-200 shadow-sm p-8 text-center">
             <div class="text-4xl md:text-5xl font-black text-red-600">
-              <span class="count-up" data-target="6">0</span>
+              <span class="count-up" data-target="6">6</span>
             </div>
             <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">Days a Week Available</p>
             <p class="mt-2 text-sm text-neutral-600">More days on the schedule gives you a better shot at getting booked quickly.</p>
@@ -1745,6 +1745,9 @@
         const group = el.dataset.group === 'true';
         const duration = 1400;
         const start = performance.now();
+
+        // Reset to 0 so the count-up animation is visible
+        el.textContent = '0';
 
         function tick(now){
           const progress = Math.min((now - start) / duration, 1);
