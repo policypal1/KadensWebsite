@@ -4,6 +4,16 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/quote.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/quote",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [
