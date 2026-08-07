@@ -79,11 +79,21 @@
   gtag('config', 'AW-17949658140');
 </script>
 
-<!-- Google Ads website-call tracking -->
+<!-- Event snippet for Click to call conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
-  gtag('config', 'AW-17949658140/K1G-CNaKwtccEJyYiO9C', {
-    'phone_conversion_number': '(503) 949-2257'
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17949658140/8AMLCPLH9N0cEJyYiO9C',
+      'event_callback': callback
   });
+  return false;
+}
 </script>
 
   <link rel="icon" type="image/jpeg" href="653713642_122095982396957277_9126760842103700020_n.jpg">
@@ -1814,12 +1824,14 @@
       }
 
       document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
           trackEvent('phone_click', {
             link_text: (link.textContent || '').trim(),
             link_url: link.getAttribute('href'),
             page_path: window.location.pathname
           });
+          gtag_report_conversion(link.href);
         });
       });
     })();
